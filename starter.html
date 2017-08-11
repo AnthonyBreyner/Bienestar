@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 
   <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+  <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
 
 
   <!-- Google Font -->
@@ -322,7 +323,7 @@
             <div class="tab-content">
               <div class="box-body">
                 <div class="row">
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-5 col-sm-12">
                   <label >Beneficiario:</label>
                   <select class="form-control" style="width: 100%" id="beneficiario">
                     <option selected="selected" value="S"></option>
@@ -330,7 +331,7 @@
                     <option value="">2</option>
                   </select>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-5 col-sm-12">
                   <label >Conceptos:</label>
                   <select class="form-control" style="width: 100%" id="concepto">
                     <option selected="selected" value="S"></option>
@@ -339,93 +340,117 @@
                   </select>
                 </div>
                   <div class="form-group">
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-2 col-sm-12">
                     <label>Monto:</label>
                         <input class="form-control" id="monto">
                       </div>
                   </div>
-              </div>
+              </div><br>
              <div class="row">
-                  <div class="col-md-4 col-sm-12">
+                  <div class="col-md-3 col-sm-12">
                   <label>Rif:</label>
                       <input class="form-control" id="rif">
                     </div>
-                  <div class="col-md-4 col-sm-12">
+                  <div class="col-md-5 col-sm-12">
                   <label>Razón Social:</label>
                       <input class="form-control" id="rsocial">
                     </div>
-                  <div class="col-md-3 col-sm-12">
+                  <div class="col-md-2 col-sm-12">
                   <label>N° de Factura:</label>
                     <input type="text" class="form-control"  id="nfactura" >
                   </div>
-                  <div class="col-md-1 col-sm-12">
-                    <div class="input-group input-group">
-                        <span class="input-group-btn">
-                        <button type="button" class="btn btn-success btn-flat"
-                        id="agregar" style="margin-top:23px" ><i class="glyphicon glyphicon-plus"></i></button>
-                        </span>
-                    </div>
-                  </div>
-             </div><br>
+                  <div class="col-md-2 col-sm-12">
+                    <label>Fecha de Factura:</label>
+
+
+                      <div class="input-group date">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="input-group input-group">
+                          <input type="text" class="form-control"  id="ffactura">
+
+                       </div>
+                      </div>
+
+             </div>
+             <div class="col-md-12 col-sm-12">
+                     <a href="#" class="btn btn-primary btn-success pull-right" style="margin-top:23px; margin-bottom: 20px;">AGREGAR &nbsp<i class="glyphicon glyphicon-plus" ></i></a>
+             </div><br><br><br><br>
              <div class="row">
-               <div class="col-md-12 col-sm-12">
-                 <div class="list-group">
-                   <a href="#" class="list-group-item active">
-                  Detalles
-                    </a>
-                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-                    <a href="#" class="list-group-item">Morbi leo risus</a>
-                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-                    <a href="#" class="list-group-item">Vestibulum at eros</a>
-                </div>
-               </div>
-             </div><br>
-             <div class="row">
-               <div class="col-xs-12">
+               <div class="col-md-12">
                  <div class="box box-primary">
-                   <div class="box-header">
+                   <div class="box-header with-border">
                      <h3 class="box-title">Detalles</h3>
+
+                     <div class="box-tools pull-right">
+                       <div class="has-feedback">
+                         <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                       </div>
+                     </div>
+                     <!-- /.box-tools -->
                    </div>
                    <!-- /.box-header -->
-                   <div class="box-body ">
-                     <table id="example2" class="table table-bordered table-hover">
-                       <thead>
-                       <tr>
-                         <th>Rendering engine</th>
-                         <th>Browser</th>
-                         <th>Engine version</th>
-                         <th>CSS grade</th>
-                       </tr>
-                       </thead>
-                       <tbody>
-                       <tr>
-                         <td>Gecko</td>
-                         <td>Firefox 2.0</td>
-                         <td>1.8</td>
-                         <td>A</td>
-                       </tr>
-                       <tr>
-                         <td>Other browsers</td>
-                         <td>All others</td>
-                         <td>-</td>
-                         <td>-</td>
-                       </tr>
-                       </tbody>
-                       <tfoot>
-                       <tr>
-                         <th>Rendering engine</th>
-                         <th>Browser</th>
-                         <th>Engine version</th>
-                         <th>CSS grade</th>
-                       </tr>
-                       </tfoot>
-                     </table>
-                   </div>
-                   <!-- /.box-body -->
-                 </div>
-                 </div>
-                 <!-- /.box -->
-             </div>
+                   <div class="box-body no-padding">
+                     <div class="mailbox-controls">
+                       <!-- Check all button -->
+                       <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i>
+                       </button>
+                       <div class="btn-group">
+                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                       </div>
+                       <!-- /.btn-group -->
+                       <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                       <div class="pull-right">
+                         1-50/200
+                         <div class="btn-group">
+                           <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-left"></i></button>
+                           <button type="button" class="btn btn-default btn-sm"><i class="fa fa-chevron-right"></i></button>
+                         </div>
+                         <!-- /.btn-group -->
+                       </div>
+                       <!-- /.pull-right -->
+                     </div>
+                     <div class="table-responsive mailbox-messages">
+                       <table class="table table-hover table-striped">
+                         <tbody>
+                         <tr>
+                           <td><input type="checkbox"></td>
+                           <td class="mailbox-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                           <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                           <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                           </td>
+                           <td class="mailbox-attachment"></td>
+                           <td class="mailbox-date">5 mins ago</td>
+                         </tr>
+                         <tr>
+                           <td><input type="checkbox"></td>
+                           <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                           <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                           <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                           </td>
+                           <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                           <td class="mailbox-date">28 mins ago</td>
+                         </tr>
+                         <tr>
+                           <td><input type="checkbox"></td>
+                           <td class="mailbox-star"><a href="#"><i class="fa fa-star-o text-yellow"></i></a></td>
+                           <td class="mailbox-name"><a href="read-mail.html">Alexander Pierce</a></td>
+                           <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> - Trying to find a solution to this problem...
+                           </td>
+                           <td class="mailbox-attachment"><i class="fa fa-paperclip"></i></td>
+                           <td class="mailbox-date">11 hours ago</td>
+                         </tr>
+                         </tbody>
+                       </table>
+                       <!-- /.table -->
+                     </div>
+                     <!-- /.mail-box-messages -->
+                   </div><br><br>
+
              <div class="row">
                <div class="col-md-4 col-sm-12">
                  <label >Datos bancarios:</label>
@@ -452,8 +477,9 @@
                <input type="text" class="form-control"  id="nfactura" >
              </div>
            </div><br>
+         </div>
            <button type="button" class="btn btn-md btn-success pull-right"  onclick="Salvar()" id="_btnSavlvar" >
-             <i class="fa fa-save"></i>&nbsp;&nbsp;Continuar</button>
+             <i class="fa fa-save"></i>&nbsp;&nbsp;CONTINUAR</button>
             </div>
             <!-- /.tab-content -->
           </div>
@@ -564,9 +590,54 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script src="plugins/iCheck/icheck.min.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script>
+  $(function () {
+    //Enable iCheck plugin for checkboxes
+    //iCheck for checkbox and radio inputs
+    $('.mailbox-messages input[type="checkbox"]').iCheck({
+      checkboxClass: 'icheckbox_flat-blue',
+      radioClass: 'iradio_flat-blue'
+    });
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+    //Enable check and uncheck all functionality
+    $(".checkbox-toggle").click(function () {
+      var clicks = $(this).data('clicks');
+      if (clicks) {
+        //Uncheck all checkboxes
+        $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+        $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
+      } else {
+        //Check all checkboxes
+        $(".mailbox-messages input[type='checkbox']").iCheck("check");
+        $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
+      }
+      $(this).data("clicks", !clicks);
+    });
+
+    //Handle starring for glyphicon and font awesome
+    $(".mailbox-star").click(function (e) {
+      e.preventDefault();
+      //detect type
+      var $this = $(this).find("a > i");
+      var glyph = $this.hasClass("glyphicon");
+      var fa = $this.hasClass("fa");
+
+      //Switch states
+      if (glyph) {
+        $this.toggleClass("glyphicon-star");
+        $this.toggleClass("glyphicon-star-empty");
+      }
+
+      if (fa) {
+        $this.toggleClass("fa-star");
+        $this.toggleClass("fa-star-o");
+      }
+    });
+  });
+</script>
+<script src="../../dist/js/demo.js"></script>
 </body>
 </html>
