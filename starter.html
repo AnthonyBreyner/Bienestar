@@ -300,17 +300,17 @@
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Followers</b> <a class="pull-right">1,322</a>
+                  <b>Total de Rembolsos</b> <a class="pull-right">258</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Following</b> <a class="pull-right">543</a>
+                  <b>...</b> <a class="pull-right">543</a>
                 </li>
                 <li class="list-group-item">
-                  <b>Friends</b> <a class="pull-right">13,287</a>
+                  <b>...</b> <a class="pull-right">13,287</a>
                 </li>
               </ul>
 
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              <a href="#" class="btn btn-primary btn-block"><b>Nuevo Reembolso</b></a>
             </div>
             <!-- /.box-body -->
           </div>
@@ -354,64 +354,106 @@
                   <label>Razón Social:</label>
                       <input class="form-control" id="rsocial">
                     </div>
-                  <div class="col-md-4 col-sm-12">
+                  <div class="col-md-3 col-sm-12">
                   <label>N° de Factura:</label>
-                  <div class="input-group input-group">
                     <input type="text" class="form-control"  id="nfactura" >
-                     <span class="input-group-btn">
-                       <button type="button" class="btn btn-success btn-flat"
-                       id="agregar" ><i class="glyphicon glyphicon-plus"></i></button>
-                     </span>
-                 </div>
                   </div>
-             </div>
-
-                 <div class="form-group">
-                   <div class="col-md-3 col-sm-12">
-                     <label>Fecha de Nacimiento:</label>
-
-
-                       <div class="input-group date">
-                         <div class="input-group-addon">
-                           <i class="fa fa-calendar"></i>
-                         </div>
-                         <div class="input-group input-group">
-                           <input type="text" class="form-control"  id="txtnacimiento" disabled="disabled" tabindex="4">
-                            <span class="input-group-btn">
-                              <button type="button" class="btn btn-success btn-flat"
-                              id="btnnacimiento" onClick="seleccionarPartida()" ><i class="glyphicon glyphicon-paperclip"></i></button>
-                            </span>
-                        </div>
-                       </div>
-
+                  <div class="col-md-1 col-sm-12">
+                    <div class="input-group input-group">
+                        <span class="input-group-btn">
+                        <button type="button" class="btn btn-success btn-flat"
+                        id="agregar" style="margin-top:23px" ><i class="glyphicon glyphicon-plus"></i></button>
+                        </span>
+                    </div>
+                  </div>
+             </div><br>
+             <div class="row">
+               <div class="col-md-12 col-sm-12">
+                 <div class="list-group">
+                   <a href="#" class="list-group-item active">
+                  Detalles
+                    </a>
+                    <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+                    <a href="#" class="list-group-item">Morbi leo risus</a>
+                    <a href="#" class="list-group-item">Porta ac consectetur ac</a>
+                    <a href="#" class="list-group-item">Vestibulum at eros</a>
+                </div>
+               </div>
+             </div><br>
+             <div class="row">
+               <div class="col-xs-12">
+                 <div class="box box-primary">
+                   <div class="box-header">
+                     <h3 class="box-title">Detalles</h3>
                    </div>
-                   <div class="col-md-3 col-sm-6">
-                     <label >Sexo:</label>
-                     <select class="js-states form-control" style="width: 100%"  aria-hidden="true" id="cmbsexo" disabled="disabled" onchange="SeleccionarPorSexo()" required>
-                       <option selected="selected" value="S"></option>
-                       <option value="F">FEMENINO</option>
-                       <option value="M">MASCULINO</option>
-                     </select>
+                   <!-- /.box-header -->
+                   <div class="box-body ">
+                     <table id="example2" class="table table-bordered table-hover">
+                       <thead>
+                       <tr>
+                         <th>Rendering engine</th>
+                         <th>Browser</th>
+                         <th>Engine version</th>
+                         <th>CSS grade</th>
+                       </tr>
+                       </thead>
+                       <tbody>
+                       <tr>
+                         <td>Gecko</td>
+                         <td>Firefox 2.0</td>
+                         <td>1.8</td>
+                         <td>A</td>
+                       </tr>
+                       <tr>
+                         <td>Other browsers</td>
+                         <td>All others</td>
+                         <td>-</td>
+                         <td>-</td>
+                       </tr>
+                       </tbody>
+                       <tfoot>
+                       <tr>
+                         <th>Rendering engine</th>
+                         <th>Browser</th>
+                         <th>Engine version</th>
+                         <th>CSS grade</th>
+                       </tr>
+                       </tfoot>
+                     </table>
                    </div>
-                   <div class="col-md-3 col-sm-6">
-                      <label>Estado Civil:</label>
-                      <select class="js-states form-control" style="width: 100%"
-                          aria-hidden="true" id="cmbedocivil" disabled="disabled" onchange="seleccionarActas()" required>
-                        <option selected="selected" value="S"></option>
-                      </select>
-                   </div>
-                   <div class="col-md-3 col-sm-12" id="_divfechadefuncion">
-                     <label>Fecha de Defunción:</label>
-                     <div class="input-group input-group">
-                     <input type="text" class="form-control" id="txtdefuncion" disabled="disabled">
-                          <span class="input-group-btn">
-                            <button type="button" class="btn btn-success btn-flat btn-md" id="btndefuncion" onClick="seleccionarDefuncion()" disabled="disabled"><i class="fa fa-file-text"></i></button>
-                          </span>
-                      </div>
-                   </div>
-
+                   <!-- /.box-body -->
                  </div>
-
+                 </div>
+                 <!-- /.box -->
+             </div>
+             <div class="row">
+               <div class="col-md-4 col-sm-12">
+                 <label >Datos bancarios:</label>
+                 <select class="form-control" style="width: 100%" id="beneficiario">
+                   <option selected="selected" value="S">Escoja</option>
+                   <option value="">1</option>
+                   <option value="">2</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
+                <label>Nro. de Cuenta:</label>
+                <input  id="txtmnrocuenta" class="form-control"  type="text" maxlength="23" data-inputmask='"mask": "9999-9999-99-9999999999"' data-mask>
+              </div>
+              <div class="col-md-2 col-sm-12" id="_cmbmtipofinanciera">
+                <label >Tipo de Cuenta:</label>
+                <select class="form-control" style="width: 100%" id="cmbmtipofinanciera" >
+                  <option selected="selected" value="S"></option>
+                  <option value="CA" selected="selected">AHORRO</option>
+                  <option value="CC">CORRIENTE</option>
+                  </select>
+             </div>
+             <div class="col-md-2 col-sm-12">
+               <label>Cedula:</label>
+               <input type="text" class="form-control"  id="nfactura" >
+             </div>
+           </div><br>
+           <button type="button" class="btn btn-md btn-success pull-right"  onclick="Salvar()" id="_btnSavlvar" >
+             <i class="fa fa-save"></i>&nbsp;&nbsp;Continuar</button>
             </div>
             <!-- /.tab-content -->
           </div>
