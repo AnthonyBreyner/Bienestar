@@ -36,6 +36,7 @@ function Buscar(id) {
 
 function llenar(){
     console.log(militar);
+
 }
 
 function bien(){
