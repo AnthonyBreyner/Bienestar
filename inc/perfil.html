@@ -3,7 +3,7 @@
         <img class="profile-user-img img-responsive img-circle" src="" onerror="this.src='images/ndisponible.jpg'"
              alt="User profile picture" id="fotoperfil">
 
-        <h3 class="profile-username text-center">Carlos Peña</h3>
+        <h3 class="profile-username text-center" id="lblnombre"></h3>
         <img class="profile-user-img img-responsive " src="" onerror="this.src='images/ndisponible.jpg'"
              alt="User profile picture" id="imgrango">
         <p class="text-muted text-center" id="lblrango">Coronel</p>
@@ -20,7 +20,8 @@
             </li>
         </ul>
 
-        <a href="#" onclick="crearReembolso()" class="btn btn-primary btn-block"><b>Nuevo Reembolso</b></a>
+        <a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary "><b>Nuevo Reembolso</b></a>
+        <a href="#" onclick="verReembolsos()"  id="btnlreembolso" class="btn btn-primary " style="display: none"><b>Lista Reembolsos</b></a>
     </div>
     <!-- /.box-body -->
 </div>

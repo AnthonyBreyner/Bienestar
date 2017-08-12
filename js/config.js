@@ -32,7 +32,7 @@ class Conexion{
         this.PuertoSSL = ":2608";
         this.API = "/devel/api/";
         this.URL = "http://" + this.IP + this.Puerto + this.API;
-        this.URLIMG = "http://192.168.12.161/SSSIFANB/temp/";
+        this.URLIMG = "http://192.168.12.150/imagenes/";
         this.URLTEMP = "http://192.168.12.150/SSSIFANB/temp/";
         //this.URLSEC = "http://"+this.IP + this.PuertoSSL;
         this.URLSEC = "http://" + this.IP + this.Puerto;
