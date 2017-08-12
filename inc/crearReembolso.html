@@ -1,0 +1,137 @@
+<div class="nav-tabs-custom box box-primary">
+    <div class="tab-content">
+        <div class="box-body">
+            <div class="row">
+                <div class="col-md-5 col-sm-12">
+                    <label>Beneficiario:</label>
+                    <select class="form-control" style="width: 100%" id="beneficiario">
+                        <option selected="selected" value="S"></option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                    </select>
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <label>Conceptos:</label>
+                    <select class="form-control" style="width: 100%" id="concepto">
+                        <option selected="selected" value="S"></option>
+                        <option value="">1</option>
+                        <option value="">2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 col-sm-12">
+                        <label>Monto:</label>
+                        <input class="form-control" id="monto">
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label>Rif:</label>
+                    <input class="form-control" id="rif">
+                </div>
+                <div class="col-md-5 col-sm-12">
+                    <label>Razón Social:</label>
+                    <input class="form-control" id="razonsocial">
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <label>N° de Factura:</label>
+                    <input type="text" class="form-control" id="nfactura">
+                </div>
+                <div class="col-md-2 col-sm-12">
+                    <label>Fecha de Factura:</label>
+                    <div class="input-group date">
+                        <div class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="input-group input-group">
+                            <input type="text" class="form-control" id="fechafactura">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <a href="#" class="btn btn-primary btn-success pull-right"
+                       style="margin-top:23px; margin-bottom: 20px;">AGREGAR &nbsp<i
+                            class="glyphicon glyphicon-plus"></i></a>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Conceptos</h3>
+                                <!-- /.box-tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body no-padding">
+                                <div class="table-responsive mailbox-messages">
+                                    <table class="table table-hover table-striped">
+                                        <tbody id="conceptoagregado">
+                                        <tr>
+                                            <td><input type="checkbox"></td>
+                                            <td class="mailbox-star"><a href="#"><i
+                                                    class="fa fa-star text-yellow"></i></a></td>
+                                            <td class="mailbox-name"><a href="read-mail.html">Alexander
+                                                Pierce</a></td>
+                                            <td class="mailbox-subject"><b>AdminLTE 2.0 Issue</b> -
+                                                Trying to find a solution to this problem...
+                                            </td>
+                                            <td class="mailbox-attachment"></td>
+                                            <td class="mailbox-date">5 mins ago</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- /.table -->
+                                </div>
+                                <!-- /.mail-box-messages -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <label>Datos bancarios:</label>
+                        <select class="form-control" style="width: 100%"
+                                id="datosbancarios">
+                            <option selected="selected" value="S">Escoja</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
+                        <label>Nro. de Cuenta:</label>
+                        <input id="numerocuenta" class="form-control" type="text"
+                               maxlength="23"
+                               data-inputmask='"mask": "9999-9999-99-9999999999"'
+                               data-mask>
+                    </div>
+                    <div class="col-md-2 col-sm-12" id="_cmbmtipofinanciera">
+                        <label>Tipo de Cuenta:</label>
+                        <select class="form-control" style="width: 100%"
+                                id="tipodecuenta">
+                            <option selected="selected" value="S"></option>
+                            <option value="CA" selected="selected">AHORRO</option>
+                            <option value="CC">CORRIENTE</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 col-sm-12">
+                        <label>Cedula:</label>
+                        <input type="text" class="form-control" id="ci">
+                    </div>
+                </div>
+                <br>
+            </div>
+            <button type="button" class="btn btn-md btn-success pull-right"
+                    onclick="Salvar()" id="_btnSavlvar">
+                <i class="fa fa-save"></i>&nbsp;&nbsp;CONTINUAR
+            </button>
+        </div>
+        <!-- /.tab-content -->
+    </div>
+    <!-- /.nav-tabs-custom -->
+</div>
