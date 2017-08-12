@@ -46,7 +46,7 @@ function CargarAPI(options){
     //n Authorization", "Bearer " + sessionStorage.getItem('ipsfaToken'));
     var promise = new Promise(function(resolve, reject) {
         xhttp.addEventListener('readystatechange', function() {
-            if (xhttp.readyState === 4) {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
                 options.Objeto = JSON.parse(xhttp.responseText);
                 resolve(xhttp);
             }

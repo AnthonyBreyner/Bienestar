@@ -4,6 +4,9 @@ $(function () {
             Buscar();
         }
     });
+    $("#btnAgconcepto").click(function () {
+        agregarConcepto();
+    });
 })
 
 function Buscar(id) {
@@ -74,6 +77,7 @@ function crearLista(){
     if(militar.Familiar.length > 0){
         var html = "";
         var i = 0;
+        $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
         $.each(militar.Familiar,function(){
             i++;
             html += "<tr>\n" +
@@ -89,7 +93,9 @@ function crearLista(){
                 "<tr style=\"display: none\" visible=\"fila"+i+"\">\n" +
                 "<td colspan=\"5\"><div class=\"row\">ACA VA IR  TODO</div> </td>\n" +
                 "</tr>\n";
+            $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero, this.Persona.DatoBasico.cedula, true, true));
         });
+
         $("#cuerporeembolsos").html(html);
     }else{
         $("#cuerporeembolsos").html("<tr><td>No posee reembolsos registrados</td></tr>");
@@ -112,4 +118,25 @@ function verReembolsos(){
     $("#panelregistro").hide();
     $("#btnnreembolso").show();
     $("#btnlreembolso").hide();
+}
+
+function agregarConcepto(){
+    var beneficiario = $("#cmbbeneficiario option:selected").text();
+    var concepto = $("#concepto").val();
+    var monto  = $("#monto").val();
+    var rif = $("#rif").val();
+    var razon = $("#razonsocial").val();
+    var factura = $("#nfactura").val();
+    var fechaf = $("#fechafactura").val();
+    var control = "por obtener";
+    var tabla = $("#conceptoagregado");
+    var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='fa fa-trash'></i>Quitar</button>";
+    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+monto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td>";
+    html += "<td>"+fechaf+"</td><td>"+control+"</td><td>"+btndelete+"</td></tr>";
+    tabla.append(html);
+
+    $(".borrarconcepto").click(function () {
+        $(this).parents('tr').eq(0).remove();
+    });
+
 }
