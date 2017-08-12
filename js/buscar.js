@@ -22,11 +22,6 @@ function Buscar(id) {
         Objeto:militar
     });
 
-    /*request.then(function(xhRequest) {
-
-        console.log('Estado: ', xhRequest.status);
-    });*/
-
     request.then(function(xhRequest) {
 
         militar = JSON.parse(xhRequest.responseText);
