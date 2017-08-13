@@ -9,14 +9,14 @@
             <div class="tab-pane active" id="datos">
                 <form id="frmreembolso" action="#" method="post" onsubmit="return agregarConcepto()">
                 <div class="row">
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
 
                         <label>Beneficiario:</label>
                         <select class="form-control" style="width: 100%" id="cmbbeneficiario">
                             <option selected="selected" value="S"></option>
                         </select>
                     </div>
-                    <div class="col-md-3 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
                         <label>Conceptos:</label>
                         <select class="form-control" style="width: 100%" id="concepto" required="required">
                             <option selected="selected" value="S"></option>
@@ -30,47 +30,59 @@
 
                         </select>
                     </div>
-                    <div class="col-md-2 col-sm-12">
-                        <label>Rif:</label>
-                        <input class="form-control" id="rif" required="required">
-                    </div>
                     <div class="col-md-4 col-sm-12">
-                        <label>Razón Social:</label>
-                        <input class="form-control" id="razonsocial" required="required">
+                        <label>Rif:</label>
+                        <div class="btn-group-justified" role="group" aria-label="...">
+
+                         <div class="btn-group" style="width: 6%;" role="group">
+                             <input class="form-control" id="">
+                           </div>
+                           <div class="input-group-btn">
+                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" onclick="Buscar()">
+                               <span class="fa fa-search"></span></button>
+
+                             </div>
+                         </div>
                     </div>
 
                 </div>
                 <br>
                 <div class="row">
+                  <div class="col-md-4 col-sm-12">
+                      <label>Razón Social:</label>
+                      <input class="form-control" id="razonsocial" required="required">
+                  </div>
+                  <div class="col-md-4 col-sm-12">
+                      <label>N° de control:</label>
+                      <input class="form-control" id="ncontrol" required="required">
+                  </div>
 
-                        <div class="col-md-3 col-sm-12">
-                            <label>Monto:</label>
-                            <input class="form-control" id="monto" required="required">
-                        </div>
-
-                    <div class="col-md-3 col-sm-12">
-                        <label>N° de control:</label>
-                        <input class="form-control" id="ncontrol" required="required">
+                  <div class="col-md-4 col-sm-12">
+                      <label>N° de Factura:</label>
+                      <input type="text" class="form-control" id="nfactura" required="required">
+                  </div>
                     </div>
-                    <div class="col-md-3 col-sm-12">
-                        <label>N° de Factura:</label>
-                        <input type="text" class="form-control" id="nfactura" required="required">
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <label>Fecha de Factura:</label>
-                        <div class="input-group date">
-                            <div class="input-group-addon">
-                                <i class="fa fa-calendar"></i>
-                            </div>
-                            <div class="input-group input-group">
-                                <input type="text" class="form-control" id="fechafactura" required="required">
+                    <div class="row">
+                      <div class="col-md-4 col-sm-12">
+                          <label>Fecha de Factura:</label>
+                          <div class="input-group date">
+                              <div class="input-group-addon">
+                                  <i class="fa fa-calendar"></i>
+                              </div>
+                              <div class="input-group input-group" style="width: 100%;">
+                                  <input type="text" class="form-control" id="fechafactura" required="required">
 
-                            </div>
-                        </div>
+                              </div>
+                          </div>
+
+                      </div>
+                      <div class="col-md-4 col-sm-12">
+                          <label>Monto:</label>
+                          <input class="form-control" id="monto" required="required">
 
                     </div>
-                    <div class="col-md-12 col-sm-12">
-                        <button class="btn btn-primary btn-success pull-right" type="submit"
+                    <div class="col-md-4 col-sm-12">
+                        <button class="btn btn-primary btn-success" type="submit"
                                 style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
                                 class="glyphicon glyphicon-plus"></i></button>
                     </div>
