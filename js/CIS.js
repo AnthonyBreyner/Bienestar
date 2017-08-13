@@ -1,52 +1,56 @@
-class CuentaBancaria2{
-    constructor(){
+let Util = new Utilidad();
+
+class CuentaBancaria2 {
+    constructor() {
         console.log('Creando cuenta Bancaria');
         this.tipo = "";
         this.institucion = "";
         this.cuenta = "";
+        this.titular = '';
+        this.cedula = '';
     }
 }
 
-class Beneficiario{
-    constructor(){
+class Beneficiario {
+    constructor() {
         console.log('Creando objeto Beneficiario');
         this.rif = '';
         this.razonsocial = '';
-        this.tipoempresa=0;
+        this.tipo = '';
         this.direccion = '';
         this.Banco = new CuentaBancaria2();
     }
 }
 
-class Factura{
-    constructor(){
+class Factura {
+    constructor() {
         console.log("Creando objeto Factura");
-        this.numero='';
-        this.control='';
-        this.fecha='';
-        this.monto=0.00;
-        this.Beneficiario=new Beneficiario();
+        this.numero = '';
+        this.control = '';
+        this.fecha = '';
+        this.monto = 0.00;
+        this.Beneficiario = new Beneficiario();
     }
 }
 
 
-class ConceptoReembolso{
-    constructor(){
+class ConceptoReembolso {
+    constructor() {
         console.log("Creando objeto ConceptoReembolso");
-        this,tipo = '';
-        this.DatosFactura = new Factura();
+        this.tipo = '';
+        this.DatoFactura = new Factura();
         this.afiliado = '';
     }
 }
 
-class Reembolso{
-    constructor(){
+class Reembolso {
+    constructor() {
         console.log("Creando objeto Reembolso");
         this.estatus = 0;
-        this.montosolicato = 0.00;
-        this.numero = '';
-        this.fechacreacion = '';
-        this.responsable = '';
+        this.montosolicitado = 0.00;
+        //this.numero = '';
+        //this.fechacreacion = '';
+        //this.responsable = '';
         this.cuentabancaria = new CuentaBancaria2();
         this.Concepto = new Array();
         this.montoaprobado = 0.00;
@@ -55,8 +59,8 @@ class Reembolso{
 }
 
 
-class Programa{
-    constructor(){
+class Programa {
+    constructor() {
         console.log("Creando objeto Programa");
         this.Apoyo = new Array();
         this.Reembolso = new Array();
@@ -64,15 +68,15 @@ class Programa{
     }
 }
 
-class ServicioMedico{
-    constructor(){
+class ServicioMedico {
+    constructor() {
         console.log("Creando objeto ServicoMedico");
         this.Programa = new Array();
     }
 }
 
-class CIS{
-    constructor(){
+class CIS {
+    constructor() {
         console.log("Creando objeto CIS");
         this.ServicioMedico = new Array();
         this.Gasto = new Array();
@@ -80,8 +84,8 @@ class CIS{
     }
 }
 
-class Militar2{
-    constructor(){
+class Militar2 {
+    constructor() {
         console.log("Creando objeto Militar2");
         this.Persona = new Persona();
         this.estatuscarnet = '';
