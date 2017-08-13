@@ -1,60 +1,121 @@
-<div class="nav-tabs-custom box box-primary">
-    <div class="tab-content">
-        <div class="box-body">
-            <div class="row">
-                <div class="col-md-5 col-sm-12">
-                    <label>Beneficiario:</label>
-                    <select class="form-control" style="width: 100%" id="cmbbeneficiario">
-                        <option selected="selected" value="S"></option>
-                    </select>
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <label>Conceptos:</label>
-                    <select class="form-control" style="width: 100%" id="concepto">
-                        <option selected="selected" value="S"></option>
-                        <option value="">1</option>
-                        <option value="">2</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-2 col-sm-12">
-                        <label>Monto:</label>
-                        <input class="form-control" id="monto">
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="col-md-3 col-sm-12">
-                    <label>Rif:</label>
-                    <input class="form-control" id="rif">
-                </div>
-                <div class="col-md-5 col-sm-12">
-                    <label>Razón Social:</label>
-                    <input class="form-control" id="razonsocial">
-                </div>
-                <div class="col-md-2 col-sm-12">
-                    <label>N° de Factura:</label>
-                    <input type="text" class="form-control" id="nfactura">
-                </div>
-                <div class="col-md-2 col-sm-12">
-                    <label>Fecha de Factura:</label>
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-                        <div class="input-group input-group">
-                            <input type="text" class="form-control" id="fechafactura">
+<div class="body box">
+<div class="nav-tabs-custom">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#datos" data-toggle="tab">Datos</a></li>
+    <li><a href="#datosb" data-toggle="tab">Datos Bancarios</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="datos">
+      <div class="row">
+          <div class="col-md-3 col-sm-12">
+              <label>Beneficiario:</label>
+              <select class="form-control" style="width: 100%" id="cmbbeneficiario">
+                  <option selected="selected" value="S"></option>
+              </select>
+          </div>
+          <div class="col-md-3 col-sm-12">
+              <label>Conceptos:</label>
+              <select class="form-control" style="width: 100%" id="concepto">
+                  <option selected="selected" value="S"></option>
+                  <option value="">1</option>
+                  <option value="">2</option>
+              </select>
+          </div>
+          <div class="col-md-4 col-sm-12">
+              <label>Razón Social:</label>
+              <input class="form-control" id="razonsocial">
+          </div>
+          <div class="form-group">
+              <div class="col-md-2 col-sm-12">
+                  <label>Monto:</label>
+                  <input class="form-control" id="monto">
+              </div>
+          </div>
+      </div>
+      <br>
+      <div class="row">
+          <div class="col-md-3 col-sm-12">
+              <label>Rif:</label>
+              <input class="form-control" id="rif">
+          </div>
+          <div class="col-md-3 col-sm-12">
+              <label>N° de control:</label>
+              <input class="form-control" id="ncontrol">
+          </div>
+          <div class="col-md-3 col-sm-12">
+              <label>N° de Factura:</label>
+              <input type="text" class="form-control" id="nfactura">
+          </div>
+          <div class="col-md-3 col-sm-12">
+              <label>Fecha de Factura:</label>
+              <div class="input-group date">
+                  <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                  </div>
+                  <div class="input-group input-group">
+                      <input type="text" class="form-control" id="fechafactura">
 
-                        </div>
-                    </div>
+                  </div>
+              </div>
 
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <button class="btn btn-primary btn-success pull-right"
-                       style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
-                            class="glyphicon glyphicon-plus"></i></button>
-                </div>
+          </div>
+          <div class="col-md-12 col-sm-12">
+              <button class="btn btn-primary btn-success pull-right"
+                 style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
+                      class="glyphicon glyphicon-plus"></i></button>
+          </div>
+        </div>
+
+    </div>
+    <!-- /.tab-pane -->
+    <div class="tab-pane" id="datosb">
+      <div class="row">
+          <div class="col-md-4 col-sm-12">
+              <label>Datos bancarios:</label>
+              <select class="form-control" style="width: 100%"
+                      id="datosbancarios">
+                  <option selected="selected" value="S">Escoja</option>
+                  <option value="">1</option>
+                  <option value="">2</option>
+              </select>
+          </div>
+          <div class="col-md-8 col-sm-12" id="_txtmnrocuenta">
+              <label>Nro. de Cuenta:</label>
+              <input id="numerocuenta" class="form-control" type="text"
+                     maxlength="23"
+                     data-inputmask='"mask": "9999-9999-99-9999999999"'
+                     data-mask>
+          </div>
+
+      </div><br>
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <label>Cedula:</label>
+            <input type="text" class="form-control" id="ci">
+        </div>
+        <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+            <label>Banco:</label>
+            <select class="form-control" style="width: 100%"
+                    id="banco">
+                <option selected="selected" value="S"></option>
+                <option value="" selected="selected">1</option>
+                <option value="">2</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+            <label>Tipo de Cuenta:</label>
+            <select class="form-control" style="width: 100%"
+                    id="tipodecuenta">
+                <option selected="selected" value="S"></option>
+                <option value="CA" selected="selected">AHORRO</option>
+                <option value="CC">CORRIENTE</option>
+            </select>
+        </div>
+      </div>
+      
+    </div>
+    <br>
+  </div>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -67,58 +128,26 @@
                             <div class="box-body no-padding">
                                 <div class="table-responsive mailbox-messages">
                                     <table class="table table-hover table-striped">
+                                      <thead ><tr><th>Beneficiario</th><th>Control</th><th>Monto</th><th>Rif</th><th>Razón Social</th><th>N° de Factura</th><th>Fecha de Factura</th><th>N° de control</th></tr></thead>
                                         <tbody id="conceptoagregado">
 
                                         </tbody>
+                                        <tfoot class="bg-blue"><tr><th>TOTAL REEMBOLSO </th><th colspan="8" class="pull-right" id="mntAcumulado"></th></tr></tfoot>
                                     </table>
                                     <!-- /.table -->
                                 </div>
                                 <!-- /.mail-box-messages -->
                             </div>
+                            <br>
+
+                          </div>
+                          <button type="button" class="btn btn-md btn-success pull-right"
+                                  onclick="Salvar()" id="_btnSavlvar" style="margin-right: 10px;">
+                              <i class="fa fa-save"></i>&nbsp;&nbsp;CONTINUAR
+                          </button><br><br>
                         </div>
-                    </div>
-                </div>
 
+                      </div>
 
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <label>Datos bancarios:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="datosbancarios">
-                            <option selected="selected" value="S">Escoja</option>
-                            <option value="">1</option>
-                            <option value="">2</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
-                        <label>Nro. de Cuenta:</label>
-                        <input id="numerocuenta" class="form-control" type="text"
-                               maxlength="23"
-                               data-inputmask='"mask": "9999-9999-99-9999999999"'
-                               data-mask>
-                    </div>
-                    <div class="col-md-2 col-sm-12" id="_cmbmtipofinanciera">
-                        <label>Tipo de Cuenta:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="tipodecuenta">
-                            <option selected="selected" value="S"></option>
-                            <option value="CA" selected="selected">AHORRO</option>
-                            <option value="CC">CORRIENTE</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2 col-sm-12">
-                        <label>Cedula:</label>
-                        <input type="text" class="form-control" id="ci">
-                    </div>
-                </div>
-                <br>
-            </div>
-            <button type="button" class="btn btn-md btn-success pull-right"
-                    onclick="Salvar()" id="_btnSavlvar">
-                <i class="fa fa-save"></i>&nbsp;&nbsp;CONTINUAR
-            </button>
         </div>
         <!-- /.tab-content -->
-    </div>
-    <!-- /.nav-tabs-custom -->
-</div>
