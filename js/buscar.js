@@ -1,10 +1,31 @@
+let lstProveedores;
 $(function () {
     $("#_cedula").on("keypress",function(e){
         if(e.keyCode == 13) {
             Buscar();
         }
     });
-})
+    $("#rif").on("blur",function () {
+       consultarRif();
+    });
+});
+
+function consultarRif(){
+    var rif = $("#rif").val();
+    var rz = '';
+    var encontrado = 0;
+    $.each(lstProveedores,function () {
+       if(this.rif == rif){
+           rz= this.razonsocial;
+           encontrado = 1;
+       }
+    });
+    if(encontrado == 1){
+        $("#razonsocial").val(rz);
+    }else{
+        alert("no se encontro");
+    }
+}
 
 function ActivarBuscar(){
     $("#_bxBuscar").show();
@@ -39,6 +60,19 @@ function Buscar(id) {
 
         militar = JSON.parse(xhRequest.responseText);
         llenar();
+
+    });
+
+    var request2 = CargarAPI({
+        sURL: 'js/proveedores.js',
+        metodo: 'GET',
+        valores: '',
+    });
+
+    request2.then(function(xhRequest) {
+
+        lstProveedores = JSON.parse(xhRequest.responseText);
+        console.log(lstProveedores);
 
     });
 
