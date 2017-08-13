@@ -53,7 +53,8 @@ function CargarAPI(options){
         });
 
         xhttp.addEventListener('error', function() {
-            respuesta = JSON.parse(xhttp.responseText);
+            console.log(xhttp.responseText);
+            //respuesta = JSON.parse(xhttp.responseText);
             if (respuesta.tipo != 0){
                 $.notify("Se ha Insertado correctamente", "success");
             }else{
