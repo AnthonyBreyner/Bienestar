@@ -159,15 +159,17 @@ function crearLista(){
                     "<div class='col-md-3'>"+this.afiliado+"</div><div class='col-md-3'>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</div> "+
                     "<div class='col-md-2'>"+this.DatoFactura.numero+"</div><div class='col-md-2'>"+this.DatoFactura.fecha+"</div><div class='col-md-2'>"+this.DatoFactura.monto+"</div> </div>";
             })
-
-            html += "<tr>\n" +
+            var est = "Por procesar";
+            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
+            html += "<tr class='bg-blue'><th>Detalle</th><th>Numero Solicitud</th><th>F.Solicitu</th><th>Monto Solicitud</th><th>Estatus</th></tr>" +
+                "<tr>\n" +
                 "                            <td class=\"mailbox-star\"><a href=\"#\" onclick=\"detalleVisible('fila"+i+"')\"><i\n" +
                 "                                    class=\"fa fa-plus text-blue\"></i></a></td>\n" +
-                "                            <td class=\"mailbox-name\">"+this.numero+"\n" +
-                "                            <td class=\"mailbox-subject\"><b>"+this.fechacreacion+"</b> -\n" +
+                "                            <td class=\"mailbox-subject\">"+this.numero+"</td>\n" +
+                "                            <td class=\"mailbox-subject\"><b>"+fcrea+"</b> -\n" +
                 "                            </td>\n" +
                 "                            <td class=\"mailbox-attachment\">"+this.montosolicitado+"</td>\n" +
-                "                            <td class=\"mailbox-date\">"+this.estatus+"</td>\n" +
+                "                            <td class=\"mailbox-date\">"+est+"</td>\n" +
                 "                        </tr>\n" +
                 "<tr style=\"display: none\" visible=\"fila"+i+"\">\n" +
                 "<td colspan=\"5\">"+tconcepto+"</td>\n" +
