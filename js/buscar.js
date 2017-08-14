@@ -131,23 +131,22 @@ function llenar(){
 }
 
 function listaCuentas(){
-
+    $("#datosbancarios").html("");
     $.each(militar.Persona.DatoFinanciero,function(){
         $("#datosbancarios").append(new Option(this.cuenta,this.cuenta+"|"+this.institucion+"|"+this.tipo, true, true));
     });
     $("#datosbancarios").append(new Option("OTRA","otra", true, true));
+    $("#datosbancarios").append(new Option("Selecione","", true, true));
 }
 
 function crearLista(){
+    $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
     if(militar.Familiar.length > 0){
-
-        $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
         $.each(militar.Familiar,function(){
             $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero, this.Persona.DatoBasico.cedula, true, true));
         });
-    }else{
-        $("#cuerporeembolsos").html("<tr><td>No posee reembolsos registrados</td></tr>");
     }
+    $("#cmbbeneficiario").append(new Option("Seleccione","", true, true));
 
     if(militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
         var html = "";
