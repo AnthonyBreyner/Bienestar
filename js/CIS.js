@@ -18,7 +18,7 @@ class Beneficiario {
         this.razonsocial = '';
         this.tipo = '';
         this.direccion = '';
-        this.Banco = new CuentaBancaria2();
+        //this.Banco = new CuentaBancaria2();
     }
 }
 

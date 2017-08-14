@@ -209,8 +209,10 @@ function cargarDatos(){
     
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#numerocuenta").val();
-    cuenta.institucion = "por enviar";
+    cuenta.institucion = $("#banco").val();
     cuenta.tipo = $("#tipodecuenta option:selected").val();
+    cuenta.cedula = $("#cibancario").val();
+    cuenta.titular = "POR ASIGNAR";
     reembolso.cuentabancaria = cuenta;
     
     var conceptos = new Array();
@@ -218,7 +220,7 @@ function cargarDatos(){
         var concep = new ConceptoReembolso();
         var facturaD = new Factura();
         facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(7).html())).toISOString();
-        facturaD.monto = $(this).find("td").eq(6).html();
+        facturaD.monto = parseFloat($(this).find("td").eq(6).html());
         facturaD.numero = $(this).find("td").eq(4).html();
         facturaD.control = $(this).find("td").eq(5).html();
 
@@ -227,7 +229,7 @@ function cargarDatos(){
         prov.razonsocial = $(this).find("td").eq(3).html();
         prov.tipoempresa = 'J';
         prov.direccion = 'Por cargar';
-        prov.Banco = 'Pora cargar banco';
+        //prov.Banco = 'Pora cargar banco';
 
         facturaD.Beneficiario = prov;
 
@@ -241,6 +243,20 @@ function cargarDatos(){
 
     console.log(reembolso);
     console.log(JSON.stringify(reembolso));
+    var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso};
+    var urlGuardar = Conn.URL + "wreembolso";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'POST',
+        valores: datos,
+    });
+
+    request2.then(function(xhRequest) {
+
+        lstProveedores = JSON.parse(xhRequest.responseText);
+        console.log(lstProveedores);
+
+    });
 
 }
 
@@ -269,7 +285,5 @@ function verificaBeneficiarioCuenta(){
 }
 
 function limpiarReembolso(){
-    $("#frmreembolso").each(function(){
-       this.rese
-    });
+
 }
