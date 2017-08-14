@@ -73,37 +73,6 @@ function CargarAPI(options){
     }
 
     return promise;
-    /*xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            if(Objeto != undefined){
-                //console.log(xhttp.responseText);
-                Objeto = JSON.parse(xhttp.responseText);
-                console.log(Objeto);
-            }else{
-                respuesta = JSON.parse(xhttp.responseText);
-                if (respuesta.tipo != 0){
-                    $.notify("Se ha Insertado correctamente", "success");
-                }else{
-                    alert(xhttp.responseText);
-                }
-            }
-        }
-    }
-    xhttp.onerror = function() {
-        if (this.readyState == 4 && this.status == 0) {
-            $.notify("No se puede conectar al servidor");
-            $("#_cargando").hide();
-            //Pace.stop();
-        }
-
-    };
-
-
-    if(valores != undefined){
-        xhttp.send(JSON.stringify(valores));
-    }else{
-        xhttp.send();
-    }*/
 }
 
 function CargarUrl(id, url){

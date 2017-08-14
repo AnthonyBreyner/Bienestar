@@ -93,3 +93,14 @@ class Militar2 {
         this.CIS = new CIS();
     }
 }
+
+var Conn = new Conexion();
+let militar = new Militar();
+$(function () {
+    CargarUrl("modalreembolso","inc/modals");
+    CargarUrl("_bxBuscar", "buscar");
+    CargarUrl("panelperfil", "inc/perfil");
+    CargarUrl("panellista", "inc/lstReembolsos");
+    CargarUrl("panelregistro", "inc/crearReembolso");
+
+})
