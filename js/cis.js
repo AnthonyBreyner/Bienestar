@@ -5,4 +5,5 @@ $(function () {
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
     CargarUrl("panelregistro", "inc/crearReembolso");
+    CargarUrl("modalreembolso","inc/modals");
 });

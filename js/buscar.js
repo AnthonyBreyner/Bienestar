@@ -23,8 +23,23 @@ function consultarRif(){
     if(encontrado == 1){
         $("#razonsocial").val(rz);
     }else{
-        alert("no se encontro");
+        $("#mdlEmpresa").modal("show");
+        alert("entra");
     }
+}
+function salvarEmpresa(){
+    var rifn = $("#rifnuevo").val();
+    var rznuevo = $("#rsocialnuevo").val();
+    var tenuevo = $("#tipoenuevo").val();
+    var direc = $("#direcnueva").val();
+    if(rifn == "" || rznuevo == "" || tenuevo == "S" || direc == ""){
+        $.notify("Debe ingresar todos los datos de la empresa a registrar");
+        return false;
+    }
+    $.notify("Proceso de registro pendiente");
+    $("#rif").val(rifn);
+    $("#razonsocial").val(rznuevo);
+    $("#mdlEmpresa").modal('hide');
 }
 
 function ActivarBuscar(){
@@ -206,7 +221,7 @@ function calcularAcumulado(){
 function cargarDatos(){
     var reembolso = new Reembolso();
     reembolso.montosolicitado = parseFloat($("#mntAcumulado").html());
-    
+
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#numerocuenta").val();
     cuenta.institucion = $("#banco").val();
@@ -214,7 +229,7 @@ function cargarDatos(){
     cuenta.cedula = $("#cibancario").val();
     cuenta.titular = "POR ASIGNAR";
     reembolso.cuentabancaria = cuenta;
-    
+
     var conceptos = new Array();
     $("#conceptoagregado tr").each(function () {
         var concep = new ConceptoReembolso();
