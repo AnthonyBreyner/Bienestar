@@ -98,6 +98,7 @@ function Buscar(id) {
 
 function llenar(){
     console.log(militar);
+
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
     $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
     $("#_cargando").hide();
@@ -121,6 +122,39 @@ function llenar(){
         $("#lblgrado").text(militar.Grado.descripcion);
         crearLista();
         listaCuentas();
+
+        $("#txtnropersona").val(militar.Persona.DatoBasico.nropersona);
+        $("#txtcedula").val(militar.Persona.DatoBasico.cedula);
+        $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero + ' ' + militar.Persona.DatoBasico.nombresegundo);
+        $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero + ' ' + militar.Persona.DatoBasico.apellidosegundo);
+        $("#txtnacimiento").val(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
+        $("#cmbsexo").val(militar.Persona.DatoBasico.sexo);
+        //SeleccionarPorSexo(DB.sexo);
+        $("#cmbedocivil").val(militar.Persona.DatoBasico.estadocivil);
+        $("#cmbcomponente").val(militar.Componente.abreviatura);
+        $("#cmbgrado").html('<option value="' + militar.Grado.abreviatura + '">' + militar.Grado.descripcion + '</option>');
+        $("#txtnresuelto").val(militar.nresuelto);
+
+        $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
+        $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
+        $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
+
+
+        if (militar.Persona.Direccion != undefined) {
+
+            var DIR = militar.Persona.Direccion[0];
+            Estados.ObtenerEstados();
+            $("#cmbmestado").val(DIR.estado);
+            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+            $("#txtmcalle").val(DIR.calleavenida);
+            $("#txtmcasa").val(DIR.casa);
+            $("#txtmapto").val(DIR.apartamento);
+
+        }
+
+
         $("#paneldatos").show();
         $("#_bxBuscar").hide();
     }else{
@@ -155,7 +189,6 @@ function crearLista(){
             i++;
             var tconcepto = "";
             $.each(this.Concepto,function(){
-                console.log(this);
                 tconcepto += "<div class='row'>" +
                     "<div class='col-md-3'>"+this.afiliado+"</div><div class='col-md-3'>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</div> "+
                     "<div class='col-md-2'>"+this.DatoFactura.numero+"</div><div class='col-md-2'>"+this.DatoFactura.fecha+"</div><div class='col-md-2'>"+this.DatoFactura.monto+"</div> </div>";
@@ -202,12 +235,12 @@ function agregarConcepto(){
     var beneficiario = $("#cmbbeneficiario option:selected").val()+"-"+$("#cmbbeneficiario option:selected").text();
     var concepto = $("#concepto option:selected").text();
     var monto  = $("#monto").val();
-    var rif = $("#rif").val().toUpperCase();
-    var razon = $("#razonsocial").val().toUpperCase();
-    var factura = $("#nfactura").val().toUpperCase();
+    var rif = $("#rif").val();
+    var razon = $("#razonsocial").val();
+    var factura = $("#nfactura").val();
     var fechaf = $("#fechafactura").val();
-    var control = $("#ncontrol").val().toUpperCase();
-    var tabla = $("#conceptoagregado").toUpperCase();
+    var control = $("#ncontrol").val();
+    var tabla = $("#conceptoagregado");
     var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='fa fa-trash'></i>Quitar</button>";
     var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td><td>"+control+"</td><td class='mntAcumulado'>"+monto+"</td>";
     html += "<td>"+fechaf+"</td><td>"+btndelete+"</td></tr>";
