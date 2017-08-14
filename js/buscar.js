@@ -103,7 +103,8 @@ function llenar(){
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         console.log(militar.Persona.DatoBasico.nombreprimero);
-        $("#lblnombre").text(militar.Persona.DatoBasico.nombreprimero);
+        var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
+        $("#lblnombre").text(ncompleto);
         url = "images/grados/" + militar.Grado.abreviatura + ".png";
         url = url.toLowerCase();
         $("#imgrango").attr("src", url);
@@ -116,7 +117,8 @@ function llenar(){
         }
         $("#fotoperfil").attr("src", url);
 
-        $("#lblrango").text(militar.Grado.descripcion);
+        $("#lblcomponente").text(militar.Componente.descripcion);
+        $("#lblgrado").text(militar.Grado.descripcion);
         crearLista();
         listaCuentas();
         $("#paneldatos").show();
