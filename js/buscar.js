@@ -138,30 +138,42 @@ function listaCuentas(){
 
 function crearLista(){
     if(militar.Familiar.length > 0){
-        var html = "";
-        var i = 0;
+
         $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
         $.each(militar.Familiar,function(){
+            $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero, this.Persona.DatoBasico.cedula, true, true));
+        });
+    }else{
+        $("#cuerporeembolsos").html("<tr><td>No posee reembolsos registrados</td></tr>");
+    }
+
+    if(militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
+        var html = "";
+        var i = 0;
+        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(){
             i++;
+            var tconcepto = "";
+            $.each(this.Concepto,function(){
+                console.log(this);
+                tconcepto += "<div class='row'>" +
+                    "<div class='col-md-3'>"+this.afiliado+"</div><div class='col-md-3'>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</div> "+
+                    "<div class='col-md-2'>"+this.DatoFactura.numero+"</div><div class='col-md-2'>"+this.DatoFactura.fecha+"</div><div class='col-md-2'>"+this.DatoFactura.monto+"</div> </div>";
+            })
+
             html += "<tr>\n" +
                 "                            <td class=\"mailbox-star\"><a href=\"#\" onclick=\"detalleVisible('fila"+i+"')\"><i\n" +
                 "                                    class=\"fa fa-plus text-blue\"></i></a></td>\n" +
-                "                            <td class=\"mailbox-name\">"+this.Persona.DatoBasico.nombreprimero+"\n" +
-                "                                Pierce</a></td>\n" +
-                "                            <td class=\"mailbox-subject\"><b>"+this.Persona.DatoBasico.apellidoprimero+"</b> -\n" +
+                "                            <td class=\"mailbox-name\">"+this.numero+"\n" +
+                "                            <td class=\"mailbox-subject\"><b>"+this.fechacreacion+"</b> -\n" +
                 "                            </td>\n" +
-                "                            <td class=\"mailbox-attachment\">"+this.parentesco+"</td>\n" +
-                "                            <td class=\"mailbox-date\"></td>\n" +
+                "                            <td class=\"mailbox-attachment\">"+this.montosolicitado+"</td>\n" +
+                "                            <td class=\"mailbox-date\">"+this.estatus+"</td>\n" +
                 "                        </tr>\n" +
                 "<tr style=\"display: none\" visible=\"fila"+i+"\">\n" +
-                "<td colspan=\"5\"><div class=\"row\">ACA VA IR  TODO</div> </td>\n" +
+                "<td colspan=\"5\">"+tconcepto+"</td>\n" +
                 "</tr>\n";
-            $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero, this.Persona.DatoBasico.cedula, true, true));
         });
-
         $("#cuerporeembolsos").html(html);
-    }else{
-        $("#cuerporeembolsos").html("<tr><td>No posee reembolsos registrados</td></tr>");
     }
 }
 
@@ -187,12 +199,12 @@ function agregarConcepto(){
     var beneficiario = $("#cmbbeneficiario option:selected").val()+"-"+$("#cmbbeneficiario option:selected").text();
     var concepto = $("#concepto option:selected").text();
     var monto  = $("#monto").val();
-    var rif = $("#rif").val();
-    var razon = $("#razonsocial").val();
-    var factura = $("#nfactura").val();
+    var rif = $("#rif").val().toUpperCase();
+    var razon = $("#razonsocial").val().toUpperCase();
+    var factura = $("#nfactura").val().toUpperCase();
     var fechaf = $("#fechafactura").val();
-    var control = $("#ncontrol").val();
-    var tabla = $("#conceptoagregado");
+    var control = $("#ncontrol").val().toUpperCase();
+    var tabla = $("#conceptoagregado").toUpperCase();
     var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='fa fa-trash'></i>Quitar</button>";
     var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td><td>"+control+"</td><td class='mntAcumulado'>"+monto+"</td>";
     html += "<td>"+fechaf+"</td><td>"+btndelete+"</td></tr>";
