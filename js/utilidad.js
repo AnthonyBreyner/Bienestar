@@ -242,4 +242,26 @@ class Utilidad {
 
     }
 
+    GenerarEstadoCivil(est,sexo){
+        var estadocivil;
+        switch(est) {
+            case "C":
+                estadocivil =(sexo=="F")?"CASADA":"CASADO";
+                break;
+            case "D":
+                estadocivil = (sexo=="F")?"DIVORCIADA":"DIVORCIADO";
+                break;
+            case "S":
+                estadocivil = (sexo=="F")?"SOLTERA":"SOLTERO";
+                break;
+            case "V":
+                estadocivil = (sexo=="F")?"VIUDA":"VIUDO";
+                break;
+            default:
+                estadocivil = "";
+                break;
+        }
+        return estadocivil;
+    }
+
 }
