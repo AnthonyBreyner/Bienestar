@@ -215,14 +215,14 @@
             <div class="tab-pane active" id="datos">
                 <form id="frmreembolso" action="#" method="post" onsubmit="return agregarConcepto()">
                     <div class="row">
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-6 col-sm-12">
 
                             <label>Beneficiario:</label>
                             <select class="form-control" style="width: 100%" id="cmbbeneficiario">
                                 <option selected="selected" value="S"></option>
                             </select>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-6 col-sm-12">
                             <label>Conceptos:</label>
                             <select class="form-control" style="width: 100%" id="concepto">
                                 <option selected="selected" value="S"></option>
@@ -236,7 +236,9 @@
 
                             </select>
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-sm-12">
                             <label>Rif:</label>
                             <div class="btn-group-justified" role="group" aria-label="...">
 
@@ -252,27 +254,17 @@
                             </div>
                         </div>
 
-                    </div>
-                    <br>
-                    <div class="row">
                         <div class="col-md-4 col-sm-12">
                             <label>Razón Social:</label>
                             <input class="form-control" id="razonsocial" readonly="true" required="required">
                         </div>
-                        <div class="col-md-4 col-sm-12">
-                            <label>N° de control:</label>
-                            <input class="form-control" id="ncontrol" required="required">
-                        </div>
-
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                             <label>N° de Factura:</label>
                             <input type="text" class="form-control" id="nfactura" required="required">
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-4 col-sm-12">
-                            <label>Fecha de Factura:</label>
+
+                        <div class="col-md-3 col-sm-12">
+                            <label>F.Factura:</label>
                             <div class="input-group date">
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
@@ -284,7 +276,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-4 col-sm-12">
+                        <div class="col-md-3 col-sm-12">
                             <label>Monto:</label>
                             <input class="form-control" id="monto" required="required">
 
@@ -296,7 +288,7 @@
                         </div>
                     </div>
 
-                    <div class="box box-primary">
+                    <div class="box box-primary" id="cajaConceptos" style="display: none">
                         <div class="box-header with-border">
                             <h3 class="box-title">Conceptos</h3>
 
@@ -312,9 +304,8 @@
                                         <th>Rif</th>
                                         <th>Razón Social</th>
                                         <th>N° de Factura</th>
-                                        <th>N°Control</th>
                                         <th>Monto</th>
-                                        <th>Fecha de Factura</th>
+                                        <th>Fecha</th>
                                         <th>#</th>
                                     </tr>
                                     </thead>
@@ -344,23 +335,27 @@
                         <label>Datos bancarios:</label>
                         <select class="form-control" style="width: 100%"
                                 id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
-                            <option selected="selected" value="S">Escoja</option>
+                            <option selected="selected" value="S">Seleccione</option>
                         </select>
                     </div>
-                    <div class="col-md-8 col-sm-12" id="_txtmnrocuenta">
+                    <div class="col-md-4 col-sm-12" >
+                        <label>Depositar a:</label>
+                        <select class="form-control" style="width: 100%"
+                                id="depositar" disabled="true" onchange="cedulaDepositar()">
+                            <option selected="selected" value="S">Seleccionar</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label>Cedula:</label>
+                        <input type="text" class="form-control" id="cibancario" disabled="true">
+                    </div>
+                    <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
                         <label>Nro. de Cuenta:</label>
                         <input id="numerocuenta" class="form-control" type="text" maxlength="23"
                                data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true"
                                data-mask>
                     </div>
 
-                </div>
-                <br>
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <label>Cedula:</label>
-                        <input type="text" class="form-control" id="cibancario" disabled="true">
-                    </div>
                     <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
                         <label>Banco:</label>
                         <select class="form-control" style="width: 100%"
@@ -431,6 +426,14 @@
     </div>
 
 </div>
+<script>
+    $('#fechafactura').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+</script>
 <!--
 <script>
     $('#fechafactura').datepicker({

@@ -31,6 +31,8 @@ $(function () {
         $("#tblreembolsos").show();
         $("#lstDetalle").hide();
     });
+
+    $("#concepto").select2();
 });
 
 function consultarRif(){
@@ -129,7 +131,7 @@ function llenar(){
         $("#lblnombre").text(ncompleto);
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
-        //$("#ttnombre").text(ncompleto);
+        $("#ttnombre").text(ncompleto);
 
 
         url = "images/grados/" + militar.Grado.abreviatura + ".png";
@@ -146,15 +148,15 @@ function llenar(){
 
         $("#cmbcomponente").val(militar.Componente.descripcion);
         $("#lblcomponente").text(militar.Componente.descripcion);
-        //$("#ttcomponente").text(militar.Componente.descripcion);
+        $("#ttcomponente").text(militar.Componente.descripcion);
 
         $("#lblgrado").text(militar.Grado.descripcion);
         $("#cmbgrado").val(militar.Grado.descripcion)
-        //$("#ttgrado").text(militar.Grado.descripcion);
+        $("#ttgrado").text(militar.Grado.descripcion);
 
         $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
         $("#txtcedula").val(militar.Persona.DatoBasico.cedula);
-        //$("#ttcedula").text(militar.Persona.DatoBasico.cedula);
+        $("#ttcedula").text(militar.Persona.DatoBasico.cedula);
 
         crearLista();
 
@@ -165,10 +167,10 @@ function llenar(){
 
         $("#lblestcivil").text(estcivil);
         $("#cmbedocivil").val(estcivil);
-        //$("#ttestadocivil").text(estcivil);
+        $("#ttestadocivil").text(estcivil);
 
         $("#cmbsituacion").val(militar.situacion);
-        //$("#ttsituacion").text(militar.situacion);
+        $("#ttsituacion").text(militar.situacion);
 
 
         if(militar.Persona.DatoFinanciero != undefined){
@@ -188,8 +190,8 @@ function llenar(){
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
-            //var rirec = DIR.estado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
-            //$("#ttdireccion").text(rirec);
+            var rirec = DIR.estado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
+            $("#ttdireccion").text(rirec);
         }
 
 
@@ -213,13 +215,21 @@ function listaCuentas(){
 
 function crearLista(){
     $("#cmbbeneficiario").append(new Option("T|"+militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", militar.Persona.DatoBasico.cedula, true, true));
+    var ncompleto = militar.Persona.DatoBasico.nombreprimero+ " " + militar.Persona.DatoBasico.apellidoprimero;
+    $("#depositar").append(new Option(ncompleto,militar.Persona.DatoBasico.cedula , true, true));
     if(militar.Familiar.length > 0){
         $.each(militar.Familiar,function(v){
+            var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(this.Persona.DatoBasico.fechanacimiento));
+            if(edad > 18){
+                var ncompleto2 = this.Persona.DatoBasico.nombreprimero+ " " + this.Persona.DatoBasico.apellidoprimero;
+                $("#depositar").append(new Option(ncompleto2, this.Persona.DatoBasico.cedula, true, true));
+            }
             var parentes = Util.ConvertirParentesco(this.parentesco,this.Persona.DatoBasico.sexo);
             $("#cmbbeneficiario").append(new Option(v+"|"+this.Persona.DatoBasico.nombreprimero+"("+parentes+")", this.Persona.DatoBasico.cedula, true, true));
         });
     }
     $("#cmbbeneficiario").append(new Option("Seleccione","", true, true));
+    $("#depositar").append(new Option("Seleccione","", true, true));
 
     $("#cmbbeneficiario").on("change",function(){
         var opt = $("#cmbbeneficiario option:selected").val();
@@ -256,6 +266,11 @@ function crearLista(){
         });
         $("#cuerporeembolsos").html(html);
     }
+}
+
+function cedulaDepositar(){
+    var ced = $("#depositar").val();
+    $("#cibancario").val(ced);
 }
 
 function cargarFamiliar(pos){
@@ -304,20 +319,24 @@ function agregarConcepto(){
     var razon = $("#razonsocial").val();
     var factura = $("#nfactura").val();
     var fechaf = $("#fechafactura").val();
-    var control = $("#ncontrol").val();
     var tabla = $("#conceptoagregado");
     var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='fa fa-trash'></i>Quitar</button>";
-    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td><td>"+control+"</td><td class='mntAcumulado'>"+monto+"</td>";
+    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
     html += "<td>"+fechaf+"</td><td>"+btndelete+"</td></tr>";
     tabla.append(html);
 
     $(".borrarconcepto").click(function () {
         $(this).parents('tr').eq(0).remove();
+        if($("#conceptoagregado tr").length == 0){
+            $("#cajaConceptos").slideUp();
+        }
         calcularAcumulado();
     });
 
     calcularAcumulado();
     $.notify("Se ha agregado el concepto", "success");
+    $("#cajaConceptos").slideDown("slow");
+    limpiarReembolso();
     return false;
 }
 
@@ -340,17 +359,17 @@ function cargarDatos(){
     cuenta.institucion = $("#banco").val();
     cuenta.tipo = $("#tipodecuenta option:selected").val();
     cuenta.cedula = $("#cibancario").val();
-    cuenta.titular = "POR ASIGNAR";
+    cuenta.titular =$("#depositar option:selected").text();
     reembolso.cuentabancaria = cuenta;
 
     var conceptos = new Array();
     $("#conceptoagregado tr").each(function () {
         var concep = new ConceptoReembolso();
         var facturaD = new Factura();
-        facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(7).html())).toISOString();
-        facturaD.monto = parseFloat($(this).find("td").eq(6).html());
+        facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
+        facturaD.monto = parseFloat($(this).find("td").eq(5).html());
         facturaD.numero = $(this).find("td").eq(4).html();
-        facturaD.control = $(this).find("td").eq(5).html();
+        facturaD.control = $(this).find("td").eq(4).html();
 
         var prov = new Beneficiario();
         prov.rif = $(this).find("td").eq(2).html();
@@ -392,16 +411,17 @@ function verificaBeneficiarioCuenta(){
     var opt = $("#datosbancarios").val();
     if(opt == "otra"){
         $("#numerocuenta").attr("disabled",false);
-        $("#cibancario").attr("disabled",false);
+        $("#depositar").attr("disabled",false);
         $("#banco").attr("disabled",false);
         $("#tipodecuenta").attr("disabled",false);
         $("#cibancario").val('');
         $("#numerocuenta").val('');
         $("#tipodecuenta").val('S');
+        $("#depositar").val('S');
         $("#banco").val('S');
     }else{
         $("#numerocuenta").attr("disabled",true);
-        $("#cibancario").attr("disabled",true);
+        $("#depositar").attr("disabled",true);
         $("#banco").attr("disabled",true);
         $("#tipodecuenta").attr("disabled",true);
         var datosBancario = opt.split('|');
@@ -409,9 +429,12 @@ function verificaBeneficiarioCuenta(){
         $("#banco").val(datosBancario[1]);
         $("#tipodecuenta").val(datosBancario[2]);
         $("#cibancario").val(militar.Persona.DatoBasico.cedula);
+        $("#depositar").val(militar.Persona.DatoBasico.cedula);
     }
 }
 
 function limpiarReembolso(){
-
+    $('#frmreembolso').each (function(){
+        this.reset();
+    });
 }
