@@ -108,7 +108,9 @@ function llenar(){
     if(militar.Persona != undefined){
         console.log(militar.Persona.DatoBasico.nombreprimero);
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
+        console.log(ncompleto);
         $("#lblnombre").text(ncompleto);
+        $("#ttnombre").text(ncompleto);
         url = "images/grados/" + militar.Grado.abreviatura + ".png";
         url = url.toLowerCase();
         $("#imgrango").attr("src", url);
@@ -122,12 +124,23 @@ function llenar(){
         $("#fotoperfil").attr("src", url);
 
         $("#lblcomponente").text(militar.Componente.descripcion);
+        $("#ttcomponente").text(militar.Componente.descripcion);
+
         $("#lblgrado").text(militar.Grado.descripcion);
+        $("#ttgrado").text(militar.Grado.descripcion);
+
         $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
+        $("#ttcedula").text(militar.Persona.DatoBasico.cedula);
+
         crearLista();
+
         $("#lblfnacimiento").val(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
         //SeleccionarPorSexo(DB.sexo);
-        //$("#lblestcivil").val(militar.Persona.DatoBasico.estadocivil);
+
+        $("#lblestcivil").text(militar.Persona.DatoBasico.GenerarEstadoCivil);
+        $("#ttestadocivil").text(militar.Persona.DatoBasico.estadocivil);
+
+        $("#ttsituacion").text(militar.situacion);
 
 
         if(militar.Persona.DatoFinanciero != undefined){
@@ -138,17 +151,17 @@ function llenar(){
         }
 
         if (militar.Persona.Direccion != undefined) {
-
             var DIR = militar.Persona.Direccion[0];
             Estados.ObtenerEstados();
-            $("#cmbmestado").val(DIR.estado);
+            /*$("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
             $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
             $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
-            $("#txtmapto").val(DIR.apartamento);
-
+            $("#txtmapto").val(DIR.apartamento);*/
+            var rirec = DIR.estado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
+            $("#ttdireccion").text(rirec);
         }
 
 

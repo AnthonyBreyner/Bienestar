@@ -1,5 +1,9 @@
 <div class="box box-primary">
     <div class="box-body box-profile">
+        <div class="row"><center><a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary "><b>Nuevo
+            Reembolso</b></a>
+            <a href="#" onclick="verReembolsos()" id="btnlreembolso" class="btn btn-primary " style="display: none"><b>Historico de
+                Reembolsos</b></a></center></div>
         <img class="profile-user-img img-responsive" style="width: 130px;" src=""
              onerror="this.src='images/ndisponible.jpg'"
              alt="User profile picture" id="fotoperfil">
@@ -21,21 +25,7 @@
             <li class="list-group-item">
                 <label><b>Situación</b></label> <a><label id="lblsituacion" class="pull-right">Activo</label></a>
             </li>
-            <li class="list-group-item">
-                <b>F.Nacimiento</b> <a class="pull-right" id="lblfnacimiento"></a>
-            </li>
-            <li class="list-group-item">
-                <b>Total de Rembolsos</b> <a class="pull-right" id="lbltreembolsos">258</a>
-            </li>
-            <li class="list-group-item">
-                <b>Edo.Civil</b> <a class="pull-right" id="lblestcivil"></a>
-            </li>
         </ul>
-
-        <center><a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary "><b>Nuevo
-            Reembolso</b></a>
-            <a href="#" onclick="verReembolsos()" id="btnlreembolso" class="btn btn-primary " style="display: none"><b>Lista
-                Reembolsos</b></a></center>
     </div>
     <!-- /.box-body -->
 </div>
