@@ -8,6 +8,10 @@ $(function () {
     $("#rif").on("blur",function () {
        consultarRif();
     });
+    $("#btnvolverlista").click(function(){
+        $("#tblreembolsos").show();
+        $("#lstDetalle").hide();
+    });
 });
 
 function consultarRif(){
@@ -24,7 +28,6 @@ function consultarRif(){
         $("#razonsocial").val(rz);
     }else{
         $("#mdlEmpresa").modal("show");
-        alert("entra");
     }
 }
 function salvarEmpresa(){
@@ -120,25 +123,19 @@ function llenar(){
 
         $("#lblcomponente").text(militar.Componente.descripcion);
         $("#lblgrado").text(militar.Grado.descripcion);
+        $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
         crearLista();
-        listaCuentas();
-
-        $("#txtnropersona").val(militar.Persona.DatoBasico.nropersona);
-        $("#txtcedula").val(militar.Persona.DatoBasico.cedula);
-        $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero + ' ' + militar.Persona.DatoBasico.nombresegundo);
-        $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero + ' ' + militar.Persona.DatoBasico.apellidosegundo);
-        $("#txtnacimiento").val(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
-        $("#cmbsexo").val(militar.Persona.DatoBasico.sexo);
+        $("#lblfnacimiento").val(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
         //SeleccionarPorSexo(DB.sexo);
-        $("#cmbedocivil").val(militar.Persona.DatoBasico.estadocivil);
-        $("#cmbcomponente").val(militar.Componente.abreviatura);
-        $("#cmbgrado").html('<option value="' + militar.Grado.abreviatura + '">' + militar.Grado.descripcion + '</option>');
-        $("#txtnresuelto").val(militar.nresuelto);
+        //$("#lblestcivil").val(militar.Persona.DatoBasico.estadocivil);
 
-        $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
-        $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
-        $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
 
+        if(militar.Persona.DatoFinanciero != undefined){
+            $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
+            $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
+            $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
+            listaCuentas();
+        }
 
         if (militar.Persona.Direccion != undefined) {
 
@@ -158,7 +155,7 @@ function llenar(){
         $("#paneldatos").show();
         $("#_bxBuscar").hide();
     }else{
-        alert("Cedula no se encuentra registrada con militar dentro del sistema");
+        alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();
     }
 
@@ -177,44 +174,44 @@ function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
     if(militar.Familiar.length > 0){
         $.each(militar.Familiar,function(){
-            $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero, this.Persona.DatoBasico.cedula, true, true));
+            $("#cmbbeneficiario").append(new Option(this.Persona.DatoBasico.nombreprimero+"("+this.parentesco+")", this.Persona.DatoBasico.cedula, true, true));
         });
     }
     $("#cmbbeneficiario").append(new Option("Seleccione","", true, true));
 
-    if(militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
+    if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
         var html = "";
         var i = 0;
         $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(){
-            i++;
-            var tconcepto = "";
-            $.each(this.Concepto,function(){
-                tconcepto += "<div class='row'>" +
-                    "<div class='col-md-3'>"+this.afiliado+"</div><div class='col-md-3'>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</div> "+
-                    "<div class='col-md-2'>"+this.DatoFactura.numero+"</div><div class='col-md-2'>"+this.DatoFactura.fecha+"</div><div class='col-md-2'>"+this.DatoFactura.monto+"</div> </div>";
-            })
+
             var est = "Por procesar";
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
-            html += "<tr class='bg-blue'><th>Detalle</th><th>Numero Solicitud</th><th>F.Solicitu</th><th>Monto Solicitud</th><th>Estatus</th></tr>" +
-                "<tr>\n" +
-                "                            <td class=\"mailbox-star\"><a href=\"#\" onclick=\"detalleVisible('fila"+i+"')\"><i\n" +
-                "                                    class=\"fa fa-plus text-blue\"></i></a></td>\n" +
-                "                            <td class=\"mailbox-subject\">"+this.numero+"</td>\n" +
-                "                            <td class=\"mailbox-subject\"><b>"+fcrea+"</b> -\n" +
+            html += "<tr>\n" +
+                "                            <td class=\"mailbox-star\"><a href=\"#\"><i\n" +
+                "                                    class=\"fa fa fa-refresh\"></i></a></td>\n" +
+                "                            <td class=\"mailbox-subject\"><a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a></td>\n" +
+                "                            <td class=\"mailbox-subject\"><b>"+fcrea+"</b> \n" +
                 "                            </td>\n" +
                 "                            <td class=\"mailbox-attachment\">"+this.montosolicitado+"</td>\n" +
                 "                            <td class=\"mailbox-date\">"+est+"</td>\n" +
-                "                        </tr>\n" +
-                "<tr style=\"display: none\" visible=\"fila"+i+"\">\n" +
-                "<td colspan=\"5\">"+tconcepto+"</td>\n" +
-                "</tr>\n";
+                "                        </tr>\n" ;
+            i++;
         });
         $("#cuerporeembolsos").html(html);
     }
 }
 
-function detalleVisible(id){
-    $("#cuerporeembolsos tr[visible='"+id+"']").toggle();
+function detalleVisible(pos){
+    var tconcepto = "";
+    $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
+        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.DatoFactura.numero+"</td><td>"+this.DatoFactura.control+"</td><td>"+ffact+"</td><td>"+this.DatoFactura.monto+"</td></tr>";
+    })
+    tconcepto += "</table>";
+    $("#cuerpoLstConceptos").html(tconcepto);
+    $("#lstDetalle").show();
+    $("#tblreembolsos").hide();
 }
 
 function crearReembolso(){

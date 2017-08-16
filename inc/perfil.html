@@ -1,6 +1,7 @@
 <div class="box box-primary">
     <div class="box-body box-profile">
-        <img class="profile-user-img img-responsive" style="width: 130px;" src="" onerror="this.src='images/ndisponible.jpg'"
+        <img class="profile-user-img img-responsive" style="width: 130px;" src=""
+             onerror="this.src='images/ndisponible.jpg'"
              alt="User profile picture" id="fotoperfil">
 
         <h3 class="profile-username text-center" id="lblnombre"></h3>
@@ -9,24 +10,32 @@
 
         <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
+                <label><b>Cedula</b></label> <a><label id="lblcedula" class="pull-right"></label></a>
+            </li>
+            <li class="list-group-item">
                 <label><b>Grado</b></label> <a><label id="lblgrado" class="pull-right">Coronel</label></a>
             </li>
-          <li class="list-group-item">
-              <label><b>Grado</b></label> <a><label id="lblgrado" class="pull-right">Coronel</label></a>
-          </li>
-          <li class="list-group-item">
-              <label><b>Componente</b></label> <a><label id="lblcomponente" class="pull-right">Aviación</label></a>
-          </li>
-          <li class="list-group-item">
-              <label><b>Situación</b></label> <a><label id="lblsituacion" class="pull-right">Activo</label></a>
-          </li>
             <li class="list-group-item">
-               <b>Total de Rembolsos</b> <a class="pull-right" id="lbltreembolsos">258</a>
+                <label><b>Comp.</b></label> <a><label id="lblcomponente" class="pull-right">Aviación</label></a>
+            </li>
+            <li class="list-group-item">
+                <label><b>Situación</b></label> <a><label id="lblsituacion" class="pull-right">Activo</label></a>
+            </li>
+            <li class="list-group-item">
+                <b>F.Nacimiento</b> <a class="pull-right" id="lblfnacimiento"></a>
+            </li>
+            <li class="list-group-item">
+                <b>Total de Rembolsos</b> <a class="pull-right" id="lbltreembolsos">258</a>
+            </li>
+            <li class="list-group-item">
+                <b>Edo.Civil</b> <a class="pull-right" id="lblestcivil"></a>
             </li>
         </ul>
 
-        <center><a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary "><b>Nuevo Reembolso</b></a>
-        <a href="#" onclick="verReembolsos()"  id="btnlreembolso" class="btn btn-primary " style="display: none"><b>Lista Reembolsos</b></a></center>
+        <center><a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary "><b>Nuevo
+            Reembolso</b></a>
+            <a href="#" onclick="verReembolsos()" id="btnlreembolso" class="btn btn-primary " style="display: none"><b>Lista
+                Reembolsos</b></a></center>
     </div>
     <!-- /.box-body -->
 </div>
