@@ -3,9 +3,17 @@ let lstProveedores;
 function formatoCombo (state) {
     if (!state.id) { return state.text; }
     var text = state.text.split("(");
-    var $state = $(
-        '<span>' + text[0] + '</span><br><span>' + text[1] + '</span>'
-    );
+    if(text[1]!=undefined){
+        var $state = $(
+            '<div class="row"><div class="col-sm-6">'+text[0]+'</div><div class="col-sm-4">('+text[1]+'</div></div>'
+            //'<span>' + text[0] + '</span><br><span>(' + text[1] + '</span>'
+        );
+    }else{
+        var $state = $(
+            '<span>' + state.text+ '</span>'
+        );
+    }
+
     return $state;
 };
 
@@ -204,10 +212,10 @@ function listaCuentas(){
 }
 
 function crearLista(){
-    $("#cmbbeneficiario").append(new Option("T|"+militar.Persona.DatoBasico.nombreprimero, militar.Persona.DatoBasico.cedula, true, true));
+    $("#cmbbeneficiario").append(new Option("T|"+militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", militar.Persona.DatoBasico.cedula, true, true));
     if(militar.Familiar.length > 0){
         $.each(militar.Familiar,function(v){
-            var parentes = this.parentesco;
+            var parentes = Util.ConvertirParentesco(this.parentesco,this.Persona.DatoBasico.sexo);
             $("#cmbbeneficiario").append(new Option(v+"|"+this.Persona.DatoBasico.nombreprimero+"("+parentes+")", this.Persona.DatoBasico.cedula, true, true));
         });
     }
@@ -251,7 +259,14 @@ function crearLista(){
 }
 
 function cargarFamiliar(pos){
-
+    var fami = militar.Familiar[pos];
+    $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
+    var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
+    $("#lblnombref").text(ncf);
+    var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
+    $("#lblparentesco").text(parente);
+    var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
+    $("#lblfnac").text(fnac)
 }
 
 function detalleVisible(pos){
