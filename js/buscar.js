@@ -188,9 +188,7 @@ function llenar(){
             var defEstado = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
             var textoestado = "";
             $.each(defEstado,function(){
-                console.log(this.codigo);
                 if(this.codigo == DIR.estado){
-                    console.log("ESTADO"+this.nombre);
                     textoestado = this.nombre;
                 }
             });
@@ -202,7 +200,7 @@ function llenar(){
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
-            var rirec = textoestado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
+            var rirec = "ESTADO "textoestado+", "+DIR.ciudad+", MUNICIPIO "+DIR.municipio+", PARROQUIA "+DIR.parroquia+", AV/CALLE "+DIR.calleavenida+", CASA/APT "+DIR.casa+" "+DIR.apartamento
             $("#ttdireccion").text(rirec);
         }
 
