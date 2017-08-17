@@ -199,8 +199,8 @@
                 <td style="width:15%">14.PARENTESCO</td>
                 <td style="width:30%">15.NOMBRE DEL FAMILIAR</td>
                 <td style="width:30%">16.CONCEPTO</td>
+                <td style="width:10%" align="center">FACTURA</td>
                 <td style="width:15%">17.MONTO SOLICITADO</td>
-                <td style="width:10%" align="center">18.%</td>
             </tr>
             <tbody id="cuerpoConceptos">
 
@@ -210,7 +210,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td align="center"><label id="lblmontot"></label></td>
+                <td style="text-align: right"><label id="lblmontot"></label></td>
                 <td></td>
             </tr>
 
@@ -325,14 +325,39 @@
 
 </body>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/formato/numeral.js"></script>
+
 <script src="js/utilidad.js"></script>
 <script src="js/militar.js"></script>
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
-    let pos=0;
+    let pos='';
     $(function () {
-
+        numeral.register('locale', 'es-es', {
+            delimiters: {
+                thousands: '.',
+                decimal: ','
+            },
+            abbreviations: {
+                thousand: 'k',
+                million: 'mm',
+                billion: 'b',
+                trillion: 't'
+            },
+            ordinal: function (number) {
+                var b = number % 10;
+                return (b === 1 || b === 3) ? 'er' :
+                    (b === 2) ? 'do' :
+                        (b === 7 || b === 0) ? 'mo' :
+                            (b === 8) ? 'vo' :
+                                (b === 9) ? 'no' : 'to';
+            },
+            currency: {
+                symbol: 'BS'
+            }
+        });
+        numeral.locale('es-es');
         $.obtener = function (key) {
             key = key.replace(/[\[]/, '\\[');
             key = key.replace(/[\]]/, '\\]');
@@ -347,6 +372,7 @@
             }
         };
         var id = $.obtener("id");
+        pos = $.obtener("pos");
         console.log(id);
         Buscar(id);
     });
@@ -359,19 +385,13 @@
 
     function Buscar(id) {
         console.log(militar);
-        alert(id);
         if (id != undefined) {
             $("#_cedula").val(id);
         }
         if ($("#_cedula").val() == "") {
-            $("#_contenido").html("Debe introducir una cédula");
-            $("#_botonesmsj").html('<button type="button" class="btn btn-default" data-dismiss="modal" id="_aceptar" onClick="IrCedula()">Aceptar</button>');
-            $("#modMsj").modal("show");
             return false;
         }
-        $("#_cargando").show();
-        $("#_lblConstanciaPension").hide();
-        $("#_imgfamiliar").attr("src", "images/ndisponible.jpg");
+
         var url = Conn.URL + "militar/crud/" +id;
         var request = CargarAPI({
             sURL: url,
@@ -396,7 +416,6 @@
         request2.then(function (xhRequest) {
 
             lstProveedores = JSON.parse(xhRequest.responseText);
-            console.log(lstProveedores);
 
         });
 
@@ -409,7 +428,6 @@
         if (formato != undefined) {
 
         }
-        console.log(militar);
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
             $("#lblnombre").text(ncompleto);
@@ -426,23 +444,17 @@
 
             $("#lblestadocivil").text(estcivil);
 
-            $("#lblsituacion").text(militar.situacion);
+            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
 
 
             if (militar.Persona.Direccion != undefined) {
+                var defestados = sessionStorage.getItem("ipsfaEstado");
+                console.log(defestados);
                 var DIR = militar.Persona.Direccion[0];
                 Estados.ObtenerEstados();
                 var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
                 $("#lbldireccion").text(rirec);
             }
-            pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
-            pos--;
-            var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-            console.log(reem);
-            $("#lblbanco").text(reem.CuentaBancaria.institucion);
-            $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
-            $("#lbltipoc").text(reem.CuentaBancaria.tipo);
-            $("#lblmontot").text(reem.montosolicitado);
 
         } else {
             alert("Cedula no se encuentra registrada como militar dentro del sistema");
@@ -450,11 +462,25 @@
     }
 
     function crearLista() {
+        if(pos == null){
+            pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
+            pos--;
+        }
+        console.log(pos);
+        var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        console.log(reem);
+        $("#lblnsolicitud").text(reem.numero);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
+        $("#lblbanco").text(reem.CuentaBancaria.institucion);
+        $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
+        $("#lbltipoc").text(reem.CuentaBancaria.tipo);
+        $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
         var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
         var fila ="";
         $.each(concep.Concepto,function () {
             var bene = this.afiliado.split("-");
-            fila+= "<tr><td>"+bene[0]+"</td><td>"+bene[1]+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.monto+"</td><td></td></tr>";
+            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+            fila+= "<tr><td>"+bene[0]+"</td><td>"+bene[1]+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td style=\"text-align: right\">"+mntformato+"</td></tr>";
         });
         $("#cuerpoConceptos").html(fila);
     }
