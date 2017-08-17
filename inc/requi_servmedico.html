@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BIENESTAR</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="../dist/css/_all-skins_1.css">
+    <link rel="stylesheet" href="../plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="../dist/css/fonts.googleapis.css">
+    <link rel="stylesheet" href="../bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="../bower_components/fancy/dist/jquery.fancybox.css">
+</head>
+
+<style type="text/css">
+.material-switch > input[type="checkbox"] {
+    display: none;
+}
+
+.material-switch > label {
+    cursor: pointer;
+    height: 0px;
+    position: relative;
+    width: 40px;
+}
+
+.material-switch > label::before {
+    background: rgb(0, 0, 0);
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    content: '';
+    height: 16px;
+    margin-top: -8px;
+    position:absolute;
+    opacity: 0.3;
+    transition: all 0.4s ease-in-out;
+    width: 40px;
+}
+.material-switch > label::after {
+    background: rgb(255, 255, 255);
+    border-radius: 16px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    content: '';
+    height: 24px;
+    left: -4px;
+    margin-top: -8px;
+    position: absolute;
+    top: -4px;
+    transition: all 0.3s ease-in-out;
+    width: 24px;
+}
+.material-switch > input[type="checkbox"]:checked + label::before {
+    background: inherit;
+    opacity: 0.5;
+}
+.material-switch > input[type="checkbox"]:checked + label::after {
+    background: inherit;
+    left: 20px;
+}
+
+.badgebox
+{
+    opacity: 0;
+}
+
+.badgebox + .badge
+{
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+    width: 27px;
+}
+
+.badgebox:focus + .badge
+{
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+}
+
+.badgebox:checked + .badge
+{
+    /* Move the check mark back when checked */
+    text-indent: 0;
+}
+</style>
+<body class="hold-transition skin-yellow">
+<div class="container">
+    <h3 class="text-center">DOCUMENTACIÓN REQUERIDA PARA CUIDADO INTEGRAL DE LA SALUD</h3>
+    <h4 class="text-center">SERVICIOS MÉDICOS</h4>
+    <hr>
+    <hr>
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-5 col-sm-offset-3 col-md-offset-4">
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Cartal Aval</div>
+
+                <!-- List group -->
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                       Solicitud de Apoyo Económico Dirigido al Presidente del IPSFA
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess19" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess19" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                       Informe Médico con el Sello Húmedo del Médico Tratante Avalado </br> por la Red de Salud Militar
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess20" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess20" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Presupuesto de la Casa Comercial
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess21" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess21" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Estudio de Audiometría solo para Prótesis Auditiva
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess22" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess22" class="label-success"></label>
+                        </div>
+                    </li>
+
+                   <li class="list-group-item">
+                       Orden Médica
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess23" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess23" class="label-success"></label>
+                        </div>
+                    </li>
+
+                     <li class="list-group-item">
+                       Copia de la Cédula de Identidad
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                        </div>
+                    </li>
+
+                     <li class="list-group-item">
+                       Copia del Carnet  
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                        </div>
+                    </li>         
+
+                     <li class="list-group-item">
+                       Carta Aval de Seguros Horizonte, C.A, en caso de que cubra </br> parte de la Prótesis
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                        </div>
+                    </li>        
+                     <li class="list-group-item">
+                       Carta o Constancia de Agotamiento de Seguros Horizontes, C.A
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                        </div>
+                    </li>    
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="plugins/iCheck/icheck.min.js"></script>
+
+<script src="bower_components/notify/notify.min.js"></script>
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/CIS.js"></script>
+
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+</body>
+</html>
