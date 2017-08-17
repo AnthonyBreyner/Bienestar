@@ -484,32 +484,20 @@
       });
     </script-->
 
-    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-      Launch demo modal
-    </button>
-    <div  style="display:none">Respuesta... </div>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
     <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content" style="width: 1300px;
+margin-left: -180px;">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA CUIDADO INTEGRAL DE LA SALUD</h4>
           </div>
           <div class="modal-body">
             <div class="row">
-            <div class="col-md-12">
-              <label>Conceptos:</label>
-              <select class="form-control" id="inputSelect" style="width: 100%" >
-                <option value="0" selected="selected"></option>
-                <option value="1">Tratamiento odontológico, consulta, ortopedia, exámenes y tratamientos médicos</option>
-                <option value="2" id="panel">Tratamiento psicopedagógico y geriátrico</option>
-                <option value="3">Complemento de hospitalización e intervención quirúrgica</option>
-                <option value="4">Lentes</option>
-              </select>
-            </div>
-          </div><br>
-            <div class="panel panel-default" id="panel3" style="display:none">
+              <div class="col-md-6">
+            <div class="panel panel-default" id="panel3">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Complemento de hospitalización e intervención quirúrgica</div>
 
@@ -574,7 +562,9 @@
 
                 </ul>
             </div>
-            <div class="panel panel-default" id="panel4" style="display:none">
+          </div>
+            <div class="col-md-6">
+            <div class="panel panel-default" id="panel4">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Lentes</div>
 
@@ -631,7 +621,9 @@
 
                 </ul>
             </div>
-            <div class="panel panel-default" id="panel1" style="display:none">
+          </div>
+        </div>
+            <div class="panel panel-default" id="panel1">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Tratamiento odontológico, consulta, ortopedia, exámenes y tratamientos médicos</div>
 
@@ -688,7 +680,7 @@
 
                 </ul>
             </div>
-            <div class="panel panel-default" id="panel2" style="display:none">
+            <div class="panel panel-default" id="panel2">
                 <!-- Default panel contents -->
                 <div class="panel-heading">Tratamiento psicopedagógico y geriátrico</div>
 
