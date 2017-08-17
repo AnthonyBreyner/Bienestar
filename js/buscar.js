@@ -170,7 +170,7 @@ function llenar(){
         $("#ttestadocivil").text(estcivil);
 
         $("#cmbsituacion").val(militar.situacion);
-        $("#ttsituacion").text(militar.situacion);
+        $("#ttsituacion").text(Util.ConvertirSitucacion(militar.situacion));
 
 
         if(militar.Persona.DatoFinanciero != undefined){
@@ -214,27 +214,28 @@ function listaCuentas(){
 }
 
 function crearLista(){
-    $("#cmbbeneficiario").append(new Option("T|"+militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", militar.Persona.DatoBasico.cedula, true, true));
+    $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
     var ncompleto = militar.Persona.DatoBasico.nombreprimero+ " " + militar.Persona.DatoBasico.apellidoprimero;
     $("#depositar").append(new Option(ncompleto,militar.Persona.DatoBasico.cedula , true, true));
     if(militar.Familiar.length > 0){
         $.each(militar.Familiar,function(v){
             var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(this.Persona.DatoBasico.fechanacimiento));
+            var ncompleto2 = this.Persona.DatoBasico.nombreprimero+ " " + this.Persona.DatoBasico.apellidoprimero;
             if(edad > 18){
-                var ncompleto2 = this.Persona.DatoBasico.nombreprimero+ " " + this.Persona.DatoBasico.apellidoprimero;
+
                 $("#depositar").append(new Option(ncompleto2, this.Persona.DatoBasico.cedula, true, true));
             }
             var parentes = Util.ConvertirParentesco(this.parentesco,this.Persona.DatoBasico.sexo);
-            $("#cmbbeneficiario").append(new Option(v+"|"+this.Persona.DatoBasico.nombreprimero+"("+parentes+")", this.Persona.DatoBasico.cedula, true, true));
+            $("#cmbbeneficiario").append(new Option(ncompleto2+"("+parentes+")", v+"|"+this.Persona.DatoBasico.cedula, true, true));
         });
     }
-    $("#cmbbeneficiario").append(new Option("Seleccione","", true, true));
+    $("#cmbbeneficiario").append(new Option("Seleccione","|seleccione", true, true));
     $("#depositar").append(new Option("Seleccione","", true, true));
 
     $("#cmbbeneficiario").on("change",function(){
         var opt = $("#cmbbeneficiario option:selected").val();
-        var picado = $("#cmbbeneficiario option:selected").text().split("|");
-        if(opt != '' && picado[0]!="T"){
+        var picado = $("#cmbbeneficiario option:selected").val().split("|");
+        if(opt != '|seleccione' && picado[0]!="T"){
             cargarFamiliar(picado[0]);
             $("#perfilFamiliar").show();
         }else{
@@ -312,7 +313,8 @@ function verReembolsos(){
 }
 
 function agregarConcepto(){
-    var beneficiario = $("#cmbbeneficiario option:selected").val()+"-"+$("#cmbbeneficiario option:selected").text();
+    var bene = $("#cmbbeneficiario option:selected").val().split('|');
+    var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
     var concepto = $("#concepto option:selected").text();
     var monto  = $("#monto").val();
     var rif = $("#rif").val();
@@ -320,9 +322,9 @@ function agregarConcepto(){
     var factura = $("#nfactura").val();
     var fechaf = $("#fechafactura").val();
     var tabla = $("#conceptoagregado");
-    var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='fa fa-trash'></i>Quitar</button>";
-    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td>"+rif+"</td><td>"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
-    html += "<td>"+fechaf+"</td><td>"+btndelete+"</td></tr>";
+    var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
+    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td class=\"detfactconcep\">"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
+    html += "<td class=\"detfactconcep\">"+fechaf+"</td><td>"+btndelete+"</td></tr>";
     tabla.append(html);
 
     $(".borrarconcepto").click(function () {
@@ -401,10 +403,6 @@ function cargarDatos(){
 
         request2.then(function(xhRequest) {
             var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-            ventana.document.write(html);
-            //ventana.document.head.innerHTML = ;
-            ventana.print();
-            ventana.close();
         });
     }else{
         alert("Debe contener al menos un reembolso");

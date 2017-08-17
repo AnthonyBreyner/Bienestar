@@ -226,6 +226,34 @@ class Utilidad {
         return parent;
     }
 
+    ConvertirSitucacion(sit){
+        var situacion = "";
+        switch (sit){
+            case "ACT":
+                situacion = "ACTIVO";
+                break;
+            case "RCP":
+                situacion = "RESERVA ACTIVA";
+                break;
+            case "RSP":
+                situacion = "RETIRADO";
+                break;
+            case "FCP":
+                situacion = "FALLECIDO CON PERNSION";
+                break;
+            case "FSP":
+                situacion = "FALLECIDO SIN PENCION";
+                break;
+            case "I":
+                situacion = "INVALIDO";
+                break;
+            case "D":
+                situacion = "DISPONIBLE";
+                break;
+        }
+        return situacion;
+    }
+
 
     //Obtener la direccion mac
     ObtenerMAC(MAC) {
