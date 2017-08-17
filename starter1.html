@@ -75,7 +75,79 @@
     font-weight: 300;
     overflow: hidden;
   }
+  .material-switch > input[type="checkbox"] {
+      display: none;
+  }
 
+  .material-switch > label {
+      cursor: pointer;
+      height: 0px;
+      position: relative;
+      width: 40px;
+  }
+
+  .material-switch > label::before {
+      background: rgb(0, 0, 0);
+      box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      content: '';
+      height: 16px;
+      margin-top: -8px;
+      position:absolute;
+      opacity: 0.3;
+      transition: all 0.4s ease-in-out;
+      width: 40px;
+  }
+  .material-switch > label::after {
+      background: rgb(255, 255, 255);
+      border-radius: 16px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      content: '';
+      height: 24px;
+      left: -4px;
+      margin-top: -8px;
+      position: absolute;
+      top: -4px;
+      transition: all 0.3s ease-in-out;
+      width: 24px;
+  }
+  .material-switch > input[type="checkbox"]:checked + label::before {
+      background: inherit;
+      opacity: 0.5;
+  }
+  .material-switch > input[type="checkbox"]:checked + label::after {
+      background: inherit;
+      left: 20px;
+  }
+
+  .badgebox
+  {
+      opacity: 0;
+  }
+
+  .badgebox + .badge
+  {
+      /* Move the check mark away when unchecked */
+      text-indent: -999999px;
+      /* Makes the badge's width stay the same checked and unchecked */
+      width: 27px;
+  }
+
+  .badgebox:focus + .badge
+  {
+      /* Set something to make the badge looks focused */
+      /* This really depends on the application, in my case it was: */
+
+      /* Adding a light border */
+      box-shadow: inset 0px 0px 5px;
+      /* Taking the difference out of the padding */
+  }
+
+  .badgebox:checked + .badge
+  {
+      /* Move the check mark back when checked */
+      text-indent: 0;
+  }
 </style>
 <body class="hold-transition skin-yellow" >
   <header class="header" style="background-color:#3c8dbc">
@@ -412,6 +484,276 @@
       });
     </script-->
 
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Launch demo modal
+    </button>
+    <div  style="display:none">Respuesta... </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA CUIDADO INTEGRAL DE LA SALUD</h4>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+            <div class="col-md-12">
+              <label>Conceptos:</label>
+              <select class="form-control" id="inputSelect" style="width: 100%" >
+                <option value="0" selected="selected"></option>
+                <option value="1">Tratamiento odontológico, consulta, ortopedia, exámenes y tratamientos médicos</option>
+                <option value="2" id="panel">Tratamiento psicopedagógico y geriátrico</option>
+                <option value="3">Complemento de hospitalización e intervención quirúrgica</option>
+                <option value="4">Lentes</option>
+              </select>
+            </div>
+          </div><br>
+            <div class="panel panel-default" id="panel3" style="display:none">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Complemento de hospitalización e intervención quirúrgica</div>
+
+                <!-- List group -->
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        Carta dirigida al Presidente de la Junta Administradora
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess1" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess1" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Informe médico firmado y sellado por el médico tratante
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess2" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess2" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Finiquito de Seguros Horizonte, C.A
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess3" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess3" class="label-success"></label>
+                        </div>
+                    </li>
+
+                   <li class="list-group-item">
+                       Factura con sello de indemnización de Seguros Horizonte, C.A.
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess4" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess4" class="label-success"></label>
+                        </div>
+                    </li>
+                  <li class="list-group-item">
+                        Constancia de agotamiento de cobertura
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess5" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess5" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Recibo de Diferencia de pago
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess6" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess6" class="label-success"></label>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="panel panel-default" id="panel4" style="display:none">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Lentes</div>
+
+                <!-- List group -->
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        Carta dirigida al Presidente de la Junta Administradora
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess7" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess7" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess8" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess8" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Informe médico firmado y sellado por el médico tratante
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess9" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess9" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Factura Cancelada
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess10" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess10" class="label-success"></label>
+                        </div>
+                    </li>
+
+                   <li class="list-group-item">
+                       Fórmula de los lentes prescrita
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess11" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess11" class="label-success"></label>
+                        </div>
+                    </li>
+                  <li class="list-group-item">
+                        Informe médico del oftalmólogo
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess12" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess12" class="label-success"></label>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="panel panel-default" id="panel1" style="display:none">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Tratamiento odontológico, consulta, ortopedia, exámenes y tratamientos médicos</div>
+
+                <!-- List group -->
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        Carta dirigida al Presidente de la Junta Administradora
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess13" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess13" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess14" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess14" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Informe médico firmado y sellado por el médico tratante
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess15" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess15" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Factura de Cancelación
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess16" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess16" class="label-success"></label>
+                        </div>
+                    </li>
+
+                   <li class="list-group-item">
+                        Orden Médica
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess17" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess17" class="label-success"></label>
+                        </div>
+                    </li>
+                  <li class="list-group-item">
+                        Presupuesto
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess18" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess18" class="label-success"></label>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+            <div class="panel panel-default" id="panel2" style="display:none">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Tratamiento psicopedagógico y geriátrico</div>
+
+                <!-- List group -->
+                <ul class="list-group">
+
+                    <li class="list-group-item">
+                        Carta dirigida al Presidente de la Junta Administradora
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess19" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess19" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess20" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess20" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Informe médico firmado y sellado por el médico tratante
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess21" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess21" class="label-success"></label>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item">
+                        Factura de Cancelación
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess22" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess22" class="label-success"></label>
+                        </div>
+                    </li>
+
+                   <li class="list-group-item">
+                       Constancia de Residencia emitida por la casa hogar
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess23" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess23" class="label-success"></label>
+                        </div>
+                    </li>
+                  <li class="list-group-item">
+                        Fe de vida
+                        <div class="material-switch pull-right">
+                            <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
+                            <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                        </div>
+                    </li>
+
+
+                </ul>
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Canceler</button>
+            <button type="button" class="btn btn-primary">Continuar</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Main content -->
     <section class="content">
 
@@ -517,7 +859,53 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script type='text/javascript'>
+$(function() {
 
+  $("#inputSelect").on('change', function() {
+
+    var selectValue = $(this).val();
+    switch (selectValue) {
+      case "0":
+        $("#panel1").hide();
+        $("#panel2").hide();
+        $("#panel3").hide();
+        $("#panel4").hide();
+        break;
+
+      case "1":
+        $("#panel1").show();
+        $("#panel2").hide();
+        $("#panel3").hide();
+        $("#panel4").hide();
+        break;
+
+      case "2":
+        $("#panel1").hide();
+        $("#panel2").show();
+        $("#panel3").hide();
+        $("#panel4").hide();
+        break;
+
+      case "3":
+        $("#panel1").hide();
+        $("#panel2").hide();
+        $("#panel3").show();
+        $("#panel4").hide();
+        break;
+
+        case "4":
+          $("#panel1").hide();
+          $("#panel2").hide();
+          $("#panel3").hide();
+          $("#panel4").show();
+          break;
+    }
+
+  }).change();
+
+});
+</script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. -->
