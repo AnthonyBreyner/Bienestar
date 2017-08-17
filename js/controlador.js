@@ -37,7 +37,7 @@ class Factura {
 class ConceptoReembolso {
     constructor() {
         console.log("Creando objeto ConceptoReembolso");
-        this.tipo = '';
+        this.descripcion = '';
         this.DatoFactura = new Factura();
         this.afiliado = '';
     }
@@ -181,6 +181,7 @@ $(function () {
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
     CargarUrl("panelregistro", "inc/crearReembolso");
+    CargarUrl("cuerpoPlanilla","vpanel");
 })
 
 

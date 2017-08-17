@@ -1,61 +1,74 @@
-
 <html>
 <head>
     <style>
-        .bordeado{
+        .bordeado {
             border: black 1px solid;
         }
-        .biz{
+
+        .biz {
             border-left: black 1px solid;
         }
-        .bde{
+
+        .bde {
             border-right: black 1px solid;
         }
-        .btop{
+
+        .btop {
             border-top: black 1px solid;
         }
-        .bajo{
+
+        .bajo {
             border-bottom: black 1px solid;
         }
-        .contenedor{
+
+        .contenedor {
             width: 1000px;
 
         }
-        .tcontenedor{
-            width:100%;
+
+        .tcontenedor {
+            width: 100%;
         }
 
-        .textoCenter{
+        .textoCenter {
             text-align: center;
         }
-        .texto12{
+
+        .texto12 {
             font-size: 12px;
         }
-        .texto16{
+
+        .texto16 {
             font-size: 16px;
         }
-        .texto10{
+
+        .texto10 {
             font-size: 10px;
         }
-        .doble{
+
+        .doble {
             height: 40px;
         }
-        .simple{
+
+        .simple {
             height: 20px;
         }
-        .fondo{
+
+        .fondo {
             background-color: #979a93;
         }
-        .junta{
+
+        .junta {
             border-collapse: collapse;
         }
-        .justificar{
+
+        .justificar {
             text-align: justify;
         }
     </style>
 </head>
 <body>
-<div class="contenedor" >
+<div class="contenedor">
 
     <table class="tcontenedor" border=0>
         <tr>
@@ -66,14 +79,26 @@
                 Codigo: <b><?php echo $Codigo ?></b>
             </td>
         </tr>
-        <tr><td style="width:20%;" class="biz bde btop bajo"><table class="tcontenedor"><tr>
-            <td colspan="3">2.FECHA</td></tr><tr class="simple"><td style="width:30%;" class="bde"></td>
-            <td style="width:30%;" class="bde"></td><td style="width:40%;"></td></tr></table></td></tr>
+        <tr>
+            <td style="width:20%;" class="biz bde btop bajo">
+                <table class="tcontenedor">
+                    <tr>
+                        <td colspan="3">2.FECHA</td>
+                    </tr>
+                    <tr class="simple">
+                        <td style="width:30%;" class="bde"></td>
+                        <td style="width:30%;" class="bde"></td>
+                        <td style="width:40%;"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
     </table>
 
 
     <table class="tcontenedor junta" border=1>
-        <tr class"texto12">
+        <tr class
+        "texto12">
         <td class="textoCenter" style="width:25%;">UEL</td>
         <td class="textoCenter" style="width:35%;">PROYECTO</td>
         <td class="textoCenter" style="width:40%;">ACCION ESPECIFICA</td>
@@ -103,19 +128,25 @@
         <tr>
             <td><P class="texto16">DATOS DEL SOLICITANTE:</p></td>
             <td colspan="3" style="width:100%;color:red;" class="textoCenter">
-                <p class="texto16">POR FAVOR NO ESCRIBA SOBRE LAS CASILLAS SOMBREADAS</p></td></tr></thead>
+                <p class="texto16">POR FAVOR NO ESCRIBA SOBRE LAS CASILLAS SOMBREADAS</p></td>
+        </tr>
+        </thead>
         <tbody>
         <tr class="texto12">
             <td style="width:30%;" class="biz bde btop">4.CEDULA DE IDENTIDAD DEL AFILIADO:
                 <br><b><?php echo $Militar->Persona->nacionalidad . '-' . $Militar->Persona->cedula; ?></b>
             </td>
             <td style="width:70%;" colspan="3" class="bde btop">5.APELLIDOS Y NOMBRES DEL AFILIADO:
-                <br><b><?php echo $Militar->Persona->apellidoCompleto() . ' ' . $Militar->Persona->nombreCompleto(); ?></b>
+                <br><b><?php echo $Militar->Persona->apellidoCompleto() . ' ' . $Militar->Persona->nombreCompleto();
+                    ?></b>
             </td>
         </tr>
-        <tr class="texto12 doble"><td style="width:30%;" class="biz bde bajo"></td><td style="width:70%;" colspan="3" class="bde bajo"></td></tr>
+        <tr class="texto12 doble">
+            <td style="width:30%;" class="biz bde bajo"></td>
+            <td style="width:70%;" colspan="3" class="bde bajo"></td>
+        </tr>
         <tr class="texto12">
-            <td style="width:25%;" class="biz bde btop">6.GRADO: </td>
+            <td style="width:25%;" class="biz bde btop">6.GRADO:</td>
             <td style="width:25%;" class="bde btop">7.COMPONENTE:</td>
             <td style="width:25%;" class="bde btop">8.SITUACI&Oacute;N:</td>
             <td style="width:25%;" class="bde btop">9.ESTADO CIVIL:</td>
@@ -136,28 +167,77 @@
             </td>
         </tr>
 
-        <tr class="texto12"><td style="width:30%;" class="biz bde btop">10.CEDULA DE IDENTIDAD SOBREVIVIENTE:</td><td style="width:70%;" colspan="3" class="bde">11.APELLIDOS Y NOMBRES DEL SOBREVIVIENTE:</td></tr>
-        <tr class="texto12 doble"><td style="width:30%;"class="biz bde bt bajo"></td><td style="width:70%;" colspan="3" class="bde bajo"></td></tr>
-        <tr class="texto12"><td colspan="4" class="biz bde btop" class="bde btop">12.DIRECCION O DEPENDENCIA:</td></tr>
-        <tr class="texto12 doble"><td colspan="4" class="biz bde bajo"></td></tr>
-        <tr class="texto12"><td colspan="2" class="biz bde btop">CORREO ELECTRONICO:</td><td class="bde btop">13.TEL&Eacute;EFONO HABITACI&Oacute;N:</td><td class="bde">MOVIL/CELULAR:</td></tr>
-        <tr class="texto12 doble"><td colspan="2" class="biz bde  bajo"></td><td class="bde bajo"></td><td class="bde bajo"></td></tr>
+        <tr class="texto12">
+            <td style="width:30%;" class="biz bde btop">10.CEDULA DE IDENTIDAD SOBREVIVIENTE:</td>
+            <td style="width:70%;" colspan="3" class="bde">11.APELLIDOS Y NOMBRES DEL SOBREVIVIENTE:</td>
+        </tr>
+        <tr class="texto12 doble">
+            <td style="width:30%;" class="biz bde bt bajo"></td>
+            <td style="width:70%;" colspan="3" class="bde bajo"></td>
+        </tr>
+        <tr class="texto12">
+            <td colspan="4" class="biz bde btop" class="bde btop">12.DIRECCION O DEPENDENCIA:</td>
+        </tr>
+        <tr class="texto12 doble">
+            <td colspan="4" class="biz bde bajo"></td>
+        </tr>
+        <tr class="texto12">
+            <td colspan="2" class="biz bde btop">CORREO ELECTRONICO:</td>
+            <td class="bde btop">13.TEL&Eacute;EFONO HABITACI&Oacute;N:</td>
+            <td class="bde">MOVIL/CELULAR:</td>
+        </tr>
+        <tr class="texto12 doble">
+            <td colspan="2" class="biz bde  bajo"></td>
+            <td class="bde bajo"></td>
+            <td class="bde bajo"></td>
+        </tr>
         </tbody>
     </table>
     <br>
 
     <table class="tcontenedor fondo junta " border="1">
         <caption>DATOS DEL GASTO M&Eacute;DICO.</caption>
-        <tr class="texto12"><td style="width:15%">14.PARENTESCO</td><td style="width:30%">15.NOMBRE DEL FAMILIAR</td><td style="width:30%">16.CONCEPTO</td><td style="width:15%">17.MONTO SOLICITADO</td><td style="width:10%">18.%</td></tr>
-        <tr class="simple"><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr class="simple"><td></td><td></td><td></td><td></td><td></td></tr>
-        <tr class="simple"><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr class="texto12">
+            <td style="width:15%">14.PARENTESCO</td>
+            <td style="width:30%">15.NOMBRE DEL FAMILIAR</td>
+            <td style="width:30%">16.CONCEPTO</td>
+            <td style="width:15%">17.MONTO SOLICITADO</td>
+            <td style="width:10%">18.%</td>
+        </tr>
+        <tr class="simple">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="simple">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr class="simple">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
     </table>
     <br>
     <table class="tcontenedor junta" border="0">
         <tr class="texto16">
-            <td style="width:55%" class="bordeado justificar" rowspan="2"><p>Doy f&eacute; y garant&iacute;a de que los motivos de la presente solicitud son ciertos, con tal sentido autorizo a la Gerencia de Bienestar Y Seguridad Social para que realize las diligencias pertinentes a fin de certificar la veracidad de los recaudos e informaci&oacute;n suminstrada.</p></td><td style="width:45%" class="bde btop">19.FIRMA DEL SOLICITANTE</td></tr>
-        <tr class="doble"><td class="bajo bde"></td></tr>
+            <td style="width:55%" class="bordeado justificar" rowspan="2"><p>Doy f&eacute; y garant&iacute;a de que los
+                motivos de la presente solicitud son ciertos, con tal sentido autorizo a la Gerencia de Bienestar Y
+                Seguridad Social para que realize las diligencias pertinentes a fin de certificar la veracidad de los
+                recaudos e informaci&oacute;n suminstrada.</p></td>
+            <td style="width:45%" class="bde btop">19.FIRMA DEL SOLICITANTE</td>
+        </tr>
+        <tr class="doble">
+            <td class="bajo bde"></td>
+        </tr>
     </table>
 
     <table class="tcontenedor fondo junta" border="0">
@@ -169,7 +249,7 @@
                         <td>FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
-                    <tr  class="texto10">
+                    <tr class="texto10">
                         <td>NO FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
@@ -178,22 +258,30 @@
             <td style="width:85%;" class="bde btop" colspan="3">OPINI&Oacute;N</td>
         </tr>
         <tr class="texto12">
-            <td class="bde bajo"colspan="3"></td>
+            <td class="bde bajo" colspan="3"></td>
         </tr>
         <tr class="texto12">
             <td class="biz bde">GRADO:</td>
-            <td  style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
+            <td style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
             <td class="bde" style="width:35%">FIRMA Y SELLO:</td>
             <td style="20%" class="bde">FECHA</td>
         </tr>
         <tr class="doble">
             <td class="biz bde bajo"></td>
             <td class="bde bajo"></td>
-            <td class="bde bajo" style="width:35%" ></td>
+            <td class="bde bajo" style="width:35%"></td>
             <td class="bde bajo">
                 <table class="tcontenedor junta" border="1">
-                    <tr class="texto10"><td>DIA</td><td>MES</td><td>A&Ntilde;O</td></tr>
-                    <tr class="simple"><td></td><td></td><td></td></tr>
+                    <tr class="texto10">
+                        <td>DIA</td>
+                        <td>MES</td>
+                        <td>A&Ntilde;O</td>
+                    </tr>
+                    <tr class="simple">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -207,7 +295,7 @@
                         <td>FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
-                    <tr  class="texto10">
+                    <tr class="texto10">
                         <td>NO FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
@@ -216,22 +304,30 @@
             <td style="width:85%;" class="bde btop" colspan="3">OPINI&Oacute;N</td>
         </tr>
         <tr class="texto12">
-            <td class="bde bajo"colspan="3"></td>
+            <td class="bde bajo" colspan="3"></td>
         </tr>
         <tr class="texto12">
             <td class="biz bde">GRADO:</td>
-            <td  style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
+            <td style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
             <td class="bde" style="width:35%">FIRMA Y SELLO:</td>
             <td style="20%" class="bde">FECHA</td>
         </tr>
         <tr class="doble">
             <td class="biz bde bajo"></td>
             <td class="bde bajo"></td>
-            <td class="bde bajo" style="width:35%" ></td>
+            <td class="bde bajo" style="width:35%"></td>
             <td class="bde bajo">
                 <table class="tcontenedor junta" border="1">
-                    <tr class="texto10"><td>DIA</td><td>MES</td><td>A&Ntilde;O</td></tr>
-                    <tr class="simple"><td></td><td></td><td></td></tr>
+                    <tr class="texto10">
+                        <td>DIA</td>
+                        <td>MES</td>
+                        <td>A&Ntilde;O</td>
+                    </tr>
+                    <tr class="simple">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -246,7 +342,7 @@
                         <td>FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
-                    <tr  class="texto10">
+                    <tr class="texto10">
                         <td>NO FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
@@ -255,22 +351,30 @@
             <td style="width:85%;" class="bde btop" colspan="3">OPINI&Oacute;N</td>
         </tr>
         <tr class="texto12">
-            <td class="bde bajo"colspan="3"></td>
+            <td class="bde bajo" colspan="3"></td>
         </tr>
         <tr class="texto12">
             <td class="biz bde">GRADO:</td>
-            <td  style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
+            <td style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
             <td class="bde" style="width:35%">FIRMA Y SELLO:</td>
             <td style="20%" class="bde">FECHA</td>
         </tr>
         <tr class="doble">
             <td class="biz bde bajo"></td>
             <td class="bde bajo"></td>
-            <td class="bde bajo" style="width:35%" ></td>
+            <td class="bde bajo" style="width:35%"></td>
             <td class="bde bajo">
                 <table class="tcontenedor junta" border="1">
-                    <tr class="texto10"><td>DIA</td><td>MES</td><td>A&Ntilde;O</td></tr>
-                    <tr class="simple"><td></td><td></td><td></td></tr>
+                    <tr class="texto10">
+                        <td>DIA</td>
+                        <td>MES</td>
+                        <td>A&Ntilde;O</td>
+                    </tr>
+                    <tr class="simple">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -284,7 +388,7 @@
                         <td>FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
-                    <tr  class="texto10">
+                    <tr class="texto10">
                         <td>NO FAVORABLE</td>
                         <td><input type="checkboX"/></td>
                     </tr>
@@ -293,22 +397,30 @@
             <td style="width:85%;" class="bde btop" colspan="3">OPINI&Oacute;N</td>
         </tr>
         <tr class="texto12">
-            <td class="bde bajo"colspan="3"></td>
+            <td class="bde bajo" colspan="3"></td>
         </tr>
         <tr class="texto12">
             <td class="biz bde">GRADO:</td>
-            <td  style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
+            <td style="width:35%" class="bde">APELLIDOS Y NOMBRES</td>
             <td class="bde" style="width:35%">FIRMA Y SELLO:</td>
             <td style="20%" class="bde">FECHA</td>
         </tr>
         <tr class="doble">
             <td class="biz bde bajo"></td>
             <td class="bde bajo"></td>
-            <td class="bde bajo" style="width:35%" ></td>
+            <td class="bde bajo" style="width:35%"></td>
             <td class="bde bajo">
                 <table class="tcontenedor junta" border="1">
-                    <tr class="texto10"><td>DIA</td><td>MES</td><td>A&Ntilde;O</td></tr>
-                    <tr class="simple"><td></td><td></td><td></td></tr>
+                    <tr class="texto10">
+                        <td>DIA</td>
+                        <td>MES</td>
+                        <td>A&Ntilde;O</td>
+                    </tr>
+                    <tr class="simple">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </table>
             </td>
         </tr>
@@ -317,4 +429,5 @@
 
 </div>
 </body>
+
 </html>

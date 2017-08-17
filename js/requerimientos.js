@@ -27,4 +27,4 @@ var reembolso =[
 "Factura Cancelada",
 "Fórmula de los lentes prescrita",
 "Informe médico del oftalmólogo"
-]
+];

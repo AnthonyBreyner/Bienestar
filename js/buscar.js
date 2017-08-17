@@ -363,47 +363,52 @@ function cargarDatos(){
     reembolso.cuentabancaria = cuenta;
 
     var conceptos = new Array();
-    $("#conceptoagregado tr").each(function () {
-        var concep = new ConceptoReembolso();
-        var facturaD = new Factura();
-        facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
-        facturaD.monto = parseFloat($(this).find("td").eq(5).html());
-        facturaD.numero = $(this).find("td").eq(4).html();
-        facturaD.control = $(this).find("td").eq(4).html();
+    if($("#conceptoagregado tr").length >0){
+        $("#conceptoagregado tr").each(function () {
+            var concep = new ConceptoReembolso();
+            var facturaD = new Factura();
+            facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
+            facturaD.monto = parseFloat($(this).find("td").eq(5).html());
+            facturaD.numero = $(this).find("td").eq(4).html();
+            facturaD.control = $(this).find("td").eq(4).html();
 
-        var prov = new Beneficiario();
-        prov.rif = $(this).find("td").eq(2).html();
-        prov.razonsocial = $(this).find("td").eq(3).html();
-        prov.tipoempresa = 'J';
-        prov.direccion = 'Por cargar';
-        //prov.Banco = 'Pora cargar banco';
+            var prov = new Beneficiario();
+            prov.rif = $(this).find("td").eq(2).html();
+            prov.razonsocial = $(this).find("td").eq(3).html();
+            prov.tipoempresa = 'J';
+            prov.direccion = 'Por cargar';
+            //prov.Banco = 'Pora cargar banco';
 
-        facturaD.Beneficiario = prov;
+            facturaD.Beneficiario = prov;
 
-        concep.DatoFactura = facturaD;
-        concep.afiliado = $(this).find("td").eq(0).html();
-        concep.tipo = $(this).find("td").eq(1).html();
+            concep.DatoFactura = facturaD;
+            concep.afiliado = $(this).find("td").eq(0).html();
+            concep.descripcion = $(this).find("td").eq(1).html();
 
-        conceptos.push(concep);
-    });
-    reembolso.Concepto = conceptos;
+            conceptos.push(concep);
+        });
+        reembolso.Concepto = conceptos;
 
-    console.log(reembolso);
-    console.log(JSON.stringify(reembolso));
-    var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso};
-    var urlGuardar = Conn.URL + "wreembolso";
-    var request2 = CargarAPI({
-        sURL: urlGuardar,
-        metodo: 'POST',
-        valores: datos,
-    });
+        console.log(reembolso);
+        console.log(JSON.stringify(reembolso));
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso};
+        var urlGuardar = Conn.URL + "wreembolso";
+        var request2 = CargarAPI({
+            sURL: urlGuardar,
+            metodo: 'POST',
+            valores: datos,
+        });
 
-    request2.then(function(xhRequest) {
-
-        lstProveedores = JSON.parse(xhRequest.responseText);
-        console.log(lstProveedores);
-
-    });
+        request2.then(function(xhRequest) {
+            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+            ventana.document.write(html);
+            //ventana.document.head.innerHTML = ;
+            ventana.print();
+            ventana.close();
+        });
+    }else{
+        alert("Debe contener al menos un reembolso");
+    }
 
 }
 
