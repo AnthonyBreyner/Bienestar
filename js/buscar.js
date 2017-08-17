@@ -28,8 +28,8 @@ $(function () {
        consultarRif();
     });
     $("#btnvolverlista").click(function(){
-        $("#tblreembolsos").show();
-        $("#lstDetalle").hide();
+        $("#tblreembolsos").slideDown();
+        $("#lstDetalle").slideUp();
     });
 
     $("#concepto").select2();
@@ -69,6 +69,7 @@ function salvarEmpresa(){
 function ActivarBuscar(){
     $("#_bxBuscar").show();
     $("#paneldatos").hide();
+    verReembolsos();
 }
 
 function Buscar(id) {
@@ -127,6 +128,7 @@ function llenar(){
     $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
     $("#_cargando").hide();
     if(militar.Persona != undefined){
+        $("#cuerporeembolsos").html("");
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
         $("#lblnombre").text(ncompleto);
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
@@ -183,6 +185,16 @@ function llenar(){
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
             Estados.ObtenerEstados();
+            var defEstado = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
+            var textoestado = "";
+            $.each(defEstado,function(){
+                console.log(this.codigo);
+                if(this.codigo == DIR.estado){
+                    console.log("ESTADO"+this.nombre);
+                    textoestado = this.nombre;
+                }
+            });
+
             $("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").val(DIR.municipio);
             $("#cmbmparroquia").val(DIR.parroquia);
@@ -190,7 +202,7 @@ function llenar(){
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
-            var rirec = DIR.estado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
+            var rirec = textoestado+", "+DIR.ciudad+", municipio "+DIR.municipio+", parroquia "+DIR.parroquia+", Av/Calle "+DIR.calleavenida+", casa/apt "+DIR.casa+"|"+DIR.apartamento
             $("#ttdireccion").text(rirec);
         }
 
@@ -299,15 +311,15 @@ function detalleVisible(pos){
 }
 
 function crearReembolso(){
-    $("#panellista").hide();
-    $("#panelregistro").show();
+    $("#panellista").slideUp();
+    $("#panelregistro").slideDown();
     $("#btnnreembolso").hide();
     $("#btnlreembolso").show();
 }
 
 function verReembolsos(){
-    $("#panellista").show();
-    $("#panelregistro").hide();
+    $("#panellista").slideDown();
+    $("#panelregistro").slideUp();
     $("#btnnreembolso").show();
     $("#btnlreembolso").hide();
 }
