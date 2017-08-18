@@ -200,7 +200,7 @@ function llenar(){
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
-            var rirec = "ESTADO "textoestado+", "+DIR.ciudad+", MUNICIPIO "+DIR.municipio+", PARROQUIA "+DIR.parroquia+", AV/CALLE "+DIR.calleavenida+", CASA/APT "+DIR.casa+" "+DIR.apartamento
+            var rirec = "ESTADO "+textoestado+", "+DIR.ciudad+", MUNICIPIO "+DIR.municipio+", PARROQUIA "+DIR.parroquia+", AV/CALLE "+DIR.calleavenida+", CASA/APT "+DIR.casa+" "+DIR.apartamento
             $("#ttdireccion").text(rirec);
         }
 
