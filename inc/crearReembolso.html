@@ -1,7 +1,7 @@
 
 <div class="body box">
     <div class="container-fluid">
-        <div class="row">
+        <!--<div class="row">
 
             <center>
                 <div class="">
@@ -51,7 +51,7 @@
                     </table>
                 </div>
             </center>
-        </div>
+        </div>!-->
         <!--<div class="row">
             <div class="col-md-12">
                 <form class="form-horizontal" id="_frmDatoBasico">
@@ -203,230 +203,249 @@
     </div>
 </div>
 
-
 <div class="body box">
-    <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#datos" data-toggle="tab">Datos Reembolso</a></li>
-            <li><a href="#datosb" data-toggle="tab">Datos Bancarios</a></li>
-        </ul>
-        <div class="tab-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                        <h4 class="panel-title">
 
-            <div class="tab-pane active" id="datos">
-                <form id="frmreembolso" action="#" method="post" onsubmit="return agregarConcepto()">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-12">
+                                Datos del reembolso
 
-                            <label>Beneficiario:</label>
-                            <select class="form-control" style="width: 100%" id="cmbbeneficiario">
-                                <option selected="selected" value="S"></option>
-                            </select>
-                        </div>
-                        <div class="col-md-6 col-sm-12">
-                            <label>Conceptos:</label>
-                            <select class="form-control" style="width: 100%" id="concepto">
-                                <option selected="selected" value="S"></option>
-                                <option value="">Intervención quirúrgica</option>
-                                <option value="">Material médico quirúrgico</option>
-                                <option value="">Marcapasos</option>
-                                <option value="">Tratamiento Medico</option>
-                                <option value="">Prótesis Auditiva</option>
-                                <option value="">Prótesis de cadera</option>
-                                <option value="">Prótesis Traumatológica</option>
-
-                            </select>
-                        </div>
+                        </h4>
                     </div>
-                    <div class="row">
-                        <div class="col-md-2 col-sm-12">
-                            <label>Rif:</label>
-                            <div class="btn-group-justified" role="group" aria-label="...">
+                    </a>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <form id="frmreembolso" action="#" method="post" onsubmit="return agregarConcepto()">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12">
 
-                                <div class="btn-group" style="width: 6%;" role="group">
-                                    <input class="form-control" id="rif" required="required">
+                                        <label>Beneficiario:</label>
+                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario">
+                                            <option selected="selected" value="S"></option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 col-sm-12">
+                                        <label>Conceptos:</label>
+                                        <select class="form-control" style="width: 100%" id="concepto">
+                                            <option selected="selected" value="S"></option>
+                                            <option value="">Intervención quirúrgica</option>
+                                            <option value="">Material médico quirúrgico</option>
+                                            <option value="">Marcapasos</option>
+                                            <option value="">Tratamiento Medico</option>
+                                            <option value="">Prótesis Auditiva</option>
+                                            <option value="">Prótesis de cadera</option>
+                                            <option value="">Prótesis Traumatológica</option>
+
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                            onclick="Buscar()">
-                                        <span class="fa fa-search"></span></button>
+                                <div class="row">
+                                    <div class="col-md-2 col-sm-12">
+                                        <label>Rif:</label>
+                                        <div class="btn-group-justified" role="group" aria-label="...">
+
+                                            <div class="btn-group" style="width: 6%;" role="group">
+                                                <input class="form-control" id="rif" required="required">
+                                            </div>
+                                            <div class="input-group-btn">
+                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                                        onclick="Buscar()">
+                                                    <span class="fa fa-search"></span></button>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Razón Social:</label>
+                                        <input class="form-control" id="razonsocial" readonly="true" required="required">
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <label>N° de Factura:</label>
+                                        <input type="text" class="form-control" id="nfactura" required="required">
+                                    </div>
+
+                                    <div class="col-md-3 col-sm-12">
+                                        <label>F.Factura:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div class="input-group input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="fechafactura" required="required">
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <label>Monto:</label>
+                                        <input class="form-control" id="monto" required="required">
+
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <button class="btn btn-primary btn-success" type="submit"
+                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
+                                                class="glyphicon glyphicon-plus"></i></button>
+                                    </div>
+                                </div>
+
+                                <div class="box box-primary" id="cajaConceptos" style="display: none">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">Conceptos</h3>
+
+                                    </div>
+
+                                    <div class="box-body no-padding">
+                                        <div class="table-responsive mailbox-messages">
+                                            <table class="table table-hover table-striped">
+                                                <thead class="bg-blue">
+                                                <tr>
+                                                    <th>Beneficiario</th>
+                                                    <th>Concepto</th>
+                                                    <th class="detfactconcep">Rif</th>
+                                                    <th class="detfactconcep">Razón Social</th>
+                                                    <th>N° de Factura</th>
+                                                    <th>Monto</th>
+                                                    <th class="detfactconcep">Fecha</th>
+                                                    <th>Eliminar</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody id="conceptoagregado">
+
+                                                </tbody>
+                                                <tfoot class="bg-light-blue">
+                                                <tr>
+                                                    <th>TOTAL REEMBOLSO</th>
+                                                    <th></th><th class="detfactconcep"></th><th class="detfactconcep"></th>
+                                                    <th></th><th class="pull-right" id="mntAcumulado"></th><th class="detfactconcep"></th><th></th>
+                                                </tr>
+                                                </tfoot>
+                                            </table>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
-                            </div>
+                            </form>
                         </div>
-
-                        <div class="col-md-4 col-sm-12">
-                            <label>Razón Social:</label>
-                            <input class="form-control" id="razonsocial" readonly="true" required="required">
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label>N° de Factura:</label>
-                            <input type="text" class="form-control" id="nfactura" required="required">
-                        </div>
-
-                        <div class="col-md-3 col-sm-12">
-                            <label>F.Factura:</label>
-                            <div class="input-group date">
-                                <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </div>
-                                <div class="input-group input-group" style="width: 100%;">
-                                    <input type="text" class="form-control" id="fechafactura" required="required">
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label>Monto:</label>
-                            <input class="form-control" id="monto" required="required">
-
-                        </div>
-                        <div class="col-md-4 col-sm-12">
-                            <button class="btn btn-primary btn-success" type="submit"
-                                    style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
-                                    class="glyphicon glyphicon-plus"></i></button>
-                        </div>
-                    </div>
-
-                    <div class="box box-primary" id="cajaConceptos" style="display: none">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Conceptos</h3>
-
-                        </div>
-
-                        <div class="box-body no-padding">
-                            <div class="table-responsive mailbox-messages">
-                                <table class="table table-hover table-striped">
-                                    <thead class="bg-blue">
-                                    <tr>
-                                        <th>Beneficiario</th>
-                                        <th>Concepto</th>
-                                        <th class="detfactconcep">Rif</th>
-                                        <th class="detfactconcep">Razón Social</th>
-                                        <th>N° de Factura</th>
-                                        <th>Monto</th>
-                                        <th class="detfactconcep">Fecha</th>
-                                        <th>Eliminar</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody id="conceptoagregado">
-
-                                    </tbody>
-                                    <tfoot class="bg-light-blue">
-                                    <tr>
-                                        <th>TOTAL REEMBOLSO</th>
-                                        <th></th><th class="detfactconcep"></th><th class="detfactconcep"></th>
-                                        <th></th><th class="pull-right" id="mntAcumulado"></th><th class="detfactconcep"></th><th></th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-
-
-            <div class="tab-pane" id="datosb">
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <label>Datos bancarios:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
-                            <option selected="selected" value="S">Seleccione</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 col-sm-12" >
-                        <label>Depositar a:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="depositar" disabled="true" onchange="cedulaDepositar()">
-                            <option selected="selected" value="S">Seleccionar</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <label>Cedula:</label>
-                        <input type="text" class="form-control" id="cibancario" disabled="true">
-                    </div>
-                    <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
-                        <label>Nro. de Cuenta:</label>
-                        <input id="numerocuenta" class="form-control" type="text" maxlength="23"
-                               data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true"
-                               data-mask>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
-                        <label>Banco:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="banco" disabled="true">
-                            <option selected="selected" value="S"></option>
-                            <option value="0156">100%BANCO</option>
-                            <option value="0196">ABN AMRO BANK</option>
-                            <option value="0172">BANCAMIGA BANCO MICROFINANCIERO, C.A.</option>
-                            <option value="0171">BANCO ACTIVO BANCO COMERCIAL, C.A.</option>
-                            <option value="0166">BANCO AGRICOLA</option>
-                            <option value="0175">BANCO BICENTENARIO</option>
-                            <option value="0128">BANCO CARONI, C.A. BANCO UNIVERSAL</option>
-                            <option value="0164">BANCO DE DESARROLLO DEL MICROEMPRESARIO</option>
-                            <option value="0102">BANCO DE VENEZUELA S.A.I.C.A.</option>
-                            <option value="0114">BANCO DEL CARIBE C.A.</option>
-                            <option value="0149">BANCO DEL PUEBLO SOBERANO C.A.</option>
-                            <option value="0163">BANCO DEL TESORO</option>
-                            <option value="0176">BANCO ESPIRITO SANTO, S.A.</option>
-                            <option value="0115">BANCO EXTERIOR C.A.</option>
-                            <option value="0003">BANCO INDUSTRIAL DE VENEZUELA.</option>
-                            <option value="0173">BANCO INTERNACIONAL DE DESARROLLO, C.A.</option>
-                            <option value="0105">BANCO MERCANTIL C.A.</option>
-                            <option value="0191">BANCO NACIONAL DE CREDITO</option>
-                            <option value="0116">BANCO OCCIDENTAL DE DESCUENTO.</option>
-                            <option value="0138">BANCO PLAZA</option>
-                            <option value="0108">BANCO PROVINCIAL BBVA</option>
-                            <option value="0104">BANCO VENEZOLANO DE CREDITO S.A.</option>
-                            <option value="0168">BANCRECER S.A. BANCO DE DESARROLLO</option>
-                            <option value="0134">BANESCO BANCO UNIVERSAL</option>
-                            <option value="0177">BANFANB</option>
-                            <option value="0146">BANGENTE</option>
-                            <option value="0174">BANPLUS BANCO COMERCIAL C.A</option>
-                            <option value="0190">CITIBANK.</option>
-                            <option value="0121">CORP BANCA.</option>
-                            <option value="0157">DELSUR BANCO UNIVERSAL</option>
-                            <option value="0151">FONDO COMUN</option>
-                            <option value="0601">INSTITUTO MUNICIPAL DE CR&#201;DITO POPULAR</option>
-                            <option value="0169">MIBANCO BANCO DE DESARROLLO, C.A.</option>
-                            <option value="0137">SOFITASA</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
-                        <label>Tipo de Cuenta:</label>
-                        <select class="form-control" style="width: 100%"
-                                id="tipodecuenta" disabled="true">
-                            <option selected="selected" value="S"></option>
-                            <option value="CA" selected="selected">AHORRO</option>
-                            <option value="CC">CORRIENTE</option>
-                        </select>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <div class="panel-heading bg-blue" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
 
+                                Datos Bancarios
+
+                        </h4>
+                    </div>
+                    </a>
+                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Datos bancarios:</label>
+                                    <select class="form-control" style="width: 100%"
+                                            id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
+                                        <option selected="selected" value="S">Seleccione</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-12" >
+                                    <label>Depositar a:</label>
+                                    <select class="form-control" style="width: 100%"
+                                            id="depositar" disabled="true" onchange="cedulaDepositar()">
+                                        <option selected="selected" value="S">Seleccionar</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Cedula:</label>
+                                    <input type="text" class="form-control" id="cibancario" disabled="true">
+                                </div>
+                                <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
+                                    <label>Nro. de Cuenta:</label>
+                                    <input id="numerocuenta" class="form-control" type="text" maxlength="23"
+                                           data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true"
+                                           data-mask>
+                                </div>
+
+                                <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+                                    <label>Banco:</label>
+                                    <select class="form-control" style="width: 100%"
+                                            id="banco" disabled="true">
+                                        <option selected="selected" value="S"></option>
+                                        <option value="0156">100%BANCO</option>
+                                        <option value="0196">ABN AMRO BANK</option>
+                                        <option value="0172">BANCAMIGA BANCO MICROFINANCIERO, C.A.</option>
+                                        <option value="0171">BANCO ACTIVO BANCO COMERCIAL, C.A.</option>
+                                        <option value="0166">BANCO AGRICOLA</option>
+                                        <option value="0175">BANCO BICENTENARIO</option>
+                                        <option value="0128">BANCO CARONI, C.A. BANCO UNIVERSAL</option>
+                                        <option value="0164">BANCO DE DESARROLLO DEL MICROEMPRESARIO</option>
+                                        <option value="0102">BANCO DE VENEZUELA S.A.I.C.A.</option>
+                                        <option value="0114">BANCO DEL CARIBE C.A.</option>
+                                        <option value="0149">BANCO DEL PUEBLO SOBERANO C.A.</option>
+                                        <option value="0163">BANCO DEL TESORO</option>
+                                        <option value="0176">BANCO ESPIRITO SANTO, S.A.</option>
+                                        <option value="0115">BANCO EXTERIOR C.A.</option>
+                                        <option value="0003">BANCO INDUSTRIAL DE VENEZUELA.</option>
+                                        <option value="0173">BANCO INTERNACIONAL DE DESARROLLO, C.A.</option>
+                                        <option value="0105">BANCO MERCANTIL C.A.</option>
+                                        <option value="0191">BANCO NACIONAL DE CREDITO</option>
+                                        <option value="0116">BANCO OCCIDENTAL DE DESCUENTO.</option>
+                                        <option value="0138">BANCO PLAZA</option>
+                                        <option value="0108">BANCO PROVINCIAL BBVA</option>
+                                        <option value="0104">BANCO VENEZOLANO DE CREDITO S.A.</option>
+                                        <option value="0168">BANCRECER S.A. BANCO DE DESARROLLO</option>
+                                        <option value="0134">BANESCO BANCO UNIVERSAL</option>
+                                        <option value="0177">BANFANB</option>
+                                        <option value="0146">BANGENTE</option>
+                                        <option value="0174">BANPLUS BANCO COMERCIAL C.A</option>
+                                        <option value="0190">CITIBANK.</option>
+                                        <option value="0121">CORP BANCA.</option>
+                                        <option value="0157">DELSUR BANCO UNIVERSAL</option>
+                                        <option value="0151">FONDO COMUN</option>
+                                        <option value="0601">INSTITUTO MUNICIPAL DE CR&#201;DITO POPULAR</option>
+                                        <option value="0169">MIBANCO BANCO DE DESARROLLO, C.A.</option>
+                                        <option value="0137">SOFITASA</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+                                    <label>Tipo de Cuenta:</label>
+                                    <select class="form-control" style="width: 100%"
+                                            id="tipodecuenta" disabled="true">
+                                        <option selected="selected" value="S"></option>
+                                        <option value="CA" selected="selected">AHORRO</option>
+                                        <option value="CC">CORRIENTE</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="button" class="btn btn-md btn-success pull-right"
+                                            onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
+                                        <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
+                                    </button>
+                                    <br><br>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <br>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <button type="button" class="btn btn-md btn-success pull-right"
-                        onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
-                    <i class="fa fa-save"></i>&nbsp;&nbsp;CONTINUAR
-                </button>
-                <br><br>
-            </div>
-
-        </div>
-
     </div>
-
 </div>
+
+
+
 <script>
     $('#fechafactura').datepicker({
         autoclose: true,

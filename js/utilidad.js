@@ -254,6 +254,61 @@ class Utilidad {
         return situacion;
     }
 
+    ConvertirBanco(ban){
+        var banco = "";
+        switch (ban){
+            case "0156":
+                banco = "100%BANCO";
+                break;
+            case "0196":
+                banco = "ABN AMRO BANK";
+                break;
+            case "0172":
+                banco = "BANCAMIGA BANCO MICROFINANCIERO, C.A.";
+                break;
+            case "0171":
+                banco = "BANCO ACTIVO BANCO COMERCIAL, C.A.";
+                break;
+            case "0166":
+                banco = "BANCO AGRICOLA";
+                break;
+            case "0175":
+                banco = "BANCO BICENTENARIO";
+                break;
+            case "0128":
+                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
+                break;
+            case "0164":
+                banco = "BANCO DE DESARROLLO DEL MICROEMPRESARIO";
+                break;
+            case "0102":
+                banco = "BANCO DE VENEZUELA S.A.I.C.A.";
+                break;
+            case "0128":
+                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
+                break;
+            case "0114":
+                banco = "BANCO DEL CARIBE C.A.";
+                break;
+            case "0149":
+                banco = "BANCO DEL PUEBLO SOBERANO C.A.";
+                break;
+            case "0163":
+                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
+                break;
+            case "0166":
+                banco = "BANCO AGRICOLA";
+                break;
+            case "0175":
+                banco = "BANCO BICENTENARIO";
+                break;
+            case "0128":
+                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
+                break;
+        }
+        return situacion;
+    }
+
 
     //Obtener la direccion mac
     ObtenerMAC(MAC) {

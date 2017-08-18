@@ -40,6 +40,7 @@ class ConceptoReembolso {
         this.descripcion = '';
         this.DatoFactura = new Factura();
         this.afiliado = '';
+        this.requisito = new Array();
     }
 }
 
@@ -55,6 +56,7 @@ class Reembolso {
         this.Concepto = new Array();
         this.montoaprobado = 0.00;
         this.fechaaprobacion = '';
+        this.requisito = new Array();
     }
 }
 
