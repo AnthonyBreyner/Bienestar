@@ -484,58 +484,55 @@
       });
     </script-->
 
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
     <!-- Modal -->
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content" style="width: 1300px;
-margin-left: -180px;">
-          <div class="modal-header">
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
+          <div class="modal-header" style="background-color:#337ab7;color:white;">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA CUIDADO INTEGRAL DE LA SALUD</h4>
+            <h4 class="modal-title" id="myModalLabel">REQUSITOS PARA REEMBOLSO LENTES</h4>
           </div>
           <div class="modal-body">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="panel panel-primary" id="panel4">
+                <div class="panel panel-primary">
                     <!-- Default panel contents -->
-                    <div class="panel-heading">REQUISITOS OBLIGATORIAMENTE NECESARIOS</div>
-
                     <!-- List group -->
                     <ul class="list-group">
 
                       <li class="list-group-item">
-                          Carta dirigida al Presidente de la Junta Administradora
+                          Factura Cancelada
                           <div class="material-switch pull-right">
-                              <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
-                              <label for="someSwitchOptionSuccess" class="label-success"></label>
+                              <input id="someSwitchOptionSuccess10" name="someSwitchOption001" type="checkbox"/>
+                              <label for="someSwitchOptionSuccess10" class="label-success"></label>
                           </div>
                       </li>
 
-                      <li class="list-group-item">
-                          Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
+                     <li class="list-group-item">
+                         Fórmula de los lentes prescrita
                           <div class="material-switch pull-right">
-                              <input id="someSwitchOptionSuccess1" name="someSwitchOption001" type="checkbox"/>
-                              <label for="someSwitchOptionSuccess1" class="label-success"></label>
+                              <input id="someSwitchOptionSuccess11" name="someSwitchOption001" type="checkbox"/>
+                              <label for="someSwitchOptionSuccess11" class="label-success"></label>
                           </div>
                       </li>
-
-                      <li class="list-group-item">
-                          Informe médico firmado y sellado por el médico tratante
+                    <li class="list-group-item">
+                          Informe médico del oftalmólogo
                           <div class="material-switch pull-right">
-                              <input id="someSwitchOptionSuccess2" name="someSwitchOption001" type="checkbox"/>
-                              <label for="someSwitchOptionSuccess2" class="label-success"></label>
+                              <input id="someSwitchOptionSuccess12" name="someSwitchOption001" type="checkbox"/>
+                              <label for="someSwitchOptionSuccess12" class="label-success"></label>
                           </div>
                       </li>
 
                     </ul>
-                </div></div>
+                </div>
+                <!--
                 <div class="col-md-6">
             <div class="panel panel-primary" id="panel3">
-                <!-- Default panel contents -->
+                <!-- Default panel contents
                 <div class="panel-heading">Complemento de hospitalización e intervención quirúrgica</div>
 
-                <!-- List group -->
+                <!-- List group
                 <ul class="list-group">
 
 
@@ -580,9 +577,9 @@ margin-left: -180px;">
           <div class="row">
             <div class="col-md-4">
               <div class="panel panel-primary" id="panel1">
-                  <!-- Default panel contents -->
+                  <!-- Default panel contents
                   <div class="panel-heading">Tratamiento odontológico, consulta, ortopedia, exámenes y tratamientos médicos</div>
-                  <!-- List group -->
+                  <!-- List group
                   <ul class="list-group">
 
                       <li class="list-group-item">
@@ -614,10 +611,10 @@ margin-left: -180px;">
             </div>
             <div class="col-md-4">
               <div class="panel panel-primary" id="panel2">
-                  <!-- Default panel contents -->
+                  <!-- Default panel contents
                   <div class="panel-heading">Tratamiento psicopedagógico y geriátrico</div>
 
-                  <!-- List group -->
+                  <!-- List group
                   <ul class="list-group">
 
 
@@ -651,10 +648,9 @@ margin-left: -180px;">
           </div>
           <div class="col-md-4">
             <div class="panel panel-primary" id="panel4">
-                <!-- Default panel contents -->
+                <!-- Default panel contents
                 <div class="panel-heading">Lentes</div>
 
-                <!-- List group -->
                 <ul class="list-group">
 
                     <li class="list-group-item">
@@ -685,7 +681,8 @@ margin-left: -180px;">
             </div>
 
           </div>
-        </div></div>
+        </div>-->
+      </div>
 
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Canceler</button>
