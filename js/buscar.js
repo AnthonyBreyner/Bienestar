@@ -38,6 +38,10 @@ $(function () {
     });
 
     $("#concepto").select2();
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitos");
+    });
 });
 
 function consultarRif(){
@@ -316,7 +320,15 @@ function detalleVisible(pos){
 }
 
 function verificarNuevo(){
-    crearReembolso();
+    $("#requisitos").modal("show");
+    //crearReembolso();
+}
+
+function verificaCheckModal(mdl){
+    alert(mdl);
+    $("#"+mdl+" :input[type=checkbox]").each(function(){
+       alert($(this)[0].checked);
+    });
 }
 
 function crearReembolso(){
