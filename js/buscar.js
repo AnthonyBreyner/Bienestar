@@ -325,10 +325,17 @@ function verificarNuevo(){
 }
 
 function verificaCheckModal(mdl){
-    alert(mdl);
+    var falta=false;
     $("#"+mdl+" :input[type=checkbox]").each(function(){
-       alert($(this)[0].checked);
+       if($(this)[0].checked == false){
+           falta = true;
+       }
     });
+    if(falta == true){
+        $("#"+mdl+" button.btnrequisitos").attr("disabled",true);
+    }else{
+        $("#"+mdl+" button.btnrequisitos").attr("disabled",false);
+    }
 }
 
 function crearReembolso(){
