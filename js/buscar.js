@@ -74,8 +74,9 @@ function salvarEmpresa(){
 
 function ActivarBuscar(){
     $("#_bxBuscar").show();
+    $("#panelentrada").hide();
     $("#paneldatos").hide();
-    verReembolsos();
+    //verReembolsos();
 }
 
 function Buscar(id) {
@@ -314,15 +315,22 @@ function detalleVisible(pos){
     $("#tblreembolsos").hide();
 }
 
+function verificarNuevo(){
+    crearReembolso();
+}
+
 function crearReembolso(){
+    $("#panellista").hide();
     $("#paneldatos").show();
     $("#panelentrada").slideUp();
     $("#panelregistro").slideDown();
+
     //$("#btnnreembolso").hide();
     //$("#btnlreembolso").show();
 }
 
 function verReembolsos(){
+    $("#panelregistro").hide();
     $("#paneldatos").show();
     $("#panelentrada").slideUp();
     $("#panellista").slideDown();
