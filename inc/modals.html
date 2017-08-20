@@ -82,221 +82,268 @@
 
 <div class="content" id="mdlPlanilla" style="display:none;">
 
-            <div class="modal-body">
-                <section class="content" id="cuerpoPlanilla">
+    <div class="modal-body">
+        <section class="content" id="cuerpoPlanilla">
 
-                </section>
+        </section>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="imprimirPlanilla()">Imprimir</button>
-            </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="imprimirPlanilla()">Imprimir</button>
+    </div>
 
 </div><!-- /.modal -->
 <!-- MODAL DE REQUISITOS -->
 <div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
-      <div class="modal-header" style="background-color:#337ab7;color:white;">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA REEMBOLSO</h4>
-      </div>
-      <div class="modal-body">
-            <div class="panel panel-primary">
-                <!-- Default panel contents -->
-                <!-- List group -->
-                <ul class="list-group">
-
-                  <li class="list-group-item">
-                      Carta dirigida al Presidente de la Junta Administradora
-                      <div class="material-switch pull-right">
-                          <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
-                          <label for="someSwitchOptionSuccess" class="label-success"></label>
-                      </div>
-                  </li>
-
-                  <li class="list-group-item">
-                      Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del  familiar ampliada por ambas caras
-                      <div class="material-switch pull-right">
-                          <input id="someSwitchOptionSuccess1" name="someSwitchOption001" type="checkbox"/>
-                          <label for="someSwitchOptionSuccess1" class="label-success"></label>
-                      </div>
-                  </li>
-
-                  <li class="list-group-item">
-                      Informe médico firmado y sellado por el médico tratante
-                      <div class="material-switch pull-right">
-                          <input id="someSwitchOptionSuccess2" name="someSwitchOption001" type="checkbox"/>
-                          <label for="someSwitchOptionSuccess2" class="label-success"></label>
-                      </div>
-                  </li>
-                </ul>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header" style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA REEMBOLSO</h4>
             </div>
-          </div>
-          <!--REQUISITOS ODONTOLOGICOS, CONSULTAS MEDICAS ETC-->
-          <div class="modal fade" id="requisitosconsultas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
-                <div class="modal-header" style="background-color:#337ab7;color:white;">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel"><center>TRATAMIENTO ODONTOLÓGICO, CONSULTA, ORTEPEDICA, EXÁMENES Y TRATAMIENTOS MÉDICOS</center></h4>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Carta dirigida al Presidente de la Junta Administradora
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionSuccess" name="someSwitchOption001" type="checkbox"/>
+                                <label for="someSwitchOptionSuccess" class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del familiar ampliada
+                            por ambas caras
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionSuccess1" name="someSwitchOption001" type="checkbox"/>
+                                <label for="someSwitchOptionSuccess1" class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Informe médico firmado y sellado por el médico tratante
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionSuccess2" name="someSwitchOption001" type="checkbox"/>
+                                <label for="someSwitchOptionSuccess2" class="label-success"></label>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="modal-body">
-                      <div class="panel panel-primary">
-                          <!-- Default panel contents -->
-                          <!-- List group -->
-                          <ul class="list-group">
+            </div>
+            <!--REQUISITOS ODONTOLOGICOS, CONSULTAS MEDICAS ETC-->
+            <div class="modal fade" id="requisitosconsultas" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
+                        <div class="modal-header" style="background-color:#337ab7;color:white;">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <center>TRATAMIENTO ODONTOLÓGICO, CONSULTA, ORTEPEDICA, EXÁMENES Y TRATAMIENTOS
+                                    MÉDICOS
+                                </center>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="panel panel-primary">
+                                <!-- Default panel contents -->
+                                <!-- List group -->
+                                <ul class="list-group">
 
-                            <li class="list-group-item">
-                                Factura de Cancelación
-                                <div class="material-switch pull-right">
-                                    <input id="someSwitchOptionSuccess16" name="someSwitchOption001" type="checkbox"/>
-                                    <label for="someSwitchOptionSuccess16" class="label-success"></label>
-                                </div>
-                            </li>
-
-                           <li class="list-group-item">
-                                Orden Médica
-                                <div class="material-switch pull-right">
-                                    <input id="someSwitchOptionSuccess17" name="someSwitchOption001" type="checkbox"/>
-                                    <label for="someSwitchOptionSuccess17" class="label-success"></label>
-                                </div>
-                            </li>
-                          <li class="list-group-item">
-                                Presupuesto
-                                <div class="material-switch pull-right">
-                                    <input id="someSwitchOptionSuccess18" name="someSwitchOption001" type="checkbox"/>
-                                    <label for="someSwitchOptionSuccess18" class="label-success"></label>
-                                </div>
-                            </li>
-                          </ul>
-                      </div>
-                    </div>
-                    <!--Complemento de hospitalización e intervención quirúrgica -->
-                    <div class="modal fade" id="requisitoshosp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                      <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
-                          <div class="modal-header" style="background-color:#337ab7;color:white;">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">COMPLEMENTOS DE HOSPITALIZACÓN E INTERVENCIÓN QUIRÚRGICA</h4>
-                          </div>
-                          <div class="modal-body">
-                                <div class="panel panel-primary">
-                                    <!-- Default panel contents -->
-                                    <!-- List group -->
-                                    <ul class="list-group">
-
-                                      <li class="list-group-item">
-                                          Finiquito de Seguros Horizonte, C.A
-                                          <div class="material-switch pull-right">
-                                              <input id="someSwitchOptionSuccess3" name="someSwitchOption001" type="checkbox"/>
-                                              <label for="someSwitchOptionSuccess3" class="label-success"></label>
-                                          </div>
-                                      </li>
-
-                                     <li class="list-group-item">
-                                         Factura con sello de indemnización de Seguros Horizonte, C.A.
-                                          <div class="material-switch pull-right">
-                                              <input id="someSwitchOptionSuccess4" name="someSwitchOption001" type="checkbox"/>
-                                              <label for="someSwitchOptionSuccess4" class="label-success"></label>
-                                          </div>
-                                      </li>
                                     <li class="list-group-item">
-                                          Constancia de agotamiento de cobertura
-                                          <div class="material-switch pull-right">
-                                              <input id="someSwitchOptionSuccess5" name="someSwitchOption001" type="checkbox"/>
-                                              <label for="someSwitchOptionSuccess5" class="label-success"></label>
-                                          </div>
-                                      </li>
+                                        Factura de Cancelación
+                                        <div class="material-switch pull-right">
+                                            <input id="someSwitchOptionSuccess16" name="someSwitchOption001"
+                                                   type="checkbox"/>
+                                            <label for="someSwitchOptionSuccess16" class="label-success"></label>
+                                        </div>
+                                    </li>
 
-                                      <li class="list-group-item">
-                                          Recibo de Diferencia de pago
-                                          <div class="material-switch pull-right">
-                                              <input id="someSwitchOptionSuccess6" name="someSwitchOption001" type="checkbox"/>
-                                              <label for="someSwitchOptionSuccess6" class="label-success"></label>
-                                          </div>
-                                      </li>
-                                    </ul>
-                                </div>
-                              </div>
-                              <!--Tratamiento psicopedagógico y geriátrico -->
-                              <div class="modal fade" id="requisitostratamiento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                  <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
+                                    <li class="list-group-item">
+                                        Orden Médica
+                                        <div class="material-switch pull-right">
+                                            <input id="someSwitchOptionSuccess17" name="someSwitchOption001"
+                                                   type="checkbox"/>
+                                            <label for="someSwitchOptionSuccess17" class="label-success"></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Presupuesto
+                                        <div class="material-switch pull-right">
+                                            <input id="someSwitchOptionSuccess18" name="someSwitchOption001"
+                                                   type="checkbox"/>
+                                            <label for="someSwitchOptionSuccess18" class="label-success"></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--Complemento de hospitalización e intervención quirúrgica -->
+                        <div class="modal fade" id="requisitoshosp" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
                                     <div class="modal-header" style="background-color:#337ab7;color:white;">
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                      <h4 class="modal-title" id="myModalLabel">TRATAMIENTOS PSICOPEDAGÓGICO Y GERIÁTRICO</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">COMPLEMENTOS DE HOSPITALIZACÓN E
+                                            INTERVENCIÓN QUIRÚRGICA</h4>
                                     </div>
                                     <div class="modal-body">
-                                          <div class="panel panel-primary">
-                                              <!-- Default panel contents -->
-                                              <!-- List group -->
-                                              <ul class="list-group">
+                                        <div class="panel panel-primary">
+                                            <!-- Default panel contents -->
+                                            <!-- List group -->
+                                            <ul class="list-group">
 
                                                 <li class="list-group-item">
-                                                    Factura de Cancelación
+                                                    Finiquito de Seguros Horizonte, C.A
                                                     <div class="material-switch pull-right">
-                                                        <input id="someSwitchOptionSuccess22" name="someSwitchOption001" type="checkbox"/>
-                                                        <label for="someSwitchOptionSuccess22" class="label-success"></label>
+                                                        <input id="someSwitchOptionSuccess3" name="someSwitchOption001"
+                                                               type="checkbox"/>
+                                                        <label for="someSwitchOptionSuccess3"
+                                                               class="label-success"></label>
                                                     </div>
                                                 </li>
 
-                                               <li class="list-group-item">
-                                                   Constancia de Residencia emitida por la casa hogar
+                                                <li class="list-group-item">
+                                                    Factura con sello de indemnización de Seguros Horizonte, C.A.
                                                     <div class="material-switch pull-right">
-                                                        <input id="someSwitchOptionSuccess23" name="someSwitchOption001" type="checkbox"/>
-                                                        <label for="someSwitchOptionSuccess23" class="label-success"></label>
+                                                        <input id="someSwitchOptionSuccess4" name="someSwitchOption001"
+                                                               type="checkbox"/>
+                                                        <label for="someSwitchOptionSuccess4"
+                                                               class="label-success"></label>
                                                     </div>
                                                 </li>
-                                              <li class="list-group-item">
-                                                    Fe de vida
+                                                <li class="list-group-item">
+                                                    Constancia de agotamiento de cobertura
                                                     <div class="material-switch pull-right">
-                                                        <input id="someSwitchOptionSuccess24" name="someSwitchOption001" type="checkbox"/>
-                                                        <label for="someSwitchOptionSuccess24" class="label-success"></label>
+                                                        <input id="someSwitchOptionSuccess5" name="someSwitchOption001"
+                                                               type="checkbox"/>
+                                                        <label for="someSwitchOptionSuccess5"
+                                                               class="label-success"></label>
                                                     </div>
                                                 </li>
 
-                                              </ul>
-                                          </div>
+                                                <li class="list-group-item">
+                                                    Recibo de Diferencia de pago
+                                                    <div class="material-switch pull-right">
+                                                        <input id="someSwitchOptionSuccess6" name="someSwitchOption001"
+                                                               type="checkbox"/>
+                                                        <label for="someSwitchOptionSuccess6"
+                                                               class="label-success"></label>
+                                                    </div>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <!--Lentes -->
-                                        <div class="modal fade" id="requisitoslentes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                          <div class="modal-dialog" role="document">
-                                            <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
-                                              <div class="modal-header" style="background-color:#337ab7;color:white;">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title" id="myModalLabel">REQUSITOS PARA REEMBOLSO LENTES</h4>
-                                              </div>
-                                              <div class="modal-body">
+                                    </div>
+                                    <!--Tratamiento psicopedagógico y geriátrico -->
+                                    <div class="modal fade" id="requisitostratamiento" tabindex="-1" role="dialog"
+                                         aria-labelledby="myModalLabel">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content"
+                                                 style="border-radius: 8px;border:2px #337ab7 solid; ">
+                                                <div class="modal-header" style="background-color:#337ab7;color:white;">
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                    <h4 class="modal-title" id="myModalLabel">TRATAMIENTOS
+                                                        PSICOPEDAGÓGICO Y GERIÁTRICO</h4>
+                                                </div>
+                                                <div class="modal-body">
                                                     <div class="panel panel-primary">
                                                         <!-- Default panel contents -->
                                                         <!-- List group -->
                                                         <ul class="list-group">
 
-                                                          <li class="list-group-item">
-                                                              Factura Cancelada
-                                                              <div class="material-switch pull-right">
-                                                                  <input id="someSwitchOptionSuccess10" name="someSwitchOption001" type="checkbox"/>
-                                                                  <label for="someSwitchOptionSuccess10" class="label-success"></label>
-                                                              </div>
-                                                          </li>
+                                                            <li class="list-group-item">
+                                                                Factura de Cancelación
+                                                                <div class="material-switch pull-right">
+                                                                    <input id="someSwitchOptionSuccess22"
+                                                                           name="someSwitchOption001" type="checkbox"/>
+                                                                    <label for="someSwitchOptionSuccess22"
+                                                                           class="label-success"></label>
+                                                                </div>
+                                                            </li>
 
-                                                         <li class="list-group-item">
-                                                             Fórmula de los lentes prescrita
-                                                              <div class="material-switch pull-right">
-                                                                  <input id="someSwitchOptionSuccess11" name="someSwitchOption001" type="checkbox"/>
-                                                                  <label for="someSwitchOptionSuccess11" class="label-success"></label>
-                                                              </div>
-                                                          </li>
-                                                        <li class="list-group-item">
-                                                              Informe médico del oftalmólogo
-                                                              <div class="material-switch pull-right">
-                                                                  <input id="someSwitchOptionSuccess12" name="someSwitchOption001" type="checkbox"/>
-                                                                  <label for="someSwitchOptionSuccess12" class="label-success"></label>
-                                                              </div>
-                                                          </li>
+                                                            <li class="list-group-item">
+                                                                Constancia de Residencia emitida por la casa hogar
+                                                                <div class="material-switch pull-right">
+                                                                    <input id="someSwitchOptionSuccess23"
+                                                                           name="someSwitchOption001" type="checkbox"/>
+                                                                    <label for="someSwitchOptionSuccess23"
+                                                                           class="label-success"></label>
+                                                                </div>
+                                                            </li>
+                                                            <li class="list-group-item">
+                                                                Fe de vida
+                                                                <div class="material-switch pull-right">
+                                                                    <input id="someSwitchOptionSuccess24"
+                                                                           name="someSwitchOption001" type="checkbox"/>
+                                                                    <label for="someSwitchOptionSuccess24"
+                                                                           class="label-success"></label>
+                                                                </div>
+                                                            </li>
 
                                                         </ul>
                                                     </div>
-                                                  </div>
+                                                </div>
+                                                <!--Lentes -->
+                                                <div class="modal fade" id="requisitoslentes" tabindex="-1"
+                                                     role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content"
+                                                             style="border-radius: 8px;border:2px #337ab7 solid; ">
+                                                            <div class="modal-header"
+                                                                 style="background-color:#337ab7;color:white;">
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                                <h4 class="modal-title" id="myModalLabel">REQUSITOS PARA
+                                                                    REEMBOLSO LENTES</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="panel panel-primary">
+                                                                    <!-- Default panel contents -->
+                                                                    <!-- List group -->
+                                                                    <ul class="list-group">
+
+                                                                        <li class="list-group-item">
+                                                                            Factura Cancelada
+                                                                            <div class="material-switch pull-right">
+                                                                                <input id="someSwitchOptionSuccess10"
+                                                                                       name="someSwitchOption001"
+                                                                                       type="checkbox"/>
+                                                                                <label for="someSwitchOptionSuccess10"
+                                                                                       class="label-success"></label>
+                                                                            </div>
+                                                                        </li>
+
+                                                                        <li class="list-group-item">
+                                                                            Fórmula de los lentes prescrita
+                                                                            <div class="material-switch pull-right">
+                                                                                <input id="someSwitchOptionSuccess11"
+                                                                                       name="someSwitchOption001"
+                                                                                       type="checkbox"/>
+                                                                                <label for="someSwitchOptionSuccess11"
+                                                                                       class="label-success"></label>
+                                                                            </div>
+                                                                        </li>
+                                                                        <li class="list-group-item">
+                                                                            Informe médico del oftalmólogo
+                                                                            <div class="material-switch pull-right">
+                                                                                <input id="someSwitchOptionSuccess12"
+                                                                                       name="someSwitchOption001"
+                                                                                       type="checkbox"/>
+                                                                                <label for="someSwitchOptionSuccess12"
+                                                                                       class="label-success"></label>
+                                                                            </div>
+                                                                        </li>
+
+                                                                    </ul>
+                                                                </div>
+                                                            </div>

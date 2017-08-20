@@ -32,6 +32,11 @@ $(function () {
         $("#lstDetalle").slideUp();
     });
 
+    $(".btnvolverentrada").click(function(){
+        $("#paneldatos").slideUp();
+        $("#panelentrada").slideDown();
+    });
+
     $("#concepto").select2();
 });
 
@@ -206,7 +211,7 @@ function llenar(){
         }
 
 
-        $("#paneldatos").show();
+        $("#panelentrada").show();
         $("#_bxBuscar").hide();
     }else{
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
@@ -310,17 +315,19 @@ function detalleVisible(pos){
 }
 
 function crearReembolso(){
-    $("#panellista").slideUp();
+    $("#paneldatos").show();
+    $("#panelentrada").slideUp();
     $("#panelregistro").slideDown();
-    $("#btnnreembolso").hide();
-    $("#btnlreembolso").show();
+    //$("#btnnreembolso").hide();
+    //$("#btnlreembolso").show();
 }
 
 function verReembolsos(){
+    $("#paneldatos").show();
+    $("#panelentrada").slideUp();
     $("#panellista").slideDown();
-    $("#panelregistro").slideUp();
-    $("#btnnreembolso").show();
-    $("#btnlreembolso").hide();
+    //$("#btnnreembolso").show();
+    //$("#btnlreembolso").hide();
 }
 
 function agregarConcepto(){
