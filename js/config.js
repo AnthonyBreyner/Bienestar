@@ -27,7 +27,7 @@ requirejs(['militar','cis'],
 
 class Conexion{
     constructor(){
-        this.IP = "localhost";
+        this.IP = "192.168.6.97";
         this.Puerto = ":8080";
         this.PuertoSSL = ":2608";
         this.API = "/devel/api/";
