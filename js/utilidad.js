@@ -116,7 +116,7 @@ class Utilidad {
     }
 
 
-    ValidarFormulario(_frm) {
+    ValidarFormulario(_frm,ele) {
 
         let respuesta = true;
         $("#" + _frm + " :input").each(function (i) {
@@ -126,12 +126,22 @@ class Utilidad {
             if (dis == "required") {
                 if (valor == "") {
                     respuesta = false;
-                    return respuesta;
                 }
             }
         });
 
-        return respuesta;
+        $("#" + _frm + " select").each(function (i) {
+            var valor = $(this).val();
+            var dis = $(this).attr('required');
+            var id = $(this).attr('id');
+            if (dis == "required") {
+                if (valor == "S") {
+                    respuesta = false;
+                }
+            }
+        });
+        if(respuesta) return respuesta;
+        else return this.MensajeFormulario(_frm,ele);
     }
 
     MensajeFormulario(_frm,ele) {
@@ -144,11 +154,25 @@ class Utilidad {
             if (dis == "required") {
                 if (valor == "") {
                     $(this).notify("*");
-                    $("#"+ele).notify("Recuerde de ingresar todos los campos requeridos");
                 }
             }
         });
 
+        $("#" + _frm + " select").each(function (i) {
+            var valor = $(this).val();
+            var dis = $(this).attr('required');
+            var id = $(this).attr('id');
+
+            if (dis == "required") {
+                if (valor == "S" || valor == "") {
+                    $("#select2-"+this.id+"-container").notify("*",{position:"top left"})
+                    $(this).notify("*");
+
+                }
+            }
+        });
+        $("#"+ele).notify("Recuerde de ingresar todos los campos requeridos","warn");
+        return false;
     }
 
     ModalValidar(msj) {

@@ -42,6 +42,16 @@ $(function () {
     $(".mdl-requisitos").on("change",function () {
         verificaCheckModal("requisitos");
     });
+
+    $(".mdl-requisitos2").on("change",function () {
+        verificaCheckModal("requisitosconsultas");
+    });
+    $(".mdl-requisitos3").on("change",function () {
+        verificaCheckModal("requisitoshosp");
+    });
+    $(".mdl-requisitos4").on("change",function () {
+        verificaCheckModal("requisitostratamiento");
+    });
 });
 
 function consultarRif(){
@@ -358,32 +368,34 @@ function verReembolsos(){
 }
 
 function agregarConcepto(){
-    var bene = $("#cmbbeneficiario option:selected").val().split('|');
-    var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
-    var concepto = $("#concepto option:selected").text();
-    var monto  = $("#monto").val();
-    var rif = $("#rif").val();
-    var razon = $("#razonsocial").val();
-    var factura = $("#nfactura").val();
-    var fechaf = $("#fechafactura").val();
-    var tabla = $("#conceptoagregado");
-    var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
-    var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td class=\"detfactconcep\">"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
-    html += "<td class=\"detfactconcep\">"+fechaf+"</td><td>"+btndelete+"</td></tr>";
-    tabla.append(html);
+    //if(Util.ValidarFormulario("frmreembolso","btnAgconcepto")){
+        var bene = $("#cmbbeneficiario option:selected").val().split('|');
+        var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
+        var concepto = $("#concepto option:selected").text();
+        var monto  = $("#monto").val();
+        var rif = $("#rif").val();
+        var razon = $("#razonsocial").val();
+        var factura = $("#nfactura").val();
+        var fechaf = $("#fechafactura").val();
+        var tabla = $("#conceptoagregado");
+        var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
+        var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td class=\"detfactconcep\">"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
+        html += "<td class=\"detfactconcep\">"+fechaf+"</td><td>"+btndelete+"</td></tr>";
+        tabla.append(html);
 
-    $(".borrarconcepto").click(function () {
-        $(this).parents('tr').eq(0).remove();
-        if($("#conceptoagregado tr").length == 0){
-            $("#cajaConceptos").slideUp();
-        }
+        $(".borrarconcepto").click(function () {
+            $(this).parents('tr').eq(0).remove();
+            if($("#conceptoagregado tr").length == 0){
+                $("#cajaConceptos").slideUp();
+            }
+            calcularAcumulado();
+        });
+
         calcularAcumulado();
-    });
-
-    calcularAcumulado();
-    $.notify("Se ha agregado el concepto", "success");
-    $("#cajaConceptos").slideDown("slow");
-    limpiarReembolso();
+        $.notify("Se ha agregado el concepto", "success");
+        $("#cajaConceptos").slideDown("slow");
+        limpiarReembolso();
+    //}
     return false;
 }
 
@@ -394,6 +406,19 @@ function calcularAcumulado(){
         acumulado = parseFloat(acumulado)+parseFloat(mnt);
     });
     $("#mntAcumulado").html(acumulado);
+}
+
+function validadDatosBancarios(){
+    var tipoc = $("#tipodecuenta").val();
+    var banco = $("#banco").val();
+    var cuenta = $("#numerocuenta").val();
+    var cedula = $("#cibancario").val();
+    var depositar = $("#depositar").val();
+    if(tipoc == "S" || banco == "S" || cuenta == "" || cedula == "" || depositar == ""){
+        $.notify("Debe ingresar todos los datos financieros","warn");
+        return false;
+    }
+    return true;
 }
 
 
@@ -410,7 +435,7 @@ function cargarDatos(){
     reembolso.cuentabancaria = cuenta;
 
     var conceptos = new Array();
-    if($("#conceptoagregado tr").length >0){
+    if($("#conceptoagregado tr").length >0 && validadDatosBancarios()){
         $("#conceptoagregado tr").each(function () {
             var concep = new ConceptoReembolso();
             var facturaD = new Factura();
@@ -450,7 +475,7 @@ function cargarDatos(){
             var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
         });
     }else{
-        alert("Debe contener al menos un reembolso");
+        $.notify("Debe ingresar todos los datos para realizar el reembolso");
     }
 
 }
@@ -485,4 +510,10 @@ function limpiarReembolso(){
     $('#frmreembolso').each (function(){
         this.reset();
     });
+}
+
+function requisitosConcepto(){
+
+    var modal = $("#concepto option:selected").attr("desplegar");
+    $("#"+modal).modal("show");
 }
