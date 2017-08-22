@@ -270,13 +270,16 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <label>F.Factura:</label>
-                                        <div class="input-group date">
+                                        <div class="input-group date" style="z-index: 1200;">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
                                                 <input type="text" class="form-control" id="fechafactura" required="required">
                                             </div>
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" id="alert_fecha" style="display: none">
+                                            <i class="icon fa fa-ban"></i><label id="alerta_fecha"></label>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
@@ -528,7 +531,15 @@
     $('#fechafactura').datepicker({
         autoclose: true,
         format: "dd/mm/yyyy",
-        language: 'es'
+        language: 'es',
+        endDate:"+0d",
+        changeDate:function(){
+            alert(1);
+            validaFechaFactura(30)
+        }
+    }).on("changeDate", function(e) {
+        alert(1);
+        validaFechaFactura(60);
     });
     $('[data-mask]').inputmask();
 </script>

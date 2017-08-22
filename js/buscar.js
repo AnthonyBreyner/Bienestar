@@ -272,25 +272,74 @@ function crearLista(){
         templateResult: formatoCombo
     });
 
+    var t = $('#historicoReembolso').DataTable({
+        'paging': true,
+        'lengthChange': true,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': false,
+        "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
+        "bStateSave": true,
+        "language": {
+            "lengthMenu": "Mostar _MENU_ filas por pagina",
+            "zeroRecords": "Nada que mostrar",
+            "info": "Mostrando _PAGE_ de _PAGES_",
+            "infoEmpty": "No se encontro nada",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search": "Buscar",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+        },
+    });
+    t.clear().draw();
+
     if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
         var html = "";
         var i = 0;
-        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(){
-
+        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
             var est = "Por procesar";
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
-            html += "<tr>\n" +
-                "                            <td class=\"mailbox-star\"><a href=\"#\"><i\n" +
-                "                                    class=\"fa fa fa-refresh\"></i></a></td>\n" +
-                "                            <td class=\"mailbox-subject\"><a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a></td>\n" +
-                "                            <td class=\"mailbox-subject\"><b>"+fcrea+"</b> \n" +
-                "                            </td>\n" +
-                "                            <td class=\"mailbox-attachment\">"+this.montosolicitado+"</td>\n" +
-                "                            <td class=\"mailbox-date\">"+est+"</td>\n" +
-                "                        </tr>\n" ;
+            var listaFact = "<div class=\"dropdown\">\n" +
+                "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+                "            Ver" +
+                "            <span class=\"fa fa-plus\"></span>\n" +
+                "            </button>\n" +
+                "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
+            $.each(this.Concepto,function(){
+               listaFact += "<li class='bg-info'>"+this.DatoFactura.numero+"</li>";
+            });
+            listaFact +="</ul></div>";
+            t.row.add([
+                "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
+                "<b>"+fcrea+"</b>",
+                listaFact,
+                this.montosolicitado,
+                est
+            ]).draw(false);
+            $('#historicoReembolso thead td.pbuscar').each( function () {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Buscar" /><br>'+title );
+            } );
+            t.columns().every( function () {
+                var that = this;
+
+                $('input', this.header()).on('keyup change', function () {
+                    if (that.search() !== this.value) {
+                        that
+                            .search(this.value)
+                            .draw();
+                    }
+                });
+            });
             i++;
+
         });
-        $("#cuerporeembolsos").html(html);
     }
 }
 
@@ -545,5 +594,20 @@ function habilitarDireccion(estatus){
     }else{
         $("#btnhabdire").show();
         $("#btndhabdire").hide();
+    }
+}
+
+function validaFechaFactura(n){
+    var f = new Date();
+    var fecha=(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+    var fecha1=moment(fecha,"DD-MM-YYYY");
+    var ff = $("#fechafactura").val();
+    var fecha2 = moment(ff,"DD-MM-YYYY");
+    var dif=fecha1.diff(fecha2, 'days');
+    if(dif>n) {
+        $("#alerta_fecha").text("Fecha invalidad");
+        $("#alert_fecha").show();
+    }else{
+        $("#alert_fecha").hide();
     }
 }
