@@ -397,6 +397,15 @@
                                             <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
                                         </div>
                                     </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="control-label">Correo Electronico:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <input type="email" class="form-control"  id="txtmcorreo" disabled="disabled" required onblur="ValidarCorreo()">
+                                        </div>
+                                    </div>
                                 </div>
                             </div> <!-- Grupo nombres-->
                             <div class="row">
@@ -534,7 +543,6 @@
         language: 'es',
         endDate:"+0d",
         changeDate:function(){
-            alert(1);
             validaFechaFactura(30)
         }
     }).on("changeDate", function(e) {

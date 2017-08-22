@@ -198,6 +198,7 @@ function llenar(){
         if (militar.Persona.Telefono != undefined) {
             $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
             $("#txtmcelular").val(militar.Persona.Telefono.movil);
+            $("#txtmcorreo").val(militar.Persona.Correo.principal);
         }
 
         if(militar.Persona.DatoFinanciero != undefined){
@@ -499,6 +500,7 @@ function cargarDatos(){
     reembolso.Direccion = dir;
     reembolso.Telefono.domiciliario = $("#txtmtelefono").val();
     reembolso.Telefono.movil = $("#txtmcelular").val();
+    reembolso.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
     var conceptos = new Array();
     if($("#conceptoagregado tr").length >0 && validadDatosBancarios()){
@@ -529,7 +531,7 @@ function cargarDatos(){
 
         console.log(reembolso);
         console.log(JSON.stringify(reembolso));
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:reembolso.Telefono};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:reembolso.Telefono,Correo:reembolso.Correo};
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
@@ -605,7 +607,7 @@ function validaFechaFactura(n){
     var fecha2 = moment(ff,"DD-MM-YYYY");
     var dif=fecha1.diff(fecha2, 'days');
     if(dif>n) {
-        $("#alerta_fecha").text("Fecha invalidad");
+        $("#alerta_fecha").text("Fecha fuera de rango");
         $("#alert_fecha").show();
     }else{
         $("#alert_fecha").hide();

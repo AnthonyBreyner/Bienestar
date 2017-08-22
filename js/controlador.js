@@ -60,6 +60,7 @@ class Reembolso {
         this.observaciones = "";
         this.Direccion = new Direccion();
         this.Telefono = new Telefono();
+        this.Correo = new Correo();
     }
 }
 
