@@ -57,6 +57,7 @@ class Reembolso {
         this.montoaprobado = 0.00;
         this.fechaaprobacion = '';
         this.requisito = new Array();
+        this.observaciones = "";
     }
 }
 

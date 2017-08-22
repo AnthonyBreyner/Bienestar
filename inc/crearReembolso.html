@@ -211,35 +211,38 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
                         <h4 class="panel-title">
-
                                 Datos del reembolso
-
                         </h4>
                     </div>
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form id="frmreembolso" action="#" method="post" onsubmit="return agregarConcepto()">
+                            <form id="frmreembolso" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
-
                                         <label>Beneficiario:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario">
+                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
                                             <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 col-sm-12">
                                         <label>Conceptos:</label>
-                                        <select class="form-control" style="width: 100%" id="concepto">
+                                        <select class="form-control" style="width: 100%" id="concepto" onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="">Intervención quirúrgica</option>
-                                            <option value="">Material médico quirúrgico</option>
-                                            <option value="">Marcapasos</option>
-                                            <option value="">Tratamiento Medico</option>
-                                            <option value="">Prótesis Auditiva</option>
-                                            <option value="">Prótesis de cadera</option>
-                                            <option value="">Prótesis Traumatológica</option>
+                                            <option value="" desplegar="requisitosconsultas">Tratamientos Odontologicos</option>
+                                            <option value="" desplegar="requisitosconsultas">Fisiatría y Rehabilitación</option>
+                                            <option value="" desplegar="requisitosconsultas">Consultas, Ortopedia y Tratamiento Médico</option>
+                                            <option value="" desplegar="requisitosconsultas">Exámenes de Laboratorio</option>
+                                            <option value="" desplegar="requisitosconsultas">Exámenes Especiales</option>
 
+                                            <option value="" desplegar="requisitostratamiento">Tratamiento Psicopedagógico</option>
+                                            <option value="" desplegar="requisitostratamiento">Geriátricos</option>
+
+                                            <option value="" desplegar="requisitoshosp">Complemento de Hospitalización e Intervención Quirúrgica</option>
+                                            <option value="" desplegar="requisitoshosp">Hospitalizacion e Intervención Quirúrgica</option>
+                                            <option value="" desplegar="requisitoshosp">Material Médico Quirúrgico</option>
+
+                                            <option value="" desplegar="requisitoslentes">Lentes</option>
                                         </select>
                                     </div>
                                 </div>
@@ -247,19 +250,16 @@
                                     <div class="col-md-2 col-sm-12">
                                         <label>Rif:</label>
                                         <div class="btn-group-justified" role="group" aria-label="...">
-
                                             <div class="btn-group" style="width: 6%;" role="group">
                                                 <input class="form-control" id="rif" required="required">
                                             </div>
                                             <div class="input-group-btn">
                                                 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                                        onclick="Buscar()">
+                                                        onclick="consultarRif()">
                                                     <span class="fa fa-search"></span></button>
-
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="col-md-4 col-sm-12">
                                         <label>Razón Social:</label>
                                         <input class="form-control" id="razonsocial" readonly="true" required="required">
@@ -268,7 +268,6 @@
                                         <label>N° de Factura:</label>
                                         <input type="text" class="form-control" id="nfactura" required="required">
                                     </div>
-
                                     <div class="col-md-3 col-sm-12">
                                         <label>F.Factura:</label>
                                         <div class="input-group date">
@@ -277,29 +276,23 @@
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
                                                 <input type="text" class="form-control" id="fechafactura" required="required">
-
                                             </div>
                                         </div>
-
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <label>Monto:</label>
                                         <input class="form-control" id="monto" required="required">
-
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <button class="btn btn-primary btn-success" type="submit"
+                                        <button class="btn btn-primary btn-success" type="button" onclick="agregarConcepto()"
                                                 style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
-                                                class="glyphicon glyphicon-plus"></i></button>
+                                                class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
                                     </div>
                                 </div>
-
                                 <div class="box box-primary" id="cajaConceptos" style="display: none">
                                     <div class="box-header with-border">
                                         <h3 class="box-title">Conceptos</h3>
-
                                     </div>
-
                                     <div class="box-body no-padding">
                                         <div class="table-responsive mailbox-messages">
                                             <table class="table table-hover table-striped">
@@ -316,7 +309,6 @@
                                                 </tr>
                                                 </thead>
                                                 <tbody id="conceptoagregado">
-
                                                 </tbody>
                                                 <tfoot class="bg-light-blue">
                                                 <tr>
@@ -326,11 +318,8 @@
                                                 </tr>
                                                 </tfoot>
                                             </table>
-
                                         </div>
-
                                     </div>
-
                                 </div>
                             </form>
                         </div>
@@ -340,9 +329,7 @@
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <div class="panel-heading bg-blue" role="tab" id="headingTwo">
                         <h4 class="panel-title">
-
                                 Datos Bancarios
-
                         </h4>
                     </div>
                     </a>
@@ -415,7 +402,7 @@
                                         <option value="0137">SOFITASA</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+                                <div class="col-md-4 col-sm-12">
                                     <label>Tipo de Cuenta:</label>
                                     <select class="form-control" style="width: 100%"
                                             id="tipodecuenta" disabled="true">
@@ -427,16 +414,22 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-md btn-success pull-right"
-                                            onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
-                                        <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
-                                    </button>
-                                    <br><br>
-                                </div>
-
+                                <div class="col-md-4"><label>Email:</label><input type="text" class="form-control" id="correocontacto"/></div>
+                                <div class="col-md-4"><label>Dirección:</label><input type="text" class="form-control" id="dircontacto"/></div>
+                                <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control" id="telfcontacto"/></div>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+                <br><br>
+                <div class="row">
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-md btn-success pull-right"
+                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
+                            <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
+                        </button>
+                        <br><br>
                     </div>
                 </div>
             </div>
