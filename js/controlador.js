@@ -58,7 +58,8 @@ class Reembolso {
         this.fechaaprobacion = '';
         this.requisito = new Array();
         this.observaciones = "";
-        this.direccion = new Direccion();
+        this.Direccion = new Direccion();
+        this.Telefono = new Telefono();
     }
 }
 

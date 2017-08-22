@@ -195,6 +195,10 @@ function llenar(){
         $("#cmbsituacion").val(militar.situacion);
         $("#ttsituacion").text(Util.ConvertirSitucacion(militar.situacion));
 
+        if (militar.Persona.Telefono != undefined) {
+            $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
+            $("#txtmcelular").val(militar.Persona.Telefono.movil);
+        }
 
         if(militar.Persona.DatoFinanciero != undefined){
             $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
@@ -346,7 +350,6 @@ function inactivarCheck(mdl){
         $("#"+mdl+" button.btnrequisitos").attr("disabled",true);
     });
     $("#"+mdl).modal("hide");
-
 }
 
 function crearReembolso(){
@@ -444,7 +447,9 @@ function cargarDatos(){
     dir.calleavenida = $("#txtmcalle").val().toUpperCase();
     dir.casa = $("#txtmcasa").val().toUpperCase();
     dir.apartamento = $("#txtmapto").val().toUpperCase();
-    reembolso.direccion = dir;
+    reembolso.Direccion = dir;
+    reembolso.Telefono.domiciliario = $("#txtmtelefono").val();
+    reembolso.Telefono.movil = $("#txtmcelular").val();
 
     var conceptos = new Array();
     if($("#conceptoagregado tr").length >0 && validadDatosBancarios()){
@@ -475,7 +480,7 @@ function cargarDatos(){
 
         console.log(reembolso);
         console.log(JSON.stringify(reembolso));
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,direccion:dir};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:reembolso.Telefono};
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
