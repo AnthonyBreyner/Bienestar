@@ -371,4 +371,15 @@ class Utilidad {
         return estadocivil;
     }
 
+    ValidarCorreo(id) {
+        var email = $('#'+id).val();
+        var caracter = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+
+        if (!caracter.test(email)) {
+            $.notify($('#'+id), "Formato de correo invalido", {position: "top"});
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

@@ -206,23 +206,13 @@ function llenar(){
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
             Estados.ObtenerEstados();
-            var defEstado = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
-            var textoestado = "";
-            $.each(defEstado,function(){
-                if(this.codigo == DIR.estado){
-                    textoestado = this.nombre;
-                }
-            });
-
             $("#cmbmestado").val(DIR.estado);
-            $("#cmbmmunicipio").val(DIR.municipio);
-            $("#cmbmparroquia").val(DIR.parroquia);
-            $("#cmbmciudad").val(DIR.ciudad);
+            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
-            var rirec = "ESTADO "+textoestado+", "+DIR.ciudad+", MUNICIPIO "+DIR.municipio+", PARROQUIA "+DIR.parroquia+", AV/CALLE "+DIR.calleavenida+", CASA/APT "+DIR.casa+" "+DIR.apartamento
-            $("#ttdireccion").text(rirec);
         }
 
 
@@ -343,9 +333,20 @@ function verificaCheckModal(mdl){
     });
     if(falta == true){
         $("#"+mdl+" button.btnrequisitos").attr("disabled",true);
+        $("#btnAgconcepto").attr("disabled",true);
     }else{
         $("#"+mdl+" button.btnrequisitos").attr("disabled",false);
+        $("#btnAgconcepto").attr("disabled",false);
     }
+}
+
+function inactivarCheck(mdl){
+    $("#"+mdl+" :input[type=checkbox]").each(function(){
+        $(this)[0].checked = false;
+        $("#"+mdl+" button.btnrequisitos").attr("disabled",true);
+    });
+    $("#"+mdl).modal("hide");
+
 }
 
 function crearReembolso(){
@@ -368,7 +369,7 @@ function verReembolsos(){
 }
 
 function agregarConcepto(){
-    //if(Util.ValidarFormulario("frmreembolso","btnAgconcepto")){
+    if(Util.ValidarFormulario("frmreembolso","btnAgconcepto")){
         var bene = $("#cmbbeneficiario option:selected").val().split('|');
         var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
         var concepto = $("#concepto option:selected").text();
@@ -395,7 +396,7 @@ function agregarConcepto(){
         $.notify("Se ha agregado el concepto", "success");
         $("#cajaConceptos").slideDown("slow");
         limpiarReembolso();
-    //}
+    }
     return false;
 }
 
@@ -434,6 +435,17 @@ function cargarDatos(){
     cuenta.titular =$("#depositar option:selected").text();
     reembolso.cuentabancaria = cuenta;
 
+    var dir = new Direccion();
+    dir.tipo = 0;
+    dir.estado = $("#cmbmestado option:selected").val();
+    dir.municipio = $("#cmbmmunicipio option:selected").val();
+    dir.parroquia = $("#cmbmparroquia option:selected").val();
+    dir.ciudad = $("#cmbmciudad").val();
+    dir.calleavenida = $("#txtmcalle").val().toUpperCase();
+    dir.casa = $("#txtmcasa").val().toUpperCase();
+    dir.apartamento = $("#txtmapto").val().toUpperCase();
+    reembolso.direccion = dir;
+
     var conceptos = new Array();
     if($("#conceptoagregado tr").length >0 && validadDatosBancarios()){
         $("#conceptoagregado tr").each(function () {
@@ -463,7 +475,7 @@ function cargarDatos(){
 
         console.log(reembolso);
         console.log(JSON.stringify(reembolso));
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,direccion:dir};
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
@@ -515,5 +527,18 @@ function limpiarReembolso(){
 function requisitosConcepto(){
 
     var modal = $("#concepto option:selected").attr("desplegar");
+    inactivarCheck(modal)
     $("#"+modal).modal("show");
+}
+
+function habilitarDireccion(estatus){
+    $("#collapseTree select").attr("disabled",estatus);
+    $("#collapseTree :input").attr("disabled",estatus);
+    if(estatus == false){
+        $("#btnhabdire").hide();
+        $("#btndhabdire").show();
+    }else{
+        $("#btnhabdire").show();
+        $("#btndhabdire").hide();
+    }
 }

@@ -58,6 +58,7 @@ class Reembolso {
         this.fechaaprobacion = '';
         this.requisito = new Array();
         this.observaciones = "";
+        this.direccion = new Direccion();
     }
 }
 
@@ -185,6 +186,19 @@ $(function () {
     CargarUrl("panellista", "inc/lstReembolsos");
     CargarUrl("panelregistro", "inc/crearReembolso");
     CargarUrl("cuerpoPlanilla","vpanel");
-})
+});
 
-
+function CiudadMunicipio(valor){
+    if (valor == undefined){
+        Estados.ObtenerCiudadMunicipio($("#cmbmestado option:selected").val());
+    }else{
+        Estados.ObtenerCiudadMunicipio($("#cmbestadof option:selected").val(), true);
+    }
+}
+function SeleccionarParroquia(valor){
+    if (valor == undefined){
+        Estados.ObtenerParroquia($("#cmbmestado option:selected").val(), $("#cmbmmunicipio option:selected").val());
+    }else{
+        Estados.ObtenerParroquia($("#cmbestadof option:selected").val(), $("#cmbmunicipiof option:selected").val(), true);
+    }
+}
