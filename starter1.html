@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 
     <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+    <script src="bower_components/moment/moment.js"></script>
 
 
     <!-- Google Font -->
@@ -368,98 +369,264 @@
             </ol>-->
         </section>
         <section class="content">
-            <div class="row">
-                <div class="col-lg-3 col-xs-12">
+          <div class="body box">
+              <div class="container-fluid">
+                  <div class="row">
+                      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                          <div class="panel panel-default">
+                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                              <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                                  <h4 class="panel-title">
+                                          Datos del reembolso
+                                  </h4>
+                              </div>
+                              </a>
+                              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                                  <div class="panel-body">
+                                      <form id="frmreembolso" action="#" method="post">
+                                          <div class="row">
+                                              <div class="col-md-6 col-sm-12">
+                                                  <label>Beneficiario:</label>
+                                                  <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
+                                                      <option selected="selected" value="S"></option>
+                                                  </select>
+                                              </div>
+                                              <div class="col-md-6 col-sm-12">
+                                                  <label>Conceptos:</label>
+                                                  <select class="form-control" style="width: 100%" id="concepto" onchange="requisitosConcepto()" required="required">
+                                                      <option selected="selected" value="S"></option>
+                                                      <option value="" desplegar="requisitosconsultas">Tratamientos Odontologicos</option>
+                                                      <option value="" desplegar="requisitosconsultas">Fisiatría y Rehabilitación</option>
+                                                      <option value="" desplegar="requisitosconsultas">Consultas, Ortopedia y Tratamiento Médico</option>
+                                                      <option value="" desplegar="requisitosconsultas">Exámenes de Laboratorio</option>
+                                                      <option value="" desplegar="requisitosconsultas">Exámenes Especiales</option>
 
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-12">
-                    <!-- small box -->
-                    <div class="small-box bg-aqua">
-                        <div class="inner">
-                            <h3>Historico de <br>Reembolsos</h3>
+                                                      <option value="" desplegar="requisitostratamiento">Tratamiento Psicopedagógico</option>
+                                                      <option value="" desplegar="requisitostratamiento">Geriátricos</option>
 
-                            <p>Lista de historico de reembolsos.</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-clipboard"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Ver &nbsp<i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
+                                                      <option value="" desplegar="requisitoshosp">Complemento de Hospitalización e Intervención Quirúrgica</option>
+                                                      <option value="" desplegar="requisitoshosp">Hospitalizacion e Intervención Quirúrgica</option>
+                                                      <option value="" desplegar="requisitoshosp">Material Médico Quirúrgico</option>
 
-                <div class="col-lg-3 col-xs-12">
-                    <!-- small box -->
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                            <h3>Nuevo <br>Reembolso</h3>
+                                                      <option value="" desplegar="requisitoslentes">Lentes</option>
+                                                  </select>
+                                              </div>
+                                          </div>
+                                          <div class="row">
+                                              <div class="col-md-2 col-sm-12">
+                                                  <label>Rif:</label>
+                                                  <div class="btn-group-justified" role="group" aria-label="...">
+                                                      <div class="btn-group" style="width: 6%;" role="group">
+                                                          <input class="form-control" id="rif" required="required">
+                                                      </div>
+                                                      <div class="input-group-btn">
+                                                          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                                                  onclick="consultarRif()">
+                                                              <span class="fa fa-search"></span></button>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-4 col-sm-12">
+                                                  <label>Razón Social:</label>
+                                                  <input class="form-control" id="razonsocial" readonly="true" required="required">
+                                              </div>
+                                              <div class="col-md-3 col-sm-12">
+                                                  <label>N° de Factura:</label>
+                                                  <input type="text" class="form-control" id="nfactura" required="required">
+                                              </div>
+                                              <div class="col-md-3 col-sm-12">
+                                                  <label>F.Factura:</label>
+                                                  <div class="input-group date">
+                                                      <div class="input-group-addon">
+                                                          <i class="fa fa-calendar"></i>
+                                                      </div>
+                                                      <div class="input-group input-group" style="width: 100%;">
+                                                          <input type="text" class="form-control" id="fechafactura" required="required">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                              <div class="col-md-3 col-sm-12">
+                                                  <label>Monto:</label>
+                                                  <input class="form-control" id="monto" required="required">
+                                              </div>
+                                              <div class="col-md-4 col-sm-12">
+                                                  <button class="btn btn-primary btn-success" type="button" onclick="agregarConcepto()"
+                                                          style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR &nbsp<i
+                                                          class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                              </div>
+                                          </div>
+                                          <div class="box box-primary" id="cajaConceptos" style="display: none">
+                                              <div class="box-header with-border">
+                                                  <h3 class="box-title">Conceptos</h3>
+                                              </div>
+                                              <div class="box-body no-padding">
+                                                  <div class="table-responsive mailbox-messages">
+                                                      <table class="table table-hover table-striped">
+                                                          <thead class="bg-blue">
+                                                          <tr>
+                                                              <th>Beneficiario</th>
+                                                              <th>Concepto</th>
+                                                              <th class="detfactconcep">Rif</th>
+                                                              <th class="detfactconcep">Razón Social</th>
+                                                              <th>N° de Factura</th>
+                                                              <th>Monto</th>
+                                                              <th class="detfactconcep">Fecha</th>
+                                                              <th>Eliminar</th>
+                                                          </tr>
+                                                          </thead>
+                                                          <tbody id="conceptoagregado">
+                                                          </tbody>
+                                                          <tfoot class="bg-light-blue">
+                                                          <tr>
+                                                              <th>TOTAL REEMBOLSO</th>
+                                                              <th></th><th class="detfactconcep"></th><th class="detfactconcep"></th>
+                                                              <th></th><th class="pull-right" id="mntAcumulado"></th><th class="detfactconcep"></th><th></th>
+                                                          </tr>
+                                                          </tfoot>
+                                                      </table>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </form>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="panel panel-default">
+                              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <div class="panel-heading bg-blue" role="tab" id="headingTwo">
+                                  <h4 class="panel-title">
+                                          Datos Bancarios
+                                  </h4>
+                              </div>
+                              </a>
+                              <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                                  <div class="panel-body">
+                                      <div class="row">
+                                          <div class="col-md-4 col-sm-12">
+                                              <label>Datos bancarios:</label>
+                                              <select class="form-control" style="width: 100%"
+                                                      id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
+                                                  <option selected="selected" value="S">Seleccione</option>
+                                              </select>
+                                          </div>
+                                          <div class="col-md-4 col-sm-12" >
+                                              <label>Depositar a:</label>
+                                              <select class="form-control" style="width: 100%"
+                                                      id="depositar" disabled="true" onchange="cedulaDepositar()">
+                                                  <option selected="selected" value="S">Seleccionar</option>
+                                              </select>
+                                          </div>
+                                          <div class="col-md-4 col-sm-12">
+                                              <label>Cedula:</label>
+                                              <input type="text" class="form-control" id="cibancario" disabled="true">
+                                          </div>
+                                          <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
+                                              <label>Nro. de Cuenta:</label>
+                                              <input id="numerocuenta" class="form-control" type="text" maxlength="23"
+                                                     data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true"
+                                                     data-mask>
+                                          </div>
 
-                            <p>Agregar un nuevo reembolso</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-person-add"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">Ver &nbsp<i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <!-- ./col -->
-                <div class="col-lg-3 col-xs-12">
-                    <!-- small box -->
-                    <!-- ./col -->
-                </div>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Launch demo modal
-                </button>
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
-                            <div class="modal-header" style="background-color:#337ab7;color:white;">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                        aria-hidden="true">&times;</span>
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN REQUERIDA PARA REEMBOLSO</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="panel panel-primary">
-                                    <!-- Default panel contents -->
-                                    <!-- List group -->
-                                    <ul class="list-group">
+                                          <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+                                              <label>Banco:</label>
+                                              <select class="form-control" style="width: 100%"
+                                                      id="banco" disabled="true">
+                                                  <option selected="selected" value="S"></option>
+                                                  <option value="0156">100%BANCO</option>
+                                                  <option value="0196">ABN AMRO BANK</option>
+                                                  <option value="0172">BANCAMIGA BANCO MICROFINANCIERO, C.A.</option>
+                                                  <option value="0171">BANCO ACTIVO BANCO COMERCIAL, C.A.</option>
+                                                  <option value="0166">BANCO AGRICOLA</option>
+                                                  <option value="0175">BANCO BICENTENARIO</option>
+                                                  <option value="0128">BANCO CARONI, C.A. BANCO UNIVERSAL</option>
+                                                  <option value="0164">BANCO DE DESARROLLO DEL MICROEMPRESARIO</option>
+                                                  <option value="0102">BANCO DE VENEZUELA S.A.I.C.A.</option>
+                                                  <option value="0114">BANCO DEL CARIBE C.A.</option>
+                                                  <option value="0149">BANCO DEL PUEBLO SOBERANO C.A.</option>
+                                                  <option value="0163">BANCO DEL TESORO</option>
+                                                  <option value="0176">BANCO ESPIRITO SANTO, S.A.</option>
+                                                  <option value="0115">BANCO EXTERIOR C.A.</option>
+                                                  <option value="0003">BANCO INDUSTRIAL DE VENEZUELA.</option>
+                                                  <option value="0173">BANCO INTERNACIONAL DE DESARROLLO, C.A.</option>
+                                                  <option value="0105">BANCO MERCANTIL C.A.</option>
+                                                  <option value="0191">BANCO NACIONAL DE CREDITO</option>
+                                                  <option value="0116">BANCO OCCIDENTAL DE DESCUENTO.</option>
+                                                  <option value="0138">BANCO PLAZA</option>
+                                                  <option value="0108">BANCO PROVINCIAL BBVA</option>
+                                                  <option value="0104">BANCO VENEZOLANO DE CREDITO S.A.</option>
+                                                  <option value="0168">BANCRECER S.A. BANCO DE DESARROLLO</option>
+                                                  <option value="0134">BANESCO BANCO UNIVERSAL</option>
+                                                  <option value="0177">BANFANB</option>
+                                                  <option value="0146">BANGENTE</option>
+                                                  <option value="0174">BANPLUS BANCO COMERCIAL C.A</option>
+                                                  <option value="0190">CITIBANK.</option>
+                                                  <option value="0121">CORP BANCA.</option>
+                                                  <option value="0157">DELSUR BANCO UNIVERSAL</option>
+                                                  <option value="0151">FONDO COMUN</option>
+                                                  <option value="0601">INSTITUTO MUNICIPAL DE CR&#201;DITO POPULAR</option>
+                                                  <option value="0169">MIBANCO BANCO DE DESARROLLO, C.A.</option>
+                                                  <option value="0137">SOFITASA</option>
+                                              </select>
+                                          </div>
+                                          <div class="col-md-4 col-sm-12">
+                                              <label>Tipo de Cuenta:</label>
+                                              <select class="form-control" style="width: 100%"
+                                                      id="tipodecuenta" disabled="true">
+                                                  <option selected="selected" value="S"></option>
+                                                  <option value="CA" selected="selected">AHORRO</option>
+                                                  <option value="CC">CORRIENTE</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                      <br>
+                                      <div class="row">
+                                          <div class="col-md-4"><label>Email:</label><input type="text" class="form-control" id="correocontacto"/></div>
+                                          <div class="col-md-4"><label>Dirección:</label><input type="text" class="form-control" id="dircontacto"/></div>
+                                          <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control" id="telfcontacto"/></div>
+                                      </div>
+                                  </div>
+                              </div>
 
-                                        <li class="list-group-item">
-                                            Carta dirigida al Presidente de la Junta Administradora
-                                            <div class="material-switch pull-right">
-                                                <input id="someSwitchOptionSuccess17" name="someSwitchOption001"
-                                                       type="checkbox"/>
-                                                <label for="someSwitchOptionSuccess17" class="label-success"></label
-                                            </div>
-                                        </li>
+                          </div>
+                          <br><br>
+                          <div class="row">
+                              <div class="col-md-3">
+                                  <button type="button" class="btn btn-md btn-success pull-right"
+                                          onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
+                                      <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
+                                  </button>
+                                  <br><br>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
 
-                                        <li class="list-group-item">
-                                            Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del
-                                            familiar ampliada
-                                            por ambas caras
-                                            <div class="material-switch pull-right">
-                                                <input id="chm1-1" name="chm1-1" class="mdl-requisitos" value="1"
-                                                       type="checkbox"/>
-                                                <label for="someSwitchOptionSuccess1" class="label-success"></label>
-                                            </div>
-                                        </li>
+          <TD align="right">Fecha</TD>
+<td>
+<input type="text" name="fecha" id="fecha" class="form-control" placeholder="dd/mm/aaaa" required>
+</td>
 
-                                        <li class="list-group-item">
-                                            Informe médico firmado y sellado por el médico tratante
-                                            <div class="material-switch pull-right">
-                                                <input id="chm1-3" name="chn1-3" class="mdl-requisitos" value="3"
-                                                       type="checkbox"/>
-                                                <label for="someSwitchOptionSuccess2" class="label-success"></label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          <script>
+              $('#fechafactura').datepicker({
+                  autoclose: true,
+                  format: "dd/mm/yyyy",
+                  language: 'es'
+              });
+              $('[data-mask]').inputmask();
+          </script>
+          <script>
+
+          var f = new Date();
+          var fecha=(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+          var fecha1=moment(fecha,"DD-MM-YYYY")
+          var fecha2 = moment('25/09/2017',"DD-MM-YYYY");
+          var dif=fecha2.diff(fecha1, 'days');
+          if(dif>30){
+          alert("Su factura ya excedio a 30 dias");}
+          else{  alert("bien");}
+  </script>
         </section>
         <!-- /.content -->
     </div>
