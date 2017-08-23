@@ -182,8 +182,10 @@ $(function () {
 
 
     });
+    CargarUrl("opciones","modulo_atencion");
     CargarUrl("modalreembolso","inc/modals");
     CargarUrl("_bxBuscar", "buscar");
+    CargarUrl("panelentrada", "inc/entradareembolso");
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
     CargarUrl("panelregistro", "inc/crearReembolso");
