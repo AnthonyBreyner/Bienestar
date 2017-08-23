@@ -195,7 +195,10 @@ function cargaPrograma(tipo){
             CargarUrl("panelregistro", "inc/crearReembolso");
             break;
         case "a":
-            alert("por cargar");
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearApoyoEconomico");
             break;
     }
 }
