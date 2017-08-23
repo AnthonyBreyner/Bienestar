@@ -273,7 +273,15 @@ function crearLista(){
         templateResult: formatoCombo
     });
 
+    $("#historicoReembolso").html('<thead>\n' +
+        '                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>\n' +
+        '                        </thead>\n' +
+        '                        <tbody id="cuerporeembolsos">\n' +
+        '\n' +
+        '                        </tbody>');
+
     var t = $('#historicoReembolso').DataTable({
+        destroy: true,
         'paging': true,
         'lengthChange': true,
         'searching': false,
