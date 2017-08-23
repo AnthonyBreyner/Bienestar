@@ -200,6 +200,12 @@ function cargaPrograma(tipo){
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearApoyoEconomico");
             break;
+        case "pen":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearPension");
+            break;
     }
 }
 
