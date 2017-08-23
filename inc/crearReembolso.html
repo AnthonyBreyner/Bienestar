@@ -356,7 +356,7 @@
                                     </select>
                                 </div>
                             </div> <!-- Grupo nombres-->
-                            <div class="form-group">
+                            <div class="row">
                                 <div class="col-md-4">
                                     <label >Parroquia:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmparroquia" required>
@@ -375,7 +375,8 @@
                                     <label># Apto:</label>
                                     <input id="txtmapto" class="form-control" disabled="disabled"  type="text">
                                 </div>
-                                <div class="form-group">
+                                </div>
+                                <div class="row">
                                     <div class="col-md-4">
                                         <label >Teléfono:</label>
                                         <div class="input-group">
@@ -394,18 +395,22 @@
                                             <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary btn-success" id="btnhabdire" type="button" onclick="habilitarDireccion(false)"
+                                                style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                class="glyphicon glyphicon-edit"></i></button>
+                                        <button class="btn btn-primary btn-success" type="button" onclick="habilitarDireccion(true)"
+                                                style="margin-top:23px; margin-bottom: 20px; display: none" id="btndhabdire">Salvar &nbsp<i
+                                                class="glyphicon glyphicon-save"></i></button>
+                                    </div>
                                 </div>
                             </div> <!-- Grupo nombres-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button" onclick="habilitarDireccion(false)"
-                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
-                                            class="glyphicon glyphicon-edit"></i></button>
-                                    <button class="btn btn-primary btn-success" type="button" onclick="habilitarDireccion(true)"
-                                            style="margin-top:23px; margin-bottom: 20px; display: none" id="btndhabdire">Salvar &nbsp<i
-                                            class="glyphicon glyphicon-save"></i></button>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -507,11 +512,11 @@
                         </div>
                     </div>
                 </div>
-                <br><br>
+
                 <div class="row">
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-md btn-success pull-right"
-                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-md btn-success"
+                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 10px;">
                             <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
                         </button>
                         <br><br>

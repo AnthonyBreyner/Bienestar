@@ -191,80 +191,16 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <div id="modalreembolso"></div>
-        <!-- Content Header (Page header) -->
-        <!--<section class="content-header">
-            <h1>
-                Cuidado Integral de la Salud
-                <a href="#" onclick="crearReembolso()" id="btnnreembolso" class="btn btn-primary pull-right"><b>Nuevo
-                    Reembolso</b></a>
-                    <a href="#" onclick="verReembolsos()" id="btnlreembolso" class="btn btn-primary pull-right" style="display: none"><b>Historico de
-                        Reembolsos</b></a>
-            </h1>
-
-        </section>!-->
 
         <!-- Main content -->
         <section class="content" id="panelderecho">
+            <div class="row" id="opciones"></div>
             <div class="row" id="_bxBuscar"></div>
-            <div class="row" id="panelentrada" style="display: none">
-                <section class="content">
-                    <div class="row">
-                        <div class="col-lg-2 col-xs-12">
-
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-4 col-xs-12">
-                            <!-- small box -->
-                            <div class="small-box bg-aqua">
-                                <div class="inner">
-                                    <h3>Historico de <br>Reembolsos</h3>
-
-                                    <p>Lista de historico de reembolsos.</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-clipboard"></i>
-                                </div>
-                                <a href="#" onclick="verReembolsos()" class="small-box-footer">Ver &nbsp<i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-
-                        <div class="col-lg-4 col-xs-12">
-                            <!-- small box -->
-                            <div class="small-box bg-green">
-                                <div class="inner">
-                                    <h3>Nuevo <br>Reembolso</h3>
-
-                                    <p>Agregar un nuevo reembolso</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-person-add"></i>
-                                </div>
-                                <a href="#" onclick="verificarNuevo()" class="small-box-footer">Ver &nbsp<i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- ./col -->
-                        <div class="col-lg-2 col-xs-12">
-                            <!-- small box -->
-                            <!-- ./col -->
-                        </div>
-
-                </section>
-            </div>
+            <div class="row" id="panelentrada" style="display: none"></div>
             <div class="row" id="paneldatos" style="display: none">
-                <div class="col-md-9" id="panellista" style="display: none">
-                    <!--  ACA SE CARGA EL LISTA REEMBOLSOS!-->
-                </div>
-
-                <!-- /.col -->
-                <div class="col-md-9" id="panelregistro" style="display: none">
-
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
-                <div class="col-md-3" id="panelperfil">
-                    <!--  ACA SE CARGA EL PERFIL!-->
-                </div>
+                <div class="col-md-9" id="panellista" style="display: none"></div>
+                <div class="col-md-9" id="panelregistro" style="display: none"></div>
+                <div class="col-md-3" id="panelperfil"></div>
                 <div clas="row">
                     <div class="col-md-12">
                     <a class="btn btn-app btn-success btnvolverentrada pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
@@ -294,7 +230,6 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 
-
 <script src="bower_components/notify/notify.min.js"></script>
 <script src="js/utilidad.js"></script>
 <script src="js/militar.js"></script>
@@ -303,6 +238,8 @@
 
 
 <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- InputMask -->
 <script src="plugins/input-mask/jquery.inputmask.js"></script>
 <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>

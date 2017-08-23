@@ -9,8 +9,10 @@
 
             <div class="box-body no-padding">
                 <div class="table-responsive mailbox-messages">
-                    <table class="table table-hover table-striped">
-                        <tr class='success'><td></td><td>#Reembolso</td><td>Fecha</td><td>Monto</td><td>Estado</td></tr>
+                    <table class="table table-hover table-striped" id="historicoReembolso">
+                        <thead>
+                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>
+                        </thead>
                         <tbody id="cuerporeembolsos">
 
                         </tbody>
@@ -43,7 +45,9 @@
             <div class="mailbox-read-message">
                 <!-- Widget: user widget style 1 -->
                 <table class='table table-responsive table-bordered'>
+                    <thead>
                     <tr class='success'><td>Afiliado</td><td>Beneficiario</td><td>Factura</td><td>Control</td><td>F.Factura</td><td>Monto</td></tr>
+                    </thead>
                     <tbody id="cuerpoLstConceptos"></tbody>
                 </table>
             </div>
