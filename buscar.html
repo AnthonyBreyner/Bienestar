@@ -7,7 +7,7 @@
             <div class="row row-centered">
                 <div class="col-lg-5 col-centered col-md-5 col-xs-8">
                     <div class="input-group input-group-lg">
-                        <input class="form-control" type="text" placeholder="" id="_cedula" onkeypress=""
+                        <input class="form-control" type="text" placeholder="" id="_cedula" onkeypress="return Util.SoloNumero(event,this);"
                                maxlength="10">
                         <div class="input-group-btn">
                             <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
@@ -30,4 +30,4 @@
     </div><!-- /.box -->
     <center>Fuerza Armada Nacional Bolivariana</center>
 </div>
-<script src="js/buscar.js"></script>
+

@@ -395,8 +395,14 @@
                                             <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="control-label">Correo Electronico:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <input type="email" class="form-control"  id="txtmcorreo" disabled="disabled" required onblur="Util.ValidarCorreo()">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -505,8 +511,6 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-4"><label>Email:</label><input type="text" class="form-control" id="correocontacto"/></div>
-                                <div class="col-md-4"><label>Dirección:</label><input type="text" class="form-control" id="dircontacto"/></div>
                                 <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control" id="telfcontacto"/></div>
                             </div>
                         </div>

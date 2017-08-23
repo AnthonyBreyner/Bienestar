@@ -21,29 +21,6 @@ class Utilidad {
             $.notify("("+tecla+") Caracter no permitido", "warning");
             return false;
         }
-        // var cond1 = 0;var cond2=0;
-        // if($("#claveN").val().length < 8){
-        //     $("#lblalert1").show();
-        // }else{
-        //     $("#lblalert1").hide();
-        //     cond1 = 1;
-        // }
-        //
-        // if($("#claveN").val() != $("#claveN2").val()){
-        //     $("#lblalert2").show();
-        // }else{
-        //     if($("#claveN").val() != ""){
-        //         $("#lblalert2").hide();
-        //         cond2 = 1;
-        //     }
-        //
-        // }
-        //
-        // if(cond1 == 1 && cond2 == 1){
-        //     $("#btnmodclave").attr("disabled",false);
-        // }else{
-        //     $("#btnmodclave").attr("disabled",true);
-        // }
     }
 
     cmbField(obj,foco){
@@ -57,15 +34,32 @@ class Utilidad {
 
     }
 
-    SoloNumero(event,elemento) {
+    SoloLetras(e) {
+        key = e.keyCode || e.which;
+        tecla = String.fromCharCode(key).toLowerCase();
+        letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+        especiales = [8, 37, 39, 46];
+
+        tecla_especial = false
+        for(var i in especiales) {
+            if(key == especiales[i]) {
+                tecla_especial = true;
+                break;
+            }
+        }
+        if(letras.indexOf(tecla) == -1 && !tecla_especial)
+            return false;
+    }
+
+    SoloNumero(event,elemento,monto) {
         var contenidocaja = $("#"+elemento.id).val();
 
 
         var key = event.keyCode || event.which;
         var tecla = String.fromCharCode(key).toLowerCase();
         var numeros = "0123456789";
-        var especiales = [8, 37, 39, 46, 13, 9];
-
+        var especiales = [8, 37, 39, 13, 9];
+        if(monto == true) especiales.push(46);
         if(key == 46){
             if(contenidocaja.indexOf(".") != -1 || contenidocaja == ""){
                 return false;
@@ -173,28 +167,6 @@ class Utilidad {
         });
         $("#"+ele).notify("Recuerde de ingresar todos los campos requeridos","warn");
         return false;
-    }
-
-    ModalValidar(msj) {
-        $("#_contenido").html(msj);
-        var botones = '<button type="button" class="btn btn-success btn-md" data-dismiss="modal">Aceptar</button>';
-        $("#_botonesmsj").html(botones);
-        $("#modMsj").modal("show");
-    }
-
-    ModalValidarFamiliar(msj) {
-        $("#_contenido").html(msj);
-        var botones = '<button type="button" class="btn btn-success btn-md" data-dismiss="modal" onclik="ActivarModalFamiliar()">Aceptar</button>';
-        $("#_botonesmsj").html(botones);
-        $("#modMsj").modal("show");
-    }
-
-    ModalValidarFamiliarLimitado(msj) {
-
-        $("#_contenido").html('');
-        var botones = '<button type="button" class="btn btn-success btn-md" data-dismiss="modal" onclik="ContinuarFamiliarValidar()">Aceptar</button>';
-        $("#_botonesmsj").html(botones);
-        $("#modMsj").modal("show");
     }
 
     //

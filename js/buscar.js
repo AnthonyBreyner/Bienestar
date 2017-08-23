@@ -535,9 +535,8 @@ function cargarDatos(){
         });
         reembolso.Concepto = conceptos;
 
-        console.log(reembolso);
-        console.log(JSON.stringify(reembolso));
         var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:tele,Correo:reembolso.Correo};
+        console.log(JSON.stringify(datos));
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,

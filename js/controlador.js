@@ -175,22 +175,30 @@ $(function () {
         metodo: 'GET',
         valores: '',
     });
-
     requestE.then(function(xhRequest) {
-
         Estados.Crear(JSON.parse(xhRequest.responseText));
-
-
     });
     CargarUrl("opciones","modulo_atencion");
     CargarUrl("modalreembolso","inc/modals");
     CargarUrl("_bxBuscar", "buscar");
-    CargarUrl("panelentrada", "inc/entradareembolso");
-    CargarUrl("panelperfil", "inc/perfil");
-    CargarUrl("panellista", "inc/lstReembolsos");
-    CargarUrl("panelregistro", "inc/crearReembolso");
-    CargarUrl("cuerpoPlanilla","vpanel");
+
 });
+
+function cargaPrograma(tipo){
+    $("#opciones").hide();
+    $("#_bxBuscar").show();
+    switch (tipo){
+        case "r":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearReembolso");
+            break;
+        case "a":
+            alert("por cargar");
+            break;
+    }
+}
 
 function CiudadMunicipio(valor){
     if (valor == undefined){
