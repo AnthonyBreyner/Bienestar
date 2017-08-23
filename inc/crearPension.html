@@ -3,9 +3,7 @@
     <h1>
         Ficha Pensionado
     </h1>
-
 </section>
-
 <!-- Main content -->
 <section class="content">
     <div class="row">
@@ -16,17 +14,29 @@
                         <div class="row">
                             <!-- Cedula -->
                             <div class="col-md-3 col-sm-12">
-                                <label>Cédula:</label>
-                                <div class="input-group">
-                      <span class="input-group-btn">
-                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
-                                  aria-expanded="false">V
-                          </button>
-                      </span>
-                                    <input class="form-control" id="cedulap" type="text" maxlength="8" required
-                                           tabindex="1">
+                              <label>Cédula:</label>
+                              <div class="input-group">
+                                <span class="input-group-btn">
+                                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"
+                                    aria-expanded="false">V
+                                  </button>
+                                </span>
+                                <input class="form-control" id="cedulap" type="text" maxlength="8" required
+                                             tabindex="1">
+                              </div>
+                            </div><!-- Cedula -->
+                            <!-- Fecha Ingreso Componente -->
+                            <div class="col-md-3 col-sm-12">
+                                <label>Ingreso Componente:</label>
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <div class="input-group input-group">
+                                        <input type="text" class="form-control" style="width: 110%;" id="fechaingresocomp">
+                                    </div>
                                 </div>
-                            </div>
+                            </div><!-- Fecha Ingreso Componente -->
                             <!-- Situacion -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Situación:</label>
@@ -39,8 +49,7 @@
                                     <option value="">PENSION DE GRACIA</option>
                                     <option value="">FALLECIDO CON PENSION</option>
                                 </select>
-                            </div>
-                            <!-- Situacion -->
+                            </div><!-- Situacion -->
                             <!-- Fecha Retiro -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Fecha Retiro:</label>
@@ -52,41 +61,43 @@
                                         <input type="text" class="form-control" style="width: 110%;" id="fecharetirop">
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Fecha Retiro -->
+                            </div><!-- Fecha Retiro -->
+                        </div><!-- /.row -->
+                        <div class="row">
+                            <!-- Tiempo de Servicio -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Tiempo de Servicio:</label>
                                 <input class="form-control" id="txttiemposervicio" type="text" maxlength="8" required
                                        tabindex="1">
-                            </div>
-                        </div>
-                        <br>
-
-                        <div class="row">
+                            </div><!-- Tiempo de Servicio -->
+                            <!-- Años Reconocidos -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Años Reconocidos:</label>
                                 <input class="form-control" id="txtannoreconocido" type="text" maxlength="8" required
                                        tabindex="1">
-                            </div>
+                            </div><!-- Años Reconocidos -->
+                            <!-- Meses Reconocidos -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Meses Reconocidos:</label>
                                 <input class="form-control" id="txtmesreconocido" type="text" maxlength="8" required
                                        tabindex="1">
-                            </div>
+                            </div><!-- Meses Reconocidos -->
+                            <!-- Días Reconocidos -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Días Reconocidos:</label>
                                 <input class="form-control" id="txtdiareconocido" type="text" maxlength="8" required
                                        tabindex="1">
-                            </div>
+                            </div><!-- Días Reconocidos -->
+                        </div><!-- /.row -->
+
+                        <div class="row">
+                            <!-- Nº Hijos -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Nº Hijos:</label>
                                 <input class="form-control" id="txtnrohijos" type="text" maxlength="8" required
                                        tabindex="1">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-md-3 col-sm-12">
+                            </div><!-- Nº Hijos -->
+                            <div class="col-md-3 col-sm-12"><!-- Estatus Pensión -->
                                 <label>Estatus Pensión:</label>
                                 <select class="js-states form-control" style="width: 100%" required aria-hidden="true"
                                         id="cmbestatusp">
@@ -94,7 +105,8 @@
                                     <option value="">ACTIVO</option>
                                     <option value="">INACTIVO</option>
                                 </select>
-                            </div>
+                            </div><!-- Estatus Pensión -->
+                            <!-- Motivo Paralización -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Motivo Paralización:</label>
                                 <select class="js-states form-control" style="width: 100%" required aria-hidden="true"
@@ -104,7 +116,8 @@
                                     <option value="">Carnet Vencido</option>
                                     <option value="">Otros</option>
                                 </select>
-                            </div>
+                            </div><!-- Motivo Paralización -->
+                            <!-- Fecha Defunción -->
                             <div class="col-md-3 col-sm-12">
                                 <label>Fecha Defunción:</label>
                                 <div class="input-group date">
@@ -116,9 +129,8 @@
                                                id="fechadefuncion">
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <br>
+                            </div><!-- Fecha Defunción -->
+                        </div><!-- /.row -->
                         <br><br>
 
                         <div class="row" style="padding:10px;">
@@ -135,7 +147,7 @@
                                     <li role="presentation"><a href="#m" aria-controls="messages" role="tab"
                                                                data-toggle="tab">Disponible</a></li>
                                 </ul>
-
+                              </div>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane active" id="msueldop" style="padding:15px">
@@ -199,7 +211,7 @@
                                                        type="text" maxlength="8" required>
                                             </div>
                                             <div class="col-md-3">
-                                                <label>Porc. Profesionalización:</label>
+                                                <label>% Profesionalización:</label>
                                                 <input id="txtporcprimaprofesional" class="form-control"
                                                        disabled="disabled" type="text" maxlength="6" required>
                                             </div>
@@ -215,7 +227,7 @@
                                                        disabled="disabled" tabindex="4">
                                             </div>
                                             <div class="col-md-3 col-sm-12">
-                                                <label>Porcentaje de Pensión:</label>
+                                                <label>% Pensión:</label>
                                                 <!--input type="text" class="form-control"  id="txtporcentajepension" disabled="disabled" tabindex="4"-->
                                                 <select class="js-states form-control" style="width: 100%"
                                                         disabled="disabled" required aria-hidden="true"
@@ -233,8 +245,6 @@
                                                        disabled="disabled" tabindex="4">
                                             </div>
                                         </div><!-- Grupo Pensión-->
-
-
                                     </div><!-- Tab panes Datos Militares-->
 
                                     <!-- Tab Datos Financieros-->
@@ -333,14 +343,11 @@
                                     </div><!-- Tab panel Partida de Nacimiento -->
 
                                 </div> <!-- Fila para el Tabs Militar -->
-
-
-                            </div>
-
-                            <!-- /.row -->
-
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.tab-content -->
+            </div><!-- /.nav-tabs-custom box box-primary -->
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
 </section>
 <!-- /.content -->
-
-<!-- /.content-wrapper -->
-  
