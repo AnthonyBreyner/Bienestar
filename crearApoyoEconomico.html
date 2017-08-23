@@ -101,7 +101,7 @@
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form id="frmreembolso" action="#" method="post">
+                            <form id="frmapoyoeconomico" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-4 ">
                                         <label>Familiar:</label>
@@ -111,29 +111,29 @@
                                     </div>
                                     <div class="col-md-4 ">
                                         <label>Conceptos:</label>
-                                        <select class="form-control" style="width: 100%" id="concepto" onchange="requisitosConcepto()" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbconcepto" onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0" desplegar="requisitosconsultas">Tratamientos Odontologicos</option>
-                                            <option value="1" desplegar="requisitosconsultas">Fisiatría y Rehabilitación</option>
-                                            <option value="2" desplegar="requisitosconsultas">Consultas, Ortopedia y Tratamiento Médico</option>
-                                            <option value="3" desplegar="requisitosconsultas">Exámenes de Laboratorio</option>
-                                            <option value="4" desplegar="requisitosconsultas">Exámenes Especiales</option>
+                                            <option value="0">Tratamientos Odontologicos</option>
+                                            <option value="1">Fisiatría y Rehabilitación</option>
+                                            <option value="2">Consultas, Ortopedia y Tratamiento Médico</option>
+                                            <option value="3">Exámenes de Laboratorio</option>
+                                            <option value="4">Exámenes Especiales</option>
 
-                                            <option value="5" desplegar="requisitostratamiento">Tratamiento Psicopedagógico</option>
-                                            <option value="6" desplegar="requisitostratamiento">Geriátricos</option>
+                                            <option value="5">Tratamiento Psicopedagógico</option>
+                                            <option value="6">Geriátricos</option>
 
-                                            <option value="7" desplegar="requisitoshosp">Complemento de Hospitalización e Intervención Quirúrgica</option>
-                                            <option value="8" desplegar="requisitoshosp">Hospitalizacion e Intervención Quirúrgica</option>
-                                            <option value="9" desplegar="requisitoshosp">Material Médico Quirúrgico</option>
+                                            <option value="7">Complemento de Hospitalización e Intervención Quirúrgica</option>
+                                            <option value="8">Hospitalizacion e Intervención Quirúrgica</option>
+                                            <option value="9">Material Médico Quirúrgico</option>
 
-                                            <option value="10" desplegar="requisitoslentes">Lentes</option>
+                                            <option value="10">Lentes</option>
                                         </select>
                                     </div>
                              
 
                                     <div class="col-md-4 ">
                                         <label>Patologia:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbpatologia" required="required">
                                             <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
@@ -159,7 +159,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <label>Fondo:</label>
-                                        <select class="form-control" style="width: 100%" id="fondo" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbfondo" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">CIS</option>
                                             <option value="1">FAM</option>
@@ -171,7 +171,7 @@
                                         <label>Tipo de Ayuda:</label>
                                        
                                             <div >
-                                                <select class="form-control" style="width: 100%" id="fondo" required="required">
+                                                <select class="form-control" style="width: 100%" id="cmbtipoayuda" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">CASOS PARTICULARES</option>
                                             <option value="1">CONVENIO VIA EXCEPCION SEGUROS HORIZONTES</option>
