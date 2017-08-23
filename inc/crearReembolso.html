@@ -270,13 +270,16 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <label>F.Factura:</label>
-                                        <div class="input-group date">
+                                        <div class="input-group date" style="z-index: 1000;">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
                                                 <input type="text" class="form-control" id="fechafactura" required="required">
                                             </div>
+                                        </div>
+                                        <div class="alert alert-danger" role="alert" id="alert_fecha" style="display: none">
+                                            <i class="icon fa fa-ban"></i><label id="alerta_fecha"></label>
                                         </div>
                                     </div>
                                     <div class="col-md-3 col-sm-12">
@@ -395,8 +398,19 @@
                                             <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
                                         </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-md-4">
 
+=======
+                                    <div class="col-md-4 col-sm-12">
+                                        <label class="control-label">Correo Electronico:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </div>
+                                            <input type="email" class="form-control"  id="txtmcorreo" disabled="disabled" required onblur="ValidarCorreo()">
+                                        </div>
+>>>>>>> e27bc279b67b56b61a5b1f9062b9b504e55f7890
                                     </div>
                                 </div>
                                 <div class="row">
@@ -505,8 +519,6 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-md-4"><label>Email:</label><input type="text" class="form-control" id="correocontacto"/></div>
-                                <div class="col-md-4"><label>Dirección:</label><input type="text" class="form-control" id="dircontacto"/></div>
                                 <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control" id="telfcontacto"/></div>
                             </div>
                         </div>
@@ -533,7 +545,14 @@
     $('#fechafactura').datepicker({
         autoclose: true,
         format: "dd/mm/yyyy",
-        language: 'es'
+        language: 'es',
+        endDate:"+0d",
+        changeDate:function(){
+            validaFechaFactura(30)
+        }
+    }).on("changeDate", function(e) {
+        alert(1);
+        validaFechaFactura(60);
     });
     $('[data-mask]').inputmask();
 </script>
