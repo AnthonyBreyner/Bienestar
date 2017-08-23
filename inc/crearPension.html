@@ -1,0 +1,312 @@
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Ficha Pensionado
+      </h1>
+      <!--<ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">User profile</li>
+      </ol>-->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nav-tabs-custom box box-primary">
+            <div class="tab-content">
+              <div class="box-body">
+                <div class="row">
+                <!-- Cedula -->
+                  <div class="col-md-3 col-sm-12">
+                  <label>Cédula:</label>
+                    <div class="input-group">
+                      <span class="input-group-btn">
+                          <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" >V
+                          </button>
+                      </span>
+                      <input class="form-control" id="cedulap"  type="text" maxlength="8" required tabindex="1">
+                    </div>
+                </div>
+                <!-- Situacion -->
+                <div class="col-md-3 col-sm-12">
+                  <label>Situación:</label>
+                  <select class="js-states form-control" style="width: 100%" required aria-hidden="true" id="cmbsituacion" >
+                                 <option selected="selected" value="S"></option>
+                                <option value="">ACTIVO</option>
+                                <option value="">RETIRADO CON PENSION</option>
+                                <option value="">INVALIDO</option>
+                                <option value="">PENSION DE GRACIA</option>
+                                <option value="">FALLECIDO CON PENSION</option>
+                  </select> 	
+                </div>
+                <!-- Situacion -->
+                <!-- Fecha Retiro -->
+                <div class="col-md-3 col-sm-12">
+                  <label>Fecha Retiro:</label>
+                  	<div class="input-group date">
+                        <div class="input-group-addon">
+                          <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="input-group input-group">
+                          <input type="text" class="form-control" style="width: 110%;"  id="fecharetirop">
+                        </div>
+                 	</div>
+                </div>
+                <!-- Fecha Retiro -->
+                <div class="col-md-3 col-sm-12">
+                  <label>Tiempo de Servicio:</label>
+                  	<input class="form-control" id="txttiemposervicio"  type="text" maxlength="8" required tabindex="1">
+                </div>               
+              </div><br>
+
+             <div class="row">
+                  	<div class="col-md-3 col-sm-12">
+                    	<label>Años Reconocidos:</label>
+                  			<input class="form-control" id="txtannoreconocido"  type="text" maxlength="8" required tabindex="1">
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                    	<label>Meses Reconocidos:</label>
+                  			<input class="form-control" id="txtmesreconocido"  type="text" maxlength="8" required tabindex="1">
+                      </div>
+                      <div class="col-md-3 col-sm-12">
+                      <label>Días Reconocidos:</label>
+                  			<input class="form-control" id="txtdiareconocido"  type="text" maxlength="8" required tabindex="1">
+                      </div>
+                      <div class="col-md-3 col-sm-12">
+                          <label>Nº Hijos:</label>
+                            <input class="form-control" id="txtnrohijos"  type="text" maxlength="8" required tabindex="1">
+                      </div>
+             </div><br>
+             <div class="row">
+                  	<div class="col-md-3 col-sm-12">
+                    	<label>Estatus Pensión:</label>
+                  			<select class="js-states form-control" style="width: 100%" required aria-hidden="true" id="cmbestatusp" >
+                                <option selected="selected" value="S"></option>
+                                <option value="">ACTIVO</option>
+                                <option value="">INACTIVO</option>
+                  			</select>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                    	<label>Motivo Paralización:</label>
+                  			<select class="js-states form-control" style="width: 100%" required aria-hidden="true" id="cmbparalizacion" >
+                                 <option selected="selected" value="S"></option>
+                                <option value="">Fe de Vida Vencida</option>
+                                <option value="">Carnet Vencido</option>
+                                <option value="">Otros</option>
+                  			</select>
+                    </div>
+                    <div class="col-md-3 col-sm-12">
+                  		<label>Fecha Defunción:</label>
+                  		<div class="input-group date">
+	                        <div class="input-group-addon">
+	                          <i class="fa fa-calendar"></i>
+	                        </div>
+                        <div class="input-group input-group">
+                          <input type="text" class="form-control" style="width: 110%;"  id="fechadefuncion">
+                        </div>
+                 	</div>
+                </div>
+             </div><br>             
+             <br><br>
+
+             <div class="row" style="padding:10px;">
+                 <div class="nav-tabs-custom box box-primary">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-pills nav-fill nav-justified" >
+                      <li role="presentation" class="active"><a href="#msueldop" aria-controls="home" role="tab" data-toggle="tab">Sueldo Pensionado</a></li>
+                      <li role="presentation"><a href="#mcuentanominap" aria-controls="home" role="tab" data-toggle="tab">Cuenta Nomina</a></li>
+                      <li role="presentation"><a href="#mmedidajp" aria-controls="home" role="tab" data-toggle="tab">Medidas Judiciales</a></li>
+                      <li role="presentation"><a href="#m" aria-controls="messages" role="tab" data-toggle="tab">Disponible</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                       <div role="tabpanel" class="tab-pane active" id="msueldop" style="padding:15px">
+
+                           <div class="form-group">
+                            <div class="col-md-12 col-sm-12">
+                               <h5>Sueldos</h5>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label >Básico:</label>
+                                 <input type="text" class="form-control"  id="txtsueldobasico" disabled="disabled" tabindex="4">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label >Integral:</label>
+                                 <input type="text" class="form-control"  id="txtsueldointegral" disabled="disabled" tabindex="4">
+                            </div>
+                           </div><!-- Grupo Sueldo-->
+
+                           <div class="form-group">
+                             <div class="col-md-12 col-sm-12">
+                               <h5>Primas</h5>
+                             </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Tansporte:</label>
+                                 <input type="text" class="form-control"  id="txtprimatransporte" disabled="disabled" tabindex="4">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Descendencia:</label>
+                                  <input type="text" class="form-control"  id="txtprimadescendencia" disabled="disabled" tabindex="4">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Especial:</label>
+                                  <input type="text" class="form-control"  id="txtprimaespecial" disabled="disabled" tabindex="4">
+                            </div>
+                             <div class="col-md-3 col-sm-12">
+                               <label>Años de Servicio:</label>
+                                  <input type="text" class="form-control"  id="txtprimaannoservicio" disabled="disabled" tabindex="4">
+                             </div>
+                           </div><!-- Grupo Primas-->
+
+                         <div class="form-group">
+                          <div class="col-md-3">
+                            <label >No Ascenso:</label>
+                            	<input id="txtprimanoascenso" class="form-control" disabled="disabled"  type="text" maxlength="8" required>
+                          </div>
+                          <div class="col-md-3">
+                            <label >Porc. No Ascenso:</label>
+                            	<input id="txtporcprimanoascenso" class="form-control" disabled="disabled"  type="text" maxlength="8" required>
+                          </div>
+                          <div class="col-md-3">
+                            <label >Profesionalización:</label>
+                            	<input id="txtprimaprofesional" class="form-control" disabled="disabled"  type="text" maxlength="8" required>
+                          </div>
+                          <div class="col-md-3">
+                            <label>Porc. Profesionalización:</label>
+                            	<input id="txtporcprimaprofesional" class="form-control" disabled="disabled"  type="text" maxlength="6" required>
+                          </div>
+                        </div> <!-- Grupo Primas-->
+
+ 							<div class="form-group">
+                             <div class="col-md-12 col-sm-12">
+                               <h5>Pensión</h5>
+                             </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Sub-Total:</label>
+                                 <input type="text" class="form-control"  id="txtsubtotalp" disabled="disabled" tabindex="4">
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Porcentaje de Pensión:</label>
+                                  <!--input type="text" class="form-control"  id="txtporcentajepension" disabled="disabled" tabindex="4"-->
+                                  <select class="js-states form-control" style="width: 100%" disabled="disabled" required aria-hidden="true" id="cmbporcentajepension" >
+                                 <option selected="selected" value="S"></option>
+                                <option value="" selected="selected">99.00%</option>
+                                <option value="">75.00%</option>
+                                <option value="" selected="selected">60.00%</option>
+                                <option value="">50.00%</option>
+                               </select>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                               <label>Pension Asignada:</label>
+                                  <input type="text" class="form-control"  id="txtpensionasignada" disabled="disabled" tabindex="4">
+                            </div>
+                           </div><!-- Grupo Pensión-->
+
+
+                       </div><!-- Tab panes Datos Militares-->
+
+                       <!-- Tab Datos Financieros-->
+
+                        <div role="tabpanel" class="tab-pane" id="mcuentanominap"  style="padding:15px">
+
+                          <div class="form-group">
+                            <div class="col-md-12 col-sm-12" id="_cmbminstfinanciera">
+                              <label>Institución Financiera</label>
+                                 <select class="js-states form-control" style="width: 100%" aria-hidden="true"  required id="cmbminstfinanciera" onchange="SeleccionarCuenta()">
+                                   <option selected="selected" value="S"></option>
+                                   <option value="0156">100%BANCO</option>
+                                   <option value="0196">ABN AMRO BANK</option>
+                                   <option value="0172">BANCAMIGA BANCO MICROFINANCIERO, C.A.</option>
+                                   <option value="0171">BANCO ACTIVO BANCO COMERCIAL, C.A.</option>
+                                   <option value="0166">BANCO AGRICOLA</option>
+                                   <option value="0175">BANCO BICENTENARIO</option>
+                                   <option value="0128">BANCO CARONI, C.A. BANCO UNIVERSAL</option>
+                                   <option value="0164">BANCO DE DESARROLLO DEL MICROEMPRESARIO</option>
+                                   <option value="0102">BANCO DE VENEZUELA S.A.I.C.A.</option>
+                                   <option value="0114">BANCO DEL CARIBE C.A.</option>
+                                   <option value="0149">BANCO DEL PUEBLO SOBERANO C.A.</option>
+                                   <option value="0163">BANCO DEL TESORO</option>
+                                   <option value="0176">BANCO ESPIRITO SANTO, S.A.</option>
+                                   <option value="0115">BANCO EXTERIOR C.A.</option>
+                                   <option value="0003">BANCO INDUSTRIAL DE VENEZUELA.</option>
+                                   <option value="0173">BANCO INTERNACIONAL DE DESARROLLO, C.A.</option>
+                                   <option value="0105">BANCO MERCANTIL C.A.</option>
+                                   <option value="0191">BANCO NACIONAL DE CREDITO</option>
+                                   <option value="0116">BANCO OCCIDENTAL DE DESCUENTO.</option>
+                                   <option value="0138">BANCO PLAZA</option>
+                                   <option value="0108">BANCO PROVINCIAL BBVA</option>
+                                   <option value="0104">BANCO VENEZOLANO DE CREDITO S.A.</option>
+                                   <option value="0168">BANCRECER S.A. BANCO DE DESARROLLO</option>
+                                   <option value="0134">BANESCO BANCO UNIVERSAL</option>
+                                   <option value="0177">BANFANB</option>
+                                   <option value="0146">BANGENTE</option>
+                                   <option value="0174">BANPLUS BANCO COMERCIAL C.A</option>
+                                   <option value="0190">CITIBANK.</option>
+                                   <option value="0121">CORP BANCA.</option>
+                                   <option value="0157">DELSUR BANCO UNIVERSAL</option>
+                                   <option value="0151">FONDO COMUN</option>
+                                   <option value="0601">INSTITUTO MUNICIPAL DE CR&#201;DITO POPULAR</option>
+                                   <option value="0169">MIBANCO BANCO DE DESARROLLO, C.A.</option>
+                                   <option value="0137">SOFITASA</option>
+                                 </select>
+                             </div>
+                           </div>
+                           <div class="form-group">
+                             <div class="col-md-6 col-sm-12" id="_cmbmtipofinanciera">
+                               <label >Tipo de Cuenta:</label>
+                               <select class="js-states form-control" style="width: 100%"  required aria-hidden="true" id="cmbmtipofinanciera" >
+                                 <option selected="selected" value="S"></option>
+                                <option value="CA" selected="selected">AHORRO</option>
+                                <option value="CC">CORRIENTE</option>
+                               </select>
+                             </div>
+                             <div class="col-md-6 col-sm-12" id="_txtmnrocuenta">
+                               <label>Nro. de Cuenta:</label>
+                               <input  id="txtmnrocuenta" class="form-control"   type="text" maxlength="23" data-inputmask='"mask": "9999-9999-99-9999999999"' data-mask>
+                             </div>
+                           </div><!-- .Form-Group -->
+
+                           <div class="form-group">
+                             <div class="col-md-12 col-sd-12" id="_tblBancos">
+
+                             </div>
+                           </div>
+
+
+
+                      </div><!-- Tab Datos Financieros-->
+                      <div role="tabpanel" class="tab-pane" id="mmedidajp" style="padding:15px">
+                          <div class="form-group">
+                         </div> <!-- Grupo nombres-->
+                          <div class="form-group">
+                         </div> <!-- Grupo nombres-->
+                          <div class="form-group">
+                          </div><!-- Grupo nombres-->
+                          <div class="form-group">
+                         </div>
+                      </div><!-- Tab panes  Direccion-->
+
+
+                      <div role="tabpanel" class="tab-pane" id="m" style="padding:15px">
+                        <h1>
+                          DISPONIBLE
+                        </h1>
+                      </div><!-- Tab panel Partida de Nacimiento -->
+
+                 </div> <!-- Fila para el Tabs Militar -->
+
+
+                </div>
+
+      <!-- /.row -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
