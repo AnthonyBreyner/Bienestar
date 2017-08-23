@@ -543,7 +543,7 @@ function cargarDatos(){
         });
         reembolso.Concepto = conceptos;
 
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:tele,Correo:reembolso.Correo};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele};
         console.log(JSON.stringify(datos));
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
