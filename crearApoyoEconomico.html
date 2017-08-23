@@ -135,6 +135,21 @@
                                         <label>Patologia:</label>
                                         <select class="form-control" style="width: 100%" id="cmbpatologia" required="required">
                                             <option selected="selected" value="S"></option>
+                                            <option value="0">OBSTETRICIA</option>
+                                            <option value="1">CARDIOLOGIA</option>
+                                            <option value="2">MEDICINA INTERNA</option>
+                                            <option value="3">TRAUMATOLOGIA</option>
+                                            <option value="4">CIRUGIA GENERAL</option>
+                                            <option value="5">ONCOLOGIA</option>
+                                            <option value="6">NEUROLOGIA</option>
+                                            <option value="7">UROLOGIA</option>
+                                            <option value="8">NEUMONOLOGIA</option>
+                                            <option value="9">PEDIATRIA NEONATAL</option>
+                                            <option value="10">GASTROENTEROLOGIA</option>
+                                            <option value="11">GINECOLOGIA</option>
+                                            <option value="12">NEUROCIRUGIA</option>
+                                            <option value="13">OTORRINOLARINGOLOGIA</option>
+
                                         </select>
                                     </div>
    </div>
@@ -153,21 +168,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-12">
+                                    <div class="col-md-5 col-sm-12">
                                         <label>&nbsp</label>
                                         <input class="form-control" id="razonsocial" readonly="true" required="required">
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-5 col-sm-12">
                                         <label>Fondo:</label>
                                         <select class="form-control" style="width: 100%" id="cmbfondo" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0">CIS</option>
-                                            <option value="1">FAM</option>
-                                            <option value="2">CAM</option>
+                                            <option value="0">Fondo del Cuidado Integral de la Salud (C.I.S)</option>
+                                            <option value="1">Fondo del adulto Mayor (F.A.M)</option>
+                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)</option>
                                            
                                         </select>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    </div>
+
+                                 <div class="row">
+                                    <div class="col-md-6 col-sm-12">
                                         <label>Tipo de Ayuda:</label>
                                        
                                             <div >
@@ -175,28 +193,44 @@
                                             <option selected="selected" value="S"></option>
                                             <option value="0">CASOS PARTICULARES</option>
                                             <option value="1">CONVENIO VIA EXCEPCION SEGUROS HORIZONTES</option>
-                                           
-                                           
+                                            <option value="2">CARTA AVAL</option>
+                                                                             
                                         </select>
                                             </div>
                                         </div>
-                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <label>Servicio de Carta Aval:</label>
+                                       
+                                         <div >
+                                            <select class="form-control" style="width: 100%" id="cmbserviciocartavala" required="required">
+                                                <option selected="selected" value="S"></option>
+                                                <option value="0">MAMOGRAFIA</option>
+                                                <option value="1">REHABILITACIÓN</option>
+                                                <option value="2">PROTESIS AUDITIVA</option>
+                                                <option value="3">PROTESIS TRAUMATOLOGIA</option>
+                                            </select>
+                                            </div>
+                                        </div>
+
+                                </div>
+                                    
 
 
                                 <div class="row">    
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Total de la Factura:</label>
-                                        <input class="form-control" id="montofactura" required="required">
+                                        <input class="form-control" id="montofactura" required="required" onkeypress="return SoloNumero(event)">
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto a Cubrir:</label>
-                                        <input class="form-control" id="montoacubrir" required="required">
+                                        <input class="form-control" id="montoacubrir" required="required" onkeypress="return SoloNumero(event)">
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Aprobado:</label>
-                                        <input class="form-control" id="montoaprobado" required="required">
+                                        <input class="form-control" id="montoaprobado" required="required" onkeypress="return SoloNumero(event)">
                                     </div>
                                 </div>
                                 
