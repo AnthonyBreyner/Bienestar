@@ -497,9 +497,15 @@ function cargarDatos(){
     dir.calleavenida = $("#txtmcalle").val().toUpperCase();
     dir.casa = $("#txtmcasa").val().toUpperCase();
     dir.apartamento = $("#txtmapto").val().toUpperCase();
+    var tele = new Telefono();
+    tele.domiciliario = $("#txtmtelefono").val();
+    tele.movil = $("#txtmcelular").val();
     reembolso.Direccion = dir;
-    reembolso.Telefono.domiciliario = $("#txtmtelefono").val();
-    reembolso.Telefono.movil = $("#txtmcelular").val();
+    reembolso.Telefono.domiciliario = tele.domiciliario;
+    reembolso.Telefono.movil = tele.movil;
+    if($("#telfcontacto").val() != ""){
+        reembolso.Telefono.movil = $("#telfcontacto").val();
+    }
     reembolso.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
     var conceptos = new Array();
@@ -531,7 +537,7 @@ function cargarDatos(){
 
         console.log(reembolso);
         console.log(JSON.stringify(reembolso));
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:reembolso.Telefono,Correo:reembolso.Correo};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Direccion:dir,Telefono:tele,Correo:reembolso.Correo};
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
@@ -583,7 +589,8 @@ function limpiarReembolso(){
 function requisitosConcepto(){
 
     var modal = $("#concepto option:selected").attr("desplegar");
-    inactivarCheck(modal)
+    inactivarCheck(modal);
+    $("#btnAgconcepto").attr("disabled",true);
     $("#"+modal).modal("show");
 }
 
