@@ -145,7 +145,7 @@ function cargaPrograma(tipo){
             titulos("Pension");
             break;
         case "far":
-            CargarUrl("modalgeneral","inc/modals");
+            CargarUrl("modalgeneral","inc/modalsfarmacia");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Farmacia");
@@ -157,10 +157,11 @@ function cargaPrograma(tipo){
             titulos("Investigacion Social");
             break;
         case "fdv":
+            CargarUrl("panelentrada", "inc/opcionesFedevida");
             CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFedeVida");
-            titulos("Fe de vida");
+            //titulos("Fe de vida");
             break;
         case "ca":
             CargarUrl("modalgeneral","inc/modalscarta");
@@ -177,8 +178,13 @@ function titulos(t){
     $(".lbltituloopt").html(t);
 }
 
-function verificarNuevo(){
-    $("#requisitos").modal("show");
+function verificarNuevo(val){
+    if(val == false){
+        crearPrograma();
+    }else{
+        $("#requisitos").modal("show");
+    }
+
     //crearReembolso();
 }
 
