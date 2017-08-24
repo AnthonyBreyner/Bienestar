@@ -179,7 +179,6 @@ $(function () {
         Estados.Crear(JSON.parse(xhRequest.responseText));
     });
     CargarUrl("opciones","modulo_atencion");
-    CargarUrl("modalgeneral","inc/modals");
     CargarUrl("_bxBuscar", "buscar");
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
@@ -201,4 +200,8 @@ function SeleccionarParroquia(valor){
     }else{
         Estados.ObtenerParroquia($("#cmbestadof option:selected").val(), $("#cmbmunicipiof option:selected").val(), true);
     }
+}
+
+function buzon(){
+    $("#panelderecho").html("Aca va el buzon");
 }

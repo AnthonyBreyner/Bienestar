@@ -127,36 +127,43 @@ function ficha(){
 function cargaPrograma(tipo){
     switch (tipo){
         case "r":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearReembolso");
             titulos("reembolso")
             break;
         case "a":
+            CargarUrl("modalgeneral","inc/modalsapoyo");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearApoyoEconomico");
             titulos("Apoyo <br> Economico");
             break;
         case "pen":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearPension");
             titulos("Pension");
             break;
         case "far":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Farmacia");
             break;
         case "invs":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearInvSocial");
             titulos("Investigacion Social");
             break;
         case "fdv":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFedeVida");
             titulos("Fe de vida");
             break;
         case "ca":
+            CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
