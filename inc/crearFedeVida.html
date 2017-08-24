@@ -6,13 +6,13 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                                Datos para la Fe de Vida
+                                Datos para Fe de Vida
                         </h4>
                     </div>
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form id="frmainvsocial" action="#" method="post">
+                            <form id="frmafedevida" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-4 ">
                                         <label>Familiar:</label>
@@ -32,9 +32,18 @@
                                             <option value="2">TRATAMIENTO PROLONGADO</option>
                                         </select>
                                     </div>
-                                 </div>    
-                                   
+                                 </div> 
 
+                                 </br>
+                                 <div class="row">
+                                 <div class="col-md-3">
+                                <button type="button" class="btn btn-md btn-success pull-right"
+                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
+                            <i class=""></i>&nbsp;&nbsp;GENERAR FE DE VIDA
+                        </button>
+                        <br><br>
+                    </div>
+                </div>   
                             </form>
                         </div>
                     </div>
@@ -50,7 +59,7 @@
                     </a>
                     <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTree">
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="form-group">
                                 <div class="col-md-4">
                                     <label>Estado:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmestado" required onchange="CiudadMunicipio()">
@@ -128,15 +137,7 @@
                 </div>
 
                 <br><br>
-                <div class="row">
-                    <div class="col-md-3">
-                        <button type="button" class="btn btn-md btn-success pull-right"
-                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
-                            <i class=""></i>&nbsp;&nbsp;Crear Fe de Vida
-                        </button>
-                        <br><br>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </div>
