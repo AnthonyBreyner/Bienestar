@@ -31,6 +31,12 @@ $(function () {
         $("#panellista").hide();
         $("#panelregistro").hide();
     });
+    $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+    });
 });
 
 
@@ -112,7 +118,6 @@ function ficha(){
         $("#panelperfil").show();
         $("#opciones").show();
         $("#_bxBuscar").hide();
-        historico();
     }else{
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();
@@ -122,36 +127,37 @@ function ficha(){
 function cargaPrograma(tipo){
     switch (tipo){
         case "r":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearReembolso");
             titulos("reembolso")
             break;
         case "a":
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearApoyoEconomico");
             titulos("Apoyo <br> Economico");
             break;
         case "pen":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearPension");
             titulos("Pension");
             break;
         case "far":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Farmacia");
             break;
         case "invs":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearInvSocial");
             titulos("Investigacion Social");
             break;
         case "fdv":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFedeVida");
             titulos("Fe de vida");
             break;
         case "ca":
-
+            CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
             break;
@@ -210,83 +216,4 @@ function verPrograma(){
     $("#panellista").slideDown();
     //$("#btnnreembolso").show();
     //$("#btnlreembolso").hide();
-}
-
-function historico(){
-    $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>\n' +
-        '                        </thead>\n' +
-        '                        <tbody id="cuerporeembolsos">\n' +
-        '\n' +
-        '                        </tbody>');
-
-    var t = $('#historicoReembolso').DataTable({
-        destroy: true,
-        'paging': true,
-        'lengthChange': true,
-        'searching': false,
-        'ordering': true,
-        'info': false,
-        'autoWidth': false,
-        "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
-        "bStateSave": true,
-        "language": {
-            "lengthMenu": "Mostar _MENU_ filas por pagina",
-            "zeroRecords": "Nada que mostrar",
-            "info": "Mostrando _PAGE_ de _PAGES_",
-            "infoEmpty": "No se encontro nada",
-            "infoFiltered": "(filtered from _MAX_ total records)",
-            "search": "Buscar",
-            "paginate": {
-                "first":      "Primero",
-                "last":       "Ultimo",
-                "next":       "Siguiente",
-                "previous":   "Anterior"
-            },
-        },
-    });
-    t.clear().draw();
-    if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
-        var html = "";
-        var i = 0;
-        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
-            var est = "Por procesar";
-            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
-            var listaFact = "<div class=\"dropdown\">\n" +
-                "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                "            Ver" +
-                "            <span class=\"fa fa-plus\"></span>\n" +
-                "            </button>\n" +
-                "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
-            $.each(this.Concepto,function(){
-                listaFact += "<li class='bg-info'>"+this.DatoFactura.numero+"</li>";
-            });
-            listaFact +="</ul></div>";
-            t.row.add([
-                "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
-                "<b>"+fcrea+"</b>",
-                listaFact,
-                this.montosolicitado,
-                est
-            ]).draw(false);
-            $('#historicoReembolso thead td.pbuscar').each( function () {
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Buscar" /><br>'+title );
-            } );
-            t.columns().every( function () {
-                var that = this;
-
-                $('input', this.header()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            });
-            i++;
-
-        });
-    }
 }

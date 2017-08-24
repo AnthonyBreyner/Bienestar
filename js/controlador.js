@@ -181,9 +181,10 @@ $(function () {
     CargarUrl("opciones","modulo_atencion");
     CargarUrl("modalgeneral","inc/modals");
     CargarUrl("_bxBuscar", "buscar");
-    CargarUrl("panelentrada", "inc/opcionesPrograma");
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
+    CargarUrl("panelentrada", "inc/opcionesPrograma");
+
 
 });
 
