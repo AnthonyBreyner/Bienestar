@@ -86,7 +86,7 @@
                                     </div>
                                     <div class="col-md-3 col-sm-12">
                                         <label>F.Factura:</label>
-                                        <div class="input-group date" style="z-index: 2010;">
+                                        <div class="input-group date" style="z-index: 1030;">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
@@ -96,7 +96,7 @@
                                             </div>
                                         </div>
                                         <div class="alert alert-danger" role="alert" id="alert_fecha"
-                                             style="display: none">
+                                             style="display: none; font-size: 12px;">
                                             <i class="icon fa fa-ban"></i><label id="alerta_fecha"></label>
                                         </div>
                                     </div>
@@ -140,7 +140,7 @@
                                                     <th class="detfactconcep"></th>
                                                     <th class="detfactconcep"></th>
                                                     <th></th>
-                                                    <th class="pull-right" id="mntAcumulado"></th>
+                                                    <th id="mntAcumulado"></th>
                                                     <th class="detfactconcep"></th>
                                                     <th></th>
                                                 </tr>
@@ -352,8 +352,16 @@
                         </div>
                         <br>
                         <div class="row">
-                            <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control"
-                                                                                 id="telfcontacto"/></div>
+                          <div class="col-md-4 col-sm-12"
+                          <label><b>Teléfono:</b></label>
+                          <div class="input-group">
+                              <div class="input-group-addon">
+                                  <i class="fa fa-phone"></i>
+                              </div>
+                              <input id="txtmtelefono" class="form-control" type="text"
+                                     data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                          </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -364,7 +372,7 @@
                 </div>
                 <div class="col-md-4">
                     <button type="button" class="btn btn-md btn-success"
-                            onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 10px;">
+                            onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 110px;">
                         <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Reembolso
                     </button>
                     <br><br>
