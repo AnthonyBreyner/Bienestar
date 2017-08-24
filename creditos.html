@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BIENESTAR</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/checkbox.css">
+
+    <link rel="stylesheet" href="dist/css/_all-skins_1.css">
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="dist/css/fonts.googleapis.css">
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
+</head>
+
+<style type="text/css">
+    .row-centered {
+        text-align: center;
+    }
+
+    .col-centered {
+        display: inline-block;
+        float: none;
+        text-align: left;
+        margin-right: -4px;
+    }
+
+    td {
+        font-size: 12px;
+        font-weight: normal;
+    }
+
+    input {
+        text-transform: uppercase;
+    }
+
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-file input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 100%;
+        min-height: 100%;
+        font-size: 100px;
+        text-align: right;
+        filter: alpha(opacity=0);
+        opacity: 0;
+        outline: none;
+        background: white;
+        cursor: inherit;
+        display: block;
+    }
+
+    .logo1 {
+        -webkit-transition: width .3s ease-in-out;
+        -o-transition: width .3s ease-in-out;
+        transition: width .3s ease-in-out;
+        display: block;
+        float: left;
+        height: 50px;
+        font-size: 16px;
+        line-height: 50px;
+        text-align: center;
+        width: 580px;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        padding: 0 15px;
+        font-weight: 300;
+        overflow: hidden;
+    }
+
+    .detfactconcep{
+        display: none;
+    }
+
+</style>
+<body class="hold-transition skin-yellow">
+<header class="header" style="background-color:#3c8dbc">
+    <div class="row">
+        <div class="col-md-3 hidden-xs"><img src='images/ng.png' class="img-responsive" alt="Responsive image"
+                                             style='float: left;'></div>
+        <div class="col-md-6 hidden-xs">
+            <center><img src='images/rv.png' class="img-responsive" alt="Responsive image" style="margin-top:6px">
+            </center>
+        </div>
+        <div class="col-md-3 hidden-xs"><img src='images/lg.png' class="img-responsive" alt="Responsive image"
+                                             style="float:right;"></div>
+    </div>
+</header>
+
+<div class="wrapper">
+
+    <header class="main-header">
+        <a href="starter.html" class="logo">
+            <span class="logo-mini"><b>S</b>FNB</span>
+
+            <span class="logo-lg"><b>SSSI</b>FANB</span>
+
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <span class="logo1 hidden-xs">Sistema de Seguridad Social Integral de la Fuerza Armada Nacional Bolivariana</span>
+            <div class="navbar-custom-menu">
+
+                <ul class="nav navbar-nav">
+                    <li class="dropdown messages-menu" style="" id="_search" onclick="ActivarBuscar()">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-search"></i>
+                        </a>
+                    </li>
+
+                    <li class="dropdown user user-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img src="images/ndisponible.jpg" onerror="this.src='images/ndisponible.jpg'"
+                                 class="user-image" alt="User Image">
+                            <span class="hidden-xs" id="_PerfilUsuario"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!-- The user image in the menu -->
+                            <li class="user-header">
+                                <img src="images/ndisponible.jpg" class="img-circle"
+                                     onerror="this.src='images/ndisponible.jpg'" alt="User Image">
+                                <p id="_NombreUsuario">
+
+
+                                </p>
+
+                            </li>
+
+                            <!-- Menu Footer-->
+                            <li class="user-footer">
+                                <div class="pull-left">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="VerCambiarClave()">Cambiar
+                                        clave</a>
+                                </div>
+                                <div class="pull-right">
+                                    <a href="#" class="btn btn-default btn-flat" onclick="CerrarSession()">Cerrar
+                                        Sesión</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar Menu -->
+            <ul class="sidebar-menu" data-widget="tree" id='_menu'>
+
+                <li class='header'>Menu</li>
+                <li><a href=""><i class="fa fa-television"></i> <span>Inicio</span></a></li>
+            </ul>
+            <!-- /.sidebar-menu -->
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+       
+     
+
+  <!-- Aqui empiezo -->
+    <section class="content-header">
+      <h1>
+        Creditos
+        <small>Cargar Crédito</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Créditos</a></li>
+        <li><a href="#">Personal</a></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+    <br>
+      <div class="col-md-9" id="panelregistro">
+        <div class="box box-primary">
+          <div class="box-body box-profile">
+           <div class="row">
+            <div class="col-md-3 col-sm-12">
+            <label>N° Solicitud:</label>
+            <input class="form-control" id="cedulap" type="text" maxlength="8" required tabindex="1">
+            </div>  
+            <div class="col-md-3 col-sm-12">
+             <label>Fecha Solicitud:</label>
+             <div class="input-group date">
+             <div class="input-group-addon">
+             <i class="fa fa-calendar"></i>
+             </div>
+             <div class="input-group input-group">
+             <input type="text" class="form-control" style="width: 110%;" id="fecharetirop">
+             </div>
+             </div>
+            </div> 
+            <div class="col-md-3 col-sm-12">
+            <label>Monto:</label>
+            <input class="form-control" id="cedulap" type="text" maxlength="8" required tabindex="1">
+            </div> 
+            <div class="col-md-3 col-sm-12">
+            <label>Plazo (Meses):</label>
+            <select class="js-states form-control" style="width: 100%" required aria-hidden="true">
+                <option selected="selected" value="S"></option>
+                <option value="">24</option>
+                <option value="">36</option>
+                <option value="">48</option>
+                <option value="">60</option>
+                <option value="">72</option>
+            </select>
+            </div> 
+           </div>
+           <br>
+          <div class="row">
+            <div class="col-md-3 col-sm-12">
+            <label>Tipo de Interes:</label>
+            <select class="js-states form-control" style="width: 100%" required aria-hidden="true">
+                <option selected="selected" value="S"></option>
+                <option value="">Fijo</option>
+                <option value="">Variable</option>
+            </select>
+            </div>
+            <div class="col-md-3 col-sm-12">
+            <label>Porc. Interés:</label>
+            <select class="js-states form-control" style="width: 100%" required aria-hidden="true">
+                <option selected="selected" value="S"></option>
+                <option value="">9</option>
+                <option value="">12</option>
+            </select>
+            </div>  
+           <div class="col-md-3 col-sm-12">
+            <label>Tipo de Mora:</label>
+            <select class="js-states form-control" style="width: 100%" required aria-hidden="true">
+                <option selected="selected" value="S"></option>
+                <option value="">Fijo</option>
+                <option value="">Variable</option>
+            </select>
+            </div>
+            <div class="col-md-3 col-sm-12">
+            <label>Porc. Mora:</label>
+            <select class="js-states form-control" style="width: 100%" required aria-hidden="true">
+                <option selected="selected" value="S"></option>
+                <option value="">15</option>
+                <option value="">17</option>
+            </select>
+            </div>
+          </div>
+          <br>
+              <!-- Inicia el Tabs -->
+  <div class="nav-tabs-custom">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#direccion" data-toggle="tab" aria-expanded="true">Dirección del Afiliado</a></li>
+    <li class=""><a href="#ctsBancarias" data-toggle="tab" aria-expanded="false">Datos Bancarios</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="direccion">
+                <!-- Direccion -->
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+            <label>Estado:</label>
+            <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmestado" required onchange="CiudadMunicipio()">
+              <option value="S" selected="selected"></option>
+            </select>
+            </div>
+            <div class="col-md-4">
+            <label>Ciudad:</label>
+            <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmciudad" required>
+              <option value="S" selected="selected"></option>
+            </select>
+            </div>
+            <div class="col-md-4">
+            <label>Municipio:</label>
+            <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+              <option value="S" selected="selected"></option>
+            </select>
+            </div>
+          </div> <!-- Grupo estados-->
+          <div class="row">
+            <div class="col-md-4">
+            <label >Parroquia:</label>
+            <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmparroquia" required>
+              <option value="S" selected="selected"></option>
+            </select>
+            </div>
+            <div class="col-md-4">
+            <label>Avenida / Edificio / Calle:</label>
+            <input id="txtmcalle" class="form-control" disabled="disabled"  type="text" required>
+            </div>
+            <div class="col-md-2">
+            <label># Casa:</label>
+            <input id="txtmcasa" class="form-control" disabled="disabled"  type="text">
+            </div>
+            <div class="col-md-2">
+            <label># Apto:</label>
+            <input id="txtmapto" class="form-control" disabled="disabled"  type="text">
+            </div>
+            </div>
+          <div class="row">
+            <div class="col-md-4">
+            <label >Teléfono:</label>
+            <div class="input-group">
+            <div class="input-group-addon">
+            <i class="fa fa-phone"></i>
+            </div>
+            <input id="txtmtelefono" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <label>Celular:</label>
+              <div class="input-group">
+              <div class="input-group-addon">
+              <i class="fa fa-phone"></i>
+              </div>
+              <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label class="control-label">Correo Electronico:</label>
+              <div class="input-group date">
+              <div class="input-group-addon">
+              <i class="fa fa-envelope"></i>
+              </div>
+              <input type="email" class="form-control"  id="txtmcorreo" disabled="disabled" required onblur="Util.ValidarCorreo()">
+              </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-12">
+            <button class="btn btn-primary btn-success" id="btnhabdire" type="button" onclick="habilitarDireccion(false)" style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i class="glyphicon glyphicon-edit"></i></button>
+            <button class="btn btn-primary btn-success" type="button" onclick="habilitarDireccion(true)" style="margin-top:23px; margin-bottom: 20px; display: none" id="btndhabdire">Salvar &nbsp<i class="glyphicon glyphicon-save"></i></button>
+            </div>
+          </div>
+        </div> 
+                <!-- /.Direccion -->
+    </div>
+    <div class="tab-pane" id="ctsBancarias">
+                <!-- Cuentas Bancarias -->
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4 col-sm-12">
+            <label>Datos bancarios:</label>
+            <select class="form-control" style="width: 100%" id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
+              <option selected="selected" value="S">Seleccione</option>
+            </select>
+            </div>
+            <div class="col-md-4 col-sm-12" >
+            <label>Depositar a:</label>
+            <select class="form-control" style="width: 100%" id="depositar" disabled="true" onchange="cedulaDepositar()">
+              <option selected="selected" value="S">Seleccionar</option>
+            </select>
+            </div>
+            <div class="col-md-4 col-sm-12">
+            <label>Cedula:</label>
+            <input type="text" class="form-control" id="cibancario" disabled="true">
+            </div>
+            <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
+            <label>Nro. de Cuenta:</label>
+            <input id="numerocuenta" class="form-control" type="text" maxlength="23" data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true" data-mask>
+            </div>
+            <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
+              <label>Banco:</label>
+              <select class="form-control" style="width: 100%" id="banco" disabled="true">
+                  <option selected="selected" value="S"></option>
+                  <option value="0156">100%BANCO</option>
+                  <option value="0196">ABN AMRO BANK</option>
+                  <option value="0172">BANCAMIGA BANCO MICROFINANCIERO, C.A.</option>
+                  <option value="0171">BANCO ACTIVO BANCO COMERCIAL, C.A.</option>
+                  <option value="0166">BANCO AGRICOLA</option>
+                  <option value="0175">BANCO BICENTENARIO</option>
+                  <option value="0128">BANCO CARONI, C.A. BANCO UNIVERSAL</option>
+                  <option value="0164">BANCO DE DESARROLLO DEL MICROEMPRESARIO</option>
+                  <option value="0102">BANCO DE VENEZUELA S.A.I.C.A.</option>
+                  <option value="0114">BANCO DEL CARIBE C.A.</option>
+                  <option value="0149">BANCO DEL PUEBLO SOBERANO C.A.</option>
+                  <option value="0163">BANCO DEL TESORO</option>
+                  <option value="0176">BANCO ESPIRITO SANTO, S.A.</option>
+                  <option value="0115">BANCO EXTERIOR C.A.</option>
+                  <option value="0003">BANCO INDUSTRIAL DE VENEZUELA.</option>
+                  <option value="0173">BANCO INTERNACIONAL DE DESARROLLO, C.A.</option>
+                  <option value="0105">BANCO MERCANTIL C.A.</option>
+                  <option value="0191">BANCO NACIONAL DE CREDITO</option>
+                  <option value="0116">BANCO OCCIDENTAL DE DESCUENTO.</option>
+                  <option value="0138">BANCO PLAZA</option>
+                  <option value="0108">BANCO PROVINCIAL BBVA</option>
+                  <option value="0104">BANCO VENEZOLANO DE CREDITO S.A.</option>
+                  <option value="0168">BANCRECER S.A. BANCO DE DESARROLLO</option>
+                  <option value="0134">BANESCO BANCO UNIVERSAL</option>
+                  <option value="0177">BANFANB</option>
+                  <option value="0146">BANGENTE</option>
+                  <option value="0174">BANPLUS BANCO COMERCIAL C.A</option>
+                  <option value="0190">CITIBANK.</option>
+                  <option value="0121">CORP BANCA.</option>
+                  <option value="0157">DELSUR BANCO UNIVERSAL</option>
+                  <option value="0151">FONDO COMUN</option>
+                  <option value="0601">INSTITUTO MUNICIPAL DE CR&#201;DITO POPULAR</option>
+                  <option value="0169">MIBANCO BANCO DE DESARROLLO, C.A.</option>
+                  <option value="0137">SOFITASA</option>
+              </select>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <label>Tipo de Cuenta:</label>
+              <select class="form-control" style="width: 100%"
+                      id="tipodecuenta" disabled="true">
+                  <option selected="selected" value="S"></option>
+                  <option value="CA" selected="selected">AHORRO</option>
+                  <option value="CC">CORRIENTE</option>
+              </select>
+          </div>
+          </div>
+            <br>
+          <div class="row">
+                <div class="col-md-4"><label>Telefono:</label><input type="text" class="form-control" id="telfcontacto"/></div>
+          </div>
+      </div>
+                    <!-- /. Cuentas Bancarias -->
+      </div>
+      </div>
+      </div><!-- Termina el Tabs -->
+       <div class="row">
+          <div class="col-md-12">
+          <button type="button" class="btn btn-md btn-success" onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 10px;">
+          <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar Crédito
+          </button>
+          <br><br>
+          </div>
+       </div>
+
+      </div>
+     </div>
+    </div>
+    
+
+    <div class="col-md-3" id="panelperfil">
+        <div class="box box-primary">
+          <div class="box-body box-profile">
+             <img class="profile-user-img img-responsive" style="width: 80px;" src=""
+             onerror="this.src='images/ndisponible.jpg'"
+             alt="User profile picture" id="fotoperfil">
+
+              <h3 class="profile-username text-center" id="lblnombre"></h3>
+              
+            <ul class="list-group list-group-unbordered">
+              <li class="list-group-item">
+                <label><b>Cedula</b></label> <a><label id="lblcedula" class="pull-right"></label></a>
+              </li>
+              <li class="list-group-item">
+                <label><b>Grado</b></label> <a><label id="lblgrado" class="pull-right">Coronel</label></a>
+              </li>
+              <li class="list-group-item">
+                <label><b>Comp.</b></label> <a><label id="lblcomponente" class="pull-right">Aviación</label></a>
+              </li>
+              <li class="list-group-item">
+                <label><b>Situación</b></label> <a><label id="lblsituacion" class="pull-right">Activo</label></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+
+
+<!-- Aqui Termino -->
+</section>
+        <!-- /.content -->
+</div>
+    <!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="pull-right hidden-xs">
+
+        </div>
+        <!-- Default to the left -->
+        <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+
+<script src="bower_components/notify/notify.min.js"></script>
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+
+
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+</body>
+</html>
