@@ -113,25 +113,7 @@
 
                                     <div class="col-md-4 ">
                                         <label>Patologia:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbpatologia"
-                                                required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">OBSTETRICIA</option>
-                                            <option value="1">CARDIOLOGIA</option>
-                                            <option value="2">MEDICINA INTERNA</option>
-                                            <option value="3">TRAUMATOLOGIA</option>
-                                            <option value="4">CIRUGIA GENERAL</option>
-                                            <option value="5">ONCOLOGIA</option>
-                                            <option value="6">NEUROLOGIA</option>
-                                            <option value="7">UROLOGIA</option>
-                                            <option value="8">NEUMONOLOGIA</option>
-                                            <option value="9">PEDIATRIA NEONATAL</option>
-                                            <option value="10">GASTROENTEROLOGIA</option>
-                                            <option value="11">GINECOLOGIA</option>
-                                            <option value="12">NEUROCIRUGIA</option>
-                                            <option value="13">OTORRINOLARINGOLOGIA</option>
-
-                                        </select>
+                                        <input class="form-control " id="patologia" required="required">
                                     </div>
                                 </div>
 
@@ -194,13 +176,18 @@
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
-                                        <label>Monto a Cubrir:</label>
+                                        <label>Monto a Cubrir de la Aseguradora:</label>
                                         <input class="form-control" id="montoacubrir" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
 
+                                   <div class="col-md-4 col-sm-12">
+                                        <label>Diferencia Solicitada:</label>
+                                        <input class="form-control" id="montosolicitado" required="required"
+                                               onkeypress="return SoloNumero(event)">
+                                    </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label>Monto Aprobado:</label>
+                                        <label>Monto Aprobado por el IPSFA:</label>
                                         <input class="form-control" id="montoaprobado" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
