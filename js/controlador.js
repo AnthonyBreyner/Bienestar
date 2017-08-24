@@ -179,59 +179,14 @@ $(function () {
         Estados.Crear(JSON.parse(xhRequest.responseText));
     });
     CargarUrl("opciones","modulo_atencion");
-    CargarUrl("modalreembolso","inc/modals");
+    CargarUrl("modalgeneral","inc/modals");
     CargarUrl("_bxBuscar", "buscar");
+    CargarUrl("panelperfil", "inc/perfil");
+    CargarUrl("panellista", "inc/lstReembolsos");
+    CargarUrl("panelentrada", "inc/opcionesPrograma");
+
 
 });
-
-function cargaPrograma(tipo){
-    $("#opciones").hide();
-    $("#_bxBuscar").show();
-    switch (tipo){
-        case "r":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearReembolso");
-            break;
-        case "a":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearApoyoEconomico");
-            break;
-        case "pen":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearPension");
-            break;
-        case "far":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearFarmacia");
-            break;
-        case "invs":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearInvSocial");
-            break;
-        case "fdv":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearFedeVida");
-            break;
-        case "ca":
-            CargarUrl("panelentrada", "inc/entradareembolso");
-            CargarUrl("panelperfil", "inc/perfil");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearCartaAval");
-            break;
-    }
-}
 
 function CiudadMunicipio(valor){
     if (valor == undefined){

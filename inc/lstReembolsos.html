@@ -19,35 +19,47 @@
         </div>
     </div>
 </div>
+<div clas="row">
+    <div class="col-md-12">
+        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+    </div>
+</div>
 <div class="row" id="lstDetalle" style="display: none;">
     <div class="col-md-12">
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">Detalle De Reembolso numero <p id="lbldetnumero"></p></h3>
-            <!-- /.box-tools -->
-        </div>
-        <div class="box-body no-padding">
-            <!-- /.mailbox-read-info -->
-            <div class="mailbox-controls with-border text-center">
-                <div class="btn-group">
-                    <button type="button" id="btnvolverlista" class="btn btn-default btn-sm" data-toggle="tooltip"
-                            data-container="body"
-                            title="Reply">
-                        <i class="fa fa-reply"></i></button>
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Detalle De Reembolso numero <p id="lbldetnumero"></p></h3>
+                <!-- /.box-tools -->
+            </div>
+            <div class="box-body no-padding">
+                <!-- /.mailbox-read-info -->
+                <div class="mailbox-controls with-border text-center">
+                    <div class="btn-group">
+                        <button type="button" id="btnvolverlista" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                data-container="body"
+                                title="Reply">
+                            <i class="fa fa-reply"></i></button>
+                    </div>
                 </div>
+                <!-- /.mailbox-controls -->
+                <div class="mailbox-read-message">
+                    <!-- Widget: user widget style 1 -->
+                    <table class='table table-responsive table-bordered'>
+                        <thead>
+                        <tr class='success'>
+                            <td>Afiliado</td>
+                            <td>Beneficiario</td>
+                            <td>Factura</td>
+                            <td>Control</td>
+                            <td>F.Factura</td>
+                            <td>Monto</td>
+                        </tr>
+                        </thead>
+                        <tbody id="cuerpoLstConceptos"></tbody>
+                    </table>
+                </div>
+                <!-- /.mailbox-read-message -->
             </div>
-            <!-- /.mailbox-controls -->
-            <div class="mailbox-read-message">
-                <!-- Widget: user widget style 1 -->
-                <table class='table table-responsive table-bordered'>
-                    <thead>
-                    <tr class='success'><td>Afiliado</td><td>Beneficiario</td><td>Factura</td><td>Control</td><td>F.Factura</td><td>Monto</td></tr>
-                    </thead>
-                    <tbody id="cuerpoLstConceptos"></tbody>
-                </table>
-            </div>
-            <!-- /.mailbox-read-message -->
         </div>
-    </div>
     </div>
 </div>
