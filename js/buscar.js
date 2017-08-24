@@ -163,7 +163,7 @@ function cargaPrograma(tipo){
             titulos("Fe de vida");
             break;
         case "ca":
-            CargarUrl("modalgeneral","inc/modals");
+            CargarUrl("modalgeneral","inc/modalscarta");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
