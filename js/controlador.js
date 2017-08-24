@@ -203,5 +203,5 @@ function SeleccionarParroquia(valor){
 }
 
 function buzon(){
-    $("#panelderecho").html("Aca va el buzon");
+    CargarUrl("panelderecho","inc/buzon");
 }
