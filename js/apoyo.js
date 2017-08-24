@@ -10,7 +10,7 @@ $(function () {
     $("#concepto").select2();
 
     $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnAgconcepto");
+        verificaCheckModal("requisitosapoyo","btnAgconcepto");
     });
 
     $(".mdl-requisitos2").on("change",function () {
