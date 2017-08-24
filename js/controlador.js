@@ -206,6 +206,30 @@ function cargaPrograma(tipo){
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearPension");
             break;
+        case "far":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearFarmacia");
+            break;
+        case "invs":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearInvSocial");
+            break;
+        case "fdv":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearFedeVida");
+            break;
+        case "ca":
+            CargarUrl("panelentrada", "inc/entradareembolso");
+            CargarUrl("panelperfil", "inc/perfil");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearCartaAval");
+            break;
     }
 }
 
