@@ -145,7 +145,7 @@ function cargaPrograma(tipo){
             titulos("Pension");
             break;
         case "far":
-            CargarUrl("modalgeneral","inc/modals");
+            CargarUrl("modalgeneral","inc/modalsfarmacia");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Farmacia");
