@@ -202,4 +202,5 @@ function SeleccionarParroquia(valor){
 
 function buzon(){
     CargarUrl("panelderecho","inc/buzon");
+    listaBuzon(0);
 }
