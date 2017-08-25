@@ -20,7 +20,7 @@ function crearBuzon(est){
     $.each(lstBuzon,function(){
         var item = '<li><div class="row"><div class="col-sm-1"><span class="text"> '+this.numero+'</span></div>\n' +
             '                <div class="col-sm-1"><span class="text">'+this.id+'</span></div>\n' +
-            '                <div class="col-sm-4">'+this.nombre+'</div>\n' +
+            '                <div class="col-sm-3">'+this.nombre+'</div>\n' +
             '                <div class="col-sm-2">'+Util.ConvertirFechaHumana(this.fechacreacion)+'</div>\n' +
             '                <div class="col-sm-2">M.Solicitud</div>\n' +
             '                <div class="col-sm-2">Estatus<small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small></div>\n' +
