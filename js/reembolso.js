@@ -231,7 +231,7 @@ function historico(){
                 "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
-                this.montosolicitado,
+                numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
                 est
             ]).draw(false);
             $('#historicoReembolso thead td.pbuscar').each( function () {
@@ -275,8 +275,8 @@ function detalleVisible(pos){
     var tconcepto = "";
     $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
-            "<td>"+this.DatoFactura.numero+"</td><td>"+this.DatoFactura.control+"</td><td>"+ffact+"</td><td>"+this.DatoFactura.monto+"</td></tr>";
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
     })
     tconcepto += "</table>";
     $("#cuerpoLstConceptos").html(tconcepto);
