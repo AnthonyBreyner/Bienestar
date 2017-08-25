@@ -139,7 +139,7 @@ function cargaPrograma(tipo){
             titulos("Apoyo <br> Economico");
             break;
         case "pen":
-            CargarUrl("modalgeneral","inc/modals");
+            CargarUrl("modalgeneral","inc/modalspension");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearPension");
             titulos("Pension");

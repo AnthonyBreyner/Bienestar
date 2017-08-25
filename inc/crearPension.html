@@ -201,7 +201,7 @@
                                                        type="text" maxlength="8" required>
                                             </div>
                                             <div class="col-md-3">
-                                                <label>Porc. No Ascenso:</label>
+                                                <label>% No Ascenso:</label>
                                                 <input id="txtporcprimanoascenso" class="form-control"
                                                        disabled="disabled" type="text" maxlength="8" required>
                                             </div>
@@ -321,15 +321,54 @@
 
                                             </div>
                                         </div>
-
-
                                     </div><!-- Tab Datos Financieros-->
                                     <div role="tabpanel" class="tab-pane" id="mmedidajp" style="padding:15px">
                                         <div class="form-group">
-                                        </div> <!-- Grupo nombres-->
+                                          <div class="col-md-4 col-sm-12">
+                                              <label>Nº Oficio:</label>
+                                              <input type="text" class="form-control" id="txtnrooficio"
+                                                     disabled="disabled" tabindex="4">
+                                          </div>
+                                          <div class="col-md-4 col-sm-12">
+                                              <label>Nº Expediente:</label>
+                                              <input type="text" class="form-control" id="txtexpediente"
+                                                     disabled="disabled" tabindex="4">
+                                          </div>
+                                          <div class="col-md-3 col-sm-12">
+                                              <label>Fecha:</label>
+                                              <div class="input-group date">
+                                                  <div class="input-group-addon">
+                                                      <i class="fa fa-calendar"></i>
+                                                  </div>
+                                                  <div class="input-group input-group">
+                                                      <input type="text" class="form-control" style="width: 130%;"
+                                                             id="txtfechaexpediente">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </div> <!-- Grupo Informacion Oficio-->
                                         <div class="form-group">
-                                        </div> <!-- Grupo nombres-->
+                                          <div class="col-md-12 col-sm-12" id="_cmbminstfinanciera">
+                                              <label>Tipo de Medida:</label>
+                                              <select class="js-states form-control" style="width: 100%"
+                                                      aria-hidden="true" required id="cmbtipomedida"
+                                                      onchange="">
+                                                  <option selected="selected" value="S"></option>
+                                                  <option value="">Embargo Judicial</option>
+                                                  <option value="">Pensión Alimentaria</option>
+                                                  <option value="">Aguinaldos</option>
+                                                  <option value="">Utiles Escolares</option>
+                                              </select>
+                                          </div>
+                                          <div class="form-group">
+                                            <div class="col-md-12 col-sm-12">
+                                              <label>Observaciones:</label>
+                                              <textarea class="form-control" id="nota" rows="3" placeholder=""></textarea>
+                                            </div>
+                                          </div>
+                                        </div> <!-- Grupo -->
                                         <div class="form-group">
+                                          
                                         </div><!-- Grupo nombres-->
                                         <div class="form-group">
                                         </div>
@@ -351,3 +390,4 @@
     </div><!-- /.row -->
 </section>
 <!-- /.content -->
+<script src = "js/pension.js" ></script>
