@@ -169,6 +169,12 @@ function cargaPrograma(tipo){
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
             break;
+        case "badan":
+            CargarUrl("modalgeneral","inc/modalscarta");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearCartaAval");
+            titulos("Medicina de Alto Costo");
+            break;
     }
     $("#opciones").slideToggle();
     $("#panelentrada").slideToggle();
