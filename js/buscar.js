@@ -154,7 +154,7 @@ function cargaPrograma(tipo){
             CargarUrl("modalgeneral","inc/modals");
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearInvSocial");
-            titulos("Investigacion Social");
+            titulos("Investigacion </br> Social");
             break;
         case "fdv":
             CargarUrl("panelentrada", "inc/opcionesFedevida");
@@ -168,6 +168,13 @@ function cargaPrograma(tipo){
             CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
+            break;
+
+         case "badan":
+            CargarUrl("modalgeneral","inc/modalscarta");
+            CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearCartaAval");
+            titulos("Medicina de Alto Costo");
             break;
     }
     $("#opciones").slideToggle();
