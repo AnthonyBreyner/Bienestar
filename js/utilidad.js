@@ -21,6 +21,7 @@ class Utilidad {
             $.notify("("+tecla+") Caracter no permitido", "warning");
             return false;
         }
+        return true;
     }
 
     cmbField(obj,foco){
@@ -49,6 +50,7 @@ class Utilidad {
         }
         if(letras.indexOf(tecla) == -1 && !tecla_especial)
             return false;
+        return true;
     }
 
     SoloNumero(event,elemento,monto) {
@@ -77,6 +79,7 @@ class Utilidad {
         if (numeros.indexOf(tecla) == -1 && !tecla_especial) {
             return false;
         }
+        return true;
     }
 
     //Recibe  Fecha Formato: AAAA-MM-DD 00:00:00

@@ -1,6 +1,4 @@
 $(function () {
-    console.log("aca");
-    console.log(militar);
     $("#rif").on("blur",function () {
         consultarRif();
     });
@@ -38,7 +36,6 @@ function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
-    console.log(lstProveedores);
     $.each(lstProveedores,function () {
         if(this.rif == rif){
             rz= this.razonsocial;
@@ -68,7 +65,7 @@ function salvarEmpresa(){
 
 function llenar(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-    $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+    $("#datosbancarios").html('<option selected="selected" value="S"></option>');
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         $("#cuerporeembolsos").html("");

@@ -183,8 +183,6 @@ $(function () {
     CargarUrl("panelperfil", "inc/perfil");
     CargarUrl("panellista", "inc/lstReembolsos");
     CargarUrl("panelentrada", "inc/opcionesPrograma");
-
-
 });
 
 function CiudadMunicipio(valor){
