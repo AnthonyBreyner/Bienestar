@@ -88,7 +88,7 @@
     }
 
 </style>
-
+        
 <div class="body box">
     <div class="container-fluid">
         <div class="row">
@@ -97,9 +97,13 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                        aria-expanded="true" aria-controls="collapseOne">
                         <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
-                            <h4 class="panel-title">
+                             <h4 class="panel-title">
                                 Datos de Farmacia
-                            </h4>
+                           <div class="box-tools pull-right">
+        				 <button type="button" class="btn btn-box-tool" onclick="Obtenerdatos()"><i class="fa fa-save"></i>
+
+        				</button>
+      					</div>
                         </div>
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
@@ -360,3 +364,7 @@
     </div>
 </div>
 <script src = "js/farmacia.js" ></script>
+
+
+
+
