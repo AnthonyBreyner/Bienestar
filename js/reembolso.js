@@ -119,10 +119,10 @@ function llenar(){
             $("#txtmapto").val(DIR.apartamento);
         }
 
-        $("#paneldatos").show();
+        /*$("#paneldatos").show();
         $("#panelperfil").show();
         $("#opciones").show();
-        $("#_bxBuscar").hide();
+        $("#_bxBuscar").hide();*/
     }else{
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();
@@ -217,16 +217,27 @@ function historico(){
         $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
             var est = "Por procesar";
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
-            var listaFact = "<div class=\"dropdown\">\n" +
-                "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                "            Ver" +
-                "            <span class=\"fa fa-plus\"></span>\n" +
-                "            </button>\n" +
-                "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
-            $.each(this.Concepto,function(){
-                listaFact += "<li class='bg-info'>"+this.DatoFactura.numero+"</li>";
-            });
-            listaFact +="</ul></div>";
+            var listaFact = "";
+            var nfac = "";
+            if(this.Concepto[0].DatoFactura.numero == ""){
+                nfac = "Sin factura";
+            }
+            if(this.Concepto.length > 1){
+                listaFact = "<div class=\"dropdown\">\n" +
+                    "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+                    "            "+ nfac +
+                    "            <span class=\"fa fa-plus\"></span>\n" +
+                    "            </button>\n" +
+                    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
+                $.each(this.Concepto,function(){
+                    var nfac2 = this.DatoFactura.numero;
+                    if(nfac2 == "") nfac2 = "Sin Factura"
+                    listaFact += "<li class='bg-info'>"+nfac2+"</li>";
+                });
+                listaFact +="</ul></div>";
+            }else{
+                listaFact = nfac;
+            }
             t.row.add([
                 "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
                 "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
@@ -237,7 +248,7 @@ function historico(){
             ]).draw(false);
             $('#historicoReembolso thead td.pbuscar').each( function () {
                 var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Buscar" /><br>'+title );
+                $(this).html( title+'<br><input type="text" placeholder="Buscar" />' );
             } );
             t.columns().every( function () {
                 var that = this;

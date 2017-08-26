@@ -176,8 +176,8 @@ function cargaPrograma(tipo){
             titulos("Medicina de Alto Costo");
             break;
     }
-    $("#opciones").slideToggle();
-    $("#panelentrada").slideToggle();
+    $("#opciones").hide();
+    $("#panelentrada").show();
 }
 
 function titulos(t){
@@ -221,8 +221,8 @@ function inactivarCheck(mdl){
 function crearPrograma(){
     $("#panellista").hide();
     $("#paneldatos").show();
-    $("#panelentrada").slideUp();
-    $("#panelregistro").slideDown();
+    $("#panelentrada").hide();
+    $("#panelregistro").show();
 
     //$("#btnnreembolso").hide();
     //$("#btnlreembolso").show();
@@ -231,8 +231,8 @@ function crearPrograma(){
 function verPrograma(){
     $("#panelregistro").hide();
     $("#paneldatos").show();
-    $("#panelentrada").slideUp();
-    $("#panellista").slideDown();
+    $("#panelentrada").hide();
+    $("#panellista").show();
     //$("#btnnreembolso").show();
     //$("#btnlreembolso").hide();
 }
