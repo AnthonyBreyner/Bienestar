@@ -193,6 +193,7 @@ function historico(){
         'autoWidth': false,
         "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
         "bStateSave": true,
+        "order": [[ 3, "desc" ]],
         "language": {
             "lengthMenu": "Mostar _MENU_ filas por pagina",
             "zeroRecords": "Nada que mostrar",
@@ -215,7 +216,7 @@ function historico(){
         var i = 0;
         $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
             var est = "Por procesar";
-            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
+            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
             var listaFact = "<div class=\"dropdown\">\n" +
                 "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
                 "            Ver" +

@@ -54,16 +54,13 @@ class Utilidad {
     }
 
     SoloNumero(event,elemento,monto) {
-        var contenidocaja = $("#"+elemento.id).val();
-
-
         var key = event.keyCode || event.which;
         var tecla = String.fromCharCode(key).toLowerCase();
         var numeros = "0123456789";
         var especiales = [8, 37, 39, 13, 9];
         if(monto == true) especiales.push(46);
         if(key == 46){
-            if(contenidocaja.indexOf(".") != -1 || contenidocaja == ""){
+            if(elemento.value.indexOf(".") != -1 || elemento.value == ""){
                 return false;
             }
         }
@@ -84,11 +81,14 @@ class Utilidad {
 
     //Recibe  Fecha Formato: AAAA-MM-DD 00:00:00
     //Retorna Fecha Formato: DD/MM/AAAA
-    ConvertirFechaHumana(f) {
+    ConvertirFechaHumana(f,formato) {
         var ISODate = new Date(f).toISOString();
         var fe = ISODate.substr(0, 10);
         var fa = fe.split("-");
         if (fa[0] != "0001") {
+            if(formato != null){
+                return fa[0] + "/" + fa[1] + "/" + fa[2];
+            }
             return fa[2] + "/" + fa[1] + "/" + fa[0];
         } else {
             return "";

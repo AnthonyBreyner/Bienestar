@@ -126,7 +126,7 @@ function crearTablaConceptos(numero) {
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
             '                                <td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>\n' +
-            '                                <td><input type="text" value="' + this.DatoFactura.monto + '" class="mntAcumulado"></td>\n' +
+            '                                <td><input type="text" value="' + this.DatoFactura.monto + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
             '                                </td><td><button type="button" class="btn btn-default btn-sm modconcep" data-toggle="tooltip"title="Modificar"><i class="fa fa-check" style="color: green;"></i></button></td></tr>';
@@ -151,7 +151,6 @@ function crearTablaConceptos(numero) {
     if (copia.Seguimiento.Observaciones.length > 0) {
         var lstObs = copia.Seguimiento.Observaciones;
         $.each(lstObs, function () {
-            console.log(this);
             $("#cuerpoObservaciones").html('<tr><td>' + this + '</td><td></td></tr>');
         });
 
@@ -166,6 +165,7 @@ function calcularAcumulado() {
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
     $("#totalter").html(acumulado);
+    copia.montoaprobado = parseFloat(acumulado);
 }
 
 
@@ -177,6 +177,8 @@ function volverLista() {
 
 function actualizarReembolso() {
     var conceptos = new Array();
+    var datos = null;
+    console.log(copia);
     if ($("#cuerpoEditarConceptos tr").length > 0) {
         $("#cuerpoEditarConceptos tr").each(function () {
             var concep = new ConceptoReembolso();
@@ -185,7 +187,6 @@ function actualizarReembolso() {
             if ($(this).find("td").eq(4).html() != "") {
                 ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(4).html())).toISOString();
             }
-            console.log(ffact);
             facturaD.fecha = ffact;
             facturaD.monto = parseFloat($(this).find("input.mntAcumulado").val());
             facturaD.numero = $(this).find("input.numfact").val();
@@ -207,22 +208,32 @@ function actualizarReembolso() {
             conceptos.push(concep);
         });
         copia.Concepto = conceptos;
-
-        var datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero.text, Reembolso: copia};
-        console.log(datos);
-        /*var urlGuardar = Conn.URL + "wreembolso";
-        var request2 = CargarAPI({
-            sURL: urlGuardar,
-            metodo: 'POST',
-            valores: datos,
-        });
-
-        request2.then(function(xhRequest) {
-            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-        });*/
     } else {
         $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
     }
+
+
+    var obseraciones = new Array();
+    if($("#cuerpoObservaciones tr").length > 0){
+        $("#cuerpoObservaciones tr").each(function(){
+           obseraciones.push($(this).find("td").eq(0).html());
+        });
+    }
+    copia.Seguimiento.Estatus = $("#estSeguimiento").val();
+    copia.Seguimiento.observaciones = obseraciones;
+
+    datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia};
+    console.log(datos);
+    /*var urlGuardar = Conn.URL + "wreembolso";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'POST',
+        valores: datos,
+    });
+
+    request2.then(function(xhRequest) {
+        var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    });*/
 }
 
 function agObservacion() {
