@@ -1,6 +1,7 @@
 let lstBuzon = null;
 let reembolsoActivo = null;
 let copia = null;
+let posicionModificar = null;
 $(function () {
     $(".modconcep").click(function () {
 
@@ -117,7 +118,10 @@ function crearTablaConceptos(numero) {
     var lst = reembolsoActivo.CIS.ServicioMedico.Programa.Reembolso;
     var i = 0;
     $.each(lst, function () {
-        if (this.numero == numero) pos = i;
+        if (this.numero == numero) {
+            pos = i;
+            posicionModificar = i;
+        }
         i++;
     });
     copia = lst[pos];
@@ -126,10 +130,10 @@ function crearTablaConceptos(numero) {
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
             '                                <td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>\n' +
-            '                                <td><input type="text" value="' + this.DatoFactura.monto + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)"></td>\n' +
+            '                                <td><input type="text" value="' + this.DatoFactura.monto + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
-            '                                </td><td><button type="button" class="btn btn-default btn-sm modconcep" data-toggle="tooltip"title="Modificar"><i class="fa fa-check" style="color: green;"></i></button></td></tr>';
+            '                                </td></tr>';
         $("#cuerpoEditarConceptos").append(fila);
     });
     $("#totalter").html(copia.montosolicitado);
@@ -148,12 +152,11 @@ function crearTablaConceptos(numero) {
     /**
      * Crear tabla de objservaciones
      */
-    if (copia.Seguimiento.Observaciones.length > 0) {
+    if (copia.Seguimiento.Observaciones != undefined) {
         var lstObs = copia.Seguimiento.Observaciones;
         $.each(lstObs, function () {
-            $("#cuerpoObservaciones").html('<tr><td>' + this + '</td><td></td></tr>');
+            $("#cuerpoObservaciones").html('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
-
     }
 }
 
@@ -161,7 +164,6 @@ function calcularAcumulado() {
     var acumulado = 0;
     $("#cuerpoEditarConceptos tr").each(function () {
         var mnt = $(this).find("input.mntAcumulado").eq(0).val();
-        alert(mnt);
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
     $("#totalter").html(acumulado);
@@ -215,32 +217,32 @@ function actualizarReembolso() {
 
     var obseraciones = new Array();
     if($("#cuerpoObservaciones tr").length > 0){
-        $("#cuerpoObservaciones tr").each(function(){
+        $("#cuerpoObservaciones tr.agobs").each(function(){
            obseraciones.push($(this).find("td").eq(0).html());
         });
     }
-    copia.Seguimiento.Estatus = $("#estSeguimiento").val();
-    copia.Seguimiento.observaciones = obseraciones;
+    copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
 
-    datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia};
+    datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar};
     console.log(datos);
-    /*var urlGuardar = Conn.URL + "wreembolso";
+    console.log(JSON.stringify(datos));
+    var urlGuardar = Conn.URL + "wreembolso";
     var request2 = CargarAPI({
         sURL: urlGuardar,
-        metodo: 'POST',
+        metodo: 'PUT',
         valores: datos,
     });
 
     request2.then(function(xhRequest) {
-        var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });*/
+        $.notify("Se actualizo con exito");
+    });
 }
 
 function agObservacion() {
     var texto = $("#txtObservacion").val();
     var cant = $("#cuerpoObservaciones tr").length;
     var rem = '<button type="button" onclick="remObse(this)" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i></button>';
-    $("#cuerpoObservaciones").append("<tr><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
+    $("#cuerpoObservaciones").append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
 }
 
 function remObse(fila) {
