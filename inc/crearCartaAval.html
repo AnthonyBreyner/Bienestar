@@ -127,14 +127,14 @@
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <label>Observaciones</label>
-                                        <textarea class="form-control" rows="3"></textarea>
+                                        <textarea class="form-control" id="observacion" rows="3"></textarea>
                                     </div>
                                 </div>
 
                                 </br>
                                 <div class="row">
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-md btn-success pull-left">
+                                        <button type="button" onclick="agregarConcepto()" class="btn btn-md btn-success pull-left">
                                             <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR CARTA AVAL
                                         </button>
 
@@ -142,7 +142,14 @@
                                 </div>
 
                             </form>
+
+
                         </div>
+                        <table class="table table-bordered">
+                            <thead><tr><td>Familiar</td><td>Concepto</td><td>Beneficiario</td><td>Patolgia</td><td>Fondo</td><td>Servicio</td><td><td></td></tr></thead>
+                            <tbody id="conceptoagregado">
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 
