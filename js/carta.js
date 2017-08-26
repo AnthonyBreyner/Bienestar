@@ -153,7 +153,7 @@ function crearLista(){
         var picado = $("#cmbbeneficiario option:selected").val().split("|");
         if(opt != '|seleccione' && picado[0]!="T"){
             cargarFamiliar(picado[0]);
-            $("#perfilFamiliar").show();
+            $("#perfilFamiliar").hide();
         }else{
             $("#perfilFamiliar").hide();
         }
@@ -278,16 +278,16 @@ function agregarConcepto(){
     if(Util.ValidarFormulario("frmreembolso","btnAgconcepto")){
         var bene = $("#cmbbeneficiario option:selected").val().split('|');
         var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
-        var concepto = $("#concepto option:selected").text();
-        var monto  = $("#monto").val();
+        var concepto = $("#cmbconcepto option:selected").text();
+        var monto  = $("#cmbpatologia option:selected").text();
         var rif = $("#rif").val();
         var razon = $("#razonsocial").val();
-        var factura = $("#nfactura").val();
-        var fechaf = $("#fechafactura").val();
+        var fondo = $("#cmbfondo option:selected").text();
+        var servicios = $("#cmbserviciocartavala option:selected").text();
         var tabla = $("#conceptoagregado");
         var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
-        var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td class=\"detfactconcep\">"+razon+"</td><td>"+factura+"</td><td class='mntAcumulado'>"+monto+"</td>";
-        html += "<td class=\"detfactconcep\">"+fechaf+"</td><td>"+btndelete+"</td></tr>";
+        var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td>"+razon+"</td><td>"+monto+"</td><td>"+fondo+"</td>";
+        html += "<td>"+servicios+"</td><td>"+btndelete+"</td></tr>";
         tabla.append(html);
 
         $(".borrarconcepto").click(function () {
