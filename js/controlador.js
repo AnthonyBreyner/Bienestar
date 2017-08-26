@@ -44,6 +44,13 @@ class ConceptoReembolso {
     }
 }
 
+class Seguimiento{
+    constructor(){
+        this.Estatus = 0;
+        this.Observaciones = new Array();
+    }
+}
+
 class Reembolso {
     constructor() {
         console.log("Creando objeto Reembolso");
@@ -61,6 +68,7 @@ class Reembolso {
         this.Direccion = new Direccion();
         this.Telefono = new Telefono();
         this.Correo = new Correo();
+        this.Seguimiento = new Seguimineto();
     }
 }
 

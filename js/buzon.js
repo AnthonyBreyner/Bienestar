@@ -124,7 +124,7 @@ function crearTablaConceptos(numero){
     $.each(copia.Concepto,function(){
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>'+this.afiliado+'</td><td>'+this.descripcion+'</td><td>'+this.DatoFactura.Beneficiario.rif+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.razonsocial+'</td><td>'+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+'</td>\n' +
-        '                                <td><input type="text" value="'+this.DatoFactura.numero+'"></td>\n' +
+        '                                <td><input type="text" value="'+this.DatoFactura.numero+' class="numfact""></td>\n' +
         '                                <td><input type="text" value="'+this.DatoFactura.monto+'" class="mntAcumulado"></td>\n' +
         '                                <td style="width: 7%;">\n' +
         '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
@@ -143,6 +143,22 @@ function crearTablaConceptos(numero){
     $(".modconcep").click(function () {
         calcularAcumulado();
     });
+
+    /**
+     * Crear tabla de objservaciones
+     */
+    if(copia.Seguimiento.Observaciones.length > 0){
+        var lstObs = copia.Seguimiento.Observaciones;
+        var j = 0;
+        $.each(lstObs,function(){
+            j++;
+            console.log(this);
+            $("#cuerpoObservaciones").html('<tr><td>'+j+'</td><td>'+this+'</td></tr>');
+        });
+
+    }else{
+        $("#cuerpoObservaciones").html('<tr><td colspan="2">Sin observaciones</td></tr>');
+    }
 }
 
 function calcularAcumulado(){
@@ -175,8 +191,8 @@ function actualizarReembolso(){
             console.log(ffact);
             facturaD.fecha = ffact;
             facturaD.monto = parseFloat($(this).find("input.mntAcumulado").val());
-            facturaD.numero = $(this).find("td").eq(5).html();
-            facturaD.control = $(this).find("td").eq(5).html();
+            facturaD.numero = $(this).find("input.numfact").val();
+            facturaD.control = $(this).find("input.numfact").val();
 
             var prov = new Beneficiario();
             prov.rif = $(this).find("td").eq(2).html();
