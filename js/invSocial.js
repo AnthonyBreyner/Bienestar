@@ -16,11 +16,6 @@ $(function () {
     llenar();
 });
 
-function llenar(){
-
-
-}
-
 
 function consultarRif(){
     var rif = $("#rif").val();
@@ -110,10 +105,6 @@ function llenar(){
             $("#txtmapto").val(DIR.apartamento);
         }
 
-        $("#paneldatos").show();
-        $("#panelperfil").show();
-        $("#opciones").show();
-        $("#_bxBuscar").hide();
     }else{
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();

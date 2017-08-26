@@ -80,11 +80,6 @@ function llenar(){
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
         }
-
-        $("#paneldatos").show();
-        $("#panelperfil").show();
-        $("#opciones").show();
-        $("#_bxBuscar").hide();
     }else{
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();
