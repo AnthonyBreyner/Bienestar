@@ -59,8 +59,7 @@
                     </div>
                     <!-- /.mailbox-read-info -->
                     <div class="mailbox-controls with-border text-center">
-                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                data-container="body" title="Borrar">
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
                             <i class="fa fa-trash-o" style="color: red"></i></button>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" onclick="volverLista()"
@@ -99,8 +98,8 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <td>#</td>
                                 <td>OBSERIVACIONES</td>
+                                <td style="width: 15px"><select><option value="0">En orden</option><option value="1">Con pendientes</option><option value="2">Con Recomendaciones</option> </select></td>
                             </tr>
                             </thead>
                             <tbody id="cuerpoObservaciones">
@@ -110,7 +109,7 @@
                         <div class="row">
                             <div class="col-md-6">
                         <h4>OBSERVACIÓN</h4></div>
-                            <div class="col-md-6"> <button type="button" class="btn btn-success pull-right"><i class="fa fa-plus "></i></button></div>
+                            <div class="col-md-6"> <button type="button" onclick="agObservacion()" class="btn btn-success pull-right"><i class="fa fa-plus "></i></button></div>
                         </div>
                         <textarea textarea class="form-control" rows="3" placeholder="Observación..." id="txtObservacion"></textarea>
 
