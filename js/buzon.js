@@ -96,6 +96,14 @@ function llenar(numero){
     $('#lblnumero').text(numero);
     $('#lblcomponente').text(reembolsoActivo.Componente.descripcion);
 
+    var rutaimg = Conn.URLIMG;
+    url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + ".jpg";
+    if (reembolsoActivo.Persona.foto  != undefined){
+        rutaimg = Conn.URLTEMP;
+        url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + "/foto.jpg";
+    }
+    $("#fotoperfil").attr("src", url);
+
     crearTablaConceptos(numero);
 
     $('#listadoCompleto').hide();
@@ -115,7 +123,7 @@ function crearTablaConceptos(numero){
     $("#cuerpoEditarConceptos").html('');
     $.each(copia.Concepto,function(){
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        fila = '<tr><td>'+this.afiliado+'</td><td>'+this.descripcion+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.rif+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.razonsocial+'</td><td>'+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+'</td>\n' +
+        fila = '<tr><td>'+this.afiliado+'</td><td>'+this.descripcion+'</td><td>'+this.DatoFactura.Beneficiario.rif+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.razonsocial+'</td><td>'+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+'</td>\n' +
         '                                <td><input type="text" value="'+this.DatoFactura.numero+'"></td>\n' +
         '                                <td><input type="text" value="'+this.DatoFactura.monto+'" class="mntAcumulado"></td>\n' +
         '                                <td style="width: 7%;">\n' +
@@ -152,4 +160,54 @@ function volverLista(){
     $('#detalle').slideToggle();
     $('#listadoCompleto').show();
 
+}
+
+function actualizarReembolso(){
+    var conceptos = new Array();
+    if($("#cuerpoEditarConceptos tr").length >0){
+        $("#cuerpoEditarConceptos tr").each(function () {
+            var concep = new ConceptoReembolso();
+            var facturaD = new Factura();
+            var ffact = copia.fechacreacion;
+            if($(this).find("td").eq(4).html() != ""){
+                ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(4).html())).toISOString();
+            }
+            console.log(ffact);
+            facturaD.fecha = ffact;
+            facturaD.monto = parseFloat($(this).find("input.mntAcumulado").val());
+            facturaD.numero = $(this).find("td").eq(5).html();
+            facturaD.control = $(this).find("td").eq(5).html();
+
+            var prov = new Beneficiario();
+            prov.rif = $(this).find("td").eq(2).html();
+            prov.razonsocial = $(this).find("td").eq(3).html();
+            prov.tipoempresa = 'J';
+            prov.direccion = 'Por cargar';
+            //prov.Banco = 'Pora cargar banco';
+
+            facturaD.Beneficiario = prov;
+
+            concep.DatoFactura = facturaD;
+            concep.afiliado = $(this).find("td").eq(0).html();
+            concep.descripcion = $(this).find("td").eq(1).html();
+
+            conceptos.push(concep);
+        });
+        copia.Concepto = conceptos;
+
+        var datos = {id:reembolsoActivo.Persona.DatoBasico.cedula,numero:copia.numero.text,Reembolso:copia};
+        console.log(datos);
+        /*var urlGuardar = Conn.URL + "wreembolso";
+        var request2 = CargarAPI({
+            sURL: urlGuardar,
+            metodo: 'POST',
+            valores: datos,
+        });
+
+        request2.then(function(xhRequest) {
+            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+        });*/
+    }else{
+        $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
+    }
 }
