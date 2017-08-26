@@ -22,6 +22,18 @@ function listaBuzon(est) {
     });
 }
 
+function conviertEstatus(est){
+    var estatus = "";
+    switch (est){
+        case 0:estatus = "Buzon 1";break;
+        case 1:estatus = "Buzon 2";break;
+        case 2:estatus = "Buzon 3";break;
+        case 3:estatus = "Buzon 4";break;
+        case 4:estatus = "Buzon 5";break;
+    }
+    return estatus;
+}
+
 function crearBuzon(est) {
     console.log(lstBuzon);
     $("#lista").html('<li>\n' +
@@ -30,17 +42,28 @@ function crearBuzon(est) {
         '                <div class="col-sm-1"><span class="text">Cedula</span></div>\n' +
         '                <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>\n' +
         '                <div class="col-sm-2"><span class="text">F.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Solicitud</span></div>\n' +
+        '                <div class="col-sm-1"><span class="text">M.Solicitud</span></div>\n' +
+        '                <div class="col-sm-1"><span class="text">M.Aprobado</span></div>\n' +
         '                <div class="col-sm-2">Estatus</div>\n' +
         '            </div>\n' +
         '        </li>');
     $.each(lstBuzon, function () {
+        var alertSegui = "";
+        switch (this.estatusseguimiento){
+            case 1:
+                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                break;
+            case 2:
+                alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
+                break;
+        }
         var item = '<li><div class="row"><div class="col-sm-1"><span class="text"><a href="#" onclick="detalleBuzon(\'' + this.id + '\',\'' + this.numero + '\')"> ' + this.numero + '</a></span></div>\n' +
             '                <div class="col-sm-1"><span class="text">' + this.id + '</span></div>\n' +
             '                <div class="col-sm-3">' + this.nombre + '</div>\n' +
             '                <div class="col-sm-2">' + Util.ConvertirFechaHumana(this.fechacreacion) + '</div>\n' +
-            '                <div class="col-sm-2">' + numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $') + '</div>\n' +
-            '                <div class="col-sm-2">' + this.estatus + '</div>\n' +
+            '                <div class="col-sm-1">' + numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $') + '</div>\n' +
+            '                <div class="col-sm-1">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
+            '                <div class="col-sm-2">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools">\n' +
             '                    <i class="fa fa-edit" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\')"></i>\n' +
             '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\')"></i>\n' +
@@ -154,8 +177,9 @@ function crearTablaConceptos(numero) {
      */
     if (copia.Seguimiento.Observaciones != undefined) {
         var lstObs = copia.Seguimiento.Observaciones;
+        $("#cuerpoObservaciones").html('');
         $.each(lstObs, function () {
-            $("#cuerpoObservaciones").html('<tr><td>' + this.contenido + '</td><td></td></tr>');
+            $("#cuerpoObservaciones").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
     }
 }
@@ -223,7 +247,7 @@ function actualizarReembolso() {
     }
     copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
 
-    datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar};
+    datos = {id: reembolsoActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
     console.log(datos);
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wreembolso";
