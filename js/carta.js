@@ -26,7 +26,6 @@ function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
-    console.log(lstProveedores);
     $.each(lstProveedores,function () {
         if(this.rif == rif){
             rz= this.razonsocial;

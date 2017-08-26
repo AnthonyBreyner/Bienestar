@@ -82,3 +82,86 @@
         </div>
     </div>
 </div>
+
+<!-- MODAL PARA AGREGAR LA EMPRESA -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="mdlEmpresa">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Agregar Empresa</h4>
+            </div>
+            <div class="modal-body">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="nav-tabs-custom box box-primary">
+                                <div class="tab-content">
+                                    <div class="box-body">
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12">
+                                                <label>Rif:</label>
+                                                <input class="form-control" id="rifnuevo" required="required">
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <label>Razon Social:</label>
+                                                <input class="form-control" id="rsocialnuevo" required="required">
+                                            </div>
+
+                                            <div class="col-md-4 col-sm-12">
+                                                <label>T. Empresa:</label>
+                                                <select class="form-control" style="width: 100%" id="tipoenuevo">
+                                                    <option selected="selected" value="S"></option>
+                                                    <option value="J">Juridica</option>
+                                                    <option value="N">Natural</option>
+                                                    <option value="G">Gubernamental</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="row">
+                                            <div class="col-md-5 col-sm-12">
+                                                <label>Dirección:</label>
+                                                <input class="form-control" id="direcnueva">
+                                            </div>
+
+                                            <div class="col-md-5 col-sm-12" id="_txtmnrocuentanueva">
+                                                <label>Nro. de Cuenta:</label>
+                                                <input id="numerocuentanueva" class="form-control" type="text"
+                                                       maxlength="23"
+                                                       data-inputmask='"mask": "9999-9999-99-9999999999"'
+                                                       data-mask>
+                                            </div>
+                                            <div class="col-md-2 col-sm-12" id="_cmbmtipocuentaranueva">
+                                                <label>Tipo de Cuenta:</label>
+                                                <select class="form-control" style="width: 100%"
+                                                        id="tipodecuentanueva">
+                                                    <option selected="selected" value="S"></option>
+                                                    <option value="CA" selected="selected">AHORRO</option>
+                                                    <option value="CC">CORRIENTE</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-2 col-sm-12">
+                                                <label>Cedula/Rif:</label>
+                                                <input type="text" class="form-control" id="cinueva">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="salvarEmpresa()">Guardar</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -3,26 +3,30 @@
         <div class="row">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
-                        <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                       aria-expanded="true" aria-controls="collapseOne">
+                        <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                            <h4 class="panel-title">
                                 Datos de la Carta Aval
-                        </h4>
-                    </div>
+                            </h4>
+                        </div>
                     </a>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingOne">
                         <div class="panel-body">
                             <form id="frmapoyoeconomico" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-4 ">
                                         <label>Familiar:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario"
+                                                required="required">
                                             <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 ">
                                         <label>Conceptos:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbconcepto" onchange="requisitosConcepto()" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbconcepto"
+                                                onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">Tratamientos Odontologicos</option>
                                             <option value="1">Fisiatría y Rehabilitación</option>
@@ -33,18 +37,20 @@
                                             <option value="5">Tratamiento Psicopedagógico</option>
                                             <option value="6">Geriátricos</option>
 
-                                            <option value="7">Complemento de Hospitalización e Intervención Quirúrgica</option>
+                                            <option value="7">Complemento de Hospitalización e Intervención Quirúrgica
+                                            </option>
                                             <option value="8">Hospitalizacion e Intervención Quirúrgica</option>
                                             <option value="9">Material Médico Quirúrgico</option>
 
                                             <option value="10">Lentes</option>
                                         </select>
                                     </div>
-                             
+
 
                                     <div class="col-md-4 ">
                                         <label>Patología:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbpatologia" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbpatologia"
+                                                required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">OBSTETRICIA</option>
                                             <option value="1">CARDIOLOGIA</option>
@@ -63,7 +69,7 @@
 
                                         </select>
                                     </div>
-   </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="col-md-2 col-sm-12">
@@ -73,7 +79,8 @@
                                                 <input class="form-control" id="rif" required="required">
                                             </div>
                                             <div class="input-group-btn">
-                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
+                                                <button type="button" class="btn btn-success dropdown-toggle"
+                                                        data-toggle="dropdown"
                                                         onclick="consultarRif()">
                                                     <span class="fa fa-search"></span></button>
                                             </div>
@@ -81,54 +88,58 @@
                                     </div>
                                     <div class="col-md-5 col-sm-12">
                                         <label>&nbsp</label>
-                                        <input class="form-control" id="razonsocial" readonly="true" required="required">
+                                        <input class="form-control" id="razonsocial" readonly="true"
+                                               required="required">
                                     </div>
                                     <div class="col-md-5 col-sm-12">
                                         <label>Fondo:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbfondo" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbfondo"
+                                                required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">Fondo del Cuidado Integral de la Salud (C.I.S)</option>
                                             <option value="1">Fondo del adulto Mayor (F.A.M)</option>
-                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)</option>
-                                           
+                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)
+                                            </option>
+
                                         </select>
                                     </div>
-                                    </div>
+                                </div>
 
-                                 <div class="row">
+                                <div class="row">
                                     <div class="col-md-12 col-sm-12">
                                         <label>Servicio de Carta Aval:</label>
-                                       
-                                         <div >
-                                            <select class="form-control" style="width: 100%" id="cmbserviciocartavala" required="required">
+
+                                        <div>
+                                            <select class="form-control" style="width: 100%" id="cmbserviciocartavala"
+                                                    required="required">
                                                 <option selected="selected" value="S"></option>
                                                 <option value="0">MAMOGRAFIA</option>
                                                 <option value="1">REHABILITACIÓN</option>
                                                 <option value="2">PROTESIS AUDITIVA</option>
                                                 <option value="3">PROTESIS TRAUMATOLOGIA</option>
                                             </select>
-                                            </div>
                                         </div>
+                                    </div>
 
                                 </div>
 
-                                
-                                 <div class="row">  
-                                        <div class="col-md-12 col-sm-12">
-                                             <label>Observaciones</label>
-                                             <textarea class="form-control" rows="3" ></textarea>
-                                      </div>
-                                 </div>
 
-                                                                 </br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-md btn-success pull-left" >
-                                        <i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;GENERAR CARTA AVAL
-                                    </button>
-
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12">
+                                        <label>Observaciones</label>
+                                        <textarea class="form-control" rows="3"></textarea>
+                                    </div>
                                 </div>
-                            </div>
+
+                                </br>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <button type="button" class="btn btn-md btn-success pull-left">
+                                            <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR CARTA AVAL
+                                        </button>
+
+                                    </div>
+                                </div>
 
                             </form>
                         </div>
@@ -136,66 +147,74 @@
                 </div>
 
                 <div class="panel panel-default">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTree">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTree">
                         <div class="panel-heading bg-blue" role="tab" id="headingTree">
                             <h4 class="panel-title">
                                 Direccion del afiliado
                             </h4>
                         </div>
                     </a>
-                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTree">
+                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTree">
                         <div class="panel-body">
-                            
-                             <div class="form-group">
+
+                            <div class="form-group">
                                 <div class="col-md-4">
                                     <label>Estado:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmestado" required onchange="CiudadMunicipio()">
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmestado" required onchange="CiudadMunicipio()">
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Ciudad:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmciudad" required>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmciudad" required>
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Municipio:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                             </div> <!-- Grupo nombres-->
-                         
+
 
                             <div class="form-group">
                                 <div class="col-md-4">
-                                    <label >Parroquia:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmparroquia" required>
+                                    <label>Parroquia:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmparroquia" required>
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Avenida / Edificio / Calle:</label>
-                                    <input id="txtmcalle" class="form-control" disabled="disabled"  type="text" required>
+                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
                                 </div>
                                 <div class="col-md-2">
                                     <label># Casa:</label>
-                                    <input id="txtmcasa" class="form-control" disabled="disabled"  type="text">
+                                    <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
                                 </div>
                                 <div class="col-md-2">
                                     <label># Apto:</label>
-                                    <input id="txtmapto" class="form-control" disabled="disabled"  type="text">
+                                    <input id="txtmapto" class="form-control" disabled="disabled" type="text">
                                 </div>
 
                                 <div class="form-group">
                                     <div class="col-md-4">
-                                        <label >Teléfono:</label>
+                                        <label>Teléfono:</label>
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input id="txtmtelefono" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
+                                            <input id="txtmtelefono" class="form-control" disabled="disabled"
+                                                   type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask
+                                                   required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -204,39 +223,33 @@
                                             <div class="input-group-addon">
                                                 <i class="fa fa-phone"></i>
                                             </div>
-                                            <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
+                                            <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                                   data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
-                                            onclick="habilitarDireccion(false)"
-                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
-                                            class="glyphicon glyphicon-edit"></i></button>
-                                    <button class="btn btn-primary btn-success" type="button"
-                                            onclick="habilitarDireccion(true)"
-                                            style="margin-top:23px; margin-bottom: 20px; display: none"
-                                            id="btndhabdire">Salvar &nbsp<i
-                                            class="glyphicon glyphicon-save"></i></button>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                onclick="habilitarDireccion(false)"
+                                                style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                class="glyphicon glyphicon-edit"></i></button>
+                                        <button class="btn btn-primary btn-success" type="button"
+                                                onclick="habilitarDireccion(true)"
+                                                style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                id="btndhabdire">Salvar &nbsp<i
+                                                class="glyphicon glyphicon-save"></i></button>
+                                    </div>
                                 </div>
-                            </div>
-
                             </div> <!-- Grupo nombres-->
-                          </div>
-                            
-
                         </div>
                     </div>
-
                 </div>
-
-                <br><br>
-
             </div>
         </div>
     </div>
 </div>
 
-<script src = "js/carta.js" ></script>
+
+<script src="js/carta.js"></script>
