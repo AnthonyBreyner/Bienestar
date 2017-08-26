@@ -116,8 +116,8 @@ function crearTablaConceptos(numero){
     $.each(copia.Concepto,function(){
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>'+this.afiliado+'</td><td>'+this.descripcion+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.rif+'</td><td style="display: none">'+this.DatoFactura.Beneficiario.razonsocial+'</td><td>'+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+'</td>\n' +
-        '                                <td><input type="text" disabled value="'+this.DatoFactura.numero+'"></td>\n' +
-        '                                <td><input type="text" disabled value="'+this.DatoFactura.monto+'" class="mntAcumulado"></td>\n' +
+        '                                <td><input type="text" value="'+this.DatoFactura.numero+'"></td>\n' +
+        '                                <td><input type="text" value="'+this.DatoFactura.monto+'" class="mntAcumulado"></td>\n' +
         '                                <td style="width: 7%;">\n' +
         '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
         '                                </td><td><button type="button" class="btn btn-default btn-sm modconcep" data-toggle="tooltip"title="Modificar"><i class="fa fa-check" style="color: green;"></i></button></td></tr>';
@@ -133,7 +133,6 @@ function crearTablaConceptos(numero){
     });
 
     $(".modconcep").click(function () {
-        $(".modconcep").attr("disabled",false);
         calcularAcumulado();
     });
 }
