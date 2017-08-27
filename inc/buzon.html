@@ -118,12 +118,16 @@
                             </tbody>
                         </table>
                         <div class="row">
-                            <div class="col-md-6">
-                        <h4>OBSERVACIÓN</h4></div>
-                            <div class="col-md-6"> <button type="button" onclick="agObservacion()" class="btn btn-success pull-right"><i class="fa fa-plus "></i></button></div>
+                            <div class="col-md-1">
+                                <h4>OBSERVACIÓN</h4></div>
+
+                            <button type="button" class="btn btn-default btn-sm"
+                                    style="margin-left: 20px; margin-top: 5px" data-toggle="tooltip"
+                                    data-container="body" onclick="agObservacion()">
+                                <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar Observación
+                            </button>
                         </div>
                         <textarea textarea class="form-control" rows="3" placeholder="Observación..." id="txtObservacion"></textarea>
-
                     </div>
                     <!-- /.mailbox-read-message -->
                 </div>

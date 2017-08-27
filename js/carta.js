@@ -276,6 +276,7 @@ function agregarConcepto(){
         var fondo = $("#cmbfondo option:selected").text();
         var servicios = $("#cmbserviciocartavala option:selected").text();
         var tabla = $("#conceptoagregado");
+        var html ="<p>"+razon+"</p>"
         var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
         var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td>"+razon+"</td><td>"+monto+"</td><td>"+fondo+"</td>";
         html += "<td>"+servicios+"</td><td>"+btndelete+"</td></tr>";
