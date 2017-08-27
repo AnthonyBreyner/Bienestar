@@ -177,6 +177,9 @@ function crearTablaConceptos(numero,est) {
     });
     copia = lst[pos];
     $("#estSeguimiento").val(copia.Seguimiento.Estatus);
+    if(est > 2){
+        activarCambioEstatus();
+    }
     $("#cuerpoEditarConceptos").html('');
     $.each(copia.Concepto, function () {
         var mntApo = this.DatoFactura.monto;
@@ -312,4 +315,24 @@ function agObservacion() {
 
 function remObse(fila) {
     $(fila).parents('tr').eq(0).remove();
+}
+
+function activarCambioEstatus(){
+    $("#cambioestatus").show();
+}
+
+function cambiarEstatus(tipo){
+    var estatus = 0;
+    switch (tipo){
+        case "a":
+            verificarAprobacion(copia.numero ,copia.estatus,$("#lblcedula").text());
+            break;
+        case "r":
+            verificarRechazo(copia.numero ,copia.estatus,$("#lblcedula").text());
+        break;
+        case "e":
+            estatus = $("#cmbcambioestatus").val();
+            verificarAprobacion(copia.numero ,estatus,$("#lblcedula").text());
+            break;
+    }
 }
