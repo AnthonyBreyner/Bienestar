@@ -74,7 +74,6 @@ function llenar(){
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
         $("#ttnombre").text(ncompleto);
 
-
         $("#cmbcomponente").val(militar.Componente.descripcion);
         $("#ttcomponente").text(militar.Componente.descripcion);
 
@@ -177,7 +176,7 @@ function crearLista(){
 
 function historico(){
     $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
+        '                        <tr class="bg-info"><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
         '                        </thead>\n' +
         '                        <tbody id="cuerporeembolsos">\n' +
         '\n' +
@@ -248,7 +247,7 @@ function historico(){
             ]).draw(false);
             $('#historicoReembolso thead td.pbuscar').each( function () {
                 var title = $(this).text();
-                $(this).html( '<input class="form-group" type="text" placeholder="'+title+'" />' );
+                $(this).html( title+'<br><input class="form-group" type="text" placeholder="Buscar" />' );
             } );
             t.columns().every( function () {
                 var that = this;
