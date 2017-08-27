@@ -60,29 +60,26 @@
                     <!-- /.mailbox-read-info -->
                     <div class="mailbox-controls with-border text-center">
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
-                            <i class="fa fa-trash-o" style="color: red"></i>&nbsp Borrar</button>
+                            <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp Borrar</button>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" onclick="volverLista()"
-                                    data-container="body" title="Volver a lista">
+                                    data-container="body">
                                 <i class="fa fa-reply"></i>&nbsp Regresar</button>
                         </div>
                         <!-- /.btn-group -->
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                title="Print">
+                                onclick="cambiarEstatus('a')">
                             <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar</button>
-                        <div class="pull-right" id="cmbestatus">
-                            <div class="input-group margin">
-                                <div class="input-group-btn">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Cambio de Estatus
-                                        <span class="fa fa-caret-down"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Pendiente</a></li>
-                                        <li><a href="#">Jefatura</a></li>
-                                        <li><a href="#">Gerencia</a></li>
-                                        <!--<li class="divider"></li>
-                                        <li><a href="#">Separated link</a></li>-->
-                                    </ul>
-                                </div>
+                        <div class="pull-right" id="cambioestatus">
+                            <select id="cmbcambioestatus">
+                                <option value=""></option>
+                                <option value="0">Pendiente</option>
+                                <option value="1">Jefatura</option>
+                                <option value="2">Gerencia</option>
+                            </select>
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                    data-container="body" onclick="cambiarEstatus('e')" id="btncambioestatus">
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus</button>
                         </div>
                     </div>
                     <!-- /.mailbox-controls -->
