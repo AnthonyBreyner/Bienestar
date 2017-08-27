@@ -35,7 +35,7 @@
                 <div class="box-body no-padding">
                     <div class="mailbox-read-info">
                         <div class="row" style="margin-left: 50px;">
-                            <div class="col-md-3" style="margin-top: 40px;">
+                            <div class="col-md-3" style="margin-top: 35px;">
                                 <h4><b>CEDULA:</b>  <label id="lblcedula" style="font-weight: 500;">  </label></h4>
                                 <h4><b>N° REEMBOLSO: </b> <label id="lblnumero" style="font-weight: 500;"> </label></h4>
 
@@ -60,16 +60,25 @@
                     <!-- /.mailbox-read-info -->
                     <div class="mailbox-controls with-border text-center">
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
-                            <i class="fa fa-trash-o" style="color: red"></i></button>
+                            <i class="fa fa-trash-o" style="color: red"></i>&nbsp Borrar</button>
                         <div class="btn-group">
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" onclick="volverLista()"
                                     data-container="body" title="Volver a lista">
-                                <i class="fa fa-reply"></i></button>
+                                <i class="fa fa-reply"></i>&nbsp Regresar</button>
                         </div>
                         <!-- /.btn-group -->
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
                                 title="Print">
-                            <i class="fa fa-check" style="color: green"></i></button>
+                            <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar</button>
+                        <div class="pull-right" id="cmbstatus">
+                            <select id="btnstatus">
+                                <option value="0">Cambio de Estatus</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
                     </div>
                     <!-- /.mailbox-controls -->
                     <div class="mailbox-read-message">
