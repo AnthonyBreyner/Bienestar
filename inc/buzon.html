@@ -70,14 +70,19 @@
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
                                 title="Print">
                             <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar</button>
-                        <div class="pull-right" id="cmbstatus">
-                            <select id="btnstatus">
-                                <option value="0">Cambio de Estatus</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
+                        <div class="pull-right" id="cmbestatus">
+                            <div class="input-group margin">
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Cambio de Estatus
+                                        <span class="fa fa-caret-down"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Pendiente</a></li>
+                                        <li><a href="#">Jefatura</a></li>
+                                        <li><a href="#">Gerencia</a></li>
+                                        <!--<li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>-->
+                                    </ul>
+                                </div>
                         </div>
                     </div>
                     <!-- /.mailbox-controls -->
