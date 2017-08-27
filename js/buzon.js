@@ -92,11 +92,37 @@ function verificarRechazo(num, esta,id) {
 }
 
 function aprobarReembolso(num, est,id) {
-    alert("proceso de aprobacion");
+    var url = Conn.URL + "wreembolso/estatus";
+    var esta = parseInt(est) + 1
+    var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
+    console.log(datos);
+    var request = CargarAPI({
+        sURL: url,
+        metodo: 'POST',
+        valores: datos,
+    });
+    request.then(function (xhRequest) {
+        listaBuzon(est);
+        $.notify("Se modifico estatus del reembolso");
+    });
 }
 
 function rechazarReembolso(num, est,id) {
-    alert("proceso de rechazo");
+    var url = Conn.URL + "wreembolso/estatus";
+    var esta = -1;
+    var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
+    console.log(JSON.stringify(datos));
+    var request = CargarAPI({
+        sURL: url,
+        metodo: 'PUT',
+        valores: datos,
+        Objeto: militar
+    });
+    request.then(function (xhRequest) {
+        listaBuzon(est);
+        $.notify("El reembolso fue rechazado");
+    });
+
 }
 
 function detalleBuzon(id, numero, est) {
@@ -150,6 +176,7 @@ function crearTablaConceptos(numero,est) {
         i++;
     });
     copia = lst[pos];
+    $("#estSeguimiento").val(copia.Seguimiento.Estatus);
     $("#cuerpoEditarConceptos").html('');
     $.each(copia.Concepto, function () {
         var mntApo = this.DatoFactura.monto;

@@ -410,7 +410,7 @@ function cargarDatos(){
         });
         reembolso.Concepto = conceptos;
 
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele,nombre:militar.Persona.DatoBasico.nombreprimero+" "+Persona.DatoBasico.apellidoprimero};
+        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
         console.log(JSON.stringify(datos));
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
@@ -422,6 +422,7 @@ function cargarDatos(){
         request2.then(function(xhRequest) {
             //var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
             $.notify("Se guardo con exito","succes");
+            $("#conceptoagregado").html("");
         });
     }else{
         $.notify("Debe ingresar todos los datos para realizar el reembolso");

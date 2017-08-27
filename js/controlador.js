@@ -69,7 +69,7 @@ class Reembolso {
         this.Direccion = new Direccion();
         this.Telefono = new Telefono();
         this.Correo = new Correo();
-        this.Seguimiento = new Seguimineto();
+        this.Seguimiento = new Seguimiento();
     }
 }
 
