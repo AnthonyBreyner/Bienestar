@@ -13,7 +13,7 @@ $(function () {
         verificaCheckModal("requisitos","btnAgconcepto");
     });
 
-    llenar();
+    llenarApoyo();
 });
 
 function consultarRif(){
@@ -48,7 +48,7 @@ function salvarEmpresa(){
     $("#mdlEmpresa").modal('hide');
 }
 
-function llenar(){
+function llenarApoyo(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
     $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
     $("#_cargando").hide();

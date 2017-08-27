@@ -135,11 +135,11 @@ function detalleBuzon(id, numero, est) {
     });
     request.then(function (xhRequest) {
         reembolsoActivo = JSON.parse(xhRequest.responseText);
-        llenar(numero,est);
+        llenarBuzon(numero,est);
     });
 }
 
-function llenar(numero,est) {
+function llenarBuzon(numero,est) {
     console.log(reembolsoActivo);
     $('#lblcedula').text(reembolsoActivo.Persona.DatoBasico.cedula);
     var ncompleto = reembolsoActivo.Persona.DatoBasico.nombreprimero + " " + reembolsoActivo.Persona.DatoBasico.apellidoprimero;

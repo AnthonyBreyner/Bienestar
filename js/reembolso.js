@@ -177,7 +177,7 @@ function crearLista(){
 
 function historico(){
     $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>\n' +
+        '                        <tr><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
         '                        </thead>\n' +
         '                        <tbody id="cuerporeembolsos">\n' +
         '\n' +
@@ -215,7 +215,7 @@ function historico(){
         var html = "";
         var i = 0;
         $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
-            var est = "Por procesar";
+            var est = conviertEstatus(this.estatus);
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
             var listaFact = "";
             var nfac = "";
@@ -225,7 +225,7 @@ function historico(){
             if(this.Concepto.length > 1){
                 listaFact = "<div class=\"dropdown\">\n" +
                     "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                    "            "+ nfac +
+                    "            Ver" +
                     "            <span class=\"fa fa-plus\"></span>\n" +
                     "            </button>\n" +
                     "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
@@ -239,16 +239,16 @@ function historico(){
                 listaFact = nfac;
             }
             t.row.add([
-                "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
                 "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
                 numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
+                numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
                 est
             ]).draw(false);
             $('#historicoReembolso thead td.pbuscar').each( function () {
                 var title = $(this).text();
-                $(this).html( title+'<br><input type="text" placeholder="Buscar" />' );
+                $(this).html( '<input class="form-group" type="text" placeholder="'+title+'" />' );
             } );
             t.columns().every( function () {
                 var that = this;
@@ -495,4 +495,18 @@ function validaFechaFactura(n){
     }else{
         $("#alert_fecha").hide();
     }
+}
+
+function conviertEstatus(est){
+    var estatus = "";
+    switch (est){
+        case -1:estatus = "Rechazado";break;
+        case 0:estatus = "Inicial";break;
+        case 1:estatus = "Pendiente";break;
+        case 2:estatus = "En jefatura";break;
+        case 3:estatus = "En gerencia";break;
+        case 4:estatus = "En presidencia";break;
+        case 5:estatus = "Aprobado";break;
+    }
+    return estatus;
 }
