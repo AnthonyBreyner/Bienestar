@@ -184,9 +184,9 @@ function historico(){
 
     var t = $('#historicoReembolso').DataTable({
         destroy: true,
-        'paging': true,
+        'paging': false,
         'lengthChange': true,
-        'searching': false,
+        'searching': true,
         'ordering': true,
         'info': false,
         'autoWidth': false,
