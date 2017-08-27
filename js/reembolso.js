@@ -23,7 +23,7 @@ $(function () {
         verificaCheckModal("requisitostratamiento","btnAgconcepto");
     });
 
-    llenar();
+    llenarReembolso();
     $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
@@ -63,7 +63,7 @@ function salvarEmpresa(){
     $("#mdlEmpresa").modal('hide');
 }
 
-function llenar(){
+function llenarReembolso(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
     $("#datosbancarios").html('<option selected="selected" value="S"></option>');
     $("#_cargando").hide();

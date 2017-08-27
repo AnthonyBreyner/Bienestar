@@ -25,31 +25,32 @@
                                                 <input class="form-control" id="rsocialnuevo" required="required">
                                             </div>
 
-                                                <div class="col-md-4 col-sm-12">
-                                                    <label>T. Empresa:</label>
-                                                    <select class="form-control" style="width: 100%" id="tipoenuevo">
-                                                        <option selected="selected" value="S"></option>
-                                                        <option value="J">Juridica</option>
-                                                        <option value="N">Natural</option>
-                                                        <option value="G">Gubernamental</option>
-                                                    </select>
-                                                </div>
-                                      </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <label>T. Empresa:</label>
+                                                <select class="form-control" style="width: 100%" id="tipoenuevo">
+                                                    <option selected="selected" value="S"></option>
+                                                    <option value="J">Juridica</option>
+                                                    <option value="N">Natural</option>
+                                                    <option value="G">Gubernamental</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <br>
                                         <div class="row">
-                                          <div class="col-md-5 col-sm-12">
-                                              <label>Dirección:</label>
-                                              <input class="form-control" id="direcnueva">
-                                          </div>
-
-                                            <div class="col-md-5 col-sm-12" id="_txtmnrocuentanueva">
+                                            <div class="col-md-12 col-sm-12">
+                                                <label>Dirección:</label>
+                                                <input class="form-control" id="direcnueva">
+                                            </div>
+                                        </div><br>
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-12" id="_txtmnrocuentanueva">
                                                 <label>Nro. de Cuenta:</label>
                                                 <input id="numerocuentanueva" class="form-control" type="text"
                                                        maxlength="23"
                                                        data-inputmask='"mask": "9999-9999-99-9999999999"'
                                                        data-mask>
                                             </div>
-                                            <div class="col-md-2 col-sm-12" id="_cmbmtipocuentaranueva">
+                                            <div class="col-md-4 col-sm-12" id="_cmbmtipocuentaranueva">
                                                 <label>Tipo de Cuenta:</label>
                                                 <select class="form-control" style="width: 100%"
                                                         id="tipodecuentanueva">
@@ -58,12 +59,10 @@
                                                     <option value="CC">CORRIENTE</option>
                                                 </select>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-2 col-sm-12">
-                                              <label>Cedula/Rif:</label>
-                                              <input type="text" class="form-control" id="cinueva">
-                                          </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <label>Cedula/Rif:</label>
+                                                <input type="text" class="form-control" id="cinueva">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,7 +73,7 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" onclick="salvarEmpresa()">Guardar</button>
             </div>
         </div><!-- /.modal-content -->
@@ -140,7 +139,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" disabled="true" onclick="crearPrograma();inactivarCheck('requisitos')"><i class="fa fa-arrow-circle-o-right"></i>Continuar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" disabled="true"
+                        onclick="crearPrograma();inactivarCheck('requisitos')"><i
+                        class="fa fa-arrow-circle-o-right"></i>Continuar
+                </button>
             </div>
         </div>
     </div>
@@ -168,7 +170,7 @@
                             Factura de Cancelación
                             <div class="material-switch pull-right">
                                 <input id="chm2-3" name="chm2-3" value="3"
-                                       type="checkbox"class="mdl-requisitos2"/>
+                                       type="checkbox" class="mdl-requisitos2"/>
                                 <label for="chm2-3" class="label-success"></label>
                             </div>
                         </li>
@@ -177,7 +179,7 @@
                             Orden Médica
                             <div class="material-switch pull-right">
                                 <input id="chm2-4" name="chm2-3" value="4"
-                                       type="checkbox"class="mdl-requisitos2"/>
+                                       type="checkbox" class="mdl-requisitos2"/>
                                 <label for="chm2-4" class="label-success"></label>
                             </div>
                         </li>
@@ -185,7 +187,7 @@
                             Presupuesto
                             <div class="material-switch pull-right">
                                 <input id="chm2-5" name="chm2-5"
-                                       type="checkbox" value="5"class="mdl-requisitos2"/>
+                                       type="checkbox" value="5" class="mdl-requisitos2"/>
                                 <label for="chm2-5" class="label-success"></label>
                             </div>
                         </li>
@@ -194,7 +196,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" onclick="inactivarCheck('requisitosconsultas')" disabled="true"><i class="fa fa-arrow-circle-o-right"></i>Continuar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitosconsultas')" disabled="true"><i
+                        class="fa fa-arrow-circle-o-right"></i>Continuar
+                </button>
             </div>
         </div>
     </div>
@@ -217,7 +222,7 @@
                         <li class="list-group-item">
                             Finiquito de Seguros Horizonte, C.A
                             <div class="material-switch pull-right">
-                                <input id="chm3-8" name="chm3-8" value="8"class="mdl-requisitos3"
+                                <input id="chm3-8" name="chm3-8" value="8" class="mdl-requisitos3"
                                        type="checkbox"/>
                                 <label for="chm3-8"
                                        class="label-success"></label>
@@ -227,7 +232,7 @@
                         <li class="list-group-item">
                             Factura con sello de indemnización de Seguros Horizonte, C.A.
                             <div class="material-switch pull-right">
-                                <input id="chm3-9" name="chm3-9" value="9"class="mdl-requisitos3"
+                                <input id="chm3-9" name="chm3-9" value="9" class="mdl-requisitos3"
                                        type="checkbox"/>
                                 <label for="chm3-9"
                                        class="label-success"></label>
@@ -236,7 +241,7 @@
                         <li class="list-group-item">
                             Constancia de agotamiento de cobertura
                             <div class="material-switch pull-right">
-                                <input id="chm3-10" name="chm3-10" value="10"class="mdl-requisitos3"
+                                <input id="chm3-10" name="chm3-10" value="10" class="mdl-requisitos3"
                                        type="checkbox"/>
                                 <label for="chm3-10"
                                        class="label-success"></label>
@@ -246,7 +251,7 @@
                         <li class="list-group-item">
                             Recibo de Diferencia de pago
                             <div class="material-switch pull-right">
-                                <input id="chm3-11" name="chm3-11" value="11"class="mdl-requisitos3"
+                                <input id="chm3-11" name="chm3-11" value="11" class="mdl-requisitos3"
                                        type="checkbox"/>
                                 <label for="chm3-11"
                                        class="label-success"></label>
@@ -257,7 +262,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" onclick="inactivarCheck('requisitoshosp')" disabled="true"><i class="fa fa-arrow-circle-o-right"></i>Continuar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitoshosp')" disabled="true"><i
+                        class="fa fa-arrow-circle-o-right"></i>Continuar
+                </button>
             </div>
         </div>
     </div>
@@ -284,7 +292,7 @@
                         <li class="list-group-item">
                             Factura de Cancelación
                             <div class="material-switch pull-right">
-                                <input id="chm4-3" value="3"class="mdl-requisitos4"
+                                <input id="chm4-3" value="3" class="mdl-requisitos4"
                                        name="chm4-3" type="checkbox"/>
                                 <label for="chm4-3"
                                        class="label-success"></label>
@@ -303,7 +311,7 @@
                         <li class="list-group-item">
                             Fe de vida
                             <div class="material-switch pull-right">
-                                <input id="chm4-7"class="mdl-requisitos4"
+                                <input id="chm4-7" class="mdl-requisitos4"
                                        name="chm4-7" value="7" type="checkbox"/>
                                 <label for="chm4-7"
                                        class="label-success"></label>
@@ -315,7 +323,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" onclick="inactivarCheck('requisitostratamiento')" disabled="true"><i class="fa fa-arrow-circle-o-right"></i>Continuar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitostratamiento')" disabled="true"><i
+                        class="fa fa-arrow-circle-o-right"></i>Continuar
+                </button>
             </div>
         </div>
     </div>
@@ -377,7 +388,10 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" onclick="inactivarCheck('requisitoslentes')" disabled="true"><i class="fa fa-arrow-circle-o-right"></i>Continuar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitoslentes')" disabled="true"><i
+                        class="fa fa-arrow-circle-o-right"></i>Continuar
+                </button>
             </div>
         </div>
     </div>
