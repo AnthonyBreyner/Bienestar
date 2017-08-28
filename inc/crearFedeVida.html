@@ -6,7 +6,7 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                                Datos para Fe de Vida
+                                Fé de Vida
                         </h4>
                     </div>
                     </a>
@@ -14,133 +14,57 @@
                         <div class="panel-body">
                             <form id="frmafedevida" action="#" method="post">
                                 <div class="row">
-                                    <div class="col-md-4 ">
+                                    <div class="col-md-8 col-ms-12">
                                         <label>Familiar:</label>
                                         <select class="form-control" style="width: 100%" id="cmbbeneficiario" required="required">
-                                            <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
-
-
-                                    <div class="col-md-4 ">
-                                        <label>Para Tramitar:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbconcepto"
-                                                onchange="requisitosConcepto()" required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">REEMBOLSO</option>
-                                            <option value="1">PENSIONES</option>
-                                            <option value="2">TRATAMIENTO PROLONGADO</option>
-                                        </select>
-                                    </div>
-                                 </div> 
-
-                                 </br>
-                                 <div class="row">
-                                 <div class="col-md-3">
-                                <button type="button" class="btn btn-md btn-success pull-right"
-                                onclick="cargarDatos()" id="_btnSavlvar" style="margin-right: 10px;">
-                            <i class=""></i>&nbsp;&nbsp;GENERAR FE DE VIDA
-                        </button>
-                        <br><br>
-                    </div>
-                </div>   
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Fecha:</label>
+                                        <div class="input-group date">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div class="input-group input-group">
+                                                <input type="text" class="form-control" style="width: 110%;" id="fechafe">
+                                            </div>
+                                        </div>
+                                    </div><!-- Fecha Presentacion de fe de vida -->
+                                </div>
+                                    </br>
+                                <div class="row">
+                                        <div class="col-md-8">
+                                            <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button type="button" class="btn btn-md btn-success pull-right"
+                                                    onclick="cargarFe()" id="_btnSavlvar">
+                                                <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar
+                                            </button>
+                                            <br><br>
+                                        </div>
+                                </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
-                <div class="panel panel-default">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTree">
-                        <div class="panel-heading bg-blue" role="tab" id="headingTree">
-                            <h4 class="panel-title">
-                                Direccion del afiliado
-                            </h4>
-                        </div>
-                    </a>
-                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTree">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    <label>Estado:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmestado" required onchange="CiudadMunicipio()">
-                                        <option value="S" selected="selected"></option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Ciudad:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"  id="cmbmciudad" required>
-                                        <option value="S" selected="selected"></option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Municipio:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
-                                        <option value="S" selected="selected"></option>
-                                    </select>
-                                </div>
-                            </div> <!-- Grupo nombres-->
-                         
-
-                            <div class="form-group">
-                                <div class="col-md-4">
-                                    <label >Parroquia:</label>
-                                    <select class="js-states form-control" style="width: 100%" disabled="disabled" id="cmbmparroquia" required>
-                                        <option value="S" selected="selected"></option>
-                                    </select>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Avenida / Edificio / Calle:</label>
-                                    <input id="txtmcalle" class="form-control" disabled="disabled"  type="text" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label># Casa:</label>
-                                    <input id="txtmcasa" class="form-control" disabled="disabled"  type="text">
-                                </div>
-                                <div class="col-md-2">
-                                    <label># Apto:</label>
-                                    <input id="txtmapto" class="form-control" disabled="disabled"  type="text">
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label >Teléfono:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input id="txtmtelefono" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>Celular:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input id="txtmcelular" class="form-control" disabled="disabled" type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask  required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> <!-- Grupo nombres-->
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button" onclick="habilitarDireccion(false)"
-                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
-                                            class="glyphicon glyphicon-edit"></i></button>
-                                    <button class="btn btn-primary btn-success" type="button" onclick="habilitarDireccion(true)"
-                                            style="margin-top:23px; margin-bottom: 20px; display: none" id="btndhabdire">Salvar &nbsp<i
-                                            class="glyphicon glyphicon-save"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <br><br>
-                
             </div>
         </div>
     </div>
 </div>
 
+ <script type="text/javascript">
+    $('#fechafe').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es',
+        endDate: "+0d",
+           changeDate: function () {
+           validaFechaFe(30)
+        }
+    }).on("changeDate", function (e) {
+        validaFechaFe(60);
+    });
+    $('[data-mask]').inputmask();
+</script>
 <script src = "js/fdv.js" ></script>

@@ -449,11 +449,11 @@ function habilitarDireccion(estatus){
     }
 }
 
-function validaFechaFactura(n){
+function validaFechaFe(n){
     var f = new Date();
     var fecha=(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
     var fecha1=moment(fecha,"DD-MM-YYYY");
-    var ff = $("#fechafactura").val();
+    var ff = $("#fechafe").val();
     var fecha2 = moment(ff,"DD-MM-YYYY");
     var dif=fecha1.diff(fecha2, 'days');
     if(dif>n) {
