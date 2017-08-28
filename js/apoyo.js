@@ -14,6 +14,12 @@ $(function () {
     });
 
     llenarApoyo();
+    $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+    });
 });
 
 function consultarRif(){
