@@ -333,7 +333,7 @@ function calcularAcumulado(){
         var mnt = $(this).find("td.mntAcumulado").eq(0).html();
         acumulado = parseFloat(acumulado)+parseFloat(mnt);
     });
-    $("#mntAcumulado").html(acumulado);
+    $("#mntAcumulado").html(parseFloat(acumulado).toFixed(2));
 }
 
 function validadDatosBancarios(){

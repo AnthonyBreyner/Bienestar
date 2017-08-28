@@ -189,7 +189,7 @@ function crearTablaConceptos(numero,est) {
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
             '                                <td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>\n' +
-            '                                <td class="mntsoli">' + this.DatoFactura.mon + '</td>\n' +
+            '                                <td class="mntsoli">' + this.DatoFactura.monto + '</td>\n' +
             '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
@@ -236,7 +236,7 @@ function calcularAcumulado() {
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
     $("#totalapro").html(acumulado);
-    copia.montoaprobado = parseFloat(acumulado);
+    copia.montoaprobado = parseFloat(acumulado).toFixed(2);
 }
 
 
@@ -259,6 +259,7 @@ function actualizarReembolso(est) {
                 ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(4).html())).toISOString();
             }
             facturaD.fecha = ffact;
+            facturaD.monto = parseFloat($(this).find("td").eq(6).html());
             facturaD.montoaprobado = parseFloat($(this).find("input.mntAcumulado").val());
             facturaD.numero = $(this).find("input.numfact").val();
             facturaD.control = $(this).find("input.numfact").val();
