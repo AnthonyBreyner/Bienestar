@@ -109,7 +109,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <td>OBSERIVACIONES</td>
+                                <td id="cabObserbaciones">OBSERIVACIONES</td>
                                 <td style="width: 15px"><select id="estSeguimiento"><option value="0">En orden</option><option value="1">Con pendientes</option><option value="2">Con Recomendaciones</option> </select></td>
                             </tr>
                             </thead>
@@ -119,12 +119,12 @@
                         </table>
                         <div class="row">
                             <div class="col-md-1">
-                                <h4>OBSERVACIÓN</h4></div>
+                                <h4 class="lblobser">OBSERVACIÓN</h4></div>
 
                             <button type="button" class="btn btn-default btn-sm"
                                     style="margin-left: 20px; margin-top: 5px" data-toggle="tooltip"
                                     data-container="body" onclick="agObservacion()">
-                                <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar Observación
+                                <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar<label class="lblobser">&nbspObservación</label>
                             </button>
                         </div>
                         <textarea textarea class="form-control" rows="3" placeholder="Observación..." id="txtObservacion"></textarea>
