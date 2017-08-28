@@ -336,6 +336,7 @@ function remObse(fila) {
 }
 
 function activarCambioEstatus(){
+
     $("#cambioestatus").show();
 }
 
