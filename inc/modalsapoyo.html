@@ -22,8 +22,7 @@
                         </li>
 
                         <li class="list-group-item">
-                            Copia de la Cedula de Identidad y del Carnet vigente del militar <br>y del familiar ampliada
-                            por ambas caras
+                            Copia de la Cédula de Identidad y del Carnet del militar <br>y del familiar
                             <div class="material-switch pull-right">
                                 <input id="chm1-1" name="chm1-1" class="mdl-requisitos" value="1" type="checkbox"/>
                                 <label for="chm1-1" class="label-success"></label>
@@ -106,6 +105,78 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" disabled="true" onclick="crearPrograma();inactivarCheck('requisitos')">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="requisitoslentes" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"
+             style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header"
+                 style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">REQUSITOS NECESARIOS</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Finiquito de Seguros Horizontes
+                            <div class="material-switch pull-right">
+                                <input id="chm5-13"
+                                       name="chm5-13"
+                                       type="checkbox" value="13"/>
+                                <label for="chm5-13"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Costancia de la Deuda
+                            <div class="material-switch pull-right">
+                                <input id="chm5-14"
+                                       name="chm5-14"
+                                       type="checkbox"/>
+                                <label for="chm5-14"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Copia del Informe Médico de Ingreso y Egreso
+                            <div class="material-switch pull-right">
+                                <input id="chm5-15"
+                                       name="chm5-15" value="15"
+                                       type="checkbox"/>
+                                <label for="chm5-15"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Factura Original
+                            <div class="material-switch pull-right">
+                                <input id="chm5-16"
+                                       name="chm5-16" value="15"
+                                       type="checkbox"/>
+                                <label for="chm5-16"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitoslentes')" disabled="true">Continuar
+                </button>
             </div>
         </div>
     </div>
