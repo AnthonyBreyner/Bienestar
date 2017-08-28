@@ -197,37 +197,8 @@
         <section class="content">
         <br>
           
-          <div class="col-md-3">
-            <!-- Profile Image -->
-            <div class="box box-primary">
-              <div class="box-body box-profile"><br>
-                <img class="profile-user-img img-responsive img-circle" src="" alt="Imagen de usuario">
-
-                <h3 class="profile-username text-center">Administrador</h3>
-
-                <ul class="list-group list-group-unbordered">
-                  <li class="list-group-item">
-                    <b>Usuarios</b> <a class="pull-right">1,322</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Última Conexión</b> <a class="pull-right">543</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Personal Activo</b> <a class="pull-right">13,287</a>
-                  </li>
-                </ul>
-
-              </div>
-              <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-
-            <!-- About Me Box -->
-            
-            
-          </div><!-- /.FIN DE TARJETA -->
-
-          <div class="col-md-9">
+          
+          <div class="col-md-12">
               <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                   <li class="active"><a href="#tab_1" data-toggle="tab">Usuarios</a></li>
@@ -247,7 +218,7 @@
                             <label>Listado de Usuarios del sistema</label>
                             <input type="hidden" id="idUser" value=0>
                             <select multiple=""  id="cmbListadoUsuario"
-                            class="form-control js-example-placeholder-multiple" style= "height: 25em">
+                            class="form-control js-example-placeholder-multiple" onchange="cargarUsuario()" style= "height: 25em">
                              </select>
                         </div>
                       </div>
