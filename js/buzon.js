@@ -159,6 +159,8 @@ function llenarBuzon(numero,est) {
 
     crearTablaConceptos(numero,est);
 
+    mostrarTextoObservacion(est);
+
     $('#listadoCompleto').hide();
     $('#detalle').slideToggle();
 }
@@ -187,7 +189,7 @@ function crearTablaConceptos(numero,est) {
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
             '                                <td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>\n' +
-            '                                <td class="mntsoli">' + this.DatoFactura.monto + '</td>\n' +
+            '                                <td class="mntsoli">' + this.DatoFactura.mon + '</td>\n' +
             '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
@@ -334,5 +336,15 @@ function cambiarEstatus(tipo){
             estatus = $("#cmbcambioestatus").val();
             verificarAprobacion(copia.numero ,estatus,$("#lblcedula").text());
             break;
+    }
+}
+
+function mostrarTextoObservacion(est){
+    if(est > 1){
+        $(".lblobser").text(" OPINIÓN");
+        $("#cabObserbaciones").html("OPINIONES");
+    }else{
+        $(".lblobser").text(" OBSERVACIÓN");
+        $("#cabObserbaciones").html("OBSERVACIONES");
     }
 }
