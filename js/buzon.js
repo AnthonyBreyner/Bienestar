@@ -196,7 +196,7 @@ function crearTablaConceptos(numero,est) {
             '                                </td></tr>';
         $("#cuerpoEditarConceptos").append(fila);
     });
-    $("#totalter").html(copia.montosolicitado);
+    $("#totalter").html(copia.montosolicitado.toFixed(2));
     $("#totalapro").html(copia.montoaprobado);
     $(".borrarconcepto").click(function () {
         $(this).parents('tr').eq(0).remove();
@@ -216,8 +216,11 @@ function crearTablaConceptos(numero,est) {
     if (copia.Seguimiento.Observaciones != undefined) {
         var lstObs = copia.Seguimiento.Observaciones;
         $("#cuerpoObservaciones").html('');
+        $("#cuerpoOpiniones").html('');
         $.each(lstObs, function () {
-            $("#cuerpoObservaciones").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
+            var tipo = this.contenido.split("|||");
+            if(tipo[1] != undefined) $("#cuerpoOpiniones").append('<tr><td>' + tipo[0] + '</td><td>'+conviertEstatus(copia.estatus)+'</td></tr>');
+            else $("#cuerpoObservaciones").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
     }
 }
@@ -235,8 +238,8 @@ function calcularAcumulado() {
         }
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
+    acumulado = parseFloat(acumulado).toFixed(2);
     $("#totalapro").html(acumulado);
-    copia.montoaprobado = parseFloat(acumulado).toFixed(2);
 }
 
 
@@ -276,6 +279,7 @@ function actualizarReembolso(est) {
             concep.DatoFactura = facturaD;
             concep.afiliado = $(this).find("td").eq(0).html();
             concep.descripcion = $(this).find("td").eq(1).html();
+            copia.montoaprobado = parseFloat($("#totalapro").html());
 
             conceptos.push(concep);
         });
@@ -286,9 +290,16 @@ function actualizarReembolso(est) {
 
 
     var obseraciones = new Array();
+    var tipoObser = "";
+    if(copia.estatus > 1) tipoObser = "|||"+copia.estatus;
     if($("#cuerpoObservaciones tr").length > 0){
         $("#cuerpoObservaciones tr.agobs").each(function(){
            obseraciones.push($(this).find("td").eq(0).html());
+        });
+    }
+    if($("#cuerpoOpiniones tr").length > 0){
+        $("#cuerpoOpiniones tr.agobs").each(function(){
+            obseraciones.push($(this).find("td").eq(0).html()+tipoObser);
         });
     }
     copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
@@ -311,9 +322,10 @@ function actualizarReembolso(est) {
 
 function agObservacion() {
     var texto = $("#txtObservacion").val();
-    var cant = $("#cuerpoObservaciones tr").length;
+    var tabla = $("#cuerpoObservaciones");
+    if(copia.estatus > 1) tabla = $("#cuerpoOpiniones");
     var rem = '<button type="button" onclick="remObse(this)" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i></button>';
-    $("#cuerpoObservaciones").append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
+    tabla.append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
 }
 
 function remObse(fila) {
