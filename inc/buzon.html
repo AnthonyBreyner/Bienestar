@@ -21,34 +21,28 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
-                <div class="box-header with-border">
+                <div class="box-header with-border bg-light-blue">
                     <h3 class="box-title">Datos de Reembolso</h3>
-
-                    <div class="box-tools pull-right">
-                        <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i
-                                class="fa fa-chevron-left"></i></a>
-                        <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i
-                                class="fa fa-chevron-right"></i></a>
-                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body no-padding">
                     <div class="mailbox-read-info">
                         <div class="row" style="margin-left: 50px;">
-                            <div class="col-md-3" style="margin-top: 35px;">
-                                <h4><b>CEDULA:</b>  <label id="lblcedula" style="font-weight: 500;">  </label></h4>
+                            <div class="col-md-3" style="margin-top: 30px;">
+                                <h4><b>CEDULA:</b> <label id="lblcedula" style="font-weight: 500;"> </label></h4>
                                 <h4><b>N° REEMBOLSO: </b> <label id="lblnumero" style="font-weight: 500;"> </label></h4>
 
                             </div>
                             <div class="col-md-4" style="margin-top: 40px;">
-                                <h4><b>NOMBRE:</b>  <label id="lblnombre" style="font-weight: 500;"> </label></h4>
-                                <h4><b>COMPONENTE:</b>  <label id="lblcomponente" style="font-weight: 500;"> </label></h4>
+                                <h4><b>NOMBRE:</b> <label id="lblnombre" style="font-weight: 500;"> </label></h4>
+                                <h4><b>COMPONENTE:</b> <label id="lblcomponente" style="font-weight: 500;"> </label>
+                                </h4>
 
                             </div>
                             <div class="col-md-3" style="margin-top: 40px;">
-                                <h4><b>GRADO:</b>  <label id="lblgrado" style="font-weight: 500;"> </label></h4>
+                                <h4><b>GRADO:</b> <label id="lblgrado" style="font-weight: 500;"> </label></h4>
 
-                                <h4><b>SITUACIÓN:</b>  <label id="lblsituacion" style="font-weight: 500;"> </label></h4>
+                                <h4><b>SITUACIÓN:</b> <label id="lblsituacion" style="font-weight: 500;"> </label></h4>
                             </div>
                             <div class="col-md-2">
                                 <img class="profile-user-img img-responsive" style="width: 130px;" src=""
@@ -60,16 +54,20 @@
                     <!-- /.mailbox-read-info -->
                     <div class="mailbox-controls with-border text-center">
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
-                            <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp Borrar</button>
+                            <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp Borrar
+                        </button>
                         <div class="btn-group">
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" onclick="volverLista()"
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                    onclick="volverLista()"
                                     data-container="body">
-                                <i class="fa fa-reply"></i>&nbsp Regresar</button>
+                                <i class="fa fa-reply"></i>&nbsp Regresar
+                            </button>
                         </div>
                         <!-- /.btn-group -->
                         <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
                                 onclick="cambiarEstatus('a')">
-                            <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar</button>
+                            <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
+                        </button>
                         <div class="pull-right" id="cambioestatus" style="display: none">
                             <select id="cmbcambioestatus">
                                 <option value=""></option>
@@ -79,15 +77,19 @@
                             </select>
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
                                     data-container="body" onclick="cambiarEstatus('e')" id="btncambioestatus">
-                                <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus</button>
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
+                            </button>
                         </div>
                     </div>
                     <!-- /.mailbox-controls -->
+                    <div class="box box-primary">
                     <div class="mailbox-read-message">
-                        <h4>Detalles del Reembolso</h4>
+
+                        <h4 >Detalles del Reembolso</h4>
+                        </div>
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
+                            <tr class="bg-info">
                                 <td>Afiliado</td>
                                 <td>Concepto</td>
                                 <td>Rif</td>
@@ -103,31 +105,45 @@
 
                             </tbody>
                             <tfoot>
-                            <tr><td colspan="5" style="text-align: right">TOTALES</td><td id="totalter" style="text-align: right"></td><td id="totalapro" style="text-align: right"></td></tr>
+                            <tr>
+                                <td colspan="5" style="text-align: right">TOTALES</td>
+                                <td id="totalter" style="text-align: right"></td>
+                                <td id="totalapro" style="text-align: right"></td>
+                            </tr>
                             </tfoot>
                         </table>
                         <table class="table table-bordered">
                             <thead>
-                            <tr>
+                            <tr class="bg-info">
                                 <td id="cabObserbaciones">OBSERIVACIONES</td>
-                                <td style="width: 15px"><select id="estSeguimiento"><option value="0">En orden</option><option value="1">Con pendientes</option><option value="2">Con Recomendaciones</option> </select></td>
+                                <td style="width: 15px"><select id="estSeguimiento">
+                                    <option value="0">En orden</option>
+                                    <option value="1">Con pendientes</option>
+                                    <option value="2">Con Recomendaciones</option>
+                                </select></td>
                             </tr>
                             </thead>
                             <tbody id="cuerpoObservaciones">
 
                             </tbody>
                         </table>
+                        <div class="box box-primary">
                         <div class="row">
-                            <div class="col-md-1">
-                                <h4 class="lblobser">OBSERVACIÓN</h4></div>
 
-                            <button type="button" class="btn btn-default btn-sm"
-                                    style="margin-left: 20px; margin-top: 5px" data-toggle="tooltip"
-                                    data-container="body" onclick="agObservacion()">
-                                <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar<label class="lblobser">&nbspObservación</label>
-                            </button>
+                            <div class="col-md-6">
+                                <h4 class="lblobser">OBSERVACIÓN</h4>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-default btn-sm pull-right"
+                                        data-toggle="tooltip"
+                                        data-container="body" onclick="agObservacion()">
+                                    <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar<label class="lblobser">&nbspObservación</label>
+                                </button>
+                            </div>
                         </div>
-                        <textarea textarea class="form-control" rows="3" placeholder="Observación..." id="txtObservacion"></textarea>
+                        </div>
+                        <textarea textarea class="form-control" rows="3" placeholder="Observación..."
+                                  id="txtObservacion"></textarea>
                     </div>
                     <!-- /.mailbox-read-message -->
                 </div>
@@ -135,10 +151,14 @@
                 <!-- /.box-footer -->
                 <div class="box-footer">
                     <div class="pull-right">
-                        <button type="button" onclick="actualizarReembolso()" class="btn btn-success"><i class="fa fa-save "></i> Guardar cambios</button>
+                        <button type="button" onclick="actualizarReembolso()" class="btn btn-success"><i
+                                class="fa fa-save "></i> Guardar cambios
+                        </button>
 
                     </div>
-                    <button type="button" onclick="volverLista()" class="btn btn-default"><i class="fa fa-reply"></i> Atras</button>
+                    <button type="button" onclick="volverLista()" class="btn btn-default"><i class="fa fa-reply"></i>
+                        Atras
+                    </button>
 
                 </div>
                 <!-- /.box-footer -->
