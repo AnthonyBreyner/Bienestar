@@ -1,5 +1,4 @@
 $(function () {
-    console.log("aca apoyo");
     console.log(militar);
 
     $("#btnvolverlista").click(function(){
@@ -162,85 +161,6 @@ function crearLista(){
     historico();
 }
 
-function historico(){
-    $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>\n' +
-        '                        </thead>\n' +
-        '                        <tbody id="cuerporeembolsos">\n' +
-        '\n' +
-        '                        </tbody>');
-
-    var t = $('#historicoReembolso').DataTable({
-        destroy: true,
-        'paging': true,
-        'lengthChange': true,
-        'searching': false,
-        'ordering': true,
-        'info': false,
-        'autoWidth': false,
-        "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
-        "bStateSave": true,
-        "language": {
-            "lengthMenu": "Mostar _MENU_ filas por pagina",
-            "zeroRecords": "Nada que mostrar",
-            "info": "Mostrando _PAGE_ de _PAGES_",
-            "infoEmpty": "No se encontro nada",
-            "infoFiltered": "(filtered from _MAX_ total records)",
-            "search": "Buscar",
-            "paginate": {
-                "first":      "Primero",
-                "last":       "Ultimo",
-                "next":       "Siguiente",
-                "previous":   "Anterior"
-            },
-        },
-    });
-    t.clear().draw();
-
-    if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
-        var html = "";
-        var i = 0;
-        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
-            var est = "Por procesar";
-            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
-            var listaFact = "<div class=\"dropdown\">\n" +
-                "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                "            Ver" +
-                "            <span class=\"fa fa-plus\"></span>\n" +
-                "            </button>\n" +
-                "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
-            $.each(this.Concepto,function(){
-                listaFact += "<li class='bg-info'>"+this.DatoFactura.numero+"</li>";
-            });
-            listaFact +="</ul></div>";
-            t.row.add([
-                "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
-                "<b>"+fcrea+"</b>",
-                listaFact,
-                this.montosolicitado,
-                est
-            ]).draw(false);
-            $('#historicoReembolso thead td.pbuscar').each( function () {
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Buscar" /><br>'+title );
-            } );
-            t.columns().every( function () {
-                var that = this;
-
-                $('input', this.header()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            });
-            i++;
-
-        });
-    }
-}
 
 function cedulaDepositar(){
     var ced = $("#depositar").val();
@@ -255,7 +175,24 @@ function cargarFamiliar(pos){
     var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
     $("#lblparentesco").text(parente);
     var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
-    $("#lblfnac").text(fnac)
+    $("#lblfnac").text(fnac);
+    if (fami.Persona.Telefono != undefined) {
+        $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
+        $("#txtmcelular").val(militar.Persona.Telefono.movil);
+        $("#txtmcorreo").val(militar.Persona.Correo.principal);
+    }
+
+    if (fami.Persona.Direccion != undefined) {
+        var DIR = militar.Persona.Direccion[0];
+        Estados.ObtenerEstados();
+        $("#cmbmestado").val(DIR.estado);
+        $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+        $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+        $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+        $("#txtmcalle").val(DIR.calleavenida);
+        $("#txtmcasa").val(DIR.casa);
+        $("#txtmapto").val(DIR.apartamento);
+    }
 }
 
 function detalleVisible(pos){
