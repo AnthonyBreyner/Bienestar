@@ -420,7 +420,6 @@ function cargarDatos(){
 
         request2.then(function(xhRequest) {
             //var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-            $.notify("Se guardo con exito","succes");
             respuesta = JSON.parse(xhRequest.responseText);
             if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);

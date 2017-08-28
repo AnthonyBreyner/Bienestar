@@ -315,8 +315,11 @@ function actualizarReembolso(est) {
     });
 
     request2.then(function(xhRequest) {
-        $.notify("Se actualizo con exito");
-        listaBuzon();
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
+        listaBuzon(copia.estatus);
+        volverLista();
     });
 }
 
