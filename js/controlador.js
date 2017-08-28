@@ -237,3 +237,10 @@ function buzon(est){
     CargarUrl("panelderecho","inc/buzon");
     listaBuzon(est);
 }
+
+function msjRespuesta(texto) {
+    $("#_contenido").html(texto);
+    var botones = '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}
