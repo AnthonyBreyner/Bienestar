@@ -217,14 +217,14 @@ function historico(){
             var est = conviertEstatus(this.estatus);
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
             var listaFact = "";
-            var nfac = "";
+            var nfac = this.Concepto[0].DatoFactura.numero;
             if(this.Concepto[0].DatoFactura.numero == ""){
                 nfac = "Sin factura";
             }
             if(this.Concepto.length > 1){
                 listaFact = "<div class=\"dropdown\">\n" +
                     "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                    "            Ver" +
+                    "            " + nfac +
                     "            <span class=\"fa fa-plus\"></span>\n" +
                     "            </button>\n" +
                     "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
@@ -421,7 +421,17 @@ function cargarDatos(){
         request2.then(function(xhRequest) {
             //var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
             $.notify("Se guardo con exito","succes");
+            respuesta = JSON.parse(xhRequest.responseText);
+            if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+            msjRespuesta(respuesta.msj);
             $("#conceptoagregado").html("");
+            llenarReembolso();
+
+                $("#opciones").hide();
+                $("#panelentrada").show();
+                $("#panellista").hide();
+                $("#panelregistro").hide();
+
         });
     }else{
         $.notify("Debe ingresar todos los datos para realizar el reembolso");
