@@ -134,68 +134,36 @@
                                         <label>Razón Social</label>
                                         <input class="form-control" id="razonsocial" readonly="true"
                                                required="required">
+                                        <input type="hidden" id="emptipo"/>
+                                        <input type="hidden" id="empdirec"/>
+                                        <input type="hidden" id="empbanco"/>
+                                        <input type="hidden" id="emptipoc"/>
                                     </div>
-                                    <!--<div class="col-md-4 col-sm-12">
-                                        <label>Fondo:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbfondo"
-                                                required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">Fondo del Cuidado Integral de la Salud (C.I.S)</option>
-                                            <option value="1">Fondo del adulto Mayor (F.A.M)</option>
-                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)
-                                            </option>
-
-                                        </select>
-                                    </div>-->
                                     <div class="col-md-4 col-sm-12">
-                                        <label>Tipo de Ayuda:</label>
-
-                                        <div>
-                                            <select class="form-control" id="cmbtipoayuda"
-                                                    required="required">
-                                                <option selected="selected" value="S"></option>
-                                                <option value="0">CASOS PARTICULARES</option>
-                                                <option value="1">CONVENIO SEGUROS HORIZONTES FONDO DE CONTINGENCIA
-                                                </option>
-
-
-                                            </select>
-                                        </div>
+                                        <label>Cuenta Bancaria</label>
+                                        <input class="form-control" type="text" id="empcuenta" readonly="readonly"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Total de la Factura:</label>
-                                        <input class="form-control " id="montofactura" required="required"
-                                               onkeypress="return SoloNumero(event)">
+                                        <input class="form-control " id="montofactura" required="required" onblur="calcularSolicitado()"
+                                               onkeypress="return Util.SoloNumero(event,this,true)">
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto a Cubrir por la Aseguradora:</label>
-                                        <input class="form-control" id="montoacubrir" required="required"
-                                               onkeypress="return SoloNumero(event)">
+                                        <input class="form-control" id="montoacubrir" required="required" onblur="calcularSolicitado()"
+                                               onkeypress="return Util.SoloNumero(event,this,true)">
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Aportado por el IPSFA:</label>
-                                        <input class="form-control" id="montosolicitado" required="required"
-                                               onkeypress="return SoloNumero(event)">
+                                        <input class="form-control" id="montosolicitado" required="required" readonly="readonly">
                                     </div>
-                                    <div class="col-md-4 col-sm-12">
-                                        <label>Monto Aprobado por el IPSFA:</label>
-                                        <input class="form-control" id="montoaprobado" required="required"
-                                               onkeypress="return SoloNumero(event)">
-                                    </div>
-                                    <!--<div class="col-md-4 col-sm-12">
-                                        <button class="btn btn-primary btn-success" type="button"
-                                                onclick="agregarApoyo()"
-                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
-                                            &nbsp<i
-                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
-                                    </div>-->
                                     <div class="col-md-4 col-sm-12">
                                         <label>N° de Factura:</label>
-                                        <input class="form-control" id="montoaprobado" required="required"
+                                        <input class="form-control" id="numerofactura" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
@@ -208,6 +176,17 @@
                                                 <input type="text" class="form-control" id="fechafactura"
                                                        required="required">
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Tipo de Ayuda:</label>
+                                        <div>
+                                            <select class="form-control" id="cmbtipoayuda"
+                                                    required="required">
+                                                <option selected="selected" value="S"></option>
+                                                <option value="0">CASOS PARTICULARES</option>
+                                                <option value="1">CONVENIO SEGUROS HORIZONTES FONDO DE CONTINGENCIA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +309,7 @@
                     <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
 color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
                     <a type="button" class="btn btn-app btn-success pull-right" style="margin-right: 10px;background-color: #337ab7;
-color: white;">
+color: white;" onclick="generarPlanilla()">
                         <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR PLANILLA
                     </a>
                 </div>

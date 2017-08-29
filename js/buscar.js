@@ -329,3 +329,16 @@ function historico(){
         });
     }
 }
+
+function detalleVisible(pos){
+    var tconcepto = "";
+    $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
+        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
+    })
+    tconcepto += "</table>";
+    $("#cuerpoLstConceptos").html(tconcepto);
+    $("#lstDetalle").show();
+    $("#tblreembolsos").hide();
+}

@@ -45,6 +45,19 @@ class ConceptoReembolso {
     }
 }
 
+class ConceptoApoyo {
+    constructor() {
+        console.log("Creando objeto ConceptoAyuda");
+        this.descripcion = '';
+        this.DatoFactura = new Factura();
+        this.afiliado = '';
+        this.patologia = "";
+        this.montoaseguradora = 0.00;
+        this.montoaportar = 0.00;
+        this.requisito = new Array();
+    }
+}
+
 class Seguimiento{
     constructor(){
         this.Estatus = 0;
@@ -70,6 +83,26 @@ class Reembolso {
         this.Telefono = new Telefono();
         this.Correo = new Correo();
         this.Seguimiento = new Seguimiento();
+    }
+}
+
+class Apoyo {
+    constructor() {
+        console.log("Creando objeto apoyo");
+        this.estatus = 0;
+        this.montosolicitado = 0.00;
+        this.cuentabancaria = new CuentaBancaria2();
+        this.Concepto = new Array();
+        this.montoaprobado = 0.00;
+        this.fechaaprobacion = '';
+        this.requisito = new Array();
+        this.observaciones = "";
+        this.Direccion = new Direccion();
+        this.Telefono = new Telefono();
+        this.Correo = new Correo();
+        this.Seguimiento = new Seguimiento();
+        this.tipo = 0;
+        this.convenio = "";
     }
 }
 
