@@ -95,4 +95,15 @@ function cargarUsuario(){
 function llenarUsuario(datos){
     $("#cedula").val(datos.cedula);
     $("#nombre").val(datos.nombre);
+    $("#seudonimo").val(datos.usuario);
+    $("#rolUsuario").val(datos.Roles.descripcion);
+    $("#perfilUsuario").val(datos.Perfil.descripcion);
+    $("#cargo").val(datos.cargo);
+    $("#telefono").val(datos.telefono);
+    $("#correo").val(datos.correo);
+    $("#direccionIp").val(datos.FirmaDigital.DireccionIP);
+    $("#direccionMac").val(datos.FirmaDigital.DireccionMAC);
+    $("#direccionUsuario").val(datos.direccion);
+    $("#fechaCreacion").val(datos.fechacreacion);
+
 }

@@ -236,29 +236,6 @@
                       </div>
                     </div>
 
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Gerencia</label>
-                          <select class="form-control" id="cmbGerencia" onchange="cUsers()">
-                            <option value="0">Seleccionar...</option>
-                            <option value="">Presidencia</option>
-                            <option value="">VicePresidencia</option>
-                            <option value="">Secretaria General</option>
-                            <option value="">Bienestar Social</option>
-                            <option value="">Drogueria y Farmacia</option>
-                            <option value="">Crédito</option>
-                            <option value="">Odontólogia</option>
-                            <option value="">Vivienda</option>
-                            <option value="">Consultoria Jurídica</option>
-                            <option value="">Recursos Humanos</option>
-                            <option value="">Auditoria Interna</option>
-                            <option value="">Informática</option>
-                            <option value="">Finanzas</option>
-                            <option value="">Logística</option>
-                          </select>
-                      </div>
-                    </div>
-
                      <div class="col-xs-4 col-md-4">
                       <div class="form-group">
                         <label>Sucursal</label>
@@ -274,11 +251,36 @@
                             <option value="">Apure</option>
                             <option value="">Barinas</option>
                             <option value="">Barcelona</option>
+                            <option value="">San Juan de los Morros</option>
                             <option value="">Cumana</option>
                             <option value="">Margarita</option>
                             <option value="">Maturin</option>
                             <option value="">Tucupita</option>
                             <option value="">Puerto Ayacucho</option>
+                          </select>
+                      </div>
+                    </div>
+
+                    <div class="col-xs-4 col-md-4">
+                      <div class="form-group">
+                        <label>Gerencia</label>
+                          <select class="form-control" id="cmbGerencia" onchange="cUsers()">
+                            <option value="0">Seleccionar...</option>
+                            <option value="">Presidencia</option>
+                            <option value="">VicePresidencia</option>
+                            <option value="">Secretaria General</option>
+                            <option value="">Planificación y Presupuesto</option>
+                            <option value="">Bienestar y Seguridad Social</option>
+                            <option value="">Drogueria y Farmacia</option>
+                            <option value="">Crédito</option>
+                            <option value="">Odontólogia</option>
+                            <option value="">Vivienda</option>
+                            <option value="">Consultoria Jurídica</option>
+                            <option value="">Recursos Humanos</option>
+                            <option value="">Auditoria Interna</option>
+                            <option value="">Informática</option>
+                            <option value="">Finanzas</option>
+                            <option value="">Logística</option>
                           </select>
                       </div>
                     </div>
@@ -308,7 +310,7 @@
 
                     <div class="col-xs-4 col-md-4">
                       <div class="form-group">
-                        <label>Seudonimo</label>
+                        <label>Usuario</label>
                         <div class="input-group">
                           <span class="input-group-addon"><span class="fa fa-user"></span></span>
                           <input type="text" class="form-control" id="seudonimo" placeholder="Seudonimo" />
@@ -325,7 +327,7 @@
                         <label>Cargo</label>
                         <div class="input-group">
                           <span class="input-group-addon"><span class="fa fa-sitemap"></span></span>
-                          <input type="text" class="form-control" id="cargo" placeholder="Teléfono" />
+                          <input type="text" class="form-control" id="cargo" placeholder="Cargo" />
                         </div>
                       </div>
                     </div>
@@ -467,7 +469,6 @@
                       <div class="form-group">
                         <label>Menú</label>
                         <select multiple="" onclick="cargarPP();" ondblclick="removerMenu()" id="cmbMenu" class="form-control js-example-placeholder-multiple" style= "height: 25em"  >
-                         
                         </select>
                       </div>
                     </div>
@@ -488,6 +489,25 @@
 
                         <div class="col-xs-6 col-md-6">
                           <div class="form-group">
+                            <label>Perfil</label>
+                            <div class="input-group">
+                              <span class="input-group-addon"><span class="fa fa-legal"></span></span>
+                                <select class="form-control" id="perfil" onchange="cargarPrivilegios()">
+                                  <option value=0>Seleccionar...</option>  
+                                  
+                                </select>
+                                
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+                      
+
+                      <div class="row">
+                        
+
+                        <div class="col-xs-6 col-md-6">
+                          <div class="form-group">
                             <label>Menú</label>
                             <div class="input-group">
                               <span class="input-group-addon"><span class="fa fa-home"></span></span>
@@ -497,14 +517,9 @@
                                 </select>
                               </div>
                             </div>
-                          </div>
+                        </div>
 
-                      </div>
-                      
-
-                      <div class="row">
-                        
-                         <div class="col-xs-6 col-md-6">
+                        <div class="col-xs-6 col-md-6">
                         <div class="form-group">
                           <label>Sub Menú</label>
                           <div class="input-group">
@@ -517,19 +532,7 @@
                           </div>
                         </div>
 
-                        <div class="col-xs-6 col-md-6">
-                          <div class="form-group">
-                            <label>Perfil</label>
-                            <div class="input-group">
-                              <span class="input-group-addon"><span class="fa fa-legal"></span></span>
-                                <select class="form-control" id="perfil" onchange="cargarPrivilegios()">
-                                  <option value=0>Seleccionar...</option>  
-                                  
-                                </select>
-                                
-                              </div>
-                            </div>
-                          </div>
+                        
                           
                           <div class="col-xs-12 col-md-12">
                             <div class="table-responsive mailbox-messages">
