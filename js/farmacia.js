@@ -22,10 +22,25 @@ $(function () {
     $(".mdl-requisitos4").on("change",function () {
         verificaCheckModal("requisitostratamiento","btnAgconcepto");
     });
-    llenar();
+   
 });
 
 function llenar(){
 
 
 }
+
+function cargarDatos(){
+    var html = '<tr><td>'+$("#cmbdoctores option:selected").text()+'</td><td>'+$("#cmbnomhospital option:selected").text()+'</td><td>'+$("#cmbnomhospital option:selected").text()+'</td><td>'+$("#cmbunimedica option:selected").text()+'</td><td>'+$("#cmbcodigo option:selected").text()+
+    '</td><td>'+$("#diagnostico option:selected").text();
+    
+    $("#tblAgfarmacia").append(html);
+    
+    
+    $(".borrarFila").click(function () {
+        $(this).parents('tr').eq(0).remove();
+
+    });
+}
+
+

@@ -81,7 +81,7 @@
                             <form id="frmapoyoeconomico" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-4 ">
-                                        <label>Familiar:</label>
+                                        <label>Afiliado:</label>
                                         <select class="form-control" style="width: 100%" id="cmbbeneficiario"
                                                 required="required">
                                             <option selected="selected" value="S"></option>
@@ -92,24 +92,24 @@
                                         <select class="form-control" style="width: 100%" id="cmbconcepto"
                                                 onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0">Tratamientos Odontologicos</option>
-                                            <option value="1">Fisiatría y Rehabilitación</option>
-                                            <option value="2">Consultas, Ortopedia y Tratamiento Médico</option>
-                                            <option value="3">Exámenes de Laboratorio</option>
-                                            <option value="4">Exámenes Especiales</option>
+                                            <option value="0">Examenes Especiales</option>
+                                            <option value="1">Tratamiento Psicopedagogico</option>
+                                            <option value="2">Geriatrico</option>
+                                            <option value="3">Lentes</option>
+                                            <option value="4">Fisioterapia</option>
 
-                                            <option value="5">Tratamiento Psicopedagógico</option>
-                                            <option value="6">Geriátricos</option>
+                                            <option value="5">Maracapaso</option>
+                                            <option value="6">Material Medico</option>
 
-                                            <option value="7">Complemento de Hospitalización e Intervención Quirúrgica
+                                            <option value="7">Odontologico
                                             </option>
-                                            <option value="8">Hospitalizacion e Intervención Quirúrgica</option>
-                                            <option value="9">Material Médico Quirúrgico</option>
+                                            <option value="8">Quimioterapia</option>
+                                            <option value="9">Radioterapia</option>
 
-                                            <option value="10">Lentes</option>
-                                            <option value="11">Quimioterapia</option>
-                                            <option value="12">Radio Terapia</option>
-                                            <option value="13">Marcapasos</option>
+                                            <option value="10">Hospitalizacion</option>
+                                            <option value="11">Hospitalizacion Deuda</option>
+                                            <option value="12">Intervención Quirurgica</option>
+                                            <option value="13">Intervención Quirurgica Deuda</option>
                                         </select>
                                     </div>
 
@@ -125,22 +125,17 @@
                                         <label>Beneficiario:</label>
                                         <div class="btn-group-justified" role="group" aria-label="...">
                                             <div class="btn-group" style="width: 6%;" role="group">
-                                                <input class="form-control" id="rif" required="required">
-                                            </div>
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-success dropdown-toggle"
-                                                        data-toggle="dropdown"
-                                                        onclick="consultarRif()">
-                                                    <span class="fa fa-search"></span></button>
+                                                <input class="form-control" id="rif" onblur="consultarRif()"
+                                                       required="required" placeholder="RIF">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label>&nbsp</label>
+                                        <label>Razón Social</label>
                                         <input class="form-control" id="razonsocial" readonly="true"
                                                required="required">
                                     </div>
-                                    <div class="col-md-4 col-sm-12">
+                                    <!--<div class="col-md-4 col-sm-12">
                                         <label>Fondo:</label>
                                         <select class="form-control" style="width: 100%" id="cmbfondo"
                                                 required="required">
@@ -151,27 +146,24 @@
                                             </option>
 
                                         </select>
-                                    </div>
-                                </div>
-
-
-                                     <div class="row">
-                                    <div class="col-md-12 col-sm-12">
+                                    </div>-->
+                                    <div class="col-md-4 col-sm-12">
                                         <label>Tipo de Ayuda:</label>
 
                                         <div>
-                                            <select class="form-control"  id="cmbtipoayuda"
+                                            <select class="form-control" id="cmbtipoayuda"
                                                     required="required">
                                                 <option selected="selected" value="S"></option>
                                                 <option value="0">CASOS PARTICULARES</option>
-                                                <option value="1">CONVENIO SEGUROS HORIZONTES FONDO DE CONTINGENCIA</option>
+                                                <option value="1">CONVENIO SEGUROS HORIZONTES FONDO DE CONTINGENCIA
+                                                </option>
 
 
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                          <div class="row">
+                                <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Total de la Factura:</label>
                                         <input class="form-control " id="montofactura" required="required"
@@ -179,13 +171,13 @@
                                     </div>
 
                                     <div class="col-md-4 col-sm-12">
-                                        <label>Monto a Cubrir de la Aseguradora:</label>
+                                        <label>Monto a Cubrir por la Aseguradora:</label>
                                         <input class="form-control" id="montoacubrir" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
 
-                                   <div class="col-md-4 col-sm-12">
-                                        <label>Diferencia Solicitada:</label>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Monto Aportado por el IPSFA:</label>
                                         <input class="form-control" id="montosolicitado" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
@@ -194,23 +186,40 @@
                                         <input class="form-control" id="montoaprobado" required="required"
                                                onkeypress="return SoloNumero(event)">
                                     </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <label>Observaciones</label>
-                                        <textarea class="form-control" rows="3"></textarea>
+                                    <!--<div class="col-md-4 col-sm-12">
+                                        <button class="btn btn-primary btn-success" type="button"
+                                                onclick="agregarApoyo()"
+                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
+                                            &nbsp<i
+                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                    </div>-->
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>N° de Factura:</label>
+                                        <input class="form-control" id="montoaprobado" required="required"
+                                               onkeypress="return SoloNumero(event)">
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Fecha Factura:</label>
+                                        <div class="input-group date" style="z-index: 1030;">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div class="input-group input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="fechafactura"
+                                                       required="required">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                               
                             </form>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel panel-default">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
-                  <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                        <div class="panel-heading bg-blue" role="tab" id="headingTree">
                             <h4 class="panel-title">
                                 Direccion del afiliado
                             </h4>
@@ -262,32 +271,42 @@
                                     <label># Apto:</label>
                                     <input id="txtmapto" class="form-control" disabled="disabled" type="text">
                                 </div>
-                              </div>
-                               <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Teléfono:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input id="txtmtelefono" class="form-control" disabled="disabled"
-                                                   type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask
-                                                   required>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Teléfono:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label>Celular:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon">
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                            <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
-                                                   data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
-                                        </div>
+                                        <input id="txtmtelefono" class="form-control" disabled="disabled"
+                                               type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask
+                                               required>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <label>Celular:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label class="control-label">Correo Electronico:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                               required onblur="Util.ValidarCorreo()">
+                                    </div>
+                                </div>
+                            </div>
 
-                                <div class="row">
+                            <div class="row">
                                 <div class="col-md-12">
                                     <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
                                             onclick="habilitarDireccion(false)"
@@ -301,28 +320,25 @@
                                 </div>
                             </div>
 
-                            </div> <!-- Grupo nombres-->
-                          </div>
-                      </br>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-md btn-success pull-center" >
-                                        <i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;GENERAR PLANILLA
-                                    </button>
-
-                                </div>
-                            </div>       
-
-                        </div>
+                        </div> <!-- Grupo nombres-->
                     </div>
-
                 </div>
 
-                <br><br>
-
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
+color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+                    <a type="button" class="btn btn-app btn-success pull-right" style="margin-right: 10px;background-color: #337ab7;
+color: white;">
+                        <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR PLANILLA
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
 
@@ -334,4 +350,4 @@
     });
     $('[data-mask]').inputmask();
 </script>
-<script src = "js/apoyo.js" ></script>
+<script src="js/apoyo.js"></script>
