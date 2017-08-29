@@ -17,6 +17,7 @@ $(function () {
 });
 
 
+
 function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
@@ -47,6 +48,8 @@ function salvarEmpresa(){
     $("#razonsocial").val(rznuevo);
     $("#mdlEmpresa").modal('hide');
 }
+
+
 
 function llenarCarta(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
@@ -109,15 +112,6 @@ function llenarCarta(){
         $("#paneldatos").hide();
     }
 
-}
-
-function listaCuentas(){
-    $("#datosbancarios").html("");
-    $.each(militar.Persona.DatoFinanciero,function(){
-        $("#datosbancarios").append(new Option(this.cuenta,this.cuenta+"|"+this.institucion+"|"+this.tipo, true, true));
-    });
-    $("#datosbancarios").append(new Option("OTRA","otra", true, true));
-    $("#datosbancarios").append(new Option("Selecione","", true, true));
 }
 
 function crearLista(){
@@ -236,10 +230,7 @@ function historico(){
     }
 }
 
-function cedulaDepositar(){
-    var ced = $("#depositar").val();
-    $("#cibancario").val(ced);
-}
+
 
 function cargarFamiliar(pos){
     var fami = militar.Familiar[pos];
@@ -298,27 +289,6 @@ function agregarConcepto(){
     return false;
 }
 
-function calcularAcumulado(){
-    var acumulado = 0;
-    $("#conceptoagregado tr").each(function(){
-        var mnt = $(this).find("td.mntAcumulado").eq(0).html();
-        acumulado = parseFloat(acumulado)+parseFloat(mnt);
-    });
-    $("#mntAcumulado").html(acumulado);
-}
-
-function validadDatosBancarios(){
-    var tipoc = $("#tipodecuenta").val();
-    var banco = $("#banco").val();
-    var cuenta = $("#numerocuenta").val();
-    var cedula = $("#cibancario").val();
-    var depositar = $("#depositar").val();
-    if(tipoc == "S" || banco == "S" || cuenta == "" || cedula == "" || depositar == ""){
-        $.notify("Debe ingresar todos los datos financieros","warn");
-        return false;
-    }
-    return true;
-}
 
 
 function cargarDatos(){
@@ -393,36 +363,11 @@ function cargarDatos(){
             var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
         });
     }else{
-        $.notify("Debe ingresar todos los datos para realizar el reembolso");
+        $.notify("Debe ingresar todos los datos para procesar Carta Aval");
     }
 
 }
 
-function verificaBeneficiarioCuenta(){
-    var opt = $("#datosbancarios").val();
-    if(opt == "otra"){
-        $("#numerocuenta").attr("disabled",false);
-        $("#depositar").attr("disabled",false);
-        $("#banco").attr("disabled",false);
-        $("#tipodecuenta").attr("disabled",false);
-        $("#cibancario").val('');
-        $("#numerocuenta").val('');
-        $("#tipodecuenta").val('S');
-        $("#depositar").val('S');
-        $("#banco").val('S');
-    }else{
-        $("#numerocuenta").attr("disabled",true);
-        $("#depositar").attr("disabled",true);
-        $("#banco").attr("disabled",true);
-        $("#tipodecuenta").attr("disabled",true);
-        var datosBancario = opt.split('|');
-        $("#numerocuenta").val(datosBancario[0]);
-        $("#banco").val(datosBancario[1]);
-        $("#tipodecuenta").val(datosBancario[2]);
-        $("#cibancario").val(militar.Persona.DatoBasico.cedula);
-        $("#depositar").val(militar.Persona.DatoBasico.cedula);
-    }
-}
 
 function limpiarReembolso(){
     $('#frmreembolso').each (function(){

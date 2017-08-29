@@ -6,7 +6,7 @@
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                                Datos de la Carta Aval
+                                Datos del Tratamiento de Alto Costo
                         </h4>
                     </div>
                     </a>
@@ -21,110 +21,30 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <label>Conceptos:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbconcepto" onchange="requisitosConcepto()" required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">Tratamientos Odontologicos</option>
-                                            <option value="1">Fisiatría y Rehabilitación</option>
-                                            <option value="2">Consultas, Ortopedia y Tratamiento Médico</option>
-                                            <option value="3">Exámenes de Laboratorio</option>
-                                            <option value="4">Exámenes Especiales</option>
-
-                                            <option value="5">Tratamiento Psicopedagógico</option>
-                                            <option value="6">Geriátricos</option>
-
-                                            <option value="7">Complemento de Hospitalización e Intervención Quirúrgica</option>
-                                            <option value="8">Hospitalizacion e Intervención Quirúrgica</option>
-                                            <option value="9">Material Médico Quirúrgico</option>
-
-                                            <option value="10">Lentes</option>
-                                        </select>
+                                        <label>Descripción del Medicamento:</label>
+                                        <input class="form-control" id="txtmedicamento" required="required">
                                     </div>
                              
 
                                     <div class="col-md-4 ">
-                                        <label>Patología:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbpatologia" required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">OBSTETRICIA</option>
-                                            <option value="1">CARDIOLOGIA</option>
-                                            <option value="2">MEDICINA INTERNA</option>
-                                            <option value="3">TRAUMATOLOGIA</option>
-                                            <option value="4">CIRUGIA GENERAL</option>
-                                            <option value="5">ONCOLOGIA</option>
-                                            <option value="6">NEUROLOGIA</option>
-                                            <option value="7">UROLOGIA</option>
-                                            <option value="8">NEUMONOLOGIA</option>
-                                            <option value="9">PEDIATRIA NEONATAL</option>
-                                            <option value="10">GASTROENTEROLOGIA</option>
-                                            <option value="11">GINECOLOGIA</option>
-                                            <option value="12">NEUROCIRUGIA</option>
-                                            <option value="13">OTORRINOLARINGOLOGIA</option>
-
-                                        </select>
+                                        <label>Unidades:</label>
+                                                <input class="form-control" id="txtunidad" required="required">
                                     </div>
-   </div>
+                         </div>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-sm-12">
-                                        <label>Beneficiario:</label>
-                                        <div class="btn-group-justified" role="group" aria-label="...">
-                                            <div class="btn-group" style="width: 6%;" role="group">
-                                                <input class="form-control" id="rif" required="required">
-                                            </div>
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
-                                                        onclick="consultarRif()">
-                                                    <span class="fa fa-search"></span></button>
-                                            </div>
-                                        </div>
+                                       <div class="col-md-4 ">
+                                        <label>Nº de Récipe:</label>
+                                                <input class="form-control" id="txtrecipe" required="required">
                                     </div>
-                                    <div class="col-md-5 col-sm-12">
-                                        <label>&nbsp</label>
-                                        <input class="form-control" id="razonsocial" readonly="true" required="required">
-                                    </div>
-                                    <div class="col-md-5 col-sm-12">
-                                        <label>Fondo:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbfondo" required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">Fondo del Cuidado Integral de la Salud (C.I.S)</option>
-                                            <option value="1">Fondo del adulto Mayor (F.A.M)</option>
-                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)</option>
-                                           
-                                        </select>
-                                    </div>
-                                    </div>
+                            </div>
 
-                                 <div class="row">
-                                    <div class="col-md-12 col-sm-12">
-                                        <label>Servicio de Carta Aval:</label>
-                                       
-                                         <div >
-                                            <select class="form-control" style="width: 100%" id="cmbserviciocartavala" required="required">
-                                                <option selected="selected" value="S"></option>
-                                                <option value="0">MAMOGRAFIA</option>
-                                                <option value="1">REHABILITACIÓN</option>
-                                                <option value="2">PROTESIS AUDITIVA</option>
-                                                <option value="3">PROTESIS TRAUMATOLOGIA</option>
-                                            </select>
-                                            </div>
-                                        </div>
-
-                                </div>
-
-                                
-                                 <div class="row">  
-                                        <div class="col-md-12 col-sm-12">
-                                             <label>Observaciones</label>
-                                             <textarea class="form-control" rows="3" ></textarea>
-                                      </div>
-                                 </div>
-
+ 
                                                                  </br>
                             <div class="row">
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-md btn-success pull-left" >
-                                        <i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;GENERAR CARTA AVAL
+                                        <i class="fa fa-newspaper-o"></i>&nbsp;&nbsp;GENERAR AUTORIZACIÓN
                                     </button>
 
                                 </div>
@@ -238,5 +158,3 @@
         </div>
     </div>
 </div>
-
-<script src = "js/carta.js" ></script>
