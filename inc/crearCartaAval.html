@@ -14,7 +14,7 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                          aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form id="frmapoyoeconomico" action="#" method="post">
+                            <form id="frmcartaaval" action="#" method="post">
                                 <div class="row">
                                     <div class="col-md-6 ">
                                         <label>Afiliado:</label>
@@ -25,8 +25,8 @@
                                     </div>
                                     <div class="col-md-3 ">
                                         <label>Motivo de la Carta Aval:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbconcepto"
-                                                onchange="requisitosConcepto()" required="required">
+                                        <select class="form-control" style="width: 100%" id="cmbmotivo"
+                                                onchange="obtenerEstudio()" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">MASTOLOGÍA</option>
                                             <option value="1">PROTESIS</option>
@@ -34,7 +34,7 @@
                                     </div>
                                     <div class="col-md-3 ">
                                         <label>Estudio:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbconcepto"
+                                        <select class="form-control" style="width: 100%" id="cmbestudio"
                                                 onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
@@ -44,10 +44,24 @@
                                             <option value="4">COMPRESIÓN DIGITAL UNILATERAL</option>
                                             <option value="5">COMPRESIÓN DIGITAL BILATERAL</option>
                                             <option value="6">ULTRASONIDO MAMARIO</option>
+                                            <option value="7">PROTESIS AUDITIVA</option>
+                                            <option value="8">PROTESIS DE CADERA</option>
+                                            <option value="9">PROTESIS DE RODILLA</option>
                                         </select>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                  <div class="col-md-9 col-sm-12">
+                                      <label>Diágnostico:</label>
+                                      <input class="form-control" id="txtdiagnostico"
+                                             required="required">
+                                  </div>
+                                  <div class="col-md-3 col-sm-12">
+                                      <label>Monto:</label>
+                                      <input class="form-control" id="txtmonto"
+                                             required="required">
+                                  </div>
+                                </div>
                                 <div class="row">
                                   <div class="col-md-4 col-sm-12">
                                       <label>Beneficiario:</label>
@@ -60,8 +74,8 @@
                                       </select>
                                   </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label>&nbsp</label>
-                                        <input class="form-control" id="razonsocial" readonly="true"
+                                        <label>RIF:</label>
+                                        <input class="form-control" id="txtrifbeneficiario" readonly="true"
                                                required="required">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
@@ -167,17 +181,17 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
-                                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
-                                                            onclick="habilitarDireccion(false)"
-                                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
-                                                            class="glyphicon glyphicon-edit"></i></button>
-                                                    <button class="btn btn-primary btn-success" type="button"
-                                                            onclick="habilitarDireccion(true)"
-                                                            style="margin-top:23px; margin-bottom: 20px; display: none"
-                                                            id="btndhabdire">Salvar &nbsp<i
-                                                            class="glyphicon glyphicon-save"></i></button>
-                                                </div>
+                                              <div class="col-md-12">
+                                                  <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                                                          onclick="habilitarDireccion(false)"
+                                                                                          style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                                                          class="glyphicon glyphicon-edit"></i></button>
+                                                  <button class="btn btn-primary btn-success" type="button"
+                                                                                          onclick="habilitarDireccion(true)"
+                                                                                          style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                                                          id="btndhabdire">Salvar &nbsp<i
+                                                                                          class="glyphicon glyphicon-save"></i></button>
+                                              </div>
                                             </div>
                                         </div> <!-- Grupo nombres-->
 
@@ -185,12 +199,85 @@
                                 </div>
 
                                 </br>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
+                    color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+
+                                        <a class="btn btn-app btn-success pull-right" style="margin-right: 10px; background-color: #337ab7;
+                    color: white;"
+                                                onclick="cargarDatos()" id="_btnSavlvar">
+                                            <i class="fa fa-save"></i>&nbsp;&nbsp;Generar Carta
+                                        </a>
+                                        <br><br>
+                                    </div>
+                                </div>
 
                                 <div class="row">
-                                    <div class="col-md-3">
-                                        <button type="button" onclick="agregarConcepto()" class="btn btn-md btn-success pull-left">
-                                            <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR CARTA AVAL
-                                        </button>
+                                    <div class="col-md-12">
+                                      <table border="0">
+                                        <tr>
+                                          <td width="15%" valign="top"><img  style="width: 90px;height: 90px; margin-left: 0px" class="img-responsive file-path-wrapper-pre-view" src="images/logo_ipsfa.png" id="_imgescudo"/><BR>
+                                          <img  style="width: 90px;height: 35px; margin-left: 0px" class="img-responsive file-path-wrapper-pre-view" src="images/fondo_ipsfa.png" id="_imgescudo"/>
+
+                                          </td>
+                                          <td width="70%" class="membrete">
+                                                <left>
+                                                        REPÚBLICA BOLIVARIANA DE VENEZUELA <BR>
+                                                        MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<BR>
+                                                        VICEMINISTERIO DE SERVICIOS, PERSONAL Y LOGÍSTICA<BR>
+                                                        DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<BR>
+                                                        INSTITUTO DE PREVISIÓN SOCIAL DE LA FUERZA ARMADA<BR>
+                                                        RIF: G20003692-3<BR>
+                                                </left></td>
+                                        </tr>
+
+                                      </table>
+                                       <center><h3>CARTA AVAL</h3></center>
+                                       <table border="0">
+                                          <td width="70%" class="membrete">
+                                              <left>
+                                                      SEÑORES: <BR>
+                                                      CENTRO CLINICO DE MATERNIDAD<BR>
+                                                      LEOPOLDO AGUERREVERE<BR>
+                                                      UNIDAD MASTOLOGIA<BR><BR><BR>
+
+                                              </left></td>
+                                        </table>
+                                      <div class="row">
+                                        <div  class="col-sm-12 col-md-12 cuerpo_constancia" align="justify">
+                                        Por medio de la presente, hacemos constar que el (la) cuidadana: (NOMBRE DEL BENEFICIARIO(A), titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.
+                                        <br><br>
+                                        Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de (EXAMEN SELECCIONADO) la suma de (MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.
+                                        <br><br>
+                                        Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.
+                                        <br><br>
+                                        <center>Atentamente</center>
+                                        </div>
+                                      </div>
+                                      <br>
+                                      <div class="row">
+                                      <table border="0">
+                                        <tr>
+                                          <td width="50%" class="control-label">
+                                            <center><h3><br>
+                                              <label id="lblnombrePI"> </label><BR>
+                                              <label id="lblgradoPIF"> </label><br>
+                                              GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
+                                              </h3></center>
+                                          </td>
+                                        </tr>
+                                        <tr>
+                                          <td colspan="3" class="footer">
+                                            <center><br>
+                                            </center>
+                                          </td>
+                                        </tr>
+                                      </table>
+
+                                          </td></tr>
+                                        </table>
+
                                     </div>
                                 </div>
                             </form>
