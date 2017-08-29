@@ -179,198 +179,8 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        <!-- Main content -->
-
-        <section class="content">
-        <br>
-          
-          
-          <div class="col-md-12">
-              <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                  <li class="active"><a href="#tab_1" data-toggle="tab">Usuarios</a></li>
-                  <li><a href="#tab_2" data-toggle="tab">Configuración de Menú</a></li>
-
-                  
-                  <li class="pull-right"><a href="#" class="text-muted"><i class="fa fa-gear"></i></a></li>
-                </ul>
-                <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1">
-                  <br>
 
 
-                     <div class="row"> 
-                      <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Listado de Usuarios del sistema</label>
-                            <input type="hidden" id="idUser" value=0>
-                            <select multiple=""  id="cmbListadoUsuario"
-                            class="form-control js-example-placeholder-multiple" onchange="cargarUsuario()" style= "height: 25em">
-                             </select>
-                        </div>
-                      </div>
-
-
-                    <div class="col-md-9">
-                    <div class="row">
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Fecha de creacion</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
-                          <input type="text" readonly="readonly" class="form-control" id="fechaCreacion" placeholder="Fecha de creación" />
-                        </div>
-                      </div>
-                    </div>
-
-                     <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Sucursal</label>
-                        <select class="form-control" id="cmbSucursal" onchange="cUsers()">
-                            <option value="0">Seleccionar...</option>
-                            <option value="">Caracas</option>
-                            <option value="">Maracay</option>
-                            <option value="">Barquisimeto</option>
-                            <option value="">Maracaibo</option>
-                            <option value="">Ciudad Bolivar</option>
-                            <option value="">Punto Fijo</option>
-                            <option value="">San Cristobal</option>
-                            <option value="">Apure</option>
-                            <option value="">Barinas</option>
-                            <option value="">Barcelona</option>
-                            <option value="">San Juan de los Morros</option>
-                            <option value="">Cumana</option>
-                            <option value="">Margarita</option>
-                            <option value="">Maturin</option>
-                            <option value="">Tucupita</option>
-                            <option value="">Puerto Ayacucho</option>
-                          </select>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Gerencia</label>
-                          <select class="form-control" id="cmbGerencia" onchange="cUsers()">
-                            <option value="0">Seleccionar...</option>
-                            <option value="">Presidencia</option>
-                            <option value="">VicePresidencia</option>
-                            <option value="">Secretaria General</option>
-                            <option value="">Planificación y Presupuesto</option>
-                            <option value="">Bienestar y Seguridad Social</option>
-                            <option value="">Drogueria y Farmacia</option>
-                            <option value="">Crédito</option>
-                            <option value="">Odontólogia</option>
-                            <option value="">Vivienda</option>
-                            <option value="">Consultoria Jurídica</option>
-                            <option value="">Recursos Humanos</option>
-                            <option value="">Auditoria Interna</option>
-                            <option value="">Informática</option>
-                            <option value="">Finanzas</option>
-                            <option value="">Logística</option>
-                          </select>
-                      </div>
-                    </div>
-
-                  </div>
-
-                    <div class="row">
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Cédula del usuario</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                          <input type="text" class="form-control" id="cedula" placeholder="Cédula del usuario"/>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Nombre completo del usuario</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                          <input type="text" class="form-control" id="nombre" placeholder="Nombre completo del usuario" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Usuario</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                          <input type="text" class="form-control" id="seudonimo" placeholder="Seudonimo" />
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Cargo</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-sitemap"></span></span>
-                          <input type="text" class="form-control" id="cargo" placeholder="Cargo" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Rol</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-users"></span></span>
-                          <input type="text" class="form-control" id="rolUsuario" placeholder="Rol de Usuario" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Perfil</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                          <input type="text" class="form-control" id="perfilUsuario" placeholder="Perfil de Usuario" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Teléfono</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-phone"></span></span>
-                          <input type="text" class="form-control" id="telefono" placeholder="Teléfono" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Correo Electrónico</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                          <input type="text" class="form-control" id="correo" placeholder="Correo Electronico" />
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="col-xs-4 col-md-4">
-                      <div class="form-group">
-                        <label>Dirección IP</label>
-                        <div class="input-group">
-                          <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                          <input type="text" class="form-control" id="direccionIp" placeholder="Direccion IP" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
 
         <section class="content" id="panelderecho">
             <!-- Aqui empiezo -->
@@ -839,18 +649,18 @@
                             <div class="input-group">
                               <span class="input-group-addon"><span class="fa fa-legal"></span></span>
                                 <select class="form-control" id="perfil" onchange="cargarPrivilegios()">
-                                  <option value=0>Seleccionar...</option>  
-                                  
+                                  <option value=0>Seleccionar...</option>
+
                                 </select>
-                                
+
                               </div>
                             </div>
                           </div>
                       </div>
-                      
+
 
                       <div class="row">
-                        
+
 
                         <div class="col-xs-6 col-md-6">
                           <div class="form-group">
@@ -859,7 +669,7 @@
                               <span class="input-group-addon"><span class="fa fa-home"></span></span>
                               <select class="form-control" id="menu" onchange="cargarSubMenu()">
                                   <option value="0">Seleccionar...</option>
-                                  
+
                                 </select>
                               </div>
                             </div>
@@ -873,19 +683,19 @@
                             <select class="form-control" id="submenu" onchange="cargarPerfil()">
                               <option value=0>Seleccionar...</option>
                             </select>
-                               
+
                             </div>
                           </div>
                         </div>
 
-                        
-                          
+
+
                           <div class="col-xs-12 col-md-12">
                             <div class="table-responsive mailbox-messages">
                               <table id="reporteUPP" class="table table-hover table-striped">
                                 <thead>
                                 <tr>
-                                    <th >#</th> 
+                                    <th >#</th>
                                     <th>Privilegios</th>
                                     <th></th>
                                     <th></th>
@@ -894,7 +704,7 @@
                                     <th></th>
                                 </tr>
                                 </thead>
-                                
+
 
                               </table>
 
