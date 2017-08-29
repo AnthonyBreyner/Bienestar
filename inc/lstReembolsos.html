@@ -1,56 +1,60 @@
 <style>
-    .dataTables_filter{display: none}
+    .dataTables_filter {
+        display: none
+    }
 </style>
-<div class="row" id="tblreembolsos">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border bg-light-blue">
-                <h3 class="box-title">Historico de Reembolsos</h3>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-
-            <div class="box-body no-padding">
-                <div class="table-responsive mailbox-messages" style=" overflow-x: hidden;  ">
-                    <table class="table table-bordered" id="historicoReembolso">
-
-                    </table>
-                    <!-- /.table -->
+<div id="tblTodos">
+    <div class="row" id="tblreembolsos">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border bg-light-blue">
+                    <h3 class="box-title">Historico de Reembolsos</h3>
+                    <!-- /.box-tools -->
                 </div>
-                <!-- /.mail-box-messages -->
+                <!-- /.box-header -->
+
+                <div class="box-body no-padding">
+                    <div class="table-responsive mailbox-messages" style=" overflow-x: hidden;  ">
+                        <table class="table table-bordered" id="historicoReembolso">
+
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" id="tblapoyos">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border bg-light-blue">
+                    <h3 class="box-title">Historico de Apoyos</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body no-padding">
+                    <div class="table-responsive mailbox-messages" style=" overflow-x: hidden;  ">
+                        <table class="table table-bordered" id="historicoApoyos">
+
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-<div class="row" id="tblapoyos">
-    <div class="col-md-12">
-        <div class="box box-primary">
-            <div class="box-header with-border bg-light-blue">
-                <h3 class="box-title">Historico de Apoyos</h3>
-                <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-
-            <div class="box-body no-padding">
-                <div class="table-responsive mailbox-messages" style=" overflow-x: hidden;  ">
-                    <table class="table table-bordered" id="historicoApoyos">
-
-                    </table>
-                    <!-- /.table -->
-                </div>
-                <!-- /.mail-box-messages -->
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 <div clas="row">
     <div class="col-md-12">
-        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i
+                class="fa fa-4x fa-arrow-left"></i>Volver</a>
     </div>
 </div>
 <div class="row" id="lstDetalle" style="display: none;">
@@ -64,7 +68,7 @@
                 <!-- /.mailbox-read-info -->
                 <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
-                        <button type="button" id="btnvolverlista" class="btn btn-default btn-sm" data-toggle="tooltip"
+                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
                                 data-container="body"
                                 title="Reply">
                             <i class="fa fa-reply"></i></button>
@@ -104,7 +108,7 @@
                 <!-- /.mailbox-read-info -->
                 <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
-                        <button type="button" id="btnvolverlista2" class="btn btn-default btn-sm" data-toggle="tooltip"
+                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
                                 data-container="body"
                                 title="Reply">
                             <i class="fa fa-reply"></i></button>
