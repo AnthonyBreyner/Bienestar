@@ -210,10 +210,10 @@ function cargarFamiliar(pos){
         $("#txtmcelular").val(fami.Persona.Telefono.movil);
         $("#txtmcorreo").val(fami.Persona.Correo.principal);
     }
-
+    Estados.ObtenerEstados();
     if (fami.Persona.Direccion != undefined) {
         var DIR = fami.Persona.Direccion[0];
-        Estados.ObtenerEstados();
+
         $("#cmbmestado").val(DIR.estado);
         $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
         $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');

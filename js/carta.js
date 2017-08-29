@@ -1,3 +1,33 @@
+class ConceptoCarta{
+    constructor(){
+        this.motivo = "";
+        this.diagnostico = "";
+        this.descripcion = '';
+        this.DatoFactura = new Factura();
+        this.afiliado = '';
+    }
+}
+
+class Carta {
+    constructor() {
+        console.log("Creando objeto carta");
+        this.estatus = 0;
+        this.montosolicitado = 0.00;
+        this.cuentabancaria = new CuentaBancaria2();
+        this.Concepto = new Array();
+        this.montoaprobado = 0.00;
+        this.fechaaprobacion = '';
+        this.requisito = new Array();
+        this.observaciones = "";
+        this.Direccion = new Direccion();
+        this.Telefono = new Telefono();
+        this.Correo = new Correo();
+        this.Seguimiento = new Seguimiento();
+        this.fondo = "";
+    }
+}
+
+
 $(function () {
     console.log("aca apoyo");
     console.log(militar);
@@ -11,6 +41,13 @@ $(function () {
 
     $(".mdl-requisitos").on("change",function () {
         verificaCheckModal("requisitos","btnAgconcepto");
+    });
+
+    $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
     });
 
     llenarCarta();
@@ -56,10 +93,9 @@ function salvarEmpresa(){
 
 function llenarCarta(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-    $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+
     $("#_cargando").hide();
     if(militar.Persona != undefined){
-        $("#cuerporeembolsos").html("");
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
@@ -90,17 +126,10 @@ function llenarCarta(){
             $("#txtmcelular").val(militar.Persona.Telefono.movil);
             $("#txtmcorreo").val(militar.Persona.Correo.principal);
         }
-
-        if(militar.Persona.DatoFinanciero != undefined){
-            $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
-            $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
-            $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
-            listaCuentas();
-        }
-
+        Estados.ObtenerEstados();
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
-            Estados.ObtenerEstados();
+
             $("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
             $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
@@ -136,175 +165,22 @@ function crearLista(){
     $("#cmbbeneficiario").append(new Option("Seleccione","|seleccione", true, true));
     $("#depositar").append(new Option("Seleccione","", true, true));
 
-    $("#cmbbeneficiario").on("change",function(){
-        var opt = $("#cmbbeneficiario option:selected").val();
-        var picado = $("#cmbbeneficiario option:selected").val().split("|");
-        if(opt != '|seleccione' && picado[0]!="T"){
-            cargarFamiliar(picado[0]);
-            $("#perfilFamiliar").hide();
-        }else{
-            $("#perfilFamiliar").hide();
-        }
-    });
-
     $("#cmbbeneficiario").select2({
         templateResult: formatoCombo
     });
-    historico();
 }
-
-function historico(){
-    $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr><td></td><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto</td><td>Estado</td></tr>\n' +
-        '                        </thead>\n' +
-        '                        <tbody id="cuerporeembolsos">\n' +
-        '\n' +
-        '                        </tbody>');
-
-    var t = $('#historicoReembolso').DataTable({
-        destroy: true,
-        'paging': true,
-        'lengthChange': true,
-        'searching': false,
-        'ordering': true,
-        'info': false,
-        'autoWidth': false,
-        "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
-        "bStateSave": true,
-        "language": {
-            "lengthMenu": "Mostar _MENU_ filas por pagina",
-            "zeroRecords": "Nada que mostrar",
-            "info": "Mostrando _PAGE_ de _PAGES_",
-            "infoEmpty": "No se encontro nada",
-            "infoFiltered": "(filtered from _MAX_ total records)",
-            "search": "Buscar",
-            "paginate": {
-                "first":      "Primero",
-                "last":       "Ultimo",
-                "next":       "Siguiente",
-                "previous":   "Anterior"
-            },
-        },
-    });
-    t.clear().draw();
-
-    if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
-        var html = "";
-        var i = 0;
-        $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
-            var est = "Por procesar";
-            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion);
-            var listaFact = "<div class=\"dropdown\">\n" +
-                "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                "            Ver" +
-                "            <span class=\"fa fa-plus\"></span>\n" +
-                "            </button>\n" +
-                "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
-            $.each(this.Concepto,function(){
-                listaFact += "<li class='bg-info'>"+this.DatoFactura.numero+"</li>";
-            });
-            listaFact +="</ul></div>";
-            t.row.add([
-                "<a href=\"#\"><i class=\"fa fa fa-refresh\"></i></a>",
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
-                "<b>"+fcrea+"</b>",
-                listaFact,
-                this.montosolicitado,
-                est
-            ]).draw(false);
-            $('#historicoReembolso thead td.pbuscar').each( function () {
-                var title = $(this).text();
-                $(this).html( '<input type="text" placeholder="Buscar" /><br>'+title );
-            } );
-            t.columns().every( function () {
-                var that = this;
-
-                $('input', this.header()).on('keyup change', function () {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            });
-            i++;
-
-        });
-    }
-}
-
-
-
-function cargarFamiliar(pos){
-    var fami = militar.Familiar[pos];
-    $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
-    var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
-    $("#lblnombref").text(ncf);
-    var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
-    $("#lblparentesco").text(parente);
-    var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
-    $("#lblfnac").text(fnac)
-}
-
-function detalleVisible(pos){
-    var tconcepto = "";
-    $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
-        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
-            "<td>"+this.DatoFactura.numero+"</td><td>"+this.DatoFactura.control+"</td><td>"+ffact+"</td><td>"+this.DatoFactura.monto+"</td></tr>";
-    })
-    tconcepto += "</table>";
-    $("#cuerpoLstConceptos").html(tconcepto);
-    $("#lstDetalle").show();
-    $("#tblreembolsos").hide();
-}
-
-function agregarConcepto(){
-    if(Util.ValidarFormulario("frmreembolso","btnAgconcepto")){
-        var bene = $("#cmbbeneficiario option:selected").val().split('|');
-        var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
-        var concepto = $("#cmbconcepto option:selected").text();
-        var monto  = $("#cmbpatologia option:selected").text();
-        var rif = $("#rif").val();
-        var razon = $("#razonsocial").val();
-        var fondo = $("#cmbfondo option:selected").text();
-        var servicios = $("#cmbserviciocartavala option:selected").text();
-        var tabla = $("#conceptoagregado");
-        var html ="<p>"+razon+"</p>"
-        var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
-        var html = "<tr><td>"+beneficiario+"</td><td>"+concepto+"</td><td class=\"detfactconcep\">"+rif+"</td><td>"+razon+"</td><td>"+monto+"</td><td>"+fondo+"</td>";
-        html += "<td>"+servicios+"</td><td>"+btndelete+"</td></tr>";
-        tabla.append(html);
-
-        $(".borrarconcepto").click(function () {
-            $(this).parents('tr').eq(0).remove();
-            if($("#conceptoagregado tr").length == 0){
-                $("#cajaConceptos").slideUp();
-            }
-            calcularAcumulado();
-        });
-
-        calcularAcumulado();
-        $.notify("Se ha agregado el concepto", "success");
-        $("#cajaConceptos").slideDown("slow");
-        limpiarReembolso();
-    }
-    return false;
-}
-
-
 
 function cargarDatos(){
-    var reembolso = new Reembolso();
-    reembolso.montosolicitado = parseFloat($("#mntAcumulado").html());
+    var aval = new Carta();
+    aval.montosolicitado = parseFloat($("#txtmonto").val())
 
     var cuenta = new CuentaBancaria2();
-    cuenta.cuenta= $("#numerocuenta").val();
-    cuenta.institucion = $("#banco").val();
-    cuenta.tipo = $("#tipodecuenta option:selected").val();
-    cuenta.cedula = $("#cibancario").val();
-    cuenta.titular =$("#depositar option:selected").text();
-    reembolso.cuentabancaria = cuenta;
+    cuenta.cuenta= $("#empcuenta").val();
+    cuenta.institucion = $("#empbanco").val();
+    cuenta.tipo = $("#emptipoc").val();
+    cuenta.cedula = $("#rif").val();
+    cuenta.titular =$("#cmbProveedor option:selected").text();
+    aval.cuentabancaria = cuenta;
 
     var dir = new Direccion();
     dir.tipo = 0;
@@ -315,67 +191,55 @@ function cargarDatos(){
     dir.calleavenida = $("#txtmcalle").val().toUpperCase();
     dir.casa = $("#txtmcasa").val().toUpperCase();
     dir.apartamento = $("#txtmapto").val().toUpperCase();
+
     var tele = new Telefono();
     tele.domiciliario = $("#txtmtelefono").val();
     tele.movil = $("#txtmcelular").val();
-    reembolso.Direccion = dir;
-    reembolso.Telefono.domiciliario = tele.domiciliario;
-    reembolso.Telefono.movil = tele.movil;
-    if($("#telfcontacto").val() != ""){
-        reembolso.Telefono.movil = $("#telfcontacto").val();
-    }
-    reembolso.Correo.principal = $("#txtmcorreo").val().toUpperCase();
+
+    aval.Direccion = dir;
+
+    aval.Telefono.domiciliario = tele.domiciliario;
+    aval.Telefono.movil = tele.movil;
+
+    aval.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
     var conceptos = new Array();
-    if($("#conceptoagregado tr").length >0 && validadDatosBancarios()){
-        $("#conceptoagregado tr").each(function () {
-            var concep = new ConceptoReembolso();
-            var facturaD = new Factura();
-            facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
-            facturaD.monto = parseFloat($(this).find("td").eq(5).html());
-            facturaD.numero = $(this).find("td").eq(4).html();
-            facturaD.control = $(this).find("td").eq(4).html();
 
-            var prov = new Beneficiario();
-            prov.rif = $(this).find("td").eq(2).html();
-            prov.razonsocial = $(this).find("td").eq(3).html();
-            prov.tipoempresa = 'J';
-            prov.direccion = 'Por cargar';
-            //prov.Banco = 'Pora cargar banco';
+    var concep = new ConceptoCarta();
+    var facturaD = new Factura();
+    facturaD.monto = parseFloat($("#txtmonto").val());
 
-            facturaD.Beneficiario = prov;
+    var prov = new Beneficiario();
+    prov.rif = $("#rif").val();
+    prov.razonsocial = $("#cmbProveedor option:selected").text();
+    prov.tipoempresa = "J";
+    prov.direccion = "";
 
-            concep.DatoFactura = facturaD;
-            concep.afiliado = $(this).find("td").eq(0).html();
-            concep.descripcion = $(this).find("td").eq(1).html();
+    facturaD.Beneficiario = prov;
+    concep.DatoFactura = facturaD;
 
-            conceptos.push(concep);
-        });
-        reembolso.Concepto = conceptos;
+    var bene = $("#cmbbeneficiario option:selected").val().split('|');
+    var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
+    concep.afiliado = beneficiario;
+    concep.descripcion = $("#cmbestudio option:selected").text();
 
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele};
-        console.log(JSON.stringify(datos));
-        var urlGuardar = Conn.URL + "wreembolso";
-        var request2 = CargarAPI({
-            sURL: urlGuardar,
-            metodo: 'POST',
-            valores: datos,
-        });
+    conceptos.push(concep);
 
-        request2.then(function(xhRequest) {
-            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-        });
-    }else{
-        $.notify("Debe ingresar todos los datos para procesar Carta Aval");
-    }
+    aval.Concepto = conceptos;
 
-}
-
-
-function limpiarReembolso(){
-    $('#frmreembolso').each (function(){
-        this.reset();
+    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval};
+    console.log(JSON.stringify(datos));
+    /*var urlGuardar = Conn.URL + "wreembolso";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'POST',
+        valores: datos,
     });
+    request2.then(function(xhRequest) {
+        var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    });*/
+
+
 }
 
 function requisitosConcepto(){
@@ -411,4 +275,36 @@ function validaFechaFactura(n){
     }else{
         $("#alert_fecha").hide();
     }
+}
+
+function obtenerEstudio(){
+    var motivo = $("#cmbmotivo option:selected").val();
+    $("#cmbestudio").val("S");
+    switch (motivo){
+        case "S": $("#cmbestudio").attr("disabled",true);break;
+        case "0":
+            $("#cmbestudio").attr("disabled",false);
+            $(".masto").attr("disabled",false);
+            $(".prote").attr("disabled",true);
+            $(".prote").hide();
+            $(".masto").show();
+            break;
+        case "1":
+            $("#cmbestudio").attr("disabled",false);
+            $(".masto").attr("disabled",true);
+            $(".prote").attr("disabled",false);
+            $(".masto").hide();
+            $(".prote").show();
+            break;
+    }
+
+}
+
+function cargaRif(){
+    var rif = $("#cmbProveedor option:selected").val();
+    var picado = rif.split("|");
+    $("#txtrifbeneficiario").val(picado[0]);
+    $("#empcuenta").val(picado[1]);
+    $("#empbanco").val(picado[2]);
+    $("#emptipoc").val(picado[3]);
 }

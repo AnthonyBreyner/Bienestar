@@ -99,10 +99,10 @@ function llenarReembolso(){
             $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
             listaCuentas();
         }
-
+        Estados.ObtenerEstados();
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
-            Estados.ObtenerEstados();
+
             $("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
             $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');

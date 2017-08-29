@@ -37,16 +37,16 @@
                                         <select class="form-control" style="width: 100%" id="cmbestudio"
                                                 onchange="requisitosConcepto()" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
-                                            <option value="1">MASTOLOGÍA BILATERAL DIGITAL CON PROTESIS</option>
-                                            <option value="2">MASTOLOGÍA UNILATERAL DIGITAL CON PROTESIS</option>
-                                            <option value="3">MASTOLOGÍA UNILATERAL CON PROTESIS DIGITAL</option>
-                                            <option value="4">COMPRESIÓN DIGITAL UNILATERAL</option>
-                                            <option value="5">COMPRESIÓN DIGITAL BILATERAL</option>
-                                            <option value="6">ULTRASONIDO MAMARIO</option>
-                                            <option value="7">PROTESIS AUDITIVA</option>
-                                            <option value="8">PROTESIS DE CADERA</option>
-                                            <option value="9">PROTESIS DE RODILLA</option>
+                                            <option value="0" class="masto">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
+                                            <option value="1" class="masto">MASTOLOGÍA BILATERAL DIGITAL CON PROTESIS</option>
+                                            <option value="2" class="masto">MASTOLOGÍA UNILATERAL DIGITAL CON PROTESIS</option>
+                                            <option value="3" class="masto">MASTOLOGÍA UNILATERAL CON PROTESIS DIGITAL</option>
+                                            <option value="4" class="masto">COMPRESIÓN DIGITAL UNILATERAL</option>
+                                            <option value="5" class="masto">COMPRESIÓN DIGITAL BILATERAL</option>
+                                            <option value="6" class="masto">ULTRASONIDO MAMARIO</option>
+                                            <option value="7" class="prote">PROTESIS AUDITIVA</option>
+                                            <option value="8" class="prote">PROTESIS DE CADERA</option>
+                                            <option value="9" class="prote">PROTESIS DE RODILLA</option>
                                         </select>
                                     </div>
                                 </div>
@@ -58,37 +58,28 @@
                                   </div>
                                   <div class="col-md-3 col-sm-12">
                                       <label>Monto:</label>
-                                      <input class="form-control" id="txtmonto"
+                                      <input class="form-control" id="txtmonto" onkeypress="return Util.SoloNumero(event,this,true);"
                                              required="required">
                                   </div>
                                 </div>
                                 <div class="row">
                                   <div class="col-md-4 col-sm-12">
                                       <label>Beneficiario:</label>
-                                      <select class="form-control" style="width: 100%" id="cmbbeneficiario"
+                                      <select class="form-control" style="width: 100%" id="cmbProveedor" onchange="cargaRif();"
                                               required="required">
                                           <option selected="selected" value="S"></option>
-                                          <option value="0">EUROCIENCIAS C.A</option>
-                                          <option value="1">MERCURIO C.A</option>
-                                          <option value="2">LEOPOLDO AGUERREVERRE</option>
+                                          <option value="j-sdfsdf|01010101010101011|venezuela|tipoc2">EUROCIENCIAS C.A</option>
+                                          <option value="g-sdfsdf|01010101010101012|Bicentenario|tipoc2">MERCURIO C.A</option>
+                                          <option value="h-sdfsdf|01010101010101013|algogogog|tipoc3">LEOPOLDO AGUERREVERRE</option>
                                       </select>
                                   </div>
                                     <div class="col-md-4 col-sm-12">
                                         <label>RIF:</label>
                                         <input class="form-control" id="txtrifbeneficiario" readonly="true"
                                                required="required">
-                                    </div>
-                                    <div class="col-md-4 col-sm-12">
-                                        <label>Fondo:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbfondo"
-                                                required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0">Fondo del Cuidado Integral de la Salud (C.I.S)</option>
-                                            <option value="1">Fondo del adulto Mayor (F.A.M)</option>
-                                            <option value="2">Fondo de Contingencia para la Atención Médica (C.A.M)
-                                            </option>
-
-                                        </select>
+                                        <input type="hidden" id="empcuenta">
+                                        <input type="hidden" id="empbanco">
+                                        <input type="hidden" id="emptipoc">
                                     </div>
                                 </div>
                                 </br>
