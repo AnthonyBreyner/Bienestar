@@ -4,7 +4,15 @@ $(function () {
     $("#concepto").select2();
 
     $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnAgconcepto");
+        verificaCheckModal("requisitos","btnGenerar");
+    });
+
+    $(".mdl-requisitosodon").on("change",function () {
+        verificaCheckModal("requisitosodon","btnGenerar");
+    });
+
+    $(".mdl-requisitosmonto").on("change",function () {
+        verificaCheckModal("requisitosmonto","btnGenerar");
     });
 
     llenarApoyo();
@@ -316,10 +324,23 @@ function limpiarReembolso(){
 }
 
 function requisitosConcepto(){
-    var modal = $("#concepto option:selected").attr("desplegar");
-    inactivarCheck(modal);
-    $("#btnAgconcepto").attr("disabled",true);
-    $("#"+modal).modal("show");
+    var modal = $("#cmbconcepto option:selected").attr("desplegar");
+    if(modal != undefined){
+        inactivarCheck(modal);
+        $("#btnGenerar").attr("disabled",true);
+        $("#"+modal).modal("show");
+    }else{
+        $("#btnGenerar").attr("disabled",false);
+    }
+}
+
+function requisitosMonto(){
+    var modal = "requisitosmonto";
+    if(modal != undefined){
+        inactivarCheck(modal);
+        $("#btnGenerar").attr("disabled",true);
+        $("#"+modal).modal("show");
+    }
 }
 
 function habilitarDireccion(estatus){
@@ -354,4 +375,7 @@ function calcularSolicitado(){
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
     $("#montosolicitado").val(mntSolici.toFixed(2));
+    if(parseFloat(mntSolici) > 7000000){
+        requisitosMonto();
+    }
 }
