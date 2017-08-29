@@ -2,11 +2,6 @@ $(function () {
     $("#rif").on("blur",function () {
         consultarRif();
     });
-    $("#btnvolverlista").click(function(){
-        $("#tblreembolsos").slideDown();
-        $("#lstDetalle").slideUp();
-    });
-
     $("#concepto").select2();
 
     $(".mdl-requisitos").on("change",function () {
@@ -186,19 +181,6 @@ function cargarFamiliar(pos){
     $("#lblparentesco").text(parente);
     var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
     $("#lblfnac").text(fnac)
-}
-
-function detalleVisible(pos){
-    var tconcepto = "";
-    $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
-        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
-            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
-    })
-    tconcepto += "</table>";
-    $("#cuerpoLstConceptos").html(tconcepto);
-    $("#lstDetalle").show();
-    $("#tblreembolsos").hide();
 }
 
 function agregarConcepto(){

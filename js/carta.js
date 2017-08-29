@@ -39,7 +39,10 @@ function salvarEmpresa(){
     var rznuevo = $("#rsocialnuevo").val();
     var tenuevo = $("#tipoenuevo").val();
     var direc = $("#direcnueva").val();
-    if(rifn == "" || rznuevo == "" || tenuevo == "S" || direc == ""){
+    var cuenta = $("#_txtmnrocuentanueva").val();
+    var banco = $("#_cmbmtipofinanciera").val();
+    var tipoc = $("#_cmbmtipocuentaranueva").val();
+    if(rifn == "" || rznuevo == "" || tenuevo == "S" || direc == "" || cuenta == "" || banco == "S" || tipoc == "S"){
         $.notify("Debe ingresar todos los datos de la empresa a registrar");
         return false;
     }

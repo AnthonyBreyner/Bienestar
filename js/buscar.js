@@ -37,6 +37,14 @@ $(function () {
         $("#panellista").hide();
         $("#panelregistro").hide();
     });
+
+    $(".volver2").click(function(){
+        $("#tblTodos").show();
+        $("#tblreembolsos").slideDown();
+        $("#tblapoyos").slideDown();
+        $("#lstDetalle").hide();
+        $("#lstDetalleApoyo").hide();
+    });
 });
 
 
@@ -328,4 +336,123 @@ function historico(){
             });
         });
     }
+}
+
+function detalleVisible(pos){
+    var tconcepto = "";
+    $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
+        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
+    })
+    tconcepto += "</table>";
+    $("#cuerpoLstConceptos").html(tconcepto);
+    $("#lstDetalle").show();
+    $("#tblTodos").hide();
+
+}
+
+function historicoApoyo(){
+    $("#historicoApoyos").html('<thead>\n' +
+        '                        <tr class="bg-info"><td class="pbuscar">#Apoyo</td><td>F. Solicitud</td><td class="pbuscar">Factura</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
+        '                        </thead>\n' +
+        '                        <tbody id="cuerporeembolsos">\n' +
+        '\n' +
+        '                        </tbody>');
+
+    var t = $('#historicoApoyos').DataTable({
+        destroy: true,
+        'paging': false,
+        'lengthChange': true,
+        'searching': true,
+        'ordering': true,
+        'info': false,
+        'autoWidth': false,
+        "aLengthMenu": [[10, 25, 5, -1], [10, 25, 5, "Todo"]],
+        "bStateSave": true,
+        "order": [[ 3, "desc" ]],
+        "language": {
+            "lengthMenu": "Mostar _MENU_ filas por pagina",
+            "zeroRecords": "Nada que mostrar",
+            "info": "Mostrando _PAGE_ de _PAGES_",
+            "infoEmpty": "No se encontro nada",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search": "Buscar",
+            "paginate": {
+                "first":      "Primero",
+                "last":       "Ultimo",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+        },
+    });
+    t.clear().draw();
+
+    console.log(militar);
+    if(militar.CIS.ServicioMedico.Programa.Apoyo != undefined && militar.CIS.ServicioMedico.Programa.Apoyo.length >0){
+        var html = "";
+        var i = 0;
+        $.each(militar.CIS.ServicioMedico.Programa.Apoyo,function(v,ob){
+            var est = conviertEstatus(this.estatus);
+            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
+            var listaFact = "";
+            var nfac = this.Concepto[0].DatoFactura.numero;
+            if(this.Concepto[0].DatoFactura.numero == ""){
+                nfac = "Sin factura";
+            }
+            if(this.Concepto.length > 1){
+                listaFact = "<div class=\"dropdown\">\n" +
+                    "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu"+i+"\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
+                    "            " + nfac +
+                    "            <span class=\"fa fa-plus\"></span>\n" +
+                    "            </button>\n" +
+                    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
+                $.each(this.Concepto,function(){
+                    var nfac2 = this.DatoFactura.numero;
+                    if(nfac2 == "") nfac2 = "Sin Factura"
+                    listaFact += "<li class='bg-info'>"+nfac2+"</li>";
+                });
+                listaFact +="</ul></div>";
+            }else{
+                listaFact = nfac;
+            }
+            t.row.add([
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisibleApoyo("+i+")\">"+this.numero+"</a>", //1
+                "<b>"+fcrea+"</b>",
+                listaFact,
+                numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
+                numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
+                est
+            ]).draw(false);
+            i++;
+        });
+        $('#historicoApoyo thead td.pbuscar').each( function () {
+            var title = $(this).text();
+            $(this).html( title+'<br><input class="form-group" type="text" placeholder="Buscar" />' );
+        });
+        t.columns().every( function () {
+            var that = this;
+
+            $('input', this.header()).on('keyup change', function () {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+    }
+}
+
+function detalleVisibleApoyo(pos){
+    var tconcepto = "";
+    $.each(militar.CIS.ServicioMedico.Programa.Apoyo[pos].Concepto,function(){
+        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
+    })
+    tconcepto += "</table>";
+    $("#cuerpoLstConceptosApoyo").html(tconcepto);
+    $("#lstDetalleApoyo").show();
+    $("#tblTodos").hide();
 }
