@@ -21,10 +21,26 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
+
+
 
 <style type="text/css">
-<style type="text/css">
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 20px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color:    #3fae69;
+    color: white;
+}
     .row-centered {
         text-align: center;
     }
@@ -88,7 +104,8 @@
     }
 
 </style>
-        
+</head>
+<body>      
 <div class="body box">
     <div class="container-fluid">
         <div class="row">
@@ -129,7 +146,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 col-sm-4">
-                                        <label>Nombre del Hospital o Clinica:</label>
+                                        <label>Nombre del Hosp. o Clinica:</label>
                                         <select class="form-control" style="width: 100%" id="nomhospital"
                                                 onchange="nombrehospital()" required="required">
                                             <option selected="selected" value="S"></option>
@@ -178,8 +195,8 @@
 
 										<div class="row"> 
                                        <div class="col-md-4 col-sm-4">
-                                        <label>Código de Diagnóstico:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbdiagnostico"
+                                        <label>Código Diagnóstico:</label>
+                                        <select class="form-control" style="width: 100%" id="cmbcodigo"
                                                 required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0" desplegar="">00001
@@ -197,7 +214,7 @@
                                     
                                         <div class="col-md-6 col-sm-4">
                                             <label>Diagnóstico:</label>
-                                            <input type="text" class="form-control" id="diagnostico"
+                                            <input type="text" class="form-control" id="cmbcodigo"
                                                    required="required">
                                         </div>
                                         </div>
@@ -212,7 +229,39 @@
 
                                         </div>
                                     </div>
+                                </form>
+                            </div>
+                        </div>
+                     </h4>
+                </div>
+             </a>
+        </div>
+    </div>
+</div>
 
+
+
+<div class="container-fluid">
+  <h4></h4>
+             
+  <table class="table" >
+    <thead>
+      <tr>
+        <th>Nombre del Médico</th>
+        <th>Nombre del Hosp. o Clínica</th>
+        <th>Unidad Médica</th>
+        <th>Código Diagnóstico</th>
+        <th>Diagnóstico</th>
+      </tr>
+    </thead>
+    <tbody id="tblAgfarmacia">
+     
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
 
                                     <div class="box box-primary" id="cajaConceptos" style="display: none">
                                         <div class="box-header with-border">
@@ -269,10 +318,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Tipo de Patología:</label>
-                                    <select class="js-states form-control" style="width: 100%" id="cmbmpatologia" required
-                                            onchange="TipoPatología()">
-                                        <option value="S" selected="selected"></option>
-                                    </select>
+                                   <input id="txtpatologia" class="form-control" type="text" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Fecha del Informe:</label>
@@ -289,13 +335,14 @@
                                 <div class="form-group">
                                     <div class="col-md-4">
                                         <label>Período de Tratamiento:</label>
-                                        <input id="txtmcalle" class="form-control" type="text" required>
+                                        <input id="txttratamiento" class="form-control" type="text" required>
                                     </div>
 
                                 </div>
                             </div>
                             <br><br>
                             <div class="row">
+
                                 <div class="col-md-3">
                                     <button type="button" class="btn btn-md btn-success pull-left"
                                             onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 600px;">
@@ -350,9 +397,12 @@
                     </div>
                     <br><br>
                     <div class="row">
+                    <div class="col-md-8">
+                    <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+                </div>
                         <div class="col-md-3">
                             <button type="button" class="btn btn-md btn-success pull-left"
-                                    onclick="cargarDatosfar()" id="_btnSavlvar" style="margin-left: 620px;">
+                                    onclick="cargarDatosfar()" id="_btnSavlvar" style="margin-left: 20px;">
                                 <i class="fa fa-medkit"></i>&nbsp;&nbsp;AGREGAR FÁRMACO
                             </button>
                             <br><br>
