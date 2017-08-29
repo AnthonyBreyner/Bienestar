@@ -131,6 +131,7 @@ function ficha(){
         $("#paneldatos").hide();
     }
     historico();
+    historicoApoyo();
 }
 
 function cargaPrograma(tipo){

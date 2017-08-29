@@ -247,14 +247,14 @@ function validadDatosBancarios(){
 
 function generarPlanilla(){
     var apoyo = new Apoyo();
-    apoyo.montosolicitado = parseFloat($("#montosolicitado").html());
+    apoyo.montosolicitado = parseFloat($("#montosolicitado").val());
 
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#empcuenta").val();
     cuenta.institucion = $("#empbanco").val();
     cuenta.tipo = $("#emptipoc option:selected").val();
     cuenta.cedula = $("#rif").val();
-    cuenta.titular =$("#razonsocial option:selected").text();
+    cuenta.titular =$("#razonsocial").val();
     apoyo.cuentabancaria = cuenta;
 
     var dir = new Direccion();
@@ -301,9 +301,9 @@ function generarPlanilla(){
     conceptos.push(concep);
     apoyo.tipo = parseInt($("#cmbtipoayuda option:selected").val());
     apoyo.Concepto = conceptos;
-    var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo};
+    var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
     console.log(JSON.stringify(datos));
-    /*var urlGuardar = Conn.URL + "wreembolso";
+    var urlGuardar = Conn.URL + "wreembolso";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
@@ -311,10 +311,17 @@ function generarPlanilla(){
     });
 
     request2.then(function(xhRequest) {
-        var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });*/
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
+        llenarApoyo();
 
-
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+        var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    });
 }
 
 function limpiarReembolso(){

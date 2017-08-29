@@ -1,9 +1,15 @@
-<div class="box-body" id="listadoCompleto">
-    <ul class="todo-list" id="lista" style="overflow-x:hidden;">
+<div id="listasProgramas">
+    <div class="box-body" id="listadoCompleto">
+        <ul class="todo-list" id="lista" style="overflow-x:hidden;">
 
-    </ul>
+        </ul>
+    </div>
+    <div class="box-body" id="listadoCompletoApoyo">
+        <ul class="todo-list" id="listaApoyo" style="overflow-x:hidden;">
+
+        </ul>
+    </div>
 </div>
-
 <script>
     $(function () {
         $('.todo-list').sortable({
@@ -17,164 +23,345 @@
         $('.todo-list').todoList();
     });
 </script>
-<div class="box-body" id="detalle" style="display: none">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box box-primary">
-                <div class="box-header with-border bg-light-blue">
-                    <h3 class="box-title">Datos de Reembolso</h3>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body no-padding">
-                    <div class="mailbox-read-info">
-                        <div class="row" style="margin-left: 50px;">
-                            <div class="col-md-3" style="margin-top: 30px;">
-                                <h4><b>CEDULA:</b> <label id="lblcedula" style="font-weight: 500;"> </label></h4>
-                                <h4><b>N° REEMBOLSO: </b> <label id="lblnumero" style="font-weight: 500;"> </label></h4>
-
-                            </div>
-                            <div class="col-md-4" style="margin-top: 40px;">
-                                <h4><b>NOMBRE:</b> <label id="lblnombre" style="font-weight: 500;"> </label></h4>
-                                <h4><b>COMPONENTE:</b> <label id="lblcomponente" style="font-weight: 500;"> </label>
-                                </h4>
-
-                            </div>
-                            <div class="col-md-3" style="margin-top: 40px;">
-                                <h4><b>GRADO:</b> <label id="lblgrado" style="font-weight: 500;"> </label></h4>
-
-                                <h4><b>SITUACIÓN:</b> <label id="lblsituacion" style="font-weight: 500;"> </label></h4>
-                            </div>
-                            <div class="col-md-2">
-                                <img class="profile-user-img img-responsive" style="width: 130px;" src=""
-                                     onerror="this.src='images/ndisponible.jpg'"
-                                     alt="Foto de perfil" id="fotoperfil">
-                            </div>
-                        </div>
+<div id="detallesProgramas">
+    <div class="box-body" id="detalle" style="display: none">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border bg-light-blue">
+                        <h3 class="box-title">Datos de Reembolso</h3>
                     </div>
-                    <!-- /.mailbox-read-info -->
-                    <div class="mailbox-controls with-border text-center">
-                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
-                            <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp Borrar
-                        </button>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                    onclick="volverLista()"
-                                    data-container="body">
-                                <i class="fa fa-reply"></i>&nbsp Regresar
-                            </button>
-                        </div>
-                        <!-- /.btn-group -->
-                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                onclick="cambiarEstatus('a')">
-                            <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
-                        </button>
-                        <div class="pull-right" id="cambioestatus" style="display: none">
-                            <select id="cmbcambioestatus">
-                                <option value=""></option>
-                                <option value="0">Pendiente</option>
-                                <option value="1">Jefatura</option>
-                                <option value="2">Gerencia</option>
-                            </select>
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                    data-container="body" onclick="cambiarEstatus('e')" id="btncambioestatus">
-                                <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.mailbox-controls -->
-                    <div class="box box-primary">
-                    <div class="mailbox-read-message">
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-info">
+                            <div class="row" style="margin-left: 50px;">
+                                <div class="col-md-3" style="margin-top: 30px;">
+                                    <h4><b>CEDULA:</b> <label id="lblcedula" style="font-weight: 500;"> </label></h4>
+                                    <h4><b>N° REEMBOLSO: </b> <label id="lblnumero" style="font-weight: 500;"> </label>
+                                    </h4>
 
-                        <h4 >Detalles del Reembolso</h4>
-                        </div>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="bg-info">
-                                <td>Afiliado</td>
-                                <td>Concepto</td>
-                                <td>Rif</td>
-                                <td style="display: none">Razon Social</td>
-                                <td>Fecha Fact.</td>
-                                <td>Factura</td>
-                                <td>Monto Solictado</td>
-                                <td>Monto Aprobado</td>
-                                <td></td>
-                            </tr>
-                            </thead>
-                            <tbody id="cuerpoEditarConceptos">
+                                </div>
+                                <div class="col-md-4" style="margin-top: 40px;">
+                                    <h4><b>NOMBRE:</b> <label id="lblnombre" style="font-weight: 500;"> </label></h4>
+                                    <h4><b>COMPONENTE:</b> <label id="lblcomponente" style="font-weight: 500;"> </label>
+                                    </h4>
 
-                            </tbody>
-                            <tfoot>
-                            <tr>
-                                <td colspan="5" style="text-align: right">TOTALES</td>
-                                <td id="totalter" style="text-align: right"></td>
-                                <td id="totalapro" style="text-align: right"></td>
-                            </tr>
-                            </tfoot>
-                        </table>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="bg-info">
-                                <td>OBSERIVACIONES</td>
-                                <td style="width: 15px"><select id="estSeguimiento">
-                                    <option value="0">En orden</option>
-                                    <option value="1">Con pendientes</option>
-                                    <option value="2">Con Recomendaciones</option>
-                                </select></td>
-                            </tr>
-                            </thead>
-                            <tbody id="cuerpoObservaciones">
+                                </div>
+                                <div class="col-md-3" style="margin-top: 40px;">
+                                    <h4><b>GRADO:</b> <label id="lblgrado" style="font-weight: 500;"> </label></h4>
 
-                            </tbody>
-                        </table>
-                        <table class="table table-bordered">
-                            <thead>
-                            <tr class="bg-info">
-                                <td>OPINIONES</td><td style="width: 20%"></td>
-                            </tr>
-                            </thead>
-                            <tbody id="cuerpoOpiniones">
-
-                            </tbody>
-                        </table>
-                        <div class="box box-primary">
-                        <div class="row">
-
-                            <div class="col-md-6">
-                                <h4 class="lblobser">OBSERVACIÓN</h4>
+                                    <h4><b>SITUACIÓN:</b> <label id="lblsituacion" style="font-weight: 500;"> </label>
+                                    </h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <img class="profile-user-img img-responsive" style="width: 130px;" src=""
+                                         onerror="this.src='images/ndisponible.jpg'"
+                                         alt="Foto de perfil" id="fotoperfil">
+                                </div>
                             </div>
-                            <div class="col-md-6">
-                                <button type="button" class="btn btn-default btn-sm pull-right"
-                                        data-toggle="tooltip"
-                                        data-container="body" onclick="agObservacion()">
-                                    <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label class="lblobser">&nbsp Observación</label>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
+                                <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp
+                                Borrar
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        onclick="volverLista()"
+                                        data-container="body">
+                                    <i class="fa fa-reply"></i>&nbsp Regresar
+                                </button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                    onclick="cambiarEstatus('a')">
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
+                            </button>
+                            <div class="pull-right" id="cambioestatus" style="display: none">
+                                <select id="cmbcambioestatus">
+                                    <option value=""></option>
+                                    <option value="0">Pendiente</option>
+                                    <option value="1">Jefatura</option>
+                                    <option value="2">Gerencia</option>
+                                </select>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        data-container="body" onclick="cambiarEstatus('e')" id="btncambioestatus">
+                                    <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
                                 </button>
                             </div>
                         </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="box box-primary">
+                            <div class="mailbox-read-message">
+
+                                <h4>Detalles del Reembolso</h4>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>Afiliado</td>
+                                    <td>Concepto</td>
+                                    <td>Rif</td>
+                                    <td style="display: none">Razon Social</td>
+                                    <td>Fecha Fact.</td>
+                                    <td>Factura</td>
+                                    <td>Monto Solictado</td>
+                                    <td>Monto Aprobado</td>
+                                    <td></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoEditarConceptos">
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: right">TOTALES</td>
+                                    <td id="totalter" style="text-align: right"></td>
+                                    <td id="totalapro" style="text-align: right"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OBSERIVACIONES</td>
+                                    <td style="width: 15px"><select id="estSeguimiento">
+                                        <option value="0">En orden</option>
+                                        <option value="1">Con pendientes</option>
+                                        <option value="2">Con Recomendaciones</option>
+                                    </select></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoObservaciones">
+
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OPINIONES</td>
+                                    <td style="width: 20%"></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoOpiniones">
+
+                                </tbody>
+                            </table>
+                            <div class="box box-primary">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <h4 class="lblobser">OBSERVACIÓN</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-default btn-sm pull-right"
+                                                data-toggle="tooltip"
+                                                data-container="body" onclick="agObservacion()">
+                                            <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
+                                                class="lblobser">&nbsp Observación</label>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea textarea class="form-control" rows="3" placeholder="Observación..."
+                                      id="txtObservacion"></textarea>
                         </div>
-                        <textarea textarea class="form-control" rows="3" placeholder="Observación..."
-                                  id="txtObservacion"></textarea>
+                        <!-- /.mailbox-read-message -->
                     </div>
-                    <!-- /.mailbox-read-message -->
-                </div>
-                <!-- /.box-body -->
-                <!-- /.box-footer -->
-                <div class="box-footer">
-                    <div class="pull-right">
-                        <button type="button" onclick="actualizarReembolso()" class="btn btn-success"><i
-                                class="fa fa-save "></i> Guardar cambios
+                    <!-- /.box-body -->
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" onclick="actualizarReembolso()" class="btn btn-success"><i
+                                    class="fa fa-save "></i> Guardar cambios
+                            </button>
+
+                        </div>
+                        <button type="button" onclick="volverLista()" class="btn btn-default"><i
+                                class="fa fa-reply"></i>
+                            Atras
                         </button>
 
                     </div>
-                    <button type="button" onclick="volverLista()" class="btn btn-default"><i class="fa fa-reply"></i>
-                        Atras
-                    </button>
-
+                    <!-- /.box-footer -->
                 </div>
-                <!-- /.box-footer -->
+                <!-- /. box -->
             </div>
-            <!-- /. box -->
+            <!-- /.col -->
         </div>
-        <!-- /.col -->
+    </div>
+
+    <div class="box-body" id="detalleApoyo" style="display: none">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border bg-light-blue">
+                        <h3 class="box-title">Datos de Apoyo economico</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-info">
+                            <div class="row" style="margin-left: 50px;">
+                                <div class="col-md-3" style="margin-top: 30px;">
+                                    <h4><b>CEDULA:</b> <label id="lblcedulaApoyo" style="font-weight: 500;"> </label>
+                                    </h4>
+                                    <h4><b>N° APOYO: </b> <label id="lblnumeroApoyo" style="font-weight: 500;"> </label>
+                                    </h4>
+
+                                </div>
+                                <div class="col-md-4" style="margin-top: 40px;">
+                                    <h4><b>NOMBRE:</b> <label id="lblnombreApoyo" style="font-weight: 500;"> </label>
+                                    </h4>
+                                    <h4><b>COMPONENTE:</b> <label id="lblcomponenteApoyo"
+                                                                  style="font-weight: 500;"> </label>
+                                    </h4>
+
+                                </div>
+                                <div class="col-md-3" style="margin-top: 40px;">
+                                    <h4><b>GRADO:</b> <label id="lblgradoApoyo" style="font-weight: 500;"> </label></h4>
+
+                                    <h4><b>SITUACIÓN:</b> <label id="lblsituacionApoyo"
+                                                                 style="font-weight: 500;"> </label>
+                                    </h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <img class="profile-user-img img-responsive" style="width: 130px;" src=""
+                                         onerror="this.src='images/ndisponible.jpg'"
+                                         alt="Foto de perfil" id="fotoperfilApoyo">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
+                                <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatusApoyo('r')"></i>&nbsp
+                                Borrar
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        onclick="volverLista()"
+                                        data-container="body">
+                                    <i class="fa fa-reply"></i>&nbsp Regresar
+                                </button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                    onclick="cambiarEstatus('a')">
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
+                            </button>
+                            <div class="pull-right" id="cambioestatusApoyo" style="display: none">
+                                <select id="cmbcambioestatusApoyo">
+                                    <option value=""></option>
+                                    <option value="0">Pendiente</option>
+                                    <option value="1">Jefatura</option>
+                                    <option value="2">Gerencia</option>
+                                </select>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        data-container="body" onclick="cambiarEstatusApoyo('e')"
+                                        id="btncambioestatusApoyo">
+                                    <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="box box-primary">
+                            <div class="mailbox-read-message">
+
+                                <h4>Detalles del Apoyo Economico</h4>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>Afiliado</td>
+                                    <td>Concepto</td>
+                                    <td>Rif</td>
+                                    <td style="display: none">Razon Social</td>
+                                    <td>Fecha Fact.</td>
+                                    <td>Factura</td>
+                                    <td>Monto Solictado</td>
+                                    <td>Monto Aprobado</td>
+                                    <td></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoEditarConceptosApoyo">
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: right">TOTALES</td>
+                                    <td id="totalterApoyo" style="text-align: right"></td>
+                                    <td id="totalaproApoyo" style="text-align: right"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OBSERIVACIONES</td>
+                                    <td style="width: 15px"><select id="estSeguimientoApoyo">
+                                        <option value="0">En orden</option>
+                                        <option value="1">Con pendientes</option>
+                                        <option value="2">Con Recomendaciones</option>
+                                    </select></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoObservacionesApoyo">
+
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OPINIONES</td>
+                                    <td style="width: 20%"></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoOpinionesApoyo">
+
+                                </tbody>
+                            </table>
+                            <div class="box box-primary">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <h4 class="lblobser">OBSERVACIÓN</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-default btn-sm pull-right"
+                                                data-toggle="tooltip"
+                                                data-container="body" onclick="agObservacionApoyo()">
+                                            <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
+                                                class="lblobser">&nbsp Observación</label>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea textarea class="form-control" rows="3" placeholder="Observación..."
+                                      id="txtObservacionApoyo"></textarea>
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" onclick="actualizarApoyo()" class="btn btn-success"><i
+                                    class="fa fa-save "></i> Guardar cambios
+                            </button>
+
+                        </div>
+                        <button type="button" onclick="volverLista()" class="btn btn-default"><i
+                                class="fa fa-reply"></i>
+                            Atras
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
     </div>
 </div>

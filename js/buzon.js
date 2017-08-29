@@ -1,5 +1,7 @@
 let lstBuzon = null;
 let reembolsoActivo = null;
+let lstBuzonApoyo = null;
+let apoyoActivo = null;
 let copia = null;
 let posicionModificar = null;
 $(function () {
@@ -19,6 +21,18 @@ function listaBuzon(est) {
 
         lstBuzon = JSON.parse(xhRequest.responseText);
         crearBuzon(est);
+    });
+
+    var url2 = Conn.URL + "wapoyo/listar/" + est;
+    var request2 = CargarAPI({
+        sURL: url2,
+        metodo: 'GET',
+        valores: ''
+    });
+    request2.then(function (xhRequest) {
+
+        lstBuzonApoyo = JSON.parse(xhRequest.responseText);
+        crearBuzonApoyo(est);
     });
 }
 
@@ -74,6 +88,9 @@ function crearBuzon(est) {
             '        </li>';
         $("#lista").append(item);
     });
+}
+
+function buzonReembolso(est){
 
 }
 
@@ -125,7 +142,7 @@ function rechazarReembolso(num, est,id) {
 
 }
 
-function detalleBuzon(id, numero, est) {
+function detalleBuzon(id, numero, est,tipo) {
     var url = Conn.URL + "militar/crud/" + id;
     var request = CargarAPI({
         sURL: url,
@@ -135,7 +152,12 @@ function detalleBuzon(id, numero, est) {
     });
     request.then(function (xhRequest) {
         reembolsoActivo = JSON.parse(xhRequest.responseText);
-        llenarBuzon(numero,est);
+        if(tipo == "A"){
+            llenarBuzonApoyo(numero,est);
+        }else{
+            llenarBuzon(numero,est);
+        }
+
     });
 }
 
@@ -161,7 +183,7 @@ function llenarBuzon(numero,est) {
 
     mostrarTextoObservacion(est);
 
-    $('#listadoCompleto').hide();
+    $('#listasProgramas').hide();
     $('#detalle').slideToggle();
 }
 
@@ -244,9 +266,9 @@ function calcularAcumulado() {
 
 
 function volverLista() {
-    $('#detalle').slideToggle();
-    $('#listadoCompleto').show();
-
+    $("#listasProgramas").slideToggle();
+    $('#detalle').hide();
+    $("#detalleApoyo").hide();
 }
 
 function actualizarReembolso(est) {
@@ -364,4 +386,71 @@ function mostrarTextoObservacion(est){
         $(".lblobser").text(" OBSERVACIÓN");
         $("#cabObserbaciones").html("OBSERVACIONES");
     }
+}
+
+/** APOYO **/
+function crearBuzonApoyo(est){
+    $("#listaApoyo").html('<li>\n' +
+        '            <div class="row">\n' +
+        '                <div class="col-sm-1"><span class="text">Apoyo</span></div>\n' +
+        '                <div class="col-sm-1"><span class="text">Cedula</span></div>\n' +
+        '                <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>\n' +
+        '                <div class="col-sm-1"><span class="text">F.Solicitud</span></div>\n' +
+        '                <div class="col-sm-2"><span class="text">M.Solicitud</span></div>\n' +
+        '                <div class="col-sm-2"><span class="text">M.Aprobado</span></div>\n' +
+        '                <div class="col-sm-1">Estatus</div>\n' +
+        '            </div>\n' +
+        '        </li>');
+    $.each(lstBuzonApoyo, function () {
+        var alertSegui = "";
+        switch (this.estatusseguimiento){
+            case 1:
+                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                break;
+            case 2:
+                alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
+                break;
+        }
+        var item = '<li><div class="row"><div class="col-sm-1"><span class="text"><a href="#" onclick="detalleBuzon(\'' + this.id + '\',\'' + this.numero + '\','+est+',\'A\')"> ' + this.numero + '</a></span></div>\n' +
+            '                <div class="col-sm-1"><span class="text">' + this.id + '</span></div>\n' +
+            '                <div class="col-sm-3">' + this.nombre + '</div>\n' +
+            '                <div class="col-sm-1">' + Util.ConvertirFechaHumana(this.fechacreacion) + '</div>\n' +
+            '                <div class="col-sm-2">' + numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $') + '</div>\n' +
+            '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
+            '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
+            '                <div class="tools" style="margin-right: 50px;">\n' +
+            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa fa-trash-o" onclick="verificarRechazoApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </li>';
+        $("#listaApoyo").append(item);
+    });
+}
+
+
+function llenarBuzonApoyo(numero,est) {
+    console.log(reembolsoActivo);
+    $('#lblcedula').text(reembolsoActivo.Persona.DatoBasico.cedula);
+    var ncompleto = reembolsoActivo.Persona.DatoBasico.nombreprimero + " " + reembolsoActivo.Persona.DatoBasico.apellidoprimero;
+    $('#lblnombre').text(ncompleto);
+    $('#lblgrado').text(reembolsoActivo.Grado.descripcion);
+    $('#lblsituacion').text(Util.ConvertirSitucacion(reembolsoActivo.situacion));
+    $('#lblnumero').text(numero);
+    $('#lblcomponente').text(reembolsoActivo.Componente.descripcion);
+
+    var rutaimg = Conn.URLIMG;
+    url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + ".jpg";
+    if (reembolsoActivo.Persona.foto != undefined) {
+        rutaimg = Conn.URLTEMP;
+        url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + "/foto.jpg";
+    }
+    $("#fotoperfil").attr("src", url);
+
+    crearTablaConceptos(numero,est);
+
+    mostrarTextoObservacion(est);
+
+    $('#listasProgramas').hide();
+    $('#detalle').slideToggle();
 }
