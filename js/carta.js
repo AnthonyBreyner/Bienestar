@@ -5,6 +5,8 @@ class ConceptoCarta{
         this.descripcion = '';
         this.DatoFactura = new Factura();
         this.afiliado = '';
+        this.requisito = new Array();
+
     }
 }
 
@@ -18,7 +20,7 @@ class Carta {
         this.montoaprobado = 0.00;
         this.fechaaprobacion = '';
         this.requisito = new Array();
-        this.observaciones = "";
+        //this.observaciones = "";
         this.Direccion = new Direccion();
         this.Telefono = new Telefono();
         this.Correo = new Correo();
@@ -29,11 +31,11 @@ class Carta {
 
 
 $(function () {
-    console.log("aca apoyo");
+    console.log("CARTA AVAL");
     console.log(militar);
 
     $("#btnvolverlista").click(function(){
-        $("#tblreembolsos").slideDown();
+        $("#tblcarta").slideDown();
         $("#lstDetalle").slideUp();
     });
 
@@ -227,17 +229,17 @@ function cargarDatos(){
 
     aval.Concepto = conceptos;
 
-    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval};
+    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,nombre:militar.Persona.DatoBasico.nombreprimero+' '+apellidoprimero};
     console.log(JSON.stringify(datos));
-    /*var urlGuardar = Conn.URL + "wreembolso";
+    var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
         valores: datos,
     });
     request2.then(function(xhRequest) {
-        var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });*/
+        var ventana = window.open("cartaAval.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    });
 
 
 }
