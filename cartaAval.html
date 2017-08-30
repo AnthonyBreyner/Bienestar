@@ -59,87 +59,76 @@
         .junta {
             border-collapse: collapse;
         }
+
+        .sangria {
+            text-indent: 1cm;
+        }
+        
+        .justificar {
+            text-align:justify;
+        }
+
     </style>
 </head>
 <body>
 <center>
     <div class="contenedor">
 
-                                      <table border="0">
-                                        <tr>
-                                          <!--td width="15%" valign="top"><img  style="width: 90px;height: 90px; margin-left: 0px" class="img-responsive file-path-wrapper-pre-view" src="images/logo_ipsfa.png" id="_imgescudo"/><BR>
-                                          <img  style="width: 90px;height: 35px; margin-left: 0px" class="img-responsive file-path-wrapper-pre-view" src="images/fondo_ipsfa.png" id="_imgescudo"/-->
-
-                                          </td>
-                                            <td style="width: 38%"><img src="images/lg.png" style="float: left">
-                                            <center><p style="font-size: 8px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
+        <table border="0">
+            <tr>                                         
+                <td style="width: 38%"><img src="images/lg.png" style="float: left">
+                    <left><p style="font-size: 10px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
                         POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
                     INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
-                    GERECIA DE BIENESTAR Y SEGURIDAD</p></center>
-                                            </td>
-                                        </tr>
-
-                                      </table>
-                                       <center><h3>CARTA AVAL</h3></center>
-                                       <table border="0">
-                                          <td width="70%" class="membrete">
-                                              <left>
-                                                      SEÑORES: <BR>
-                                                      CENTRO CLINICO DE MATERNIDAD<BR>
-                                                      LEOPOLDO AGUERREVERE<BR>
-                                                      UNIDAD MASTOLOGIA<BR><BR><BR>
-
-                                              </left></td>
-                                        </table>
-                                      <!--div class="row">
-                                        <div  class="col-sm-12 col-md-12 cuerpo_constancia" align="justify"-->
-                                        Por medio de la presente, hacemos constar que el (la) cuidadana: (NOMBRE DEL BENEFICIARIO(A), titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.
-                                        <br><br>
-                                        Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de (EXAMEN SELECCIONADO) la suma de (MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.
-                                        <br><br>
-                                        Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.
-                                        <br><br>
-                                        <center>Atentamente</center>
-                                        <!--/div>
-                                      </div-->
-                                      <br>
-
-                                      <table border="0">
-                                        <tr>
-                                          <td width="50%" class="control-label">
-                                            <center><h3><br>
-                                              <label id="lblnombrePI"> </label><BR>
-                                              <label id="lblgradoPIF"> </label><br>
-                                              GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
-                                              </h3></center>
-                                          </td>
-                                        </tr>
-                                        <tr>
-                                          <td colspan="3" class="footer">
-                                            <center><br>
-                                            </center>
-                                          </td>
-                                        </tr>
-                                      </table>
-
-                                          </td></tr>
-                                        </table>
-
-
-
-
-
-
-
-
-
+                    GERECIA DE BIENESTAR Y SEGURIDAD</p></left>
+                </td>
+            </tr>
+        </table>
+                <center><h3>CARTA AVAL</h3></center>
+        <table>
+            <td width="38%" class="">
+                <left>SEÑORES: <BR>
+                    CENTRO CLINICO DE MATERNIDAD<BR>
+                    LEOPOLDO AGUERREVERE<BR>
+                    UNIDAD MASTOLOGIA<BR><BR><BR>
+                </left></td>
+        </table>
+        <table width="70%" class="justificar">                              
+            <td>
+                <p class="sangria">
+                Por medio de la presente, hacemos constar que el (la) cuidadana: <h3><b id="cmbbeneficiario"></h3></b>, titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                <p class="sangria">
+                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de (EXAMEN SELECCIONADO) la suma de (MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
+                <p class="sangria">
+                Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
+            </td>
+        </table>
+        <table>
+            <center>Atentamente</center><br>
+        </table>
+        <table border="0">
+            <tr>
+                <td width="50%" class="control-label">
+                    <center><h3><br>
+                    <label id="lblnombrePI"> </label><br>
+                    <label id="lblgradoPIF"> </label><br>
+                        GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
+                    </h3></center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="footer">
+                    <center><br>
+                    </center>
+                </td>
+            </tr>
+        </table>
     </div>
 
-    <div id="boton">
-        <br>
+
+    <div id="boton"><br>
         <input type="button" value="Imprimir" onclick="imprimir()">
     </div>
-</center>
 
 </body>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -248,7 +237,7 @@
         }
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-            $("#lblnombre").text(ncompleto);
+            $("#cmbbeneficiario").text(ncompleto);
 
             $("#lblcomponente").text(militar.Componente.descripcion);
 
