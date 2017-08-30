@@ -104,8 +104,8 @@
                                     <td>Concepto</td>
                                     <td>Rif</td>
                                     <td style="display: none">Razon Social</td>
-                                    <td>Fecha Fact.</td>
-                                    <td>Factura</td>
+                                    <td>Mnt.Factura</td>
+                                    <td>Mnt.Aseguradora</td>
                                     <td>Monto Solictado</td>
                                     <td>Monto Aprobado</td>
                                     <td></td>
@@ -157,7 +157,7 @@
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-default btn-sm pull-right"
                                                 data-toggle="tooltip"
-                                                data-container="body" onclick="agObservacion()">
+                                                data-container="body" onclick="agObservacion('reembolso')">
                                             <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
                                                 class="lblobser">&nbsp Observación</label>
                                         </button>
@@ -247,7 +247,7 @@
                             </div>
                             <!-- /.btn-group -->
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                    onclick="cambiarEstatus('a')">
+                                    onclick="cambiarEstatusApoyo('a')">
                                 <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
                             </button>
                             <div class="pull-right" id="cambioestatusApoyo" style="display: none">
@@ -330,7 +330,7 @@
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-default btn-sm pull-right"
                                                 data-toggle="tooltip"
-                                                data-container="body" onclick="agObservacionApoyo()">
+                                                data-container="body" onclick="agObservacion('apoyo')">
                                             <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
                                                 class="lblobser">&nbsp Observación</label>
                                         </button>

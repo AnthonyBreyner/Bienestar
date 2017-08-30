@@ -256,56 +256,42 @@ class Utilidad {
     ConvertirBanco(ban){
         var banco = "";
         switch (ban){
-            case "0156":
-                banco = "100%BANCO";
-                break;
-            case "0196":
-                banco = "ABN AMRO BANK";
-                break;
-            case "0172":
-                banco = "BANCAMIGA BANCO MICROFINANCIERO, C.A.";
-                break;
-            case "0171":
-                banco = "BANCO ACTIVO BANCO COMERCIAL, C.A.";
-                break;
-            case "0166":
-                banco = "BANCO AGRICOLA";
-                break;
-            case "0175":
-                banco = "BANCO BICENTENARIO";
-                break;
-            case "0128":
-                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
-                break;
-            case "0164":
-                banco = "BANCO DE DESARROLLO DEL MICROEMPRESARIO";
-                break;
-            case "0102":
-                banco = "BANCO DE VENEZUELA S.A.I.C.A.";
-                break;
-            case "0128":
-                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
-                break;
-            case "0114":
-                banco = "BANCO DEL CARIBE C.A.";
-                break;
-            case "0149":
-                banco = "BANCO DEL PUEBLO SOBERANO C.A.";
-                break;
-            case "0163":
-                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
-                break;
-            case "0166":
-                banco = "BANCO AGRICOLA";
-                break;
-            case "0175":
-                banco = "BANCO BICENTENARIO";
-                break;
-            case "0128":
-                banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";
-                break;
+            case "0156":banco = "100%BANCO";break;
+            case "0196":banco = "ABN AMRO BANK";break;
+            case "0172":banco = "BANCAMIGA BANCO MICROFINANCIERO, C.A.";break;
+            case "0171":banco = "BANCO ACTIVO BANCO COMERCIAL, C.A.";break;
+            case "0166":banco = "BANCO AGRICOLA";break;
+            case "0175":banco = "BANCO BICENTENARIO";break;
+            case "0128":banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";break;
+            case "0164":banco = "BANCO DE DESARROLLO DEL MICROEMPRESARIO";break;
+            case "0102":banco = "BANCO DE VENEZUELA S.A.I.C.A.";break;
+            case "0128":banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";break;
+            case "0114":banco = "BANCO DEL CARIBE C.A.";break;
+            case "0149":banco = "BANCO DEL PUEBLO SOBERANO C.A.";break;
+            case "0163":banco = "BANCO CARONI, C.A. BANCO UNIVERSAL";break;
+            case "0176":banco = "BANCO ESPIRITUD SANTO C.A.";break;
+            case "0115":banco = "BANCO EXTERIOR C.A.";break;
+            case "0003":banco = "BANCO INDUSTRIAL DE VENEZUELA";break;
+            case "0173":banco = "BANCO INTERNACIONAL DE DESARROLLO, C.A.";break;
+            case "0105":banco = "BANCO MERCANTIL, C.A.";break;
+            case "0191":banco = "BANCO NACIONAL DE CREDITO";break;
+            case "0116":banco = "BANCO OCCIDENTAL DE DESCUENTO.";break;
+            case "0138":banco = "BANCO PLAZA";break;
+            case "0108":banco = "BANCO PROVINCIAL BBVA";break;
+            case "0104":banco = "BANCO VENEZOLANO DE CREDITO S.A.";break;
+            case "0168":banco = "BANCRECER S.A. BANCO DE DESARROLLO";break;
+            case "0134":banco = "BANESCO BANCO UNIVERSAL";break;
+            case "0177":banco = "BANFANB";break;
+            case "0146":banco = "BANGENTE";break;
+            case "0174":banco = "BANPLUS BANCO COMERCIAL C.A";break;
+            case "0190":banco = "CITIBANK.";break;
+            case "0121":banco = "CORP BANCA.";break;
+            case "0157":banco = "DELSUR BANCO UNIVERSAL";break;
+            case "0151":banco = "FONDO COMUN";break;case "0601":banco = "INSTITUTO MUNICIPAL DE CRÉDITO POPULAR";break;
+            case "0169":banco = "MIBANCO BANCO DE DESARROLLO, C.A.";break;
+            case "0137":banco = "SOFITASA";break;
         }
-        return situacion;
+        return banco;
     }
 
 

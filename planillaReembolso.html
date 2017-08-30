@@ -45,7 +45,7 @@
         }
 
         .doble {
-            height: 40px;
+            height: 30px;
         }
 
         .simple {
@@ -120,20 +120,17 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="texto12 simple">
+            <tr class="texto12 simple" style="height: 30px;">
                 <td style="width:30%;" class="biz bde btop">
                     4.CEDULA DE IDENTIDAD DEL AFILIADO:
-                    <br><b id="lblcedula"></b>
+                    <br><h3><b id="lblcedula"></b></h3>
                 </td>
                 <td style="width:70%;" colspan="3" class="bde btop">5.APELLIDOS Y NOMBRES DEL AFILIADO:
-                    <br><b id="lblnombre"></b>
+                    <br><h3><b id="lblnombre"></h3></b>
                 </td>
             </tr>
 
-            <tr class="texto12 doble">
-                <td style="width:30%;" class="biz bde bajo"></td>
-                <td style="width:70%;" colspan="3" class="bde bajo"></td>
-            </tr>
+
 
             <tr class="texto12">
                 <td style="width:25%;" class="biz bde btop">
@@ -175,34 +172,35 @@
                 <td colspan="4" class="biz bde bajo"><p id="lbldireccion"></p></td>
             </tr>
             <tr class="texto12">
-                <td colspan="2" class="biz bde btop">CORREO ELECTRONICO:<br>
-                    <font style="font-size: 12px"><?php echo $_SESSION['correo'];?></font>
-                </td>
-                <td class="bde btop">13.TEL&Eacute;FONO HABITACI&Oacute;N:</td>
+                <td colspan="2" class="biz bde btop">CORREO ELECTRONICO:</td>
+                <td class="bde btop">TEL&Eacute;FONO HABITACI&Oacute;N:</td>
                 <td class="bde">MOVIL/CELULAR:</td>
             </tr>
             <tr class="texto12 doble">
-                <td colspan="2" class="biz bde  bajo"></td>
-                <td class="bde bajo"></td>
-                <td class="bde bajo"></td>
+                <td colspan="2" class="biz bde  bajo"><label id="lblcorreo"></label></td>
+                <td class="bde bajo"><label id="lbltel"></label></td>
+                <td class="bde bajo"><label id="lblccel"></label></td>
             </tr>
             </tbody>
         </table>
         <br>
         <h3>DATOS DEL REEMBOLSO.</h3>
-        <table class="tcontenedor fondo junta " border="1">
+        <table class="tcontenedor junta " border="1">
             <tr class="texto12 doble">
-                <td style="width:15%">14.PARENTESCO</td>
-                <td style="width:30%">15.NOMBRE DEL FAMILIAR</td>
-                <td style="width:30%">16.CONCEPTO</td>
-                <td style="width:15%">17.MONTO SOLICITADO</td>
-                <td style="width:10%" align="center">18 %</td>
+                <td style="width:10%;text-align: center;"><b>PARENTESCO</b></td>
+                <td style="width:10%;text-align: center;"><b>CEDULA</b></td>
+                <td style="width:15%;text-align: center;"><b>NOMBRE DEL FAMILIAR</td>
+                <td style="width:30%;text-align: center;"><b>CONCEPTO</b></td>
+                <td style="width:15%;text-align: center;"><b>MONTO SOLICITADO</b></td>
+                <td style="width:15%;text-align: center;"><b>MONTO APROBADO</b></td>
+                <td style="width:5%" align="center">%</td>
             </tr>
             <tbody id="cuerpoConceptos">
 
             </tbody>
 
             <tr class="doble">
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -215,18 +213,18 @@
         <h3>CUENTA EN LA CUAL DESEA QUE SE LE DEPOSITE EL MONTO.</h3>
         <table class="tcontenedor junta" border="0">
             <tr class="texto12">
-                <td style="width:60%" colspan="2" class="biz bde btop ">19.NUMERO DE CUENTA<br>
+                <td style="width:60%" colspan="2" class="biz bde btop ">NUMERO DE CUENTA<br>
 
                 </td>
-                <td style="width:40%" class="bde btop">22.FIRMA DEL SOLICITANTE</td>
+                <td style="width:40%" class="bde btop">FIRMA DEL SOLICITANTE</td>
             </tr>
             <tr class="simple">
                 <td colspan="2" class="biz bde  bajo"><p id="lblcuenta"></p></td>
                 <td rowspan="3" class=" bde  bajo"></td>
             </tr>
             <tr class="texto12">
-                <td class="biz bde">20.BANCO</td>
-                <td class="bde ">21.TIPO DE CUENTA</td>
+                <td class="biz bde">BANCO</td>
+                <td class="bde ">TIPO DE CUENTA</td>
             </tr>
             <tr class="simple">
                 <td class="biz bde  bajo">
@@ -240,24 +238,24 @@
         </table>
         <br>
 
-        <table class="tcontenedor fondo junta" border="0">
+        <table class="tcontenedor junta" border="0">
             <tr class="texto12">
                 <td style="width:100%" colspan="4" class="bordeado textoCenter"><h3>GERENCIA DE BIENESTAR Y SEGURIDAD
                     SOCIAL</h3>
             </tr>
             <tr class="texto12">
-                <td style="width:50%" class="biz bde ">23.REVISADO POR JEFE SECCI&Oacute;N TRAMITACI&Oacute;N Y
+                <td style="width:50%" class="biz bde ">REVISADO POR JEFE SECCI&Oacute;N TRAMITACI&Oacute;N Y
                     SERVICIOS M&Eacute;DICOS
                 </td>
-                <td style="width:20%">24.FIRMA</td>
+                <td style="width:20%">FIRMA</td>
                 <td class="bde"></td>
-                <td style="width:20%" class="bde">FECHA</td>
+                <td style="width:20%" class="bordeado">FECHA</td>
             </tr>
             <tr class="simple">
                 <td class="biz bde  bajo"></td>
                 <td class="bajo"></td>
                 <td class="bde  bajo"></td>
-                <td>
+                <td class="bordeado">
                     <table class="tcontenedor">
                         <tr class="simple">
                             <td style="width:30%;" class="bde"></td>
@@ -268,18 +266,18 @@
                 </td>
             </tr>
             <tr class="texto12">
-                <td colspan="2" class="biz bde ">25.OPINI&Oacute;N DEL JEFE DE DEPARTAMENTO CUIDADO INTEGRAL DE LA
+                <td colspan="2" class="biz bde ">OPINI&Oacute;N DEL JEFE DE DEPARTAMENTO CUIDADO INTEGRAL DE LA
                     SALUD:
                 </td>
-                <td colspan="2" class="biz bde ">26.FIRMA</td>
+                <td colspan="2" class="biz bde ">FIRMA</td>
             </tr>
             <tr class="simple">
                 <td colspan="2" class="biz bde  bajo"></td>
                 <td colspan="2" class="bde  bajo"></td>
             </tr>
             <tr class="texto12">
-                <td colspan="2" class="biz bde ">27.OPINI&Oacute;N DEL GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL:</td>
-                <td colspan="2" class="bde">28.FIRMA</td>
+                <td colspan="2" class="biz bde ">OPINI&Oacute;N DEL GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL:</td>
+                <td colspan="2" class="bde">FIRMA</td>
             </tr>
             <tr class="simple">
                 <td colspan="2" class="biz bde  bajo"></td>
@@ -287,18 +285,18 @@
             </tr>
         </table>
         <br>
-        <table class="tcontenedor fondo junta" border="0">
+        <table class="tcontenedor junta" border="0">
             <tr class="texto12">
-                <td style="width:50%" class="biz bde  btop">29.DECISI&Oacute;N DEL PRESIDENTE DE LA JUNTA ADMINISTRATIVA
+                <td style="width:50%" class="biz bde  btop">DECISI&Oacute;N DEL PRESIDENTE DE LA JUNTA ADMINISTRATIVA
                     DEL IPSFA.
                 </td>
-                <td style="width:30%" class="bde  btop">30.FIRMA</td>
-                <td style="width:20%" class="bde  btop">31.FECHA</td>
+                <td style="width:30%" class="bde  btop">FIRMA</td>
+                <td style="width:20%" class="bordeado">FECHA</td>
             </tr>
             <tr class="doble">
                 <td class="biz bde  bajo"></td>
                 <td class="bde  bajo"></td>
-                <td class="bde  bajo">
+                <td class="bordeado">
                     <table class="tcontenedor">
                         <tr class="simple">
                             <td style="width:30%;" class="bde"></td>
@@ -309,7 +307,7 @@
                 </td>
             </tr>
         </table>
-        <p style="color:red;width:100%" class"textoCenter">GERENCIA DE FINANZAS DPTO. DE CONTABILIDAD</p>
+        <p style="width:100%;font-size: 10px" class"textoCenter">GERENCIA DE FINANZAS DPTO. DE CONTABILIDAD</p>
 
     </div>
 
@@ -374,23 +372,11 @@
         });
 
         request.then(function (xhRequest) {
-            alert("llega");
             militar = JSON.parse(xhRequest.responseText);
             llenar(id);
 
         });
 
-        var request2 = CargarAPI({
-            sURL: 'js/proveedores.js',
-            metodo: 'GET',
-            valores: '',
-        });
-
-        request2.then(function (xhRequest) {
-
-            lstProveedores = JSON.parse(xhRequest.responseText);
-
-        });
 
         //CargarAPI(url, "GET", "", militar);
 
@@ -418,14 +404,20 @@
             $("#lblestadocivil").text(estcivil);
 
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-
-
+            var defestados = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
+            console.log(defestados);
             if (militar.Persona.Direccion != undefined) {
-                var defestados = sessionStorage.getItem("ipsfaEstado");
-                console.log(defestados);
                 var DIR = militar.Persona.Direccion[0];
                 Estados.ObtenerEstados();
-                var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                var estado = "";
+
+                $.each(defestados,function(){
+                   if(this.codigo == DIR.estado){
+                       estado = this.nombre;
+                   }
+                });
+
+                var rirec ="ESTADO "+ estado + ", CIUDAD " + DIR.ciudad + ", MUNICIPIO " + DIR.municipio + ", PARROQUIA " + DIR.parroquia + ", AV/CALLE " + DIR.calleavenida + ", CASA/APT " + DIR.casa + "|" + DIR.apartamento
                 $("#lbldireccion").text(rirec);
             }
 
@@ -440,20 +432,26 @@
             pos--;
         }
         console.log(pos);
+
         var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
         console.log(reem);
+        console.log(reem.CuentaBancaria.institucion);
         $("#lblnsolicitud").text(reem.numero);
         $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
-        $("#lblbanco").text(reem.CuentaBancaria.institucion);
+        $("#lblbanco").text(Util.ConvertirBanco(reem.CuentaBancaria.institucion));
         $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
-        $("#lbltipoc").text(reem.CuentaBancaria.tipo);
+
+        var tipoc = reem.CuentaBancaria.tipo=="CA" ? "CUENTA DE AHORRO":"CUENTA CORRIENTE";
+        $("#lbltipoc").text(tipoc);
         $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
         var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
         var fila ="";
         $.each(concep.Concepto,function () {
             var bene = this.afiliado.split("-");
+            var paren = bene[1].split("(");
+            var tam = paren[1].length;
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-            fila+= "<tr><td>"+bene[0]+"</td><td>"+bene[1]+"</td><td>"+this.descripcion+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td></tr>";
+            fila+= "<tr><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td><td>"+this.descripcion+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td><td></td></tr>";
         });
         $("#cuerpoConceptos").html(fila);
     }

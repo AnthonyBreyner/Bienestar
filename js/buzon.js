@@ -431,13 +431,13 @@ function crearBuzonApoyo(est){
 
 function llenarBuzonApoyo(numero,est) {
     console.log(reembolsoActivo);
-    $('#lblcedula').text(reembolsoActivo.Persona.DatoBasico.cedula);
+    $('#lblcedulaApoyo').text(reembolsoActivo.Persona.DatoBasico.cedula);
     var ncompleto = reembolsoActivo.Persona.DatoBasico.nombreprimero + " " + reembolsoActivo.Persona.DatoBasico.apellidoprimero;
-    $('#lblnombre').text(ncompleto);
-    $('#lblgrado').text(reembolsoActivo.Grado.descripcion);
-    $('#lblsituacion').text(Util.ConvertirSitucacion(reembolsoActivo.situacion));
-    $('#lblnumero').text(numero);
-    $('#lblcomponente').text(reembolsoActivo.Componente.descripcion);
+    $('#lblnombreApoyo').text(ncompleto);
+    $('#lblgradoApoyo').text(reembolsoActivo.Grado.descripcion);
+    $('#lblsituacionApoyi').text(Util.ConvertirSitucacion(reembolsoActivo.situacion));
+    $('#lblnumeroApoyo').text(numero);
+    $('#lblcomponenteApoyo').text(reembolsoActivo.Componente.descripcion);
 
     var rutaimg = Conn.URLIMG;
     url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + ".jpg";
@@ -445,12 +445,68 @@ function llenarBuzonApoyo(numero,est) {
         rutaimg = Conn.URLTEMP;
         url = rutaimg + reembolsoActivo.Persona.DatoBasico.cedula + "/foto.jpg";
     }
-    $("#fotoperfil").attr("src", url);
+    $("#fotoperfilApoyo").attr("src", url);
 
-    crearTablaConceptos(numero,est);
+    crearTablaConceptosApoyo(numero,est);
 
     mostrarTextoObservacion(est);
 
     $('#listasProgramas').hide();
-    $('#detalle').slideToggle();
+    $('#detalleApoyo').show();
+}
+
+function crearTablaConceptosApoyo(numero,est){
+    var fila = "";
+    var pos = 0;
+    var lst = reembolsoActivo.CIS.ServicioMedico.Programa.Apoyo;
+    var i = 0;
+    $.each(lst, function () {
+        if (this.numero == numero) {
+            pos = i;
+            posicionModificar = i;
+        }
+        i++;
+    });
+    copia = lst[pos];
+    $("#estSeguimiento").val(copia.Seguimiento.Estatus);
+    if(est > 2){
+        activarCambioEstatus("apoyo");
+    }
+    $("#cuerpoEditarConceptosApoyo").html('');
+    $.each(copia.Concepto, function () {
+        var mntApo = this.DatoFactura.monto;
+        if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
+
+        fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + this.DatoFactura.monto + '</td>\n' +
+            '                                <td><input type="text" value="' + this.montoaseguradora + '" class="numfact"></td>\n' +
+            '                                <td class="mntsoli">' + this.montoaportar + '</td>\n' +
+            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
+            '                                <td style="width: 7%;">\n' +
+            '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
+            '                                </td></tr>';
+        $("#cuerpoEditarConceptosApoyo").append(fila);
+    });
+    $("#totalterApoyo").html(copia.montosolicitado.toFixed(2));
+    $("#totalaproApoyo").html(copia.montoaprobado);
+    $(".borrarconcepto").click(function () {
+        $(this).parents('tr').eq(0).remove();
+        if ($("#cuerpoEditarConceptosApoyo tr").length == 0) {
+
+        }
+        calcularAcumulado("apoyo");
+    });
+
+    /**
+     * Crear tabla de objservaciones
+     */
+    if (copia.Seguimiento.Observaciones != undefined) {
+        var lstObs = copia.Seguimiento.Observaciones;
+        $("#cuerpoObservacionesApoyo").html('');
+        $("#cuerpoOpinionesApoyo").html('');
+        $.each(lstObs, function () {
+            var tipo = this.contenido.split("|||");
+            if(tipo[1] != undefined) $("#cuerpoOpinionesApoyo").append('<tr><td>' + tipo[0] + '</td><td>'+conviertEstatus(copia.estatus)+'</td></tr>');
+            else $("#cuerpoObservacionesApoyo").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
+        });
+    }
 }
