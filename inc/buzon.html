@@ -9,6 +9,11 @@
 
         </ul>
     </div>
+    <div class="box-body" id="listadoCompletoCarta">
+        <ul class="todo-list" id="listaCarta" style="overflow-x:hidden;">
+
+        </ul>
+    </div>
 </div>
 <script>
     $(function () {
@@ -371,4 +376,179 @@
             <!-- /.col -->
         </div>
     </div>
+
+    <div class="box-body" id="detalleCarta" style="display: none">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border bg-light-blue">
+                        <h3 class="box-title">Datos de Carta Aval</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <div class="mailbox-read-info">
+                            <div class="row" style="margin-left: 50px;">
+                                <div class="col-md-3" style="margin-top: 30px;">
+                                    <h4><b>CEDULA:</b> <label id="lblcedulaCarta" style="font-weight: 500;"> </label>
+                                    </h4>
+                                    <h4><b>N° CARTA: </b> <label id="lblnumeroCarta" style="font-weight: 500;"> </label>
+                                    </h4>
+
+                                </div>
+                                <div class="col-md-4" style="margin-top: 40px;">
+                                    <h4><b>NOMBRE:</b> <label id="lblnombreCarta" style="font-weight: 500;"> </label>
+                                    </h4>
+                                    <h4><b>COMPONENTE:</b> <label id="lblcomponenteCarta"
+                                                                  style="font-weight: 500;"> </label>
+                                    </h4>
+
+                                </div>
+                                <div class="col-md-3" style="margin-top: 40px;">
+                                    <h4><b>GRADO:</b> <label id="lblgradoCarta" style="font-weight: 500;"> </label></h4>
+
+                                    <h4><b>SITUACIÓN:</b> <label id="lblsituacionCarta"
+                                                                 style="font-weight: 500;"> </label>
+                                    </h4>
+                                </div>
+                                <div class="col-md-2">
+                                    <img class="profile-user-img img-responsive" style="width: 130px;" src=""
+                                         onerror="this.src='images/ndisponible.jpg'"
+                                         alt="Foto de perfil" id="fotoperfilCarta">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
+                                <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatusCarta('r')"></i>&nbsp
+                                Borrar
+                            </button>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        onclick="volverLista()"
+                                        data-container="body">
+                                    <i class="fa fa-reply"></i>&nbsp Regresar
+                                </button>
+                            </div>
+                            <!-- /.btn-group -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                    onclick="cambiarEstatusCarta('a')">
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
+                            </button>
+                            <div class="pull-right" id="cambioestatusCarta" style="display: none">
+                                <select id="cmbcambioestatusCarta">
+                                    <option value=""></option>
+                                    <option value="0">Pendiente</option>
+                                    <option value="1">Jefatura</option>
+                                    <option value="2">Gerencia</option>
+                                </select>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                        data-container="body" onclick="cambiarEstatusCarta('e')"
+                                        id="btncambioestatusCarta">
+                                    <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
+                                </button>
+                            </div>
+                        </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="box box-primary">
+                            <div class="mailbox-read-message">
+
+                                <h4>Detalles de la Carta Aval</h4>
+                            </div>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>Afiliado</td>
+                                    <td>Concepto</td>
+                                    <td>Rif</td>
+                                    <td style="display: none">Razon Social</td>
+                                    <td>Fecha Fact.</td>
+                                    <td>Factura</td>
+                                    <td>Monto Solictado</td>
+                                    <td>Monto Aprobado</td>
+                                    <td></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoEditarConceptosCarta">
+
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="5" style="text-align: right">TOTALES</td>
+                                    <td id="totalterCarta" style="text-align: right"></td>
+                                    <td id="totalaproCarta" style="text-align: right"></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OBSERIVACIONES</td>
+                                    <td style="width: 15px"><select id="estSeguimientoCarta">
+                                        <option value="0">En orden</option>
+                                        <option value="1">Con pendientes</option>
+                                        <option value="2">Con Recomendaciones</option>
+                                    </select></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoObservacionesCarta">
+
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr class="bg-info">
+                                    <td>OPINIONES</td>
+                                    <td style="width: 20%"></td>
+                                </tr>
+                                </thead>
+                                <tbody id="cuerpoOpinionesCarta">
+
+                                </tbody>
+                            </table>
+                            <div class="box box-primary">
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <h4 class="lblobser">OBSERVACIÓN</h4>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-default btn-sm pull-right"
+                                                data-toggle="tooltip"
+                                                data-container="body" onclick="agObservacion('carta')">
+                                            <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
+                                                class="lblobser">&nbsp Observación</label>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea textarea class="form-control" rows="3" placeholder="Observación..."
+                                      id="txtObservacionCarta"></textarea>
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+                    <!-- /.box-body -->
+                    <!-- /.box-footer -->
+                    <div class="box-footer">
+                        <div class="pull-right">
+                            <button type="button" onclick="actualizarCarta()" class="btn btn-success"><i
+                                    class="fa fa-save "></i> Guardar cambios
+                            </button>
+
+                        </div>
+                        <button type="button" onclick="volverLista()" class="btn btn-default"><i
+                                class="fa fa-reply"></i>
+                            Atras
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                </div>
+                <!-- /. box -->
+            </div>
+            <!-- /.col -->
+        </div>
+    </div>
+
+
 </div>
