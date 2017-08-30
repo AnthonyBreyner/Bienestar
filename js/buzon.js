@@ -90,10 +90,6 @@ function crearBuzon(est) {
     });
 }
 
-function buzonReembolso(est){
-
-}
-
 function verificarAprobacion(num, esta,id) {
     $("#_contenido").html("¿Está seguro que APROBAR el reembolso " + num + "?");
     var botones = '<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar" onClick="aprobarReembolso(\'' + num + '\',\'' + esta + '\',\''+id+'\')">Si</button><button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
@@ -509,4 +505,8 @@ function crearTablaConceptosApoyo(numero,est){
             else $("#cuerpoObservacionesApoyo").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
     }
+}
+
+function puntoCuentaReembolso(){
+    var ventana = window.open("inc/pcreembolso.html?id="+reembolsoActivo.Persona.DatoBasico.cedula+"&pos="+posicionModificar, "_blank");
 }

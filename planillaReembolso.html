@@ -122,10 +122,10 @@
             <tbody>
             <tr class="texto12 simple" style="height: 30px;">
                 <td style="width:30%;" class="biz bde btop">
-                    4.CEDULA DE IDENTIDAD DEL AFILIADO:
+                    CEDULA DE IDENTIDAD DEL AFILIADO:
                     <br><h3><b id="lblcedula"></b></h3>
                 </td>
-                <td style="width:70%;" colspan="3" class="bde btop">5.APELLIDOS Y NOMBRES DEL AFILIADO:
+                <td style="width:70%;" colspan="3" class="bde btop">APELLIDOS Y NOMBRES DEL AFILIADO:
                     <br><h3><b id="lblnombre"></h3></b>
                 </td>
             </tr>
@@ -134,13 +134,13 @@
 
             <tr class="texto12">
                 <td style="width:25%;" class="biz bde btop">
-                    6.GRADO:<br>
+                    GRADO:<br>
                 </td>
-                <td style="width:25%;" class="bde btop">7.COMPONENTE:
+                <td style="width:25%;" class="bde btop">COMPONENTE:
                     <br>
                 </td>
-                <td style="width:25%;" class="bde btop">8.SITUACI&Oacute;N:</td>
-                <td style="width:25%;" class="bde btop">9.ESTADO CIVIL:</td>
+                <td style="width:25%;" class="bde btop">SITUACI&Oacute;N:</td>
+                <td style="width:25%;" class="bde btop">ESTADO CIVIL:</td>
             </tr>
 
             <tr class="texto12 simple" style="font-size: 12px">
@@ -158,15 +158,15 @@
                 </td>
             </tr>
             <tr class="texto12">
-                <td style="width:30%;" class="biz bde btop">10.CEDULA DE IDENTIDAD SOBREVIVIENTE:</td>
-                <td style="width:70%;" colspan="3" class="bde">11.APELLIDOS Y NOMBRES DEL SOBREVIVIENTE:</td>
+                <td style="width:30%;" class="biz bde btop">CEDULA DE IDENTIDAD SOBREVIVIENTE:</td>
+                <td style="width:70%;" colspan="3" class="bde">APELLIDOS Y NOMBRES DEL SOBREVIVIENTE:</td>
             </tr>
             <tr class="texto12 doble">
                 <td style="width:30%;" class="biz bde bt bajo"></td>
                 <td style="width:70%;" colspan="3" class="bde bajo"></td>
             </tr>
             <tr class="texto12">
-                <td colspan="4" class="biz bde btop" class="bde btop">12.DIRECCION O DEPENDENCIA:</td>
+                <td colspan="4" class="biz bde btop" class="bde btop">DIRECCION O DEPENDENCIA:</td>
             </tr>
             <tr class="texto12 doble">
                 <td colspan="4" class="biz bde bajo"><p id="lbldireccion"></p></td>
@@ -326,6 +326,11 @@
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
+    function imprimir() {
+        document.getElementById('btnPrint').style.display = 'none';
+        window.print();
+        window.close();
+    }
     let pos='';
     $(function () {
         numeral.locale('es-es');
@@ -347,12 +352,6 @@
         console.log(id);
         Buscar(id);
     });
-
-    function imprimir() {
-        $('#boton').html('');
-        window.print();
-        window.close();
-    }
 
     function Buscar(id) {
         console.log(militar);
