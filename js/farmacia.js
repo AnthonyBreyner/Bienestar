@@ -50,20 +50,17 @@ function agregarMedico(){
         var codigoc = $("#codigocolegio").val();
         var codigom = $("#codigompps").val();
         var tabla = $("#medicoagregado");
-        var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
+        var btndelete = "<button class='btn btn-danger borrarmedico'><i class='glyphicon glyphicon-remove'></i></button>";
         var html = "<tr><td>"+medico+"</td><td>"+cedula+"</td><td>"+servicio+"</td><td>"+codigoc+"</td><td>"+codigom+"</td>";
         html += "<td>"+btndelete+"</td></tr>";
         tabla.append(html);
 
-        $(".borrarconcepto").click(function () {
+        $(".borrarmedico").click(function () {
             $(this).parents('tr').eq(0).remove();
             if($("#medicoagregado tr").length == 0){
                 $("#cajamedico").slideUp();
             }
-            calcularAcumulado();
         });
-
-        calcularAcumulado();
         $.notify("Se ha agregado el Médico", "success");
         $("#cajamedico").slideDown("slow");
         limpiarMedico();
@@ -90,10 +87,7 @@ function agregarTratamiento(){
             if($("#tratamientoagregado tr").length == 0){
                 $("#cajatratamiento").slideUp();
             }
-            calcularAcumulado();
         });
-
-        calcularAcumulado();
         $.notify("Se ha agregado el Tratamiento", "success");
         $("#cajatratamiento").slideDown("slow");
         limpiarTratamiento();
@@ -117,10 +111,7 @@ function agregarPatologia(){
             if($("#patologiaagregado a").length == 0){
                 $("#cajapatologia").slideUp();
             }
-            calcularAcumulado();
         });
-
-        calcularAcumulado();
         $.notify("Se ha agregado la Patologia", "success");
         $("#cajapatologia").slideDown("slow");
         limpiarPatologia();
