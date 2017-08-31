@@ -148,7 +148,6 @@ function crearLista(){
             $("#cmbbeneficiario").append(new Option(ncompleto2+"("+parentes+")", v+"|"+this.Persona.DatoBasico.cedula, true, true));
         });
     }
-    $("#cmbbeneficiario").append(new Option("Seleccione","|seleccione", true, true));
     $("#depositar").append(new Option("Seleccione","", true, true));
 
     $("#cmbbeneficiario").on("change",function(){
