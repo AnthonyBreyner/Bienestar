@@ -50,6 +50,29 @@
     </div>
 </div>
 
+    <div class="row" id="tblcartas">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border bg-light-blue">
+                    <h3 class="box-title">Historico de Carta Aval</h3>
+                    <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+
+                <div class="box-body no-padding">
+                    <div class="table-responsive mailbox-messages" style=" overflow-x: hidden;  ">
+                        <table class="table table-bordered" id="historicoCartas">
+
+                        </table>
+                        <!-- /.table -->
+                    </div>
+                    <!-- /.mail-box-messages -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div clas="row">
     <div class="col-md-12">
@@ -129,6 +152,46 @@
                         </tr>
                         </thead>
                         <tbody id="cuerpoLstConceptosApoyo"></tbody>
+                    </table>
+                </div>
+                <!-- /.mailbox-read-message -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" id="lstDetalleCarta" style="display: none;">
+    <div class="col-md-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Detalle de Carta Aval <p id="lbldetnumeroCarta"></p></h3>
+                <!-- /.box-tools -->
+            </div>
+            <div class="box-body no-padding">
+                <!-- /.mailbox-read-info -->
+                <div class="mailbox-controls with-border text-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
+                                data-container="body"
+                                title="Reply">
+                            <i class="fa fa-reply"></i></button>
+                    </div>
+                </div>
+                <!-- /.mailbox-controls -->
+                <div class="mailbox-read-message">
+                    <!-- Widget: user widget style 1 -->
+                    <table class='table table-responsive table-bordered'>
+                        <thead>
+                        <tr class='success'>
+                            <td>Afiliado</td>
+                            <td>Concepto</td>
+                            <td>Beneficiario</td>
+                            <td>Factura</td>
+                            <td>F.Factura</td>
+                            <td>Monto</td>
+                        </tr>
+                        </thead>
+                        <tbody id="cuerpoLstConceptosCarta"></tbody>
                     </table>
                 </div>
                 <!-- /.mailbox-read-message -->
