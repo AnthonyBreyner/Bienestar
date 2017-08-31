@@ -1,111 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BIENESTAR</title>
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-
-    <link rel="stylesheet" href="dist/css/_all-skins_1.css">
-    <script src="bower_components/moment/moment.js"></script>
-
-
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-
-
-<style type="text/css">
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-th, td {
-    text-align: left;
-    padding: 20px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-
-th {
-    background-color:    #3fae69;
-    color: white;
-}
-    .row-centered {
-        text-align: center;
-    }
-
-    .col-centered {
-        display: inline-block;
-        float: none;
-        text-align: left;
-        margin-right: -4px;
-    }
-
-    td {
-        font-size: 12px;
-        font-weight: normal;
-    }
-
-    input {
-        text-transform: uppercase;
-    }
-
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
-    }
-
-    .logo1 {
-        -webkit-transition: width .3s ease-in-out;
-        -o-transition: width .3s ease-in-out;
-        transition: width .3s ease-in-out;
-        display: block;
-        float: left;
-        height: 50px;
-        font-size: 16px;
-        line-height: 50px;
-        text-align: center;
-        width: 580px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        padding: 0 15px;
-        font-weight: 300;
-        overflow: hidden;
-    }
-
-    .detfactconcep {
-        display: none;
-    }
-
-</style>
-</head>
-<body>      
 <div class="body box">
     <div class="container-fluid">
         <div class="row">
@@ -114,190 +6,33 @@ th {
                     <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
                        aria-expanded="true" aria-controls="collapseOne">
                         <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
-                             <h4 class="panel-title">
-                                Datos de Farmacia
-                           <div class="box-tools pull-right">
-        				 <button type="button" class="btn btn-box-tool" onclick="Obtenerdatos()"><i class="fa fa-save"></i>
-
-        				</button>
-      					</div>
+                            <h4 class="panel-title">
+                                Tratamiento Prolongado
+                            </h4>
                         </div>
                     </a>
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
                          aria-labelledby="headingOne">
                         <div class="panel-body">
-                            <form id="frmcarga" action="#" method="post">
+                            <form id="frmreembolso" action="#" method="post">
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-4">
-                                        <label>Nombre del Médico:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbdoctores"
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Beneficiario:</label>
+                                        <select class="form-control" style="width: 100%" id="cmbbeneficiario"
                                                 required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0" desplegar="">Dra. Karina Puertas
-                                            </option>
-                                            <option value="1" desplegar="">Dra. Jesuline Teran
-                                            </option>
-                                            <option value="2" desplegar="">Dra. Maria Elena Nunez
-                                            </option>
-                                            <option value="3" desplegar="">Dr. Leider Hernandez
-                                            </option>
-                                            <option value="4" desplegar="">Dra. Edda González
-                                            </option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 col-sm-4">
-                                        <label>Nombre del Hosp. o Clinica:</label>
-                                        <select class="form-control" style="width: 100%" id="nomhospital"
-                                                onchange="nombrehospital()" required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0" desplegar="">Hospital Militar Carlos
-                                                Arvelo
-                                            </option>
-                                            <option value="1" desplegar="">Hospital Militar Vicente
-                                                Salias
-                                            </option>
-                                            <option value="2" desplegar="">Clinica Atias</option>
-                                            <option value="3" desplegar="">Clinicas Caracas</option>
-                                            <option value="4" desplegar="">Hospital Periférico
-                                            </option>
-
-                                            <option value="5" desplegar="">Hospital Militar Carlos
-                                                Arvelo
-                                            </option>
-                                            <option value="6" desplegar="">Hospital Militar Carlos
-                                                Arvelo
-                                            </option>
-
-                                            <option value="7" desplegar="">Hospital Militar Carlos
-                                                Arvelo
-                                            </option>
-                                            <option value="8" desplegar="">Hospital Militar Carlos
-                                                Arvelo
-                                            </option>
-                                            
-                                            </option>
-                                        </select>
-                                    </div>
-
-
-                                        <div class="col-md-4 col-sm-4">
-                                            <label>Unidad Médica:</label>
-                                            <select class="form-control" style="width: 100%" id="cmbunidad"
-                                                    required="required">
-                                                <option selected="selected" value="S"></option>
-                                                <option value="0" desplegar="">Pública</option>
-                                                <option value="1" desplegar="">Privada</option>
-
-                                            </select>
-                                        </div>
-                                        </div>
-
-
-										<div class="row"> 
-                                       <div class="col-md-4 col-sm-4">
-                                        <label>Código Diagnóstico:</label>
-                                        <select class="form-control" style="width: 100%" id="cmbcodigo"
-                                                required="required">
-                                            <option selected="selected" value="S"></option>
-                                            <option value="0" desplegar="">00001
-                                            </option>
-                                            <option value="1" desplegar="">00002
-                                            </option>
-                                            <option value="2" desplegar="">00003
-                                            </option>
-                                            <option value="3" desplegar="">00004
-                                            </option>
-                                            <option value="4" desplegar="">00005
-                                            </option>
-                                        </select>
-                                    </div>
-                                    
-                                        <div class="col-md-6 col-sm-4">
-                                            <label>Diagnóstico:</label>
-                                            <input type="text" class="form-control" id="cmbcodigo"
-                                                   required="required">
-                                        </div>
-                                        </div>
-                                    
-                                    <br><br>
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <button type="button" class="btn btn-md btn-success pull-left"
-                                                    onclick="cargarDatos()" id="_btnSavlvar" style="margin-left:600px;">
-                                                <i class="fa fa-medkit"></i>&nbsp;&nbsp;AGREGAR DIAGNÓSTICO
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                     </h4>
-                </div>
-             </a>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container-fluid">
-  <h4></h4>
-             
-  <table class="table" >
-    <thead>
-      <tr>
-        <th>Nombre del Médico</th>
-        <th>Nombre del Hosp. o Clínica</th>
-        <th>Unidad Médica</th>
-        <th>Código Diagnóstico</th>
-        <th>Diagnóstico</th>
-      </tr>
-    </thead>
-    <tbody id="tblAgfarmacia">
-     
-    </tbody>
-  </table>
-</div>
-
-</body>
-</html>
-
-                                    <div class="box box-primary" id="cajaConceptos" style="display: none">
-                                        <div class="box-header with-border">
-                                            <h3 class="box-title">Conceptos</h3>
-                                        </div>
-                                        <div class="box-body no-padding">
-                                            <div class="table-responsive mailbox-messages">
-                                                <table class="table table-hover table-striped">
-                                                    <thead class="bg-blue">
-                                                    <tr>
-                                                        <th>Nombre del Médico</th>
-                                                        <th>Unidad Médica</th>
-                                                        <th>Pública</th>
-                                                        <th>Privada</th>
-                                                        <th>Código Diagnóstico</th>
-                                                        <th>Diagnóstico</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="conceptoagregado">
-                                                    </tbody>
-                                                    <tfoot class="bg-light-blue">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th class="detfactconcep"></th>
-                                                        <th class="detfactconcep"></th>
-                                                        <th></th>
-                                                        <th class="pull-right" id="mntAcumulado"></th>
-                                                        <th class="detfactconcep"></th>
-                                                        <th></th>
-                                                    </tr>
-                                                    </tfoot>
-                                                </table>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Cédula:</label>
+                                        <div class="btn-group-justified" role="group" aria-label="...">
+                                            <div class="btn-group" style="width: 6%;" role="group">
+                                                <input class="form-control" id="ci" required="required">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4"></div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -305,10 +40,10 @@ th {
 
                 <div class="panel panel-default">
                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTree">
+                       href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
                         <div class="panel-heading bg-blue" role="tab" id="headingTree">
                             <h4 class="panel-title">
-                                Patología
+                                Direccion del afiliado
                             </h4>
                         </div>
                     </a>
@@ -317,103 +52,389 @@ th {
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Tipo de Patología:</label>
-                                   <input id="txtpatologia" class="form-control" type="text" required>
+                                    <label>Estado:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmestado" required onchange="CiudadMunicipio()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
                                 </div>
                                 <div class="col-md-4">
-                                    <label>Fecha del Informe:</label>
+                                    <label>Ciudad:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmciudad" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Municipio:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                            </div> <!-- Grupo nombres-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Parroquia:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmparroquia" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Avenida / Edificio / Calle:</label>
+                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Casa:</label>
+                                    <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Apto:</label>
+                                    <input id="txtmapto" class="form-control" disabled="disabled" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Teléfono:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmtelefono" class="form-control" disabled="disabled" type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Celular:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label class="control-label">Correo Electronico:</label>
                                     <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                               required onblur="Util.ValidarCorreo()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                            onclick="habilitarDireccion(false)"
+                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                            class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-primary btn-success" type="button"
+                                            onclick="habilitarDireccion(true)"
+                                            style="margin-top:23px; margin-bottom: 20px; display: none"
+                                            id="btndhabdire">Salvar &nbsp<i
+                                            class="glyphicon glyphicon-save"></i></button>
+                                </div>
+                            </div>
+                        </div> <!-- Grupo nombres-->
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="panel panel-default">
+                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                   href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                    <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                        <h4 class="panel-title">
+                            Datos de Informe Médico
+                        </h4>
+                    </div>
+                </a>
+                <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="headingTree">
+                    <div class="panel-body">
+                        <form id="frmmedico" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Fecha de Informe Médico:</label>
+                                    <div class="input-group date" style="z-index: 1030;">
                                         <div class="input-group-addon">
                                             <i class="fa fa-calendar"></i>
                                         </div>
                                         <div class="input-group input-group" style="width: 100%;">
-                                            <input type="text" class="form-control" id="fechaInforme"
+                                            <input type="text" class="form-control" id="fechainformemedico"
                                                    required="required">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-4">
-                                        <label>Período de Tratamiento:</label>
-                                        <input id="txttratamiento" class="form-control" type="text" required>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <br><br>
-                            <div class="row">
-
-                                <div class="col-md-3">
-                                    <button type="button" class="btn btn-md btn-success pull-left"
-                                            onclick="cargarDatos()" id="_btnSavlvar" style="margin-left: 600px;">
-                                        <i class="fa fa-medkit"></i>&nbsp;&nbsp;AGREGAR INFORME
-                                    </button>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="panel panel-default">
-                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                       href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <div class="panel-heading bg-blue" role="tab" id="headingTwo">
-                            <h4 class="panel-title">
-                                Fármaco
-                            </h4>
-                        </div>
-                    </a>
-                    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel"
-                         aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Código del Fármaco:</label>
-                                    <select class="form-control" style="width: 100%"
-                                            id="codigofar" onchange="codfarmaco();">
-                                        <option selected="selected" value="S">Seleccione</option>
+                                <div class="col-md-4">
+                                    <label>Centro de Salud Militar:</label>
+                                    <select class="js-states form-control" style="width: 100%"
+                                            id="cmbcentrosalud" required>
+                                        <option value="S" selected="selected"></option>
+                                        <option value="1">asfsad</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Nombre del Fármaco:</label>
-                                    <select class="form-control" style="width: 100%"
-                                            id="farmaco" disabled="true" onchange="nomfarmaco()">
-                                        <option selected="selected" value="S">Seleccionar</option>
+                                <div class="col-md-4">
+
+                                    <label>Punto de Distribución:</label>
+                                    <select class="js-states form-control" style="width: 100%"
+                                            id="cmbcentrosalud" required>
+                                        <option value="S" selected="selected"></option>
+                                        <option value="1">asfsad</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Dosificación del Fármaco:</label>
-                                    <input type="text" class="form-control" id="dofarmaco" ="true">
+                            </div> <!-- Grupo nombres-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Médico:</label>
+                                    <input type="text" class="form-control" id="medico" required>
                                 </div>
-
-                                <br>
-
+                                <div class="col-md-4">
+                                    <label>Cédula:</label>
+                                    <input id="cedula" class="form-control" type="text" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Servicio:</label>
+                                    <input id="servicio" class="form-control" type="text">
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <br><br>
-                    <div class="row">
-                    <div class="col-md-8">
-                    <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
-                </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-md btn-success pull-left"
-                                    onclick="cargarDatosfar()" id="_btnSavlvar" style="margin-left: 20px;">
-                                <i class="fa fa-medkit"></i>&nbsp;&nbsp;AGREGAR FÁRMACO
-                            </button>
-                            <br><br>
-                        </div>
-                    </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Código de Colegio Médico:</label>
+
+                                    <input id="codigocolegio" class="form-control" type="text">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="control-label">Código de MPPS:</label>
+                                    <input id="codigompps" class="form-control" type="text">
+
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <button class="btn btn-primary btn-success" id="btnagregarmedico" type="button"
+                                            onclick="agregarTratamiento()"
+                                            style="margin-top:23px; margin-bottom: 20px;">Agregar &nbsp<i
+                                            class="glyphicon glyphicon-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="table-responsive" id="cajamedico" style="display: none">
+                                <table class="table table-bordered">
+                                    <thead class="bg-blue">
+                                    <tr>
+                                        <td style="width: 20%">Médico</td>
+                                        <td style="width: 15%">Cédula</td>
+                                        <td style="width: 20%">Servicio</td>
+                                        <td>Código de Colegio Médico</td>
+                                        <td>Código de MPPS</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="medicoagregado">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </form>
+                    </div> <!-- Grupo nombres-->
+
                 </div>
             </div>
+
+        </div>
+
+
+        <div class="row" style="padding:10px 0px;">
+            <div class="nav-tabs-custom box box-primary">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills nav-fill nav-justified">
+                    <li role="presentation" class="active"><a href="#mdmilitar"
+                                                              aria-controls="home" role="tab"
+                                                              data-toggle="tab">Tratamiento</a></li>
+                    <li role="presentation"><a href="#mfinanciero" aria-controls="home"
+                                               role="tab" data-toggle="tab">Patologia</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="mdmilitar"
+                         style="padding:15px">
+                        <form id="frmtratamiento" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Princio Activo:</label>
+                                    <input id="pactivo" class="form-control"
+                                           type="text" required>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Nombre comercial:</label>
+                                    <input id="ncomercial" class="form-control"
+                                           type="text" required>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Presentación:</label>
+                                    <input id="presentacion" class="form-control"
+                                           type="text" required>
+                                </div>
+
+                            </div><!-- Grupo Grado-->
+
+                            <div class="row">
+
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Dosis:</label>
+                                    <input id="dosis" class="form-control"
+                                           type="text" required>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Frecuencia:</label>
+                                    <input id="frecuencia" class="form-control"
+                                           type="text" required>
+                                    </select>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label>Fecha de Vencimiento:</label>
+                                    <div class="input-group date" style="z-index: 1030;">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar"></i>
+                                        </div>
+                                        <div class="input-group input-group" style="width: 100%;">
+                                            <input type="text" class="form-control" id="fechaVencimiento"
+                                                   required="required">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- Grupo nombres-->
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12">
+                                    <button class="btn btn-primary btn-success" type="button"
+                                            onclick="agregarTratamiento()"
+                                            style="margin-top:23px; margin-bottom: 20px;" id="btnagregartratamiento">
+                                        Agregar
+                                        &nbsp<i
+                                            class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                </div>
+
+
+                            </div>
+
+                            <div class="table-responsive" id="cajatratamiento" style="display: none">
+                                <table class="table table-bordered">
+                                    <thead class="bg-blue">
+                                    <tr>
+                                        <td>Principio Activo</td>
+                                        <td>Nombre Comercial</td>
+                                        <td>Presentación</td>
+                                        <td>Dosis</td>
+                                        <td>Frecuencia</td>
+                                        <td>F. de Vencimiento</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tratamientoagregado">
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div><!-- Tab Tratamiento-->
+
+                    <!-- Tab Datos Financieros-->
+
+                    <div role="tabpanel" class="tab-pane" id="mfinanciero" style="padding:15px">
+                        <form id="frmpatologia" action="#" method="post">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-12" id="_cmbminstfinanciera">
+                                    <label>Diagnostico</label>
+                                    <select class="js-states form-control" id="cmbpatologia" onchange="if(this.value=='otro') document.getElementById('otrapatologia').disabled = false; else document.getElementById('otrapatologia').disabled = true"" style="width: 100%"
+                                            id="cmbpatologia" required>
+                                        <option value="S" selected="selected"></option>
+                                        <option value="1" >Gripe</option>
+                                        <option value="otro" name>Otra</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Agrega Otra Patologia:</label>
+                                    <input type="text" class="form-control" id="otrapatologia" disabled>
+                                </div>
+                                <div class="col-md-2 col-sm-12">
+                                    <button class="btn btn-primary btn-success" type="button"
+                                            onclick="agregarPatologia()"
+                                            style="margin-top:23px; margin-bottom: 20px;" id="btnAgpatologia">Agregar
+                                        &nbsp<i
+                                                class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                </div>
+
+                            </div><br>
+                            <div class="list-group" id="cajapatologia" style="display: none">
+                                <a href="#" class="list-group-item active">
+                                    <b>Patologias Agregadas</b>
+                                </a>
+                                <div id="patologiaagregado">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- Tab Datos Financieros-->
+
+                </div>
+
+            </div> <!-- Fila para el Tabs Militar -->
+
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
+color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
+
+            <a class="btn btn-app btn-success pull-right" style="margin-right: 10px; background-color: #337ab7;
+color: white;"
+               onclick="cargarDatos()" id="_btnSavlvar">
+                <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar
+            </a>
+            <br><br>
         </div>
     </div>
 </div>
-<script src = "js/farmacia.js" ></script>
+</form>
+</div><!-- /.box-body -->
+<script>
+    $('#fechainformemedico').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+</script>
+<script>
+    $('#fechaVencimiento').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+</script>
+<script src="js/farmacia.js"></script>
 
 
 

@@ -13,14 +13,14 @@
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="dist/css/checkbox.css">
 
     <link rel="stylesheet" href="dist/css/_all-skins_1.css">
-    <script src="bower_components/moment/moment.js"></script>
-
-
-    <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="dist/css/fonts.googleapis.css">
+    <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
 </head>
 
 <style type="text/css">
@@ -360,7 +360,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Buzón
+                Farmacia
             </h1>
             <!--<ol class="breadcrumb">
               <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -369,196 +369,526 @@
             </ol>-->
         </section>
         <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Datos de Reembolso</h3>
-
-                            <div class="box-tools pull-right">
-                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i
-                                        class="fa fa-chevron-left"></i></a>
-                                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i
-                                        class="fa fa-chevron-right"></i></a>
-                            </div>
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body no-padding">
-                            <div class="mailbox-read-info">
-                                <div class="row" style="margin-left: 80px;">
-                                    <div class="col-md-4">
-                                        <h4><b>CI:</b> 10107698</h4>
-                                        <h4><b>N° de Reembolso:</b> 58946</h4>
-
+            <div class="body box">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="panel panel-default">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
+                                        <h4 class="panel-title">
+                                            Tratamiento Prolongado
+                                        </h4>
                                     </div>
-                                    <div class="col-md-4">
-                                        <h4><b>Nombre:</b> Ramon Antonio Pardes Paredes</h4>
-                                        <h4><b>Componente:</b> Ejercito Bolivariono</h4>
-
-                                    </div>
-                                    <div class="col-md-4">
-                                        <h4><b>Grado:</b> Coronel</h4>
-
-                                        <h4><b>Situación:</b> Activo</h4>
+                                </a>
+                                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingOne">
+                                    <div class="panel-body">
+                                        <form id="frmreembolso" action="#" method="post">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Beneficiario:</label>
+                                                    <select class="form-control" style="width: 100%" id="cmbbeneficiario"
+                                                            required="required">
+                                                        <option selected="selected" value="S"></option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Cédula:</label>
+                                                    <div class="btn-group-justified" role="group" aria-label="...">
+                                                        <div class="btn-group" style="width: 6%;" role="group">
+                                                            <input class="form-control" id="rif" required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4"></div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.mailbox-read-info -->
-                            <div class="mailbox-controls with-border text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                            data-container="body" title="Delete">
-                                        <i class="fa fa-trash-o"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                            data-container="body" title="Reply">
-                                        <i class="fa fa-reply"></i></button>
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                            data-container="body" title="Forward">
-                                        <i class="fa fa-share"></i></button>
+
+                            <div class="panel panel-default">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                                    <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                        <h4 class="panel-title">
+                                            Direccion del afiliado
+                                        </h4>
+                                    </div>
+                                </a>
+                                <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingTree">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Estado:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmestado" required onchange="CiudadMunicipio()">
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Ciudad:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmciudad" required>
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Municipio:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                        </div> <!-- Grupo nombres-->
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Parroquia:</label>
+                                                <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                                        id="cmbmparroquia" required>
+                                                    <option value="S" selected="selected"></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Avenida / Edificio / Calle:</label>
+                                                <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label># Casa:</label>
+                                                <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label># Apto:</label>
+                                                <input id="txtmapto" class="form-control" disabled="disabled" type="text">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Teléfono:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone"></i>
+                                                    </div>
+                                                    <input id="txtmtelefono" class="form-control" disabled="disabled" type="text"
+                                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Celular:</label>
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-phone"></i>
+                                                    </div>
+                                                    <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                                           data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4 col-sm-12">
+                                                <label class="control-label">Correo Electronico:</label>
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-envelope"></i>
+                                                    </div>
+                                                    <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                                           required onblur="Util.ValidarCorreo()">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                        onclick="habilitarDireccion(false)"
+                                                        style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                        class="glyphicon glyphicon-edit"></i></button>
+                                                <button class="btn btn-primary btn-success" type="button"
+                                                        onclick="habilitarDireccion(true)"
+                                                        style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                        id="btndhabdire">Salvar &nbsp<i
+                                                        class="glyphicon glyphicon-save"></i></button>
+                                            </div>
+                                        </div>
+                                    </div> <!-- Grupo nombres-->
+
                                 </div>
-                                <!-- /.btn-group -->
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                        title="Print">
-                                    <i class="fa fa-check"></i></button>
                             </div>
-                            <!-- /.mailbox-controls -->
-                            <div class="mailbox-read-message">
-                                <h4>Detalles del Reembolso</h4>
-                                <table class="table table-bordered">
-                                   <thead><tr><td>#Reembolso</td><td>Concepto</td><td>F. de Solicitud</td><td>Monto</td></tr></thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                        <td>...</td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                                <h4>Observación</h4>
-                                <textarea textarea class="form-control" rows="3" placeholder="Observación..."></textarea>
-
-                            </div>
-                            <!-- /.mailbox-read-message -->
-                        </div>
-                        <!-- /.box-body -->
-                        <!-- /.box-footer -->
-                        <div class="box-footer">
-                            <div class="pull-right">
-                                <button type="button" class="btn btn-default"><i class="fa fa-reply"></i> Atras</button>
-
-                            </div>
-                            <button type="button" class="btn btn-default"><i class="fa fa-trash-o"></i> Delete</button>
 
                         </div>
-                        <!-- /.box-footer -->
+                        <div class="panel panel-default">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                               href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                                <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                    <h4 class="panel-title">
+                                        Datos de Informe Médico
+                                    </h4>
+                                </div>
+                            </a>
+                            <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                                 aria-labelledby="headingTree">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Fecha de Informe Médico:</label>
+                                            <div class="input-group date" style="z-index: 1030;">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar"></i>
+                                                </div>
+                                                <div class="input-group input-group" style="width: 100%;">
+                                                    <input type="text" class="form-control" id="fechainformemedico"
+                                                           required="required">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Centro de Salud Militar:</label>
+                                            <select class="js-states form-control" style="width: 100%"
+                                                    id="cmbcentrosalud" required>
+                                                <option value="S" selected="selected"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+
+                                        </div>
+                                    </div> <!-- Grupo nombres-->
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Quien Avala:</label>
+                                            <input type="text" class="form-control" id="avala">
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Cédula:</label>
+                                            <input id="txtmcalle" class="form-control"  type="text" required>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Servicio:</label>
+                                            <input id="txtmapto" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Punto de Distribución:</label>
+                                            <select class="js-states form-control" style="width: 100%"
+                                                    id="cmbcentrosalud" required>
+                                                <option value="S" selected="selected"></option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Codigo de Colegio Médico:</label>
+
+                                                <input id="txtmapto" class="form-control" type="text">
+
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                            <label class="control-label">Codigo de MPPS:</label>
+                                                <input id="txtmapto" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                                    onclick="habilitarDireccion(false)"
+                                                    style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                                    class="glyphicon glyphicon-edit"></i></button>
+                                            <button class="btn btn-primary btn-success" type="button"
+                                                    onclick="habilitarDireccion(true)"
+                                                    style="margin-top:23px; margin-bottom: 20px; display: none"
+                                                    id="btndhabdire">Salvar &nbsp<i
+                                                    class="glyphicon glyphicon-save"></i></button>
+                                        </div>
+                                    </div>
+                                </div> <!-- Grupo nombres-->
+
+                            </div>
+                        </div>
+
                     </div>
-                    <!-- /. box -->
-                </div>
-                <!-- /.col -->
-            </div>
-        </section>
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <!-- Main Footer -->
-    <footer class="main-footer">
-        <!-- To the right -->
-        <div class="pull-right hidden-xs">
 
-        </div>
-        <!-- Default to the left -->
-        <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
-    </footer>
 
-    <!-- Control Sidebar -->
-    <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-            <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-            <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <!-- Home tab content -->
-            <div class="tab-pane active" id="control-sidebar-home-tab">
-                <h3 class="control-sidebar-heading">Recent Activity</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+                                <div class="row" style="padding:10px 0px;">
+                                    <div class="nav-tabs-custom box box-primary">
+                                        <!-- Nav tabs -->
+                                        <ul class="nav nav-pills nav-fill nav-justified">
+                                            <li role="presentation" class="active"><a href="#mdmilitar"
+                                                                                      aria-controls="home" role="tab"
+                                                                                      data-toggle="tab">Tratamiento</a></li>
+                                            <li role="presentation"><a href="#mfinanciero" aria-controls="home"
+                                                                       role="tab" data-toggle="tab">Patologia</a>
+                                            </li>
+                                        </ul>
 
-                            <div class="menu-info">
-                                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="mdmilitar"
+                                                 style="padding:15px">
 
-                                <p>Will be 23 on April 24th</p>
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Princio Activo:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Nombre comercial:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Categoria:</label>
+                                                        <label>Presentación:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                                type="text" required>
+                                                    </div>
+
+                                                </div><!-- Grupo Grado-->
+
+                                                <div class="row">
+
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Dosis:</label>
+                                                        <input id="txtnresuelto" class="form-control"
+                                                               type="text" required>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Frecuencia:</label>
+                                                        <select class="js-states form-control" style="width: 100%"
+                                                                aria-hidden="true" id="cmbgrado" required
+                                                               >
+                                                            <option selected="selected" value="S"></option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-12">
+                                                        <label>Fecha de Vencimiento:</label>
+                                                        <div class="input-group date">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-calendar"></i>
+                                                            </div>
+                                                            <input id="txtmfecharesuelto" class="form-control"
+                                                                   type="text" required>
+                                                        </div>
+                                                    </div>
+                                                </div> <!-- Grupo nombres-->
+
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12">
+                                                        <button class="btn btn-primary btn-success" type="button"
+                                                                onclick="agregarTratamiento()"
+                                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
+                                                            &nbsp<i
+                                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                                    </div>
+
+
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered">
+                                                        <thead><tr><td>Principio Activo</td><td>Nombre Comercial</td><td>Presentación</td><td>Dosis</td><td>Frecuencia</td><td>F. de Vencimiento</td></tr></thead>
+                                                        <tbody>
+                                                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div><!-- Tab Tratamiento-->
+
+                                            <!-- Tab Datos Financieros-->
+
+                                            <div role="tabpanel" class="tab-pane" id="mfinanciero" style="padding:15px">
+
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-12" id="_cmbminstfinanciera">
+                                                        <label>Diagnostico</label>
+                                                        <select class="js-states form-control" style="width: 100%"
+                                                                id="cmbpatologia" required>
+                                                            <option value="S" selected="selected"></option>
+                                                            <option value="0" selected="selected">Otra</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <label>Agregar Otra Patologia:</label>
+                                                        <input type="text" class="form-control" id="otrapatologia" disabled>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-12">
+                                                        <button class="btn btn-primary btn-success" type="button"
+                                                                onclick="agregarTratamiento()"
+                                                                style="margin-top:23px; margin-bottom: 20px;" id="btnAgconcepto">AGREGAR
+                                                            &nbsp<i
+                                                                    class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item active">
+                                                        <b>Patologias Agregadas</b>
+                                                    </a>
+                                                    <a href="#" class="list-group-item">Gripe</a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                    <a href="#" class="list-group-item"></a>
+                                                </div>
+                                            </div><!-- Tab Datos Financieros-->
+
+                                        </div>
+
+                                    </div> <!-- Fila para el Tabs Militar -->
+
+
+                                </div>
+
                             </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada" style="background-color: #337ab7;
+color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
 
-                <h3 class="control-sidebar-heading">Tasks Progress</h3>
-                <ul class="control-sidebar-menu">
-                    <li>
-                        <a href="javascript:;">
-                            <h4 class="control-sidebar-subheading">
-                                Custom Template Design
-                                <span class="pull-right-container">
+                        <a class="btn btn-app btn-success pull-right" style="margin-right: 10px; background-color: #337ab7;
+color: white;"
+                           onclick="cargarDatos()" id="_btnSavlvar">
+                            <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar
+                        </a>
+                        <br><br>
+                    </div>
+                </div>
+            </div>
+            </form>
+    </div><!-- /.box-body -->
+    <div class="modal-footer" id="_botonesmilitar">
+
+    </div>
+</div><!-- /.box -->
+    <script>
+        $('#fechainformemedico').datepicker({
+            autoclose: true,
+            format: "dd/mm/yyyy",
+            language: 'es'
+        });
+        $('[data-mask]').inputmask();
+    </script>
+</section>
+<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- Main Footer -->
+<footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+
+    </div>
+    <!-- Default to the left -->
+    <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
+</footer>
+
+<!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+    <!-- Create the tabs -->
+    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+    </ul>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+            <h3 class="control-sidebar-heading">Recent Activity</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:;">
+                        <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+
+                        <div class="menu-info">
+                            <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+                            <p>Will be 23 on April 24th</p>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
+
+            <h3 class="control-sidebar-heading">Tasks Progress</h3>
+            <ul class="control-sidebar-menu">
+                <li>
+                    <a href="javascript:;">
+                        <h4 class="control-sidebar-subheading">
+                            Custom Template Design
+                            <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
-                            </h4>
+                        </h4>
 
-                            <div class="progress progress-xxs">
-                                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.control-sidebar-menu -->
+                        <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <!-- /.control-sidebar-menu -->
 
-            </div>
-            <!-- /.tab-pane -->
-            <!-- Stats tab content -->
-            <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-            <!-- /.tab-pane -->
-            <!-- Settings tab content -->
-            <div class="tab-pane" id="control-sidebar-settings-tab">
-                <form method="post">
-                    <h3 class="control-sidebar-heading">General Settings</h3>
-
-                    <div class="form-group">
-                        <label class="control-sidebar-subheading">
-                            Report panel usage
-                            <input type="checkbox" class="pull-right" checked>
-                        </label>
-
-                        <p>
-                            Some information about this general settings option
-                        </p>
-                    </div>
-                    <!-- /.form-group -->
-                </form>
-            </div>
-            <!-- /.tab-pane -->
         </div>
-    </aside>
-    <!-- /.control-sidebar -->
-    <!-- Add the sidebar's background. This div must be placed
-    immediately after the control sidebar -->
-    <div class="control-sidebar-bg"></div>
+        <!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+            <form method="post">
+                <h3 class="control-sidebar-heading">General Settings</h3>
+
+                <div class="form-group">
+                    <label class="control-sidebar-subheading">
+                        Report panel usage
+                        <input type="checkbox" class="pull-right" checked>
+                    </label>
+
+                    <p>
+                        Some information about this general settings option
+                    </p>
+                </div>
+                <!-- /.form-group -->
+            </form>
+        </div>
+        <!-- /.tab-pane -->
+    </div>
+</aside>
+<!-- /.control-sidebar -->
+<!-- Add the sidebar's background. This div must be placed
+immediately after the control sidebar -->
+<div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
 
-<!-- jQuery 3 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+<script src="bower_components/notify/notify.min.js"></script>
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+<script src="js/buzon.js"></script>
+
+<script src="bower_components/formato/numeral.js"></script>
+<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- InputMask -->
+<script src="plugins/input-mask/jquery.inputmask.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
+<script src = "js/reembolso.js" ></script>
 <script type='text/javascript'>
     $(function () {
 

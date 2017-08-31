@@ -161,7 +161,7 @@ function cargaPrograma(tipo){
             CargarUrl("modalgeneral","inc/modalsfarmacia");
             //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
-            titulos("Farmacia");
+            titulos("Tto. <br> Prolongado");
             break;
         case "invs":
             CargarUrl("modalgeneral","inc/modals");
