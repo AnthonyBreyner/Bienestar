@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <style>
+        .filaconcep{
+            font-size: 12px;
+        }
         .bordeado {
             border: black 1px solid;
         }
@@ -190,20 +193,19 @@
                 <td style="width:10%;text-align: center;"><b>PARENTESCO</b></td>
                 <td style="width:10%;text-align: center;"><b>CEDULA</b></td>
                 <td style="width:15%;text-align: center;"><b>NOMBRE DEL FAMILIAR</td>
-                <td style="width:30%;text-align: center;"><b>CONCEPTO</b></td>
+                <td style="width:15%;text-align: center;"><b>CONCEPTO</b></td>
+                <td style="width:10%;text-align: center;"><b>FACTURA</b></td>
+                <td style="width:10%;text-align: center;"><b>FECHA</b></td>
                 <td style="width:15%;text-align: center;"><b>MONTO SOLICITADO</b></td>
-                <td style="width:15%;text-align: center;"><b>MONTO APROBADO</b></td>
                 <td style="width:5%" align="center">%</td>
+                <td style="width:10%;text-align: center;"><b>MONTO APROBADO</b></td>
             </tr>
             <tbody id="cuerpoConceptos">
 
             </tbody>
 
             <tr class="doble">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td colspan="6" style="text-align: right">TOTAL</td>
                 <td style="text-align: right"><label id="lblmontot"></label></td>
                 <td></td>
             </tr>
@@ -213,20 +215,12 @@
         <h3>CUENTA EN LA CUAL DESEA QUE SE LE DEPOSITE EL MONTO.</h3>
         <table class="tcontenedor junta" border="0">
             <tr class="texto12">
-                <td style="width:60%" colspan="2" class="biz bde btop ">NUMERO DE CUENTA<br>
-
-                </td>
-                <td style="width:40%" class="bde btop">FIRMA DEL SOLICITANTE</td>
+                <td style="width:60%" colspan="2" class="biz bde btop ">NUMERO DE CUENTA<br></td>
+                <td class="biz bde btop">BANCO</td>
+                <td class="bde btop bde">TIPO DE CUENTA</td>
             </tr>
             <tr class="simple">
                 <td colspan="2" class="biz bde  bajo"><p id="lblcuenta"></p></td>
-                <td rowspan="3" class=" bde  bajo"></td>
-            </tr>
-            <tr class="texto12">
-                <td class="biz bde">BANCO</td>
-                <td class="bde ">TIPO DE CUENTA</td>
-            </tr>
-            <tr class="simple">
                 <td class="biz bde  bajo">
                     <label id="lblbanco"></label>
                 </td>
@@ -266,13 +260,12 @@
                 </td>
             </tr>
             <tr class="texto12">
-                <td colspan="2" class="biz bde ">OPINI&Oacute;N DEL JEFE DE DEPARTAMENTO CUIDADO INTEGRAL DE LA
-                    SALUD:
+                <td colspan="2" class="biz bde ">OPINI&Oacute;N DEL JEFE DE DEPARTAMENTO CUIDADO INTEGRAL DE LA SALUD:
                 </td>
                 <td colspan="2" class="biz bde ">FIRMA</td>
             </tr>
             <tr class="simple">
-                <td colspan="2" class="biz bde  bajo"></td>
+                <td colspan="2" class="biz bde  bajo"><b>A Consideración del Gerente BYSS</b></td>
                 <td colspan="2" class="bde  bajo"></td>
             </tr>
             <tr class="texto12">
@@ -280,7 +273,7 @@
                 <td colspan="2" class="bde">FIRMA</td>
             </tr>
             <tr class="simple">
-                <td colspan="2" class="biz bde  bajo"></td>
+                <td colspan="2" class="biz bde  bajo"><b>Apoyar Con</b></td>
                 <td colspan="2" class="bde  bajo"></td>
             </tr>
         </table>
@@ -450,7 +443,8 @@
             var paren = bene[1].split("(");
             var tam = paren[1].length;
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-            fila+= "<tr><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td><td>"+this.descripcion+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td><td></td></tr>";
+            fila+= "<tr class='filaconcep'><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td>" +
+                "<td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td><td></td></tr>";
         });
         $("#cuerpoConceptos").html(fila);
     }

@@ -118,7 +118,8 @@ function verificarRechazo(num, esta,id) {
 function aprobarReembolso(num, est,id) {
     var url = Conn.URL + "wreembolso/estatus";
     var esta = parseInt(est) + 1
-    var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
+    var datos = {id:id,numero:num,estatus:parseInt(esta)};
+    alert("llega");
     console.log(datos);
     var request = CargarAPI({
         sURL: url,
@@ -211,14 +212,19 @@ function crearTablaConceptos(numero,est) {
         activarCambioEstatus();
     }
     $("#cuerpoEditarConceptos").html('');
+    var jj = new Array();
     $.each(copia.Concepto, function () {
         var mntApo = this.DatoFactura.monto;
         if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
-            '                                <td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>\n' +
-            '                                <td class="mntsoli">' + this.DatoFactura.monto + '</td>\n' +
-            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
+        jj.push(this.afiliado);
+        var picar = this.afiliado.split("-");
+        var picar2 = picar[1].split("(");
+        var tam = picar2[1].length;
+        fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
+            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
+            '                                <td class="mntsoli">' + this.DatoFactura.monto + '</td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
+            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado(\'r\')"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
             '                                </td></tr>';
@@ -231,11 +237,11 @@ function crearTablaConceptos(numero,est) {
         if ($("#cuerpoEditarConceptos tr").length == 0) {
 
         }
-        calcularAcumulado();
+        calcularAcumulado("r");
     });
 
     $(".modconcep").click(function () {
-        calcularAcumulado();
+        calcularAcumulado("r");
     });
 
     /**
@@ -253,9 +259,26 @@ function crearTablaConceptos(numero,est) {
     }
 }
 
-function calcularAcumulado() {
+function calcularPorcen(obj,tipo){
+    var por = $(obj).val();
+    var soli = $(obj).parents("tr").eq(0).find("td").eq(8).html();
+    var nuevoAprobado = soli*por/100;
+
+    $(obj).parents("tr").eq(0).find("input.mntAcumulado").val(nuevoAprobado.toFixed(2));
+    calcularAcumulado(tipo);
+}
+
+function calcularAcumulado(tipo) {
+    var idTabla = "";
+    var idTotal = "";
+    switch(tipo){
+        case "r":idTabla ="cuerpoEditarConceptos";idTotal = "totalapro";break;
+        case "a":idTabla ="cuerpoEditarConceptosApoyo";idTotal = "totalaproApoyo";break;
+        case "c":idTabla ="cuerpoEditarConceptosCarta";idTotal = "totalaproCarta";break;
+    }
+
     var acumulado = 0;
-    $("#cuerpoEditarConceptos tr").each(function () {
+    $("#"+idTabla+" tr").each(function () {
         var mnt = $(this).find("input.mntAcumulado").eq(0).val();
         var sol = $(this).find("td.mntsoli").eq(0).html();
         console.log(mnt + "||"+sol );
@@ -267,7 +290,7 @@ function calcularAcumulado() {
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
     acumulado = parseFloat(acumulado).toFixed(2);
-    $("#totalapro").html(acumulado);
+    $("#"+idTotal).html(acumulado);
 }
 
 
@@ -281,36 +304,37 @@ function actualizarReembolso(est) {
     var conceptos = new Array();
     var datos = null;
     console.log(copia);
+    var i = 0;
     if ($("#cuerpoEditarConceptos tr").length > 0) {
         $("#cuerpoEditarConceptos tr").each(function () {
             var concep = new ConceptoReembolso();
             var facturaD = new Factura();
             var ffact = copia.fechacreacion;
-            if ($(this).find("td").eq(4).html() != "") {
-                ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(4).html())).toISOString();
+            if ($(this).find("td").eq(7).html() != "") {
+                ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(7).html())).toISOString();
             }
             facturaD.fecha = ffact;
-            facturaD.monto = parseFloat($(this).find("td").eq(6).html());
+            facturaD.monto = parseFloat($(this).find("td").eq(8).html());
             facturaD.montoaprobado = parseFloat($(this).find("input.mntAcumulado").val());
             facturaD.numero = $(this).find("input.numfact").val();
             facturaD.control = $(this).find("input.numfact").val();
 
-            var prov = new Beneficiario();
-            prov.rif = $(this).find("td").eq(2).html();
-            prov.razonsocial = $(this).find("td").eq(3).html();
-            prov.tipoempresa = 'J';
-            prov.direccion = 'Por cargar';
+            //var prov = new Beneficiario();
+            //prov.rif = $(this).find("td").eq(2).html();
+            //prov.razonsocial = $(this).find("td").eq(3).html();
+            //prov.tipoempresa = 'J';
+            //prov.direccion = 'Por cargar';
             //prov.Banco = 'Pora cargar banco';
 
-            facturaD.Beneficiario = prov;
+            facturaD.Beneficiario = copia.Concepto[i].DatoFactura.Beneficiario;
 
             concep.DatoFactura = facturaD;
-            concep.afiliado = $(this).find("td").eq(0).html();
-            concep.descripcion = $(this).find("td").eq(1).html();
-            copia.montoaprobado = parseFloat($("#totalapro").html());
-
+            concep.afiliado = copia.Concepto[i].afiliado;
+            concep.descripcion = copia.Concepto[i].descripcion;
+            i++;
             conceptos.push(concep);
         });
+        copia.montoaprobado = parseFloat($("#totalapro").html());
         copia.Concepto = conceptos;
     } else {
         $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
@@ -335,7 +359,7 @@ function actualizarReembolso(est) {
     datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
     console.log(datos);
     console.log(JSON.stringify(datos));
-    var urlGuardar = Conn.URL + "wreembolso";
+    /*var urlGuardar = Conn.URL + "wreembolso";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'PUT',
@@ -348,13 +372,22 @@ function actualizarReembolso(est) {
         msjRespuesta(respuesta.msj);
         listaBuzon(copia.estatus);
         volverLista();
-    });
+    });*/
 }
 
-function agObservacion() {
-    var texto = $("#txtObservacion").val();
-    var tabla = $("#cuerpoObservaciones");
-    if(copia.estatus > 1) tabla = $("#cuerpoOpiniones");
+function agObservacion(tipo) {
+    var idTexto = "";
+    var idTabla = "";
+    var idOpi = "";
+    switch (tipo){
+        case "r":idOpi="cuerpoOpiniones";idTexto="txtObservacion";idTabla = "cuerpoObservaciones";break;
+        case "a":idOpi="cuerpoOpinionesApoyo";idTexto="txtObservacionApoyo";idTabla = "cuerpoObservacionesApoyo";break;
+        case "c":idOpi="cuerpoOpinionesCarta";idTexto="txtObservacionCarta";idTabla = "cuerpoObservacionesCarta";break;
+    }
+
+    var texto = $("#"+idTexto).val();
+    var tabla = $("#"+idTabla);
+    if(copia.estatus > 1) tabla = $("#"+idOpi);
     var rem = '<button type="button" onclick="remObse(this)" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i></button>';
     tabla.append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
 }

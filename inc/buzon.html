@@ -112,14 +112,15 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr class="bg-info">
-                                    <td>Afiliado</td>
-                                    <td>Concepto</td>
-                                    <td>Rif</td>
-                                    <td style="display: none">Razon Social</td>
-                                    <td>Mnt.Factura</td>
-                                    <td>Mnt.Aseguradora</td>
-                                    <td>Monto Solictado</td>
-                                    <td>Monto Aprobado</td>
+                                    <td><b>PARENT.</b></td>
+                                    <td><b>CEDULA</b></td>
+                                    <td><b>NOMBRE DEL FAMILIAR</td>
+                                    <td><b>CONCEPTO</b></td>
+                                    <td><b>FACTURA</b></td>
+                                    <td><b>FECHA</b></td>
+                                    <td><b>MONTO SOLICITADO</b></td>
+                                    <td>%</td>
+                                    <td><b>MONTO APROBADO</b></td>
                                     <td></td>
                                 </tr>
                                 </thead>
@@ -128,8 +129,9 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="5" style="text-align: right">TOTALES</td>
+                                    <td colspan="6" style="text-align: right">TOTALES</td>
                                     <td id="totalter" style="text-align: right"></td>
+                                    <td></td>
                                     <td id="totalapro" style="text-align: right"></td>
                                 </tr>
                                 </tfoot>
@@ -169,7 +171,7 @@
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-default btn-sm pull-right"
                                                 data-toggle="tooltip"
-                                                data-container="body" onclick="agObservacion('reembolso')">
+                                                data-container="body" onclick="agObservacion('r')">
                                             <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
                                                 class="lblobser">&nbsp Observación</label>
                                         </button>
@@ -342,7 +344,7 @@
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-default btn-sm pull-right"
                                                 data-toggle="tooltip"
-                                                data-container="body" onclick="agObservacion('apoyo')">
+                                                data-container="body" onclick="agObservacion('a')">
                                             <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
                                                 class="lblobser">&nbsp Observación</label>
                                         </button>
@@ -515,7 +517,7 @@
                                     <div class="col-md-6">
                                         <button type="button" class="btn btn-default btn-sm pull-right"
                                                 data-toggle="tooltip"
-                                                data-container="body" onclick="agObservacion('carta')">
+                                                data-container="body" onclick="agObservacion('c')">
                                             <i class="fa fa-plus" style="color: green"></i>&nbsp Agregar <label
                                                 class="lblobser">&nbsp Observación</label>
                                         </button>
