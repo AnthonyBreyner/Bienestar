@@ -96,7 +96,7 @@
         <table width="70%" class="justificar">                              
             <td>
                 <p class="sangria">
-                Por medio de la presente, hacemos constar que el (la) cuidadana: <h3><b id="cmbbeneficiario"></h3></b>, titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                Por medio de la presente, hacemos constar que el (la) cuidadana: <h3><b id="nombre"></b></h3>, titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
                 <p class="sangria">
                 Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de (EXAMEN SELECCIONADO) la suma de (MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
                 <p class="sangria">
@@ -141,29 +141,6 @@
 <script>
     let pos = '';
     $(function () {
-        numeral.register('locale', 'es-es', {
-            delimiters: {
-                thousands: '.',
-                decimal: ','
-            },
-            abbreviations: {
-                thousand: 'k',
-                million: 'mm',
-                billion: 'b',
-                trillion: 't'
-            },
-            ordinal: function (number) {
-                var b = number % 10;
-                return (b === 1 || b === 3) ? 'er' :
-                    (b === 2) ? 'do' :
-                        (b === 7 || b === 0) ? 'mo' :
-                            (b === 8) ? 'vo' :
-                                (b === 9) ? 'no' : 'to';
-            },
-            currency: {
-                symbol: 'BS'
-            }
-        });
         numeral.locale('es-es');
         $.obtener = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -237,7 +214,7 @@
         }
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-            $("#cmbbeneficiario").text(ncompleto);
+            $("#nombre").html(ncompleto);
 
             $("#lblcomponente").text(militar.Componente.descripcion);
 

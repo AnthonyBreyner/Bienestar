@@ -119,16 +119,18 @@ function aprobarReembolso(num, est,id) {
     var url = Conn.URL + "wreembolso/estatus";
     var esta = parseInt(est) + 1
     var datos = {id:id,numero:num,estatus:parseInt(esta)};
-    alert("llega");
-    console.log(datos);
+    console.log(JSON.stringify(datos));
     var request = CargarAPI({
         sURL: url,
-        metodo: 'POST',
+        metodo: 'PUT',
         valores: datos,
     });
     request.then(function (xhRequest) {
+
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
         listaBuzon(est);
-        $.notify("Se modifico estatus del reembolso");
     });
 }
 
@@ -144,8 +146,11 @@ function rechazarReembolso(num, est,id) {
         Objeto: militar
     });
     request.then(function (xhRequest) {
+
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
         listaBuzon(est);
-        $.notify("El reembolso fue rechazado");
     });
 
 }
@@ -276,7 +281,7 @@ function calcularAcumulado(tipo) {
         case "a":idTabla ="cuerpoEditarConceptosApoyo";idTotal = "totalaproApoyo";break;
         case "c":idTabla ="cuerpoEditarConceptosCarta";idTotal = "totalaproCarta";break;
     }
-
+    //alert(idTabla);
     var acumulado = 0;
     $("#"+idTabla+" tr").each(function () {
         var mnt = $(this).find("input.mntAcumulado").eq(0).val();
@@ -360,7 +365,7 @@ function actualizarReembolso(est) {
     datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
     console.log(datos);
     console.log(JSON.stringify(datos));
-    /*var urlGuardar = Conn.URL + "wreembolso";
+    var urlGuardar = Conn.URL + "wreembolso";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'PUT',
@@ -373,7 +378,7 @@ function actualizarReembolso(est) {
         msjRespuesta(respuesta.msj);
         listaBuzon(copia.estatus);
         volverLista();
-    });*/
+    });
 }
 
 function agObservacion(tipo) {
@@ -551,8 +556,8 @@ function crearTablaConceptosApoyo(numero,est){
     }
 }
 
-function puntoCuentaReembolso(){
-    var ventana = window.open("inc/pcreembolso.html?id="+militarActivo.Persona.DatoBasico.cedula+"&pos="+posicionModificar, "_blank");
+function planillaReembolso(){
+    var ventana = window.open("planillaReembolso.html?id="+militarActivo.Persona.DatoBasico.cedula+"&pos="+posicionModificar, "_blank");
 }
 
 
@@ -626,6 +631,8 @@ function llenarBuzonCarta(numero,est) {
 function crearTablaConceptosCarta(numero,est){
     var fila = "";
     var pos = 0;
+    console.log("aca esta el objeto");
+    console.log(militarActivo);
     var lst = militarActivo.CIS.ServicioMedico.Programa.CartaAval;
     var i = 0;
     $.each(lst, function () {

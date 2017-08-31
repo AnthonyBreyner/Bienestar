@@ -314,11 +314,11 @@ function cargarDatos(){
             $("#conceptoagregado").html("");
             llenarReembolso();
 
-                $("#opciones").hide();
-                $("#panelentrada").show();
-                $("#panellista").hide();
-                $("#panelregistro").hide();
-            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            //var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
 
         });
     }else{

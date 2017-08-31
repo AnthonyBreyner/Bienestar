@@ -229,7 +229,7 @@ function cargarDatos(){
 
     aval.Concepto = conceptos;
 
-    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,nombre:militar.Persona.DatoBasico.nombreprimero+' '+militar.Persona.DatoBasico.apellidoprimero};
+    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,Nombre:militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim()};
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
