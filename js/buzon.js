@@ -92,8 +92,8 @@ function crearBuzon(est) {
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
-            '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Procesar</i>\n' +
+            '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Rechazar</i>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </li>';
@@ -129,7 +129,8 @@ function aprobarReembolso(num, est,id) {
 
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
+        //msjRespuesta(respuesta.msj);
+        $.notify(respuesta.msj);
         listaBuzon(est);
     });
 }
@@ -149,7 +150,7 @@ function rechazarReembolso(num, est,id) {
 
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
+        $.notify(respuesta.msj);
         listaBuzon(est);
     });
 
@@ -174,7 +175,6 @@ function detalleBuzon(id, numero, est,tipo) {
 }
 
 function llenarBuzon(numero,est) {
-    console.log(militarActivo);
     $('#lblcedula').text(militarActivo.Persona.DatoBasico.cedula);
     var ncompleto = militarActivo.Persona.DatoBasico.nombreprimero + " " + militarActivo.Persona.DatoBasico.apellidoprimero;
     $('#lblnombre').text(ncompleto);
@@ -212,14 +212,14 @@ function crearTablaConceptos(numero,est) {
         i++;
     });
     copia = lst[pos];
-    $("#estSeguimiento").val(copia.Seguimiento.Estatus);
+    if(copia.Seguimiento.Estatus != undefined) $("#estSeguimiento").val(copia.Seguimiento.Estatus);
     if(est > 2){
         activarCambioEstatus();
     }
     $("#cuerpoEditarConceptos").html('');
     var jj = new Array();
     $.each(copia.Concepto, function () {
-        var mntApo = this.DatoFactura.monto;
+        var mntApo = 0;
         if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         jj.push(this.afiliado);
@@ -227,8 +227,8 @@ function crearTablaConceptos(numero,est) {
         var picar2 = picar[1].split("(");
         var tam = picar2[1].length;
         fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
-            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '</td>\n' +
-            '                                <td class="mntsoli">' + this.DatoFactura.monto + '</td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
+            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactReembolso" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
+            '                                <td><input type="text" onblur="calcularPorcen(this,\'r\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.DatoFactura.monto + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
             '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado(\'r\')"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
@@ -262,11 +262,13 @@ function crearTablaConceptos(numero,est) {
             else $("#cuerpoObservaciones").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
     }
+
+    validarDetalleReembolso(est);
 }
 
 function calcularPorcen(obj,tipo){
-    var por = $(obj).val();
-    var soli = $(obj).parents("tr").eq(0).find("td").eq(8).html();
+    var por = $(obj).parents("tr").eq(0).find("input.porcentajecalculo").val();
+    var soli = $(obj).parents("tr").eq(0).find("input.mntsoli").val();
     var nuevoAprobado = soli*por/100;
 
     $(obj).parents("tr").eq(0).find("input.mntAcumulado").val(nuevoAprobado.toFixed(2));
@@ -276,26 +278,31 @@ function calcularPorcen(obj,tipo){
 function calcularAcumulado(tipo) {
     var idTabla = "";
     var idTotal = "";
+    var idTotalSol = "";
     switch(tipo){
-        case "r":idTabla ="cuerpoEditarConceptos";idTotal = "totalapro";break;
-        case "a":idTabla ="cuerpoEditarConceptosApoyo";idTotal = "totalaproApoyo";break;
-        case "c":idTabla ="cuerpoEditarConceptosCarta";idTotal = "totalaproCarta";break;
+        case "r":idTabla ="cuerpoEditarConceptos";idTotal = "totalapro";idTotalSol="totalter";break;
+        case "a":idTabla ="cuerpoEditarConceptosApoyo";idTotal = "totalaproApoyo";idTotalSol="totalterApoyo";break;
+        case "c":idTabla ="cuerpoEditarConceptosCarta";idTotal = "totalaproCarta";idTotalSol="totalterCarta";break;
     }
     //alert(idTabla);
     var acumulado = 0;
+    var acumulado2 = 0;
     $("#"+idTabla+" tr").each(function () {
         var mnt = $(this).find("input.mntAcumulado").eq(0).val();
-        var sol = $(this).find("td.mntsoli").eq(0).html();
+        var sol = $(this).find("input.mntsoli").eq(0).val();
         console.log(mnt + "||"+sol );
         if(parseFloat(mnt) > parseFloat(sol)){
             mnt = sol;
             $(this).find("input.mntAcumulado").eq(0).val(mnt);
             $.notify("El  monto aprobado no debe ser mayor al solicitado");
         }
+        acumulado2 = parseFloat(acumulado2)+parseFloat(sol);
         acumulado = parseFloat(acumulado) + parseFloat(mnt);
     });
     acumulado = parseFloat(acumulado).toFixed(2);
+    acumulado2 = parseFloat(acumulado2).toFixed(2);
     $("#"+idTotal).html(acumulado);
+    $("#"+idTotalSol).html(acumulado2);
 }
 
 
@@ -316,11 +323,11 @@ function actualizarReembolso(est) {
             var concep = new ConceptoReembolso();
             var facturaD = new Factura();
             var ffact = copia.fechacreacion;
-            if ($(this).find("td").eq(7).html() != "") {
-                ffact = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(7).html())).toISOString();
+            if ($(this).find("input.ffactReembolso").eq(0).val() != "") {
+                ffact = new Date(Util.ConvertirFechaUnix($(this).find("input.ffactReembolso").val())).toISOString();
             }
             facturaD.fecha = ffact;
-            facturaD.monto = parseFloat($(this).find("td").eq(8).html());
+            facturaD.monto = parseFloat($(this).find("input.mntsoli").val());
             facturaD.montoaprobado = parseFloat($(this).find("input.mntAcumulado").val());
             facturaD.numero = $(this).find("input.numfact").val();
             facturaD.control = $(this).find("input.numfact").val();
@@ -340,13 +347,14 @@ function actualizarReembolso(est) {
             i++;
             conceptos.push(concep);
         });
-        copia.montoaprobado = parseFloat($("#totalapro").html());
+
         copia.Concepto = conceptos;
     } else {
         $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
     }
 
-
+    copia.montoaprobado = parseFloat($("#totalapro").html());
+    copia.montosolicitado = parseFloat($("#totalter").html());
     var obseraciones = new Array();
     var tipoObser = "";
     if(copia.estatus > 1) tipoObser = "|||"+copia.estatus;
@@ -683,5 +691,40 @@ function crearTablaConceptosCarta(numero,est){
             if(tipo[1] != undefined) $("#cuerpoOpinionesCarta").append('<tr><td>' + tipo[0] + '</td><td>'+conviertEstatus(copia.estatus)+'</td></tr>');
             else $("#cuerpoObservacionesCarta").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
+    }
+}
+
+function validarDetalleReembolso(est){
+    switch (est){
+        case 0:
+            $(".porcentajecalculo").attr("disabled",true);
+            $(".mntAcumulado").attr("disabled",true);
+            $(".impPlanillaReembolso").hide();
+            break;
+        case 1:
+            $(".porcentajecalculo").attr("disabled",false);
+            $(".mntAcumulado").attr("disabled",false);
+            $(".impPlanillaReembolso").show();
+            break;
+        case 2:
+            $(".porcentajecalculo").attr("disabled",false);
+            $(".mntAcumulado").attr("disabled",false);
+            $(".impPlanillaReembolso").show();
+            break;
+        case 3:
+            $(".porcentajecalculo").attr("disabled",false);
+            $(".mntAcumulado").attr("disabled",false);
+            $(".impPlanillaReembolso").show();
+            break;
+        case 4:
+            $(".porcentajecalculo").attr("disabled",false);
+            $(".mntAcumulado").attr("disabled",false);
+            $(".impPlanillaReembolso").show();
+            break;
+        case 5:
+            $(".porcentajecalculo").attr("disabled",false);
+            $(".mntAcumulado").attr("disabled",false);
+            $(".impPlanillaReembolso").show();
+            break;
     }
 }

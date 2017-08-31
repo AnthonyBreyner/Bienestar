@@ -208,6 +208,7 @@
                 <td colspan="6" style="text-align: right">TOTAL</td>
                 <td style="text-align: right"><label id="lblmontot"></label></td>
                 <td></td>
+                <td <label id="lblmontotApro"></label>></td>
             </tr>
 
 
@@ -436,15 +437,18 @@
         var tipoc = reem.CuentaBancaria.tipo=="CA" ? "CUENTA DE AHORRO":"CUENTA CORRIENTE";
         $("#lbltipoc").text(tipoc);
         $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
+        $("#lblmontotApro").text(numeral(parseFloat(reem.montoaprobado)).format('0,0.00'));
         var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
         var fila ="";
         $.each(concep.Concepto,function () {
+            var porcen = this.DatoFactura.montoaprobado * 100 / this.DatoFactura.monto;
             var bene = this.afiliado.split("-");
             var paren = bene[1].split("(");
             var tam = paren[1].length;
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+            var mntformato2 = numeral(parseFloat(this.DatoFactura.montoaprobado)).format('0,0.00');
             fila+= "<tr class='filaconcep'><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td>" +
-                "<td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\">"+mntformato+"</td><td></td><td></td></tr>";
+                "<td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\">"+mntformato+"</td><td style='text-align: right'>"+porcen+"</td><td style='text-align: right'>"+mntformato2+"</td></tr>";
         });
         $("#cuerpoConceptos").html(fila);
     }

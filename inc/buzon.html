@@ -79,16 +79,16 @@
                                 </button>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                <button type="button" class="btn btn-default btn-sm impPlanillaReembolso" data-toggle="tooltip"
                                         onclick="planillaReembolso()"
-                                        data-container="body">
+                                        data-container="body" >
                                     <i class="fa fa-print"></i>&nbspImprimir Planilla
                                 </button>
                             </div>
                             <!-- /.btn-group -->
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
                                     onclick="cambiarEstatus('a')">
-                                <i class="fa fa-check" style="color: green"></i>&nbsp Aceptar
+                                <i class="fa fa-check" style="color: green"></i>&nbsp Procesar
                             </button>
                             <div class="pull-right" id="cambioestatus" style="display: none">
                                 <select id="cmbcambioestatus">
@@ -140,7 +140,9 @@
                                 <thead>
                                 <tr class="bg-info">
                                     <td>OBSERIVACIONES</td>
-                                    <td style="width: 15px"><select id="estSeguimiento">
+                                    <td style="width: 15px">
+                                        <select id="estSeguimiento">
+                                            <option value="0" selected="selected">Seguimiento</option>
                                         <option value="0">En orden</option>
                                         <option value="1">Con pendientes</option>
                                         <option value="2">Con Recomendaciones</option>
