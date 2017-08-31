@@ -298,6 +298,7 @@ function volverLista() {
     $("#listasProgramas").slideToggle();
     $('#detalle').hide();
     $("#detalleApoyo").hide();
+    $("#detalleCarta").hide();
 }
 
 function actualizarReembolso(est) {
