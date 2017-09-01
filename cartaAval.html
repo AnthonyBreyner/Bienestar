@@ -3,26 +3,7 @@
 <head>
     <meta charset="utf-8">
     <style>
-        .bordeado {
-            border: black 1px solid;
-        }
-
-        .biz {
-            border-left: black 1px solid;
-        }
-
-        .bde {
-            border-right: black 1px solid;
-        }
-
-        .btop {
-            border-top: black 1px solid;
-        }
-
-        .bajo {
-            border-bottom: black 1px solid;
-        }
-
+        
         .contenedor {
             width: 1000px;
 
@@ -248,10 +229,12 @@
             var bene = this.afiliado.split("-");
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
         cedulaa =bene[0];
-        nombrea =bene[1];
+        nombreparen =bene[1];
+        nomafi = nombreparen.split("(");
+		nombrea = nomafi[0];
         motivo = this.descripcion;
-        	console.log(motivo);
         });
+
         $("#cedulaafil").html(cedulaa);
         $("#nombreafil").html(nombrea);
         $("#motivoafil").html(motivo);

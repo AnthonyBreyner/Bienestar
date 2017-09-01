@@ -50,20 +50,14 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                  <div class="col-md-9 col-sm-12">
+                                <div class="row diagnostico">
+                                  <div class="col-md-12 col-sm-12">
                                       <label>Diágnostico:</label>
-                                      <input class="form-control" id="txtdiagnostico"
-                                             required="required">
-                                  </div>
-                                  <div class="col-md-3 col-sm-12">
-                                      <label>Monto:</label>
-                                      <input class="form-control" id="txtmonto" onkeypress="return Util.SoloNumero(event,this,true);"
-                                             required="required">
+                                      <input class="form-control" id="txtdiagnostico">
                                   </div>
                                 </div>
                                 <div class="row">
-                                  <div class="col-md-4 col-sm-12">
+                                    <div class="col-md-6 col-sm-12">
                                       <label>Beneficiario:</label>
                                       <select class="form-control" style="width: 100%" id="cmbProveedor" onchange="cargaRif();"
                                               required="required">
@@ -72,8 +66,8 @@
                                           <option value="g-sdfsdf|01010101010101012|Bicentenario|tipoc2">MERCURIO C.A</option>
                                           <option value="h-sdfsdf|01010101010101013|algogogog|tipoc3">LEOPOLDO AGUERREVERRE</option>
                                       </select>
-                                  </div>
-                                    <div class="col-md-4 col-sm-12">
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
                                         <label>RIF:</label>
                                         <input class="form-control" id="txtrifbeneficiario" readonly="true"
                                                required="required">
@@ -81,8 +75,13 @@
                                         <input type="hidden" id="empbanco">
                                         <input type="hidden" id="emptipoc">
                                     </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <label>Monto:</label>
+                                        <input class="form-control" id="txtmonto" onkeypress="return Util.SoloNumero(event,this,true);"
+                                                 required="required">
+                                    </div>
                                 </div>
-                                </br>
+                                 </br>
                                 <div class="panel panel-default">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                                        href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
