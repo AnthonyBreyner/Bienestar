@@ -244,7 +244,19 @@ function crearTablaConceptos(numero,est) {
         }
         calcularAcumulado("r");
     });
+    $(".mntsoli").on("keypress",function(e){
+        var key = e.keyCode || e.which;
+        if(key == 13){
+            calcularPorcen(this,'r');
+        }
+    });
 
+    $(".porcentajecalculo").on("keypress",function(e){
+        var key = e.keyCode || e.which;
+        if(key == 13){
+            calcularPorcen(this,'r');
+        }
+    });
     $(".modconcep").click(function () {
         calcularAcumulado("r");
     });
@@ -616,6 +628,18 @@ function crearTablaConceptosApoyo(numero,est){
 
         }
         calcularAcumulado("apoyo");
+    });
+    $(".mntsoli").on("keypress",function(e){
+        var key = e.keyCode || e.which;
+        if(key == 13){
+            calcularPorcen(this,'a');
+        }
+    });
+    $(".porcentajecalculo").on("keypress",function(e){
+        var key = e.keyCode || e.which;
+        if(key == 13){
+            calcularPorcen(this,'a');
+        }
     });
 
     /**

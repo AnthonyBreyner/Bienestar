@@ -1,18 +1,54 @@
-<div id="listasProgramas">
-    <div class="box-body" id="listadoCompleto">
+<div id="listasProgramas" class="container-fluid box-body">
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#listadoCompleto"
+       href="#listadoCompleto" aria-expanded="false" aria-controls="listadoCompleto">
+        <div class="panel-heading bg-blue" role="tab" id="headingTree">
+            <h4 class="panel-title">
+                Reembolsos
+            </h4>
+        </div>
+    </a>
+
+    <div class="panel-collapse collapse in" id="listadoCompleto">
+        <div class="panel-body bg-info">
         <ul class="todo-list" id="lista" style="overflow-x:hidden;">
 
         </ul>
+        </div>
     </div>
-    <div class="box-body" id="listadoCompletoApoyo">
+
+
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#listadoCompletoApoyo"
+       href="#listadoCompletoApoyo" aria-expanded="false" aria-controls="listadoCompletoApoyo">
+        <div class="panel-heading bg-blue" role="tab" id="headingTree">
+            <h4 class="panel-title">
+                Apoyos
+            </h4>
+        </div>
+    </a>
+    <div class="panel-collapse collapse" id="listadoCompletoApoyo">
+        <div class="panel-body bg-info">
         <ul class="todo-list" id="listaApoyo" style="overflow-x:hidden;">
 
         </ul>
+        </div>
     </div>
-    <div class="box-body" id="listadoCompletoCarta">
+
+
+
+    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#listadoCompletoCarta"
+       href="#listadoCompletoCarta" aria-expanded="false" aria-controls="listadoCompletoCarta">
+        <div class="panel-heading bg-blue" role="tab" id="headingTree">
+            <h4 class="panel-title">
+                Apoyos
+            </h4>
+        </div>
+    </a>
+    <div class="panel-collapse collapse" id="listadoCompletoCarta">
+        <div class="panel-body bg-info">
         <ul class="todo-list" id="listaCarta" style="overflow-x:hidden;">
 
         </ul>
+        </div>
     </div>
 </div>
 <script>
@@ -28,7 +64,7 @@
         $('.todo-list').todoList();
     });
 </script>
-<div id="detallesProgramas">
+<div id="detallesProgramas" >
     <div class="box-body" id="detalle" style="display: none">
         <div class="row">
             <div class="col-md-12">
@@ -37,7 +73,7 @@
                         <h3 class="box-title">Datos de Reembolso</h3>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body no-padding">
+                    <div class="box-body container-fluid">
                         <div class="mailbox-read-info">
                             <div class="row" style="margin-left: 50px;">
                                 <div class="col-md-3" style="margin-top: 30px;">
@@ -104,7 +140,7 @@
                             </div>
                         </div>
                         <!-- /.mailbox-controls -->
-                        <div class="box box-primary">
+                        <div class="box box-primary container-fluid">
                             <div class="mailbox-read-message">
 
                                 <h4>Detalles del Reembolso</h4>
@@ -281,8 +317,8 @@
                             </div>
                         </div>
                         <!-- /.mailbox-controls -->
-                        <div class="box box-primary">
-                            <div class="mailbox-read-message">
+                        <div class="box box-primary container-fluid">
+                            <div class="mailbox-read-message ">
 
                                 <h4>Detalles del Apoyo Economico</h4>
                             </div>
@@ -456,7 +492,7 @@
                             </div>
                         </div>
                         <!-- /.mailbox-controls -->
-                        <div class="box box-primary">
+                        <div class="box box-primary container-fluid">
                             <div class="mailbox-read-message">
 
                                 <h4>Detalles de la Carta Aval</h4>
