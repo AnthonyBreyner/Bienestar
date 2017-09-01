@@ -70,7 +70,7 @@
 
         <table class="tcontenedor" border=0>
             <tr>
-                <td style="width: 38%"><img src="images/lg.png" style="float: left">
+                <td style="width: 38%"><img src="../images/lg.png" style="float: left">
                     <center><p style="font-size: 8px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
                         POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
                         INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
@@ -78,7 +78,7 @@
                 </td>
 
                 <td class="textoCenter" rowspan="2">
-                    <h3>SOLICITUD DE REEMBOLSOS<br>POR SERVICIOS M&Eacute;DICOS</h3>
+                    <h3>COMPROBANTE DE SOLICITUD DE REEMBOLSOS<br>POR SERVICIOS M&Eacute;DICOS</h3>
                 </td>
                 <td class="biz bde btop bajo" style="width: 25%">
                     N° DE SOLITUD: <b id="lblnsolicitud"></b><br><br>
@@ -89,39 +89,7 @@
         </table>
 
 
-        <table class="tcontenedor junta" border=1>
-            <tr class="texto12">
-                <td class="textoCenter " style="width:10%;">UEL</td>
-                <td style="width:35%;" align="center">PROYECTO</td>
-                <td style="width:40%;" align="center">ACCION ESPECIFICA</td>
-            </tr>
-            <tr class="texto10" style="height:30px;">
-                <td class="textoCenter" style="width:10%;font-size: 15px">
-                    3221
-                </td>
-                <td style="width:35%;" align="center">
-                    <font style="font-size: 9px">
-                        ADMINISTRACION DE LOS RECURSOS DEL FONDO DE CUIDADO INTEGRAL<BR>
-                        DE LA SALUD PERSONAL MILITAR Y SUS FAMILIARES CON DERECHO
-                    </font>
-                </td>
-                <td style="width:40%;" align="center">
-                    <font style="font-size: 9px">
-                        ADMINISTRACION DE LOS RECURSOS DEL FONDO DE CUIDADO INTEGRAL<BR>
-                        DE LA SALUD PERSONAL MILITAR Y SUS FAMILIARES CON DERECHO
-                    </font>
-                </td>
-            </tr>
-
-        </table>
-
-
         <table class="tcontenedor junta" border=0>
-            <thead>
-            <tr>
-                <td><h3>Datos:</h3></td>
-            </tr>
-            </thead>
             <tbody>
             <tr class="texto12 simple" style="height: 30px;">
                 <td style="width:30%;" class="biz bde btop">
@@ -132,18 +100,28 @@
                     <br><h3><b id="lblnombre"></h3></b>
                 </td>
             </tr>
+
+
+
+            <tr class="texto12 biz bde bajo btop" >
+                <td >CONCEPTOS:</td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                <table style="width: 100%">
+                    <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Factura</th><th>Fecha Fac.</th><th>Solicitado</th></tr></thead>
+                    <tbody id="cuerpoconceptos"></tbody>
+                </table>
+                </td>
+            </tr>
+
             </tbody>
         </table>
+        <div id="boton">
+            <br>
+            <input type="button" id="btnImprimir" value="Imprimir" onclick="imprimir()">
+        </div>
 
-        <p style="width:100%;font-size: 10px" class"textoCenter">GERENCIA DE FINANZAS DPTO. DE CONTABILIDAD</p>
-
-    </div>
-
-    <div id="boton">
-        <br>
-        <input type="button" id="btnPrint" value="Imprimir" onclick="imprimir()">
-    </div>
-</center>
 
 </body>
 <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -155,9 +133,8 @@
 <script src="../js/controlador.js"></script>
 <script>
     function imprimir() {
-        $('#btnPrint').hide();
+        $('#btnImprimir').hide();
         window.print();
-        window.close();
     }
     let pos='';
     $(function () {
@@ -203,6 +180,11 @@
             llenar(id);
 
         });
+
+
+        //CargarAPI(url, "GET", "", militar);
+
+
     }
 
     function llenar(formato) {
@@ -213,35 +195,9 @@
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
             $("#lblnombre").text(ncompleto);
 
-            $("#lblcomponente").text(militar.Componente.descripcion);
-
-            $("#lblgrado").text(militar.Grado.descripcion);
-
             $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
 
             crearLista();
-
-            var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
-
-            $("#lblestadocivil").text(estcivil);
-
-            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-            var defestados = JSON.parse(sessionStorage.getItem("ipsfaEstado"));
-            console.log(defestados);
-            if (militar.Persona.Direccion != undefined) {
-                var DIR = militar.Persona.Direccion[0];
-                Estados.ObtenerEstados();
-                var estado = "";
-
-                $.each(defestados,function(){
-                    if(this.codigo == DIR.estado){
-                        estado = this.nombre;
-                    }
-                });
-
-                var rirec ="ESTADO "+ estado + ", CIUDAD " + DIR.ciudad + ", MUNICIPIO " + DIR.municipio + ", PARROQUIA " + DIR.parroquia + ", AV/CALLE " + DIR.calleavenida + ", CASA/APT " + DIR.casa + "|" + DIR.apartamento
-                $("#lbldireccion").text(rirec);
-            }
 
         } else {
             alert("Cedula no se encuentra registrada como militar dentro del sistema");
@@ -256,30 +212,20 @@
         console.log(pos);
 
         var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-        console.log(reem);
-        console.log(reem.CuentaBancaria.institucion);
         $("#lblnsolicitud").text(reem.numero);
         $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
-        $("#lblbanco").text(Util.ConvertirBanco(reem.CuentaBancaria.institucion));
-        $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
 
-        var tipoc = reem.CuentaBancaria.tipo=="CA" ? "CUENTA DE AHORRO":"CUENTA CORRIENTE";
-        $("#lbltipoc").text(tipoc);
-        $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
-        $("#lblmontotApro").text(numeral(parseFloat(reem.montoaprobado)).format('0,0.00'));
         var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
         var fila ="";
         $.each(concep.Concepto,function () {
-            var porcen = this.DatoFactura.montoaprobado * 100 / this.DatoFactura.monto;
             var bene = this.afiliado.split("-");
             var paren = bene[1].split("(");
             var tam = paren[1].length;
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-            var mntformato2 = numeral(parseFloat(this.DatoFactura.montoaprobado)).format('0,0.00');
-            fila+= "<tr class='filaconcep'><td>"+paren[1].substring(0,(tam-1))+"</td><td>"+bene[0]+"</td><td>"+paren[0]+"</td>" +
-                "<td>"+this.descripcion+"</td><td>"+this.DatoFactura.numero+"</td><td>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\">"+mntformato+"</td><td style='text-align: right'>"+porcen+"</td><td style='text-align: right'>"+mntformato2+"</td></tr>";
+            fila+= "<tr class='filaconcep'><td class='bordeado'>"+paren[1].substring(0,(tam-1))+"</td><td class='bordeado'>"+bene[0]+"</td><td class='bordeado'>"+paren[0]+"</td>" +
+                "<td class='bordeado'>"+this.descripcion+"</td><td class='bordeado'>"+this.DatoFactura.numero+"</td><td class='bordeado'>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\" class='bordeado'>"+mntformato+"</td></tr>";
         });
-        $("#cuerpoConceptos").html(fila);
+        $("#cuerpoconceptos").html(fila);
     }
 </script>
 </html>
