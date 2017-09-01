@@ -35,6 +35,13 @@ class Carta {
     }
 }
 
+class WCarta{
+    constructor(){
+        this.id = "";
+        this.Carta = new Carta();
+        this.nombre = "";    
+    }
+}
 
 $(function () {
     console.log("CARTA AVAL");
@@ -229,13 +236,19 @@ function cargarDatos(){
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
     concep.afiliado = beneficiario;
     concep.descripcion = $("#cmbestudio option:selected").text();
-    concep.motivo = "aca motivo";
-    concep.diagnostico = "aca diagnostico";
+    concep.motivo = $("#cmbmotivo option:selected").text();
+    concep.diagnostico = $("#txtdiagnostico").val();
     conceptos.push(concep);
 
     aval.Concepto = conceptos;
 
-    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,Nombre:militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim()};
+    var datos = new WCarta();
+
+    datos.id = militar.Persona.DatoBasico.cedula;
+    datos.Carta = aval;
+    datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
+
+
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
@@ -296,6 +309,7 @@ function obtenerEstudio(){
             $(".prote").attr("disabled",true);
             $(".prote").hide();
             $(".masto").show();
+            $(".diagnostico").show();
             break;
         case "1":
             $("#cmbestudio").attr("disabled",false);
@@ -305,8 +319,9 @@ function obtenerEstudio(){
             $(".prote").show();
             break;
     }
-
 }
+
+
 
 function cargaRif(){
     var rif = $("#cmbProveedor option:selected").val();

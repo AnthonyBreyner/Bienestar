@@ -3,26 +3,7 @@
 <head>
     <meta charset="utf-8">
     <style>
-        .bordeado {
-            border: black 1px solid;
-        }
-
-        .biz {
-            border-left: black 1px solid;
-        }
-
-        .bde {
-            border-right: black 1px solid;
-        }
-
-        .btop {
-            border-top: black 1px solid;
-        }
-
-        .bajo {
-            border-bottom: black 1px solid;
-        }
-
+        
         .contenedor {
             width: 1000px;
 
@@ -96,9 +77,9 @@
         <table width="70%" class="justificar">                              
             <td>
                 <p class="sangria">
-                Por medio de la presente, hacemos constar que el (la) cuidadana: <h3><b id="nombre"></b></h3>, titular de la cédula de identidad Nº (CI) se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
                 <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de (EXAMEN SELECCIONADO) la suma de (MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
+                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="motivoafil"></b> la suma de <b id="lblmontot"></b>(MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
                 <p class="sangria">
                 Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
             </td>
@@ -202,21 +183,16 @@
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
             $("#nombre").html(ncompleto);
-
             $("#lblcomponente").text(militar.Componente.descripcion);
-
             $("#lblgrado").text(militar.Grado.descripcion);
-
             $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
 
-            crearLista();
+            crearCarta();
 
             var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
 
             $("#lblestadocivil").text(estcivil);
-
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-
 
             if (militar.Persona.Direccion != undefined) {
                 var defestados = sessionStorage.getItem("ipsfaEstado");
@@ -229,10 +205,11 @@
 
         } else {
             alert("Cedula no se encuentra registrada como militar dentro del sistema");
+
         }
     }
 
-    function crearLista() {
+    function crearCarta() {
         if (pos == null) {
             pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
             pos--;
@@ -240,20 +217,27 @@
         console.log(pos);
         var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
         console.log(carta);
-        $("#lblnsolicitud").text(reem.numero);
-        $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
-        $("#lblbanco").text(reem.CuentaBancaria.institucion);
-        $("#lblcuenta").text(reem.CuentaBancaria.cuenta);
-        $("#lbltipoc").text(reem.CuentaBancaria.tipo);
-        $("#lblmontot").text(numeral(parseFloat(reem.montosolicitado)).format('0,0.00'));
-        var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-        var fila = "";
+        $("#lblnsolicitud").text(carta.numero);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
+        $("#lblbanco").text(carta.CuentaBancaria.institucion);
+        $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
+        $("#lbltipoc").text(carta.CuentaBancaria.tipo);
+        $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+        var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+
         $.each(concep.Concepto, function () {
             var bene = this.afiliado.split("-");
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-            fila += "<tr><td>" + bene[0] + "</td><td>" + bene[1] + "</td><td>" + this.descripcion + "</td><td style=\"text-align: right\">" + mntformato + "</td><td></td></tr>";
+        cedulaa =bene[0];
+        nombreparen =bene[1];
+        nomafi = nombreparen.split("(");
+		nombrea = nomafi[0];
+        motivo = this.descripcion;
         });
-        $("#cuerpoConceptos").html(fila);
+
+        $("#cedulaafil").html(cedulaa);
+        $("#nombreafil").html(nombrea);
+        $("#motivoafil").html(motivo);
     }
 </script>
 </html>
