@@ -229,13 +229,13 @@ function cargarDatos(){
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
     concep.afiliado = beneficiario;
     concep.descripcion = $("#cmbestudio option:selected").text();
-    concep.motivo = "aca motivo";
-    concep.diagnostico = "aca diagnostico";
+    concep.motivo = $("#cmbmotivo option:selected").text();
+    concep.diagnostico = $("#txtdiagnostico").text();
     conceptos.push(concep);
 
     aval.Concepto = conceptos;
 
-    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,Nombre:militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim()};
+    var datos = {id:militar.Persona.DatoBasico.cedula,Carta:aval,nombre:militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim()};
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
