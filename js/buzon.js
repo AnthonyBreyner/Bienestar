@@ -332,13 +332,6 @@ function actualizarReembolso(est) {
             facturaD.numero = $(this).find("input.numfact").val();
             facturaD.control = $(this).find("input.numfact").val();
 
-            //var prov = new Beneficiario();
-            //prov.rif = $(this).find("td").eq(2).html();
-            //prov.razonsocial = $(this).find("td").eq(3).html();
-            //prov.tipoempresa = 'J';
-            //prov.direccion = 'Por cargar';
-            //prov.Banco = 'Pora cargar banco';
-
             facturaD.Beneficiario = copia.Concepto[i].DatoFactura.Beneficiario;
 
             concep.DatoFactura = facturaD;
@@ -413,6 +406,8 @@ function remObse(fila) {
 function activarCambioEstatus(){
 
     $("#cambioestatus").show();
+    $("#cambioestatusApoyo").show();
+    $("#cambioestatusCarta").show();
 }
 
 function cambiarEstatus(tipo){
@@ -442,6 +437,77 @@ function mostrarTextoObservacion(est){
 }
 
 /** APOYO **/
+
+function cambiarEstatusApoyo(tipo){
+    var estatus = 0;
+    switch (tipo){
+        case "a":
+            verificarAprobacionApoyo(copia.numero ,copia.estatus,$("#lblcedulaApoyo").text());
+            break;
+        case "r":
+            verificarRechazoApoyo(copia.numero ,copia.estatus,$("#lblcedulaApoyo").text());
+            break;
+        case "e":
+            estatus = $("#cmbcambioestatusApoyo").val();
+            verificarAprobacionApoyo(copia.numero ,estatus,$("#lblcedulaApoyo").text());
+            break;
+    }
+}
+
+function verificarAprobacionApoyo(num, esta,id) {
+    $("#_contenido").html("¿Está seguro que APROBAR el apoyo " + num + "?");
+    var botones = '<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar" onClick="aprobarApoyo(\'' + num + '\',\'' + esta + '\',\''+id+'\')">Si</button><button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}
+
+function verificarRechazoApoyo(num, esta,id) {
+    $("#_contenido").html("¿Está seguro que RECHAZAR el apoyo " + num + "?");
+    var botones = '<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar" onClick="rechazarApoyo(\'' + num + '\',\'' + esta + '\',\''+id+'\')">Si</button><button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}
+
+function aprobarApoyo(num, est,id) {
+    var url = Conn.URL + "wapoyo/estatus";
+    var esta = parseInt(est) + 1
+    var datos = {id:id,numero:num,estatus:parseInt(esta)};
+    console.log(JSON.stringify(datos));
+    var request = CargarAPI({
+        sURL: url,
+        metodo: 'PUT',
+        valores: datos,
+    });
+    request.then(function (xhRequest) {
+
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        //msjRespuesta(respuesta.msj);
+        $.notify(respuesta.msj);
+        listaBuzon(est);
+    });
+}
+
+function rechazarApoyo(num, est,id) {
+    var url = Conn.URL + "wapoyo/estatus";
+    var esta = -1;
+    var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
+    console.log(JSON.stringify(datos));
+    var request = CargarAPI({
+        sURL: url,
+        metodo: 'PUT',
+        valores: datos,
+        Objeto: militar
+    });
+    request.then(function (xhRequest) {
+
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        $.notify(respuesta.msj);
+        listaBuzon(est);
+    });
+
+}
 function crearBuzonApoyo(est){
     $("#listaApoyo").html('<li>\n' +
         '            <div class="row">\n' +
@@ -527,13 +593,16 @@ function crearTablaConceptosApoyo(numero,est){
     }
     $("#cuerpoEditarConceptosApoyo").html('');
     $.each(copia.Concepto, function () {
-        var mntApo = this.DatoFactura.monto;
+        var mntApo = 0;
         if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
-
-        fila = '<tr><td>' + this.afiliado + '</td><td>' + this.descripcion + '</td><td>' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td>' + this.DatoFactura.monto + '</td>\n' +
-            '                                <td><input type="text" value="' + this.montoaseguradora + '" class="numfact"></td>\n' +
-            '                                <td class="mntsoli">' + this.montoaportar + '</td>\n' +
-            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado()"></td>\n' +
+        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
+        var picar = this.afiliado.split("-");
+        var picar2 = picar[1].split("(");
+        var tam = picar2[1].length;
+        fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
+            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactApoyo" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
+            '                                <td><input type="text" onblur="calcularPorcen(this,\'a\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.montoaportar + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'a\')" /></td>\n' +
+            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado(\'a\')"></td>\n' +
             '                                <td style="width: 7%;">\n' +
             '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
             '                                </td></tr>';
@@ -562,10 +631,81 @@ function crearTablaConceptosApoyo(numero,est){
             else $("#cuerpoObservacionesApoyo").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
         });
     }
+    activarCambioEstatus();
 }
 
 function planillaReembolso(){
     var ventana = window.open("planillaReembolso.html?id="+militarActivo.Persona.DatoBasico.cedula+"&pos="+posicionModificar, "_blank");
+}
+
+function actualizarApoyo(est) {
+    var conceptos = new Array();
+    var datos = null;
+    console.log(copia);
+    var i = 0;
+    if ($("#cuerpoEditarConceptosApoyo tr").length > 0) {
+        $("#cuerpoEditarConceptosApoyo tr").each(function () {
+            var concep = new ConceptoApoyo();
+            var facturaD = new Factura();
+            var ffact = copia.fechacreacion;
+            if ($(this).find("input.ffactApoyo").eq(0).val() != "") {
+                ffact = new Date(Util.ConvertirFechaUnix($(this).find("input.ffactApoyo").val())).toISOString();
+            }
+            facturaD.fecha = ffact;
+            facturaD.monto = parseFloat($(this).find("input.mntsoli").val());
+            facturaD.montoaprobado = parseFloat($(this).find("input.mntAcumulado").val());
+            facturaD.numero = $(this).find("input.numfact").val();
+            facturaD.control = $(this).find("input.numfact").val();
+
+            facturaD.Beneficiario = copia.Concepto[i].DatoFactura.Beneficiario;
+
+            concep.DatoFactura = facturaD;
+            concep.afiliado = copia.Concepto[i].afiliado;
+            concep.descripcion = copia.Concepto[i].descripcion;
+            concep.montoaportar = parseFloat($("#totalterApoyo").html());
+            i++;
+            conceptos.push(concep);
+        });
+
+        copia.Concepto = conceptos;
+    } else {
+        $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
+    }
+
+    copia.montoaprobado = parseFloat($("#totalaproApoyo").html());
+    copia.montosolicitado = parseFloat($("#totalterApoyo").html());
+    var obseraciones = new Array();
+    var tipoObser = "";
+    if(copia.estatus > 1) tipoObser = "|||"+copia.estatus;
+    if($("#cuerpoObservacionesApoyo tr").length > 0){
+        $("#cuerpoObservacionesApoyo tr.agobs").each(function(){
+            obseraciones.push($(this).find("td").eq(0).html());
+        });
+    }
+    if($("#cuerpoOpinionesApoyo tr").length > 0){
+        $("#cuerpoOpinionesApoyo tr.agobs").each(function(){
+            obseraciones.push($(this).find("td").eq(0).html()+tipoObser);
+        });
+    }
+    copia.Seguimiento.Estatus = parseInt($("#estSeguimientoApoyo").val());
+
+    datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Apoyo: copia,Posicion:posicionModificar,Observaciones:obseraciones};
+    console.log(datos);
+    console.log(JSON.stringify(datos));
+    var urlGuardar = Conn.URL + "wapoyo";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'PUT',
+        valores: datos,
+    });
+
+    request2.then(function(xhRequest) {
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
+        listaBuzon(copia.estatus);
+        volverLista();
+    });
 }
 
 
