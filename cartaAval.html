@@ -191,27 +191,14 @@
 
         });
 
-        var request2 = CargarAPI({
-            sURL: 'js/proveedores.js',
-            metodo: 'GET',
-            valores: '',
-        });
-
-        request2.then(function (xhRequest) {
-
-            lstProveedores = JSON.parse(xhRequest.responseText);
-
-        });
-
-        //CargarAPI(url, "GET", "", militar);
-
-
-    }
+     }
 
     function llenar(formato) {
         if (formato != undefined) {
 
         }
+
+        console.log(militar);
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
             $("#nombre").html(ncompleto);
@@ -247,12 +234,12 @@
 
     function crearLista() {
         if (pos == null) {
-            pos = militar.CIS.ServicioMedico.Programa.Reembolso.length;
+            pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
             pos--;
         }
         console.log(pos);
-        var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-        console.log(reem);
+        var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+        console.log(carta);
         $("#lblnsolicitud").text(reem.numero);
         $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
         $("#lblbanco").text(reem.CuentaBancaria.institucion);

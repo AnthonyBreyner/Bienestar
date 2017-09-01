@@ -1,9 +1,16 @@
+class Factura2{
+    constructor() {
+        console.log("Creando objeto Factura2");
+        this.Beneficiario = new Beneficiario();
+    }
+}
+
 class ConceptoCarta{
     constructor(){
         this.motivo = "";
         this.diagnostico = "";
         this.descripcion = '';
-        this.DatoFactura = new Factura();
+        this.DatoFactura = new Factura2();
         this.afiliado = '';
         this.requisito = new Array();
 
@@ -18,7 +25,6 @@ class Carta {
         this.cuentabancaria = new CuentaBancaria2();
         this.Concepto = new Array();
         this.montoaprobado = 0.00;
-        this.fechaaprobacion = '';
         this.requisito = new Array();
         //this.observaciones = "";
         this.Direccion = new Direccion();
@@ -208,8 +214,7 @@ function cargarDatos(){
     var conceptos = new Array();
 
     var concep = new ConceptoCarta();
-    var facturaD = new Factura();
-    facturaD.monto = parseFloat($("#txtmonto").val());
+    var facturaD = new Factura2();
 
     var prov = new Beneficiario();
     prov.rif = $("#rif").val();
@@ -224,7 +229,8 @@ function cargarDatos(){
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
     concep.afiliado = beneficiario;
     concep.descripcion = $("#cmbestudio option:selected").text();
-
+    concep.motivo = "aca motivo";
+    concep.diagnostico = "aca diagnostico";
     conceptos.push(concep);
 
     aval.Concepto = conceptos;
