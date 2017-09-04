@@ -1,5 +1,5 @@
 $(function () {
-    console.log("aca apoyo");
+    console.log("fe de vida");
     console.log(militar);
 
     $("#btnvolverlista").click(function(){
@@ -16,7 +16,7 @@ $(function () {
     llenar();
 });
 
-function consultarRif(){
+/*function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
@@ -32,8 +32,8 @@ function consultarRif(){
     }else{
         $("#mdlEmpresa").modal("show");
     }
-}
-function salvarEmpresa(){
+}*/
+/*function salvarEmpresa(){
     var rifn = $("#rifnuevo").val();
     var rznuevo = $("#rsocialnuevo").val();
     var tenuevo = $("#tipoenuevo").val();
@@ -46,7 +46,7 @@ function salvarEmpresa(){
     $("#rif").val(rifn);
     $("#razonsocial").val(rznuevo);
     $("#mdlEmpresa").modal('hide');
-}
+}*/
 
 function llenar(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
@@ -236,11 +236,6 @@ function historico(){
     }
 }
 
-function cedulaDepositar(){
-    var ced = $("#depositar").val();
-    $("#cibancario").val(ced);
-}
-
 function cargarFamiliar(pos){
     var fami = militar.Familiar[pos];
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
@@ -380,19 +375,19 @@ function cargarDatos(){
         reembolso.Concepto = conceptos;
 
         var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele};
-        console.log(JSON.stringify(datos));
+        /*console.log(JSON.stringify(datos));
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
             metodo: 'POST',
             valores: datos,
-        });
+        });*/
 
         request2.then(function(xhRequest) {
-            var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+            var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
         });
     }else{
-        $.notify("Debe ingresar todos los datos para realizar el reembolso");
+        $.notify("Seleccione un afiliado para procesar la Fe de Vida");
     }
 
 }

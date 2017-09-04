@@ -104,6 +104,16 @@ function salvarEmpresa(){
     $("#mdlEmpresa").modal('hide');
 }
 
+function cargarFamiliar(pos){
+    var fami = militar.Familiar[pos];
+    $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
+    var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
+    $("#lblnombref").text(ncf);
+    var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
+    $("#lblparentesco").text(parente);
+    var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
+    $("#lblfnac").text(fnac)
+}
 
 
 function llenarCarta(){
@@ -179,6 +189,17 @@ function crearLista(){
     }
     $("#cmbbeneficiario").append(new Option("Seleccione","|seleccione", true, true));
     $("#depositar").append(new Option("Seleccione","", true, true));
+
+  /*  $("#cmbbeneficiario").on("change",function(){
+        var opt = $("#cmbbeneficiario option:selected").val();
+        var picado = $("#cmbbeneficiario option:selected").val().split("|");
+        if(opt != '|seleccione' && picado[0]!="T"){
+            cargarFamiliar(picado[0]);
+            $("#perfilFamiliar").show();
+        }else{
+            $("#perfilFamiliar").hide();
+        }
+    });*/
 
     $("#cmbbeneficiario").select2({
         templateResult: formatoCombo

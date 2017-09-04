@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        
+        .contenedor {
+            width: 1000px;
+
+        }
+
+        .tcontenedor {
+            width: 100%;
+        }
+
+        .textoCenter {
+            text-align: center;
+        }
+
+        .texto12 {
+            font-size: 12px;
+        }
+
+        .texto10 {
+            font-size: 10px;
+        }
+
+        .doble {
+            height: 40px;
+        }
+
+        .simple {
+            height: 20px;
+        }
+
+        .fondo {
+            background-color: #979a93;
+        }
+
+        .junta {
+            border-collapse: collapse;
+        }
+
+        .sangria {
+            text-indent: 1cm;
+        }
+        
+        .justificar {
+            text-align:justify;
+        }
+
+    </style>
+</head>
+<body>
+<center>
+    <div class="contenedor">
+
+        <table border="0">
+            <tr>                                         
+                <td style="width: 38%"><img src="images/lg.png" style="float: left">
+                    <left><p style="font-size: 10px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
+                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
+                    INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                    GERECIA DE BIENESTAR Y SEGURIDAD</p></left>
+                </td>
+            </tr>
+        </table>
+                <center><h3>CONSTANCIA DE TRAMITACIÓN DE FE DE VIDA</h3></center>
+        <table>
+            <td width="38%" class="">
+                <left>SEÑORES: <BR>
+                    <b id="cedulaafil"></b><BR>
+                    <BR><BR>
+                </left></td>
+        </table>
+        <table width="70%" class="justificar">                              
+            <td>
+                <p class="sangria">
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                <p class="sangria">
+                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="motivoafil"></b> la suma de <b id="lblmontot"></b>(MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
+                <p class="sangria">
+                Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
+            </td>
+        </table>
+        <table>
+            <center>Atentamente</center><br>
+        </table>
+        <table border="0">
+            <tr>
+                <td width="50%" class="control-label">
+                    <center><h3><br>
+                    <label id="lblnombrePI"> </label><br>
+                    <label id="lblgradoPIF"> </label><br>
+                        GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
+                    </h3></center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" class="footer">
+                    <center><br>
+                    </center>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="boton"><br>
+        <input type="button" value="Imprimir" onclick="imprimir()">
+    </div>
+
+</body>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/formato/numeral.js"></script>
+
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+<script>
+    let pos = '';
+    $(function () {
+        numeral.locale('es-es');
+        $.obtener = function (key) {
+            key = key.replace(/[\[]/, '\\[');
+            key = key.replace(/[\]]/, '\\]');
+            var pattern = "[\\?&]" + key + "=([^&#]*)";
+            var regex = new RegExp(pattern);
+            var url = unescape(window.location.href);
+            var results = regex.exec(url);
+            if (results === null) {
+                return null;
+            } else {
+                return results[1];
+            }
+        };
+        var id = $.obtener("id");
+        pos = $.obtener("pos");
+        console.log(id);
+        Buscar(id);
+    });
+
+    function imprimir() {
+        $('#boton').html('');
+        window.print();
+        window.close();
+    }
+
+    function Buscar(id) {
+        console.log(militar);
+        if (id != undefined) {
+            $("#_cedula").val(id);
+        }
+        if ($("#_cedula").val() == "") {
+            return false;
+        }
+
+        var url = Conn.URL + "militar/crud/" + id;
+        var request = CargarAPI({
+            sURL: url,
+            metodo: 'GET',
+            valores: '',
+            Objeto: militar
+        });
+
+        request.then(function (xhRequest) {
+
+            militar = JSON.parse(xhRequest.responseText);
+            llenar(id);
+
+        });
+
+     }
+
+    function llenar(formato) {
+        if (formato != undefined) {
+
+        }
+
+        console.log(militar);
+        if (militar.Persona != undefined) {
+            var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
+            $("#nombre").html(ncompleto);
+            $("#lblcomponente").text(militar.Componente.descripcion);
+            $("#lblgrado").text(militar.Grado.descripcion);
+            $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
+
+            crearCarta();
+
+            var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
+
+            $("#lblestadocivil").text(estcivil);
+            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+
+            if (militar.Persona.Direccion != undefined) {
+                var defestados = sessionStorage.getItem("ipsfaEstado");
+                console.log(defestados);
+                var DIR = militar.Persona.Direccion[0];
+                Estados.ObtenerEstados();
+                var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                $("#lbldireccion").text(rirec);
+            }
+
+        } else {
+            alert("Cedula no se encuentra registrada como militar dentro del sistema");
+
+        }
+    }
+
+    function crearCarta() {
+        if (pos == null) {
+            pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
+            pos--;
+        }
+        console.log(pos);
+        var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+        console.log(carta);
+        $("#lblnsolicitud").text(carta.numero);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
+        $("#lblbanco").text(carta.CuentaBancaria.institucion);
+        $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
+        $("#lbltipoc").text(carta.CuentaBancaria.tipo);
+        $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+        var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+
+        $.each(concep.Concepto, function () {
+            var bene = this.afiliado.split("-");
+            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+        cedulaa =bene[0];
+        nombreparen =bene[1];
+        nomafi = nombreparen.split("(");
+		nombrea = nomafi[0];
+        motivo = this.descripcion;
+        });
+
+        $("#cedulaafil").html(cedulaa);
+        $("#nombreafil").html(nombrea);
+        $("#motivoafil").html(motivo);
+    }
+</script>
+</html>
