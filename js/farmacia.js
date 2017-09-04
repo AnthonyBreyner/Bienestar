@@ -44,14 +44,15 @@ function consultarRif(){
 
 function agregarMedico(){
     if(Util.ValidarFormulario("frmmedico","btnagregarmedico")){
-        var medico  = $("#medico").val();
-        var cedula = $("#cedula").val();
-        var servicio = $("#servicio").val();
+        var centro =$("#centromedico").val();
+        var medicoa  = $("#medicoA").val();
+        var cedula = $("#ciA").val();
+        var especialidad=$("#especialidad").val();
         var codigoc = $("#codigocolegio").val();
         var codigom = $("#codigompps").val();
         var tabla = $("#medicoagregado");
         var btndelete = "<button class='btn btn-danger borrarmedico'><i class='glyphicon glyphicon-remove'></i></button>";
-        var html = "<tr><td>"+medico+"</td><td>"+cedula+"</td><td>"+servicio+"</td><td>"+codigoc+"</td><td>"+codigom+"</td>";
+        var html = "<tr><td>"+centro+"</td><td>"+medicoa+"</td><td>"+cedula+"</td><td>"+especialidad+"</td><td>"+codigoc+"</td><td>"+codigom+"</td>";
         html += "<td>"+btndelete+"</td></tr>";
         tabla.append(html);
 
