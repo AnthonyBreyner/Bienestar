@@ -3,7 +3,31 @@
 <head>
     <meta charset="utf-8">
     <style>
+    @media screen, print{}
+    	 .bordeado {
+            border: black 1px solid;
+        }
         
+        .bordeado {
+            border: black 1px solid;
+        }
+
+        .biz {
+            border-left: black 1px solid;
+        }
+
+        .bde {
+            border-right: black 1px solid;
+        }
+
+        .btop {
+            border-top: black 1px solid;
+        }
+
+        .bajo {
+            border-bottom: black 1px solid;
+        }
+
         .contenedor {
             width: 1000px;
 
@@ -16,6 +40,11 @@
         .textoCenter {
             text-align: center;
         }
+
+      	.texto14 {
+            font-size: 14px;
+        }
+
 
         .texto12 {
             font-size: 12px;
@@ -55,60 +84,121 @@
 <center>
     <div class="contenedor">
 
-        <table border="0">
-            <tr>                                         
-                <td style="width: 38%"><img src="images/lg.png" style="float: left">
-                    <left><p style="font-size: 10px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
-                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
-                    INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
-                    GERECIA DE BIENESTAR Y SEGURIDAD</p></left>
-                </td>
-            </tr>
-        </table>
-                <center><h3>CONSTANCIA DE TRAMITACIÓN DE FE DE VIDA</h3></center>
-        <table>
-            <td width="38%" class="">
-                <left>SEÑORES: <BR>
-                    <b id="cedulaafil"></b><BR>
-                    <BR><BR>
-                </left></td>
-        </table>
-        <table width="70%" class="justificar">                              
-            <td>
-                <p class="sangria">
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
-                <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="motivoafil"></b> la suma de <b id="lblmontot"></b>(MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
-                <p class="sangria">
-                Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
-            </td>
-        </table>
-        <table>
-            <center>Atentamente</center><br>
-        </table>
-        <table border="0">
-            <tr>
-                <td width="50%" class="control-label">
-                    <center><h3><br>
-                    <label id="lblnombrePI"> </label><br>
-                    <label id="lblgradoPIF"> </label><br>
-                        GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
-                    </h3></center>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="footer">
-                    <center><br>
-                    </center>
-                </td>
-            </tr>
-        </table>
+    	<div id="banner">
+    		<div id="col1"><img src="images/lg.png" style="float: left;"></div>
+    		<div id="col2" align="left" style="font-size: 10px; float: left; width: 80%"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> 
+    			  MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<br>
+    			  VICEMINISTERIO DE SERVICIOS<br>
+    			  DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
+                  INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                  GERECIA DE BIENESTAR Y SEGURIDAD <br>
+    	    </div>
+
+    		<div id="foto" width="15%"  valign="top" style="float: left;"> 
+       				<img style="width: 90px;height: 90px; margin-left: 0px" class="img-responsive file-path-wrapper-pre-view" src='images/ndisponible.jpg' onerror="this.src='images/ndisponible.jpg'" id="_fotoConstancia"/>
+        	</div>
+    	   
+      	</div>
+
+    	 <div id="col4" align="center"><h2><br>CONSTANCIA DE FE DE VIDA <br></h2> </div>
+
+
+    	  	<div id="sobreviviente" align="justify"> 
+
+    	  		<div class="sangria" style="font-size: 20px">  
+	              	 
+	              	 Quien suscribe <b><label id="lblgradoPI"> </label></b>, titular de la cedula de identidad N° xxxxxx, en mi caracter de Presidente de la Junta Administradora del Instituto de Previsión Social de las Fuerzas Armadas (IPSFA) según resuelto N°xxx, de fecha 0000-00-00, emanado del Ministerio del Poder Popular para la Defensa en Gaceta Oficial de la República Bolivariana de Venezuela N° xx.xxxx, de fecha 0000-00-00, hago constar y doy fé que hoy 0000-00-00, comparecio ante este despacho el (la) ciudadano(a) xxxxxxxxxxx, titular de la cedula de identidad N° 0000000, de 00 años de edad, residenciado en xxxxxxxxxxxxxxxxxxxxxxxxxx, telefono xxxxxxxxx y correo xxxxxx a fines de dejar constancia de supervivencia, en virtud de la cual se le expide la CONSTANCIA DE FE DE VIDA y cumplir con los requisitos exigidos por el IPSFA para la tramitación de los beneficios socieconomicos otorgados en el marco de la Ley Negro Primero como beneficiario por ser xxxx sobreviviente de <b><label id="lblgradoMil"></label> <label id="lblnombreMil"></label></b>, Titular de la Cédula de Identidad Número V.- <b><label id="lblcedulaMil"></label></b>, fallecido el 0000-00-00.
+	            </div>
+			             <div id="piedepagina" align="center" >Atentamente<br>
+					                 <br>
+					               <br>
+		                             <label id="lblnombrePI"> </label>
+					               <br>
+		                             <label id="lblgradoPIF"> </label>
+					               <br>
+					               PRESIDENTE DE LA JUNTA ADMINISTRADORA DEL IPSFA 
+			               </div>
+			             <p>&nbsp;</p>
+			             <table  border="0" align="center" width="100%" class="bordeado">
+								  <tr class="">
+								    <td width="80" rowspan="3"><div id="col1" width: auto"><img src="images/lg.png" width="74" height="62" ></div></td>
+								    <td width="208" rowspan="3">
+								    <div id="col2" align="left"><p style="font-size: 7px; width: auto" > REPUBLICA BOLIVARIANA DE VENEZUELA <br> 
+    			 					MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<br>
+    			  					VICEMINISTERIO DE SERVICIOS<br>
+    			  					DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
+                  					INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                  					GERECIA DE BIENESTAR Y SEGURIDAD <br>
+    	   							 </div>    	   							</td>
+								   <td width="389" rowspan="3"><div align="center"><strong>SOLICITUD DE FE DE VIDA </strong></div></td>
+								   <td width="303" class="texto12">1.Número:</td>
+								  </tr>
+								  <tr>
+								    <td class="texto12">2.Fecha:</td>
+								  </tr>
+								  <tr>
+								    <td height="23">&nbsp;</td>
+							      </tr>
+								  <tr>
+								    <td colspan="4" class="texto12">DATOS DEL BENEFICIARIO </td>
+								  </tr>
+								  <tr>
+								    <td colspan="3" class="texto12">4. APELLIDOS Y NOMBRES </td>
+								    <td class="texto12">5.CÉDULA DE IDENTIDAD </td>
+								  </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+								    <td>&nbsp;</td>
+					       </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+								    <td>&nbsp;</td>
+								  </tr>
+								  <tr>
+								    <td colspan="4">&nbsp;</td>
+							      </tr>
+								  <tr>
+								    <td colspan="4" class="texto12">DEPARTAMENTO DE PENSIONES IPSFA </td>
+					       </tr>
+								  <tr>
+								    <td colspan="3" class="texto12">6.APELLIDOS Y NOMBRES DEL RECEPTOR </td>
+							        <td class="texto12">8. SELLO DE LA UNIDAD </td>
+								  </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+								    <td>&nbsp;</td>
+								    <td>&nbsp;</td>
+					       </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+					                <td>&nbsp;</td>
+					                <td>&nbsp;</td>
+						   </tr>
+								  <tr>
+								    <td colspan="3" class="texto12">7. FIRMA DEL RECEPTOR </td>
+								    <td class="texto12">&nbsp;</td>
+					       </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+								    <td class="texto12">&nbsp;</td>
+					       </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+								    <td class="texto12">&nbsp;</td>
+					       </tr>
+								  <tr>
+								    <td colspan="3">&nbsp;</td>
+							        <td class="texto12">&nbsp;</td>
+								  </tr>
+				  </table> 
+		
+
     </div>
 
 
     <div id="boton"><br>
-        <input type="button" value="Imprimir" onclick="imprimir()">
-    </div>
+        <input type="button" value="Imprimir" onClick="imprimir()">
+</div>
 
 </body>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -119,124 +209,12 @@
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
-    let pos = '';
-    $(function () {
-        numeral.locale('es-es');
-        $.obtener = function (key) {
-            key = key.replace(/[\[]/, '\\[');
-            key = key.replace(/[\]]/, '\\]');
-            var pattern = "[\\?&]" + key + "=([^&#]*)";
-            var regex = new RegExp(pattern);
-            var url = unescape(window.location.href);
-            var results = regex.exec(url);
-            if (results === null) {
-                return null;
-            } else {
-                return results[1];
-            }
-        };
-        var id = $.obtener("id");
-        pos = $.obtener("pos");
-        console.log(id);
-        Buscar(id);
-    });
-
-    function imprimir() {
+	
+	 function imprimir() {
         $('#boton').html('');
         window.print();
         window.close();
     }
-
-    function Buscar(id) {
-        console.log(militar);
-        if (id != undefined) {
-            $("#_cedula").val(id);
-        }
-        if ($("#_cedula").val() == "") {
-            return false;
-        }
-
-        var url = Conn.URL + "militar/crud/" + id;
-        var request = CargarAPI({
-            sURL: url,
-            metodo: 'GET',
-            valores: '',
-            Objeto: militar
-        });
-
-        request.then(function (xhRequest) {
-
-            militar = JSON.parse(xhRequest.responseText);
-            llenar(id);
-
-        });
-
-     }
-
-    function llenar(formato) {
-        if (formato != undefined) {
-
-        }
-
-        console.log(militar);
-        if (militar.Persona != undefined) {
-            var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-            $("#nombre").html(ncompleto);
-            $("#lblcomponente").text(militar.Componente.descripcion);
-            $("#lblgrado").text(militar.Grado.descripcion);
-            $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
-
-            crearCarta();
-
-            var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
-
-            $("#lblestadocivil").text(estcivil);
-            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-
-            if (militar.Persona.Direccion != undefined) {
-                var defestados = sessionStorage.getItem("ipsfaEstado");
-                console.log(defestados);
-                var DIR = militar.Persona.Direccion[0];
-                Estados.ObtenerEstados();
-                var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
-                $("#lbldireccion").text(rirec);
-            }
-
-        } else {
-            alert("Cedula no se encuentra registrada como militar dentro del sistema");
-
-        }
-    }
-
-    function crearCarta() {
-        if (pos == null) {
-            pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
-            pos--;
-        }
-        console.log(pos);
-        var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
-        console.log(carta);
-        $("#lblnsolicitud").text(carta.numero);
-        $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
-        $("#lblbanco").text(carta.CuentaBancaria.institucion);
-        $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
-        $("#lbltipoc").text(carta.CuentaBancaria.tipo);
-        $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
-        var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
-
-        $.each(concep.Concepto, function () {
-            var bene = this.afiliado.split("-");
-            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-        cedulaa =bene[0];
-        nombreparen =bene[1];
-        nomafi = nombreparen.split("(");
-		nombrea = nomafi[0];
-        motivo = this.descripcion;
-        });
-
-        $("#cedulaafil").html(cedulaa);
-        $("#nombreafil").html(nombrea);
-        $("#motivoafil").html(motivo);
-    }
 </script>
+
 </html>
