@@ -55,12 +55,28 @@ class Usuario{
         this.perfil = new Perfil();
         this.firma = new Firma();
     }
+
+    Obtener(){
+       this.cedula = $("#cedula").val();
+       this.nombre = $("#nombre").val();
+       this.usuario = $("#seudonimo").val();
+       this.Roles.descripcion = $("#rolUsuario").val();
+       this.Perfil.descripcion = $("#perfilUsuario").val();
+       this.cargo = $("#cargo").val();
+       this.telefono = $("#telefono").val();
+       this.correo = $("#correo").val();
+       this.FirmaDigital.DireccionIP = $("#direccionIp").val();
+       this.FirmaDigital.DireccionMAC = $("#direccionMac").val();
+       this.direccion = $("#direccionUsuario").val();
+       this.fechacreacion = $("#fechaCreacion").val();
+    }
 }
 
 let listaUsuario = null;
 let Conn = new Conexion();
 
 $(function () {
+
     var requestE = CargarAPI({
         sURL: Conn.URL + "wusuario/listar",
         metodo: 'GET',
@@ -69,13 +85,22 @@ $(function () {
     requestE.then(function(xhRequest) {
         listaUsuario = JSON.parse(xhRequest.responseText);
         llenarLista();
+        llenarUsuarios();
     });
+     $("#cmbUsuario").select2();
 });
 
 function llenarLista(){
     $("#cmbListadoUsuario").html("");
     $.each(listaUsuario,function(){
         $("#cmbListadoUsuario").append("<option value='"+this.cedula+"'>"+this.nombre+"</option>");
+    });
+}
+
+function llenarUsuarios(){
+    $("#cmbUsuario").html("");
+    $.each(listaUsuario,function(){
+        $("#cmbUsuario").append("<option value='"+this.cedula+"'>"+this.nombre+"</option>");
     });
 }
 
@@ -90,6 +115,7 @@ function cargarUsuario(){
         var datos = JSON.parse(xhRequest.responseText);
         llenarUsuario(datos);
     });
+
 }
 
 function llenarUsuario(datos){
@@ -106,4 +132,23 @@ function llenarUsuario(datos){
     $("#direccionUsuario").val(datos.direccion);
     $("#fechaCreacion").val(datos.fechacreacion);
 
+}
+function cargarMenu(){
+    var usuario = $("#cmbUsuario option:selected").val();
+    var requestE = CargarAPI({
+        sURL: Conn.URL + "wusuario/crud/"+usuario,
+        metodo: 'GET',
+        valores: '',
+    });
+    requestE.then(function(xhRequest) {
+        var datos = JSON.parse(xhRequest.responseText);
+        llenarMenu(datos);
+    });
+}
+
+function llenarMenu(){
+    $("#cmbMenu").html("");
+    $.each(listaUsuario,function(){
+        $("#cmbMenu").append("<option value='"+this.cedula+"'>"+this.nombre+"</option>");
+    });
 }
