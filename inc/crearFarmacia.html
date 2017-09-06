@@ -176,40 +176,59 @@
                                     <select class=" form-control" style="width: 100%"
                                             id="cmbtipo" required>
                                         <option value="S" selected="selected"></option>
-                                        <option value="1">Pública</option>
-                                        <option value="2">Privada</option>
+                                        <option value="1">MILITAR</option>
+                                        <option value="2">NO MILITAR</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Nombre del Centro de Salud:</label>
-                                    <input type="text" class="form-control" id="medico" required>
+                                    <input type="text" class="form-control" id="nombrecS" required>
                                 </div>
 
                             </div> <!-- Grupo nombres-->
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Médico Tratante:</label>
-                                    <input type="text" class="form-control" id="medico" required>
+                                    <input type="text" class="form-control" id="medicot" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Cédula de Médico Tratante:</label>
-                                    <input id="cedula" onkeypress="return Util.SoloNumero(event)" class="form-control" type="text" required>
+                                    <input id="cedulam" onkeypress="return Util.SoloNumero(event)" class="form-control" type="text" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Especialidad:</label>
-                                    <input id="servicio" class="form-control" type="text">
+                                    <input id="especialidadt" class="form-control" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Código de Colegio de Médio:</label>
-                                    <input type="text" onkeypress="return Util.SoloNumero(event)" class="form-control" id="medico" required>
+                                    <input type="text" onkeypress="return Util.SoloNumero(event)" class="form-control" id="codigoclgm" required>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Código de Colegio de MPPS:</label>
-                                    <input id="cedula" onkeypress="return Util.SoloNumero(event)" class="form-control" type="text" required>
+                                    <input id="codigomppst" onkeypress="return Util.SoloNumero(event)" class="form-control" type="text" required>
                                 </div>
-
+                                <div class="col-md-4">
+                                    <label>Prestaor de Servico</label>
+                                    <select class=" form-control" style="width: 100%"
+                                            id="cmbprestadors" required>
+                                        <option value="S" selected="selected"></option>
+                                        <option value="1">LOCATEL</option>
+                                        <option value="2">LUNA MIEL</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Zona de Distribución</label>
+                                    <select class=" form-control" style="width: 100%"
+                                            id="cmbzona" required>
+                                        <option value="S" selected="selected"></option>
+                                        <option value="1">IPSA 1</option>
+                                        <option value="2">IPSFA 2</option>
+                                    </select>
+                                </div>
                             </div>
                         </form>
                     </div> <!-- Grupo nombres-->
@@ -283,11 +302,7 @@
                                     </thead>
                                     <tbody id="medicoagregado">
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+
                                     </tr>
                                     </tbody>
                                 </table>
@@ -461,7 +476,7 @@
 
                 <a class="btn btn-app btn-success pull-right" style="margin-right: 10px; background-color: #337ab7;
                         color: white;"
-                   onclick="cargarDatos()" id="_btnSavlvar">
+                   onclick="CargarDatos()" id="_btnSavlvar">
                     <i class="fa fa-save"></i>&nbsp;&nbsp;Guardar
                 </a>
                 <br><br>

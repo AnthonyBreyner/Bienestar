@@ -113,6 +113,7 @@ class Programa {
         this.Apoyo = new Array();
         this.Reembolso = new Array();
         this.CartaAval = new Array();
+        this.Farmacia = new Array();
     }
 }
 
