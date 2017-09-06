@@ -382,7 +382,7 @@ function calcularSolicitado(){
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
     $("#montosolicitado").val(mntSolici.toFixed(2));
-    if(parseFloat(mntSolici) > 7000000){
+    /*if(parseFloat(mntSolici) > 7000000){
         requisitosMonto();
-    }
+    }*/
 }
