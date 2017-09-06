@@ -2,7 +2,7 @@ class MedicoAvala {
     constructor() {
         console.log("Creando Medico que Avala");
         this.centrosa = '';
-        this.medicoavala = '';
+        this.medicoa = '';
         this.cedulaa = '';
         this.especialidada = '';
         this.codigocma="";
@@ -21,6 +21,12 @@ class Tratamiento {
         this.fechav='';
     }
 }
+class Patologia {
+    constructor() {
+        console.log("Creando patologia");
+        this.patologiaagregada='';
+    }
+}
 
 class Farmacia {
     constructor() {
@@ -33,12 +39,14 @@ class Farmacia {
         this.especialidad="";
         this.codigocm="";
         this.codigocmpps="";
-        this.patologia='';
-        this.otrapatologia='';
+        this.prestadors='';
+        this.zonadedistribucion='';
         this.MedicoAvala = new MedicoAvala();
         this.medicoAvala= new Array();
         this.tratamiento= new Tratamiento();
-        this.tratamiento=new Tratamiento();
+        this.tratamiento=new Array();
+        this.Patologia=new Patologia();
+        this.patologia=new Array();
         this.estatus = 0;
         this.requisito = new Array();
         //this.observaciones = "";
@@ -161,14 +169,15 @@ function agregarPatologia(){
         if(pat=="Otra"){
             var pat = $("#otrapatologia").val();
         }
-        var lista = $("#patologiaagregado");
-        var btndelete = "<button class='btn btn-danger borrarpatologia pull-right' style='padding-bottom: 0px;padding-top: 1px;'><i class='glyphicon glyphicon-remove'></i></button>";
-        var html = "<a href='#cajapatologia' class='list-group-item'>"+pat+""+btndelete+"</a>";
-        lista.append(html);
+        var tabla = $("#patologiaagregada");
+        var btndelete = "<button class='btn btn-danger borrarpatologia pull-right'><i class='glyphicon glyphicon-remove'></i></button>";
+        var html = "<tr><td>"+pat+"</td>";
+        html += "<td>"+btndelete+"</td></tr>";
+        tabla.append(html);
 
         $(".borrarpatologia").click(function () {
-            $(this).parents('a').eq(0).remove();
-            if($("#patologiaagregado a").length == 0){
+            $(this).parents('tr').eq(0).remove();
+            if($("#patologiaagregada tr").length == 0){
                 $("#cajapatologia").slideUp();
             }
         });
@@ -385,7 +394,7 @@ function validadDatosBancarios(){
     return true;
 }
 
-function CargarDatos(){
+function CargarDatosFarmacia(){
     var farmacia = new Farmacia();
     farmacia.fechaI=$("#fechainformemedico").val();
     farmacia.tipoc=$("#cmbtipo option:selected").text();
@@ -395,7 +404,8 @@ function CargarDatos(){
     farmacia.especialidad=$("#especialidadt").val();
     farmacia.codigocm=$("#codigoclgm").val();
     farmacia.codigocmpps=$("#codigomppst").val();
-
+    farmacia.prestadors=$("#cmbprestadors option:selected").text();
+    farmacia.zonadedistribucion=$("#cmbzona option:selected").text();
 
 
     var dir = new Direccion();
@@ -449,38 +459,47 @@ function CargarDatos(){
             tratamientos.presentacion=$(this).find("td").eq(2).html();
             tratamientos.dosis=$(this).find("td").eq(3).html();
             tratamientos.cantidad=$(this).find("td").eq(4).html();
-            tratamientos.fechav=$(this).find("td").eq(5).html();;
+            tratamientos.fechav=$(this).find("td").eq(5).html();
             tratamientoafi.push(tratamientos);
         });
     }else{
         $.notify("Debe ingresar todos los datos para realizar el informe médico");}
-
-        var datos = new WFarmacia();
-        datos.id = militar.Persona.DatoBasico.cedula;
-        datos.Farmacia = farmacia;
-        datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
-        farmacia.medicoAvala = medicoavala;
-        farmacia.tratamiento=tratamientoafi;
-        console.log(JSON.stringify(datos));
-        var urlGuardar = Conn.URL + "wfarmacia";
-        var request2 = CargarAPI({
-            sURL: urlGuardar,
-            metodo: 'POST',
-            valores: datos,
+    var patologiaag = new Array();
+    if($("#patologiaagregada tr").length >0) {
+        $("#patologiaagregada tr").each(function () {
+            var patologias = new Patologia();
+            patologias.patologiaagregada=$(this).find("td").eq(0).html();
+            patologiaag.push(patologias);
         });
+    }else{
+        $.notify("Debe ingresar todos los datos para realizar el informe médico");}
+    var datos = new WFarmacia();
+    datos.id = militar.Persona.DatoBasico.cedula;
+    datos.Farmacia = farmacia;
+    datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
+    farmacia.medicoAvala = medicoavala;
+    farmacia.tratamiento=tratamientoafi;
+    farmacia.patologia=patologiaag;
+    console.log(JSON.stringify(datos));
+    var urlGuardar = Conn.URL + "wfarmacia";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'POST',
+        valores: datos,
+    });
 
-        request2.then(function (xhRequest) {
-            respuesta = JSON.parse(xhRequest.responseText);
-            if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-            msjRespuesta(respuesta.msj);
-            llenartratamiento();
+    request2.then(function (xhRequest) {
+        respuesta = JSON.parse(xhRequest.responseText);
+        if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
+        llenartratamiento();
 
-            $("#opciones").hide();
-            $("#panelentrada").show();
-            $("#panellista").hide();
-            $("#panelregistro").hide();
-            /*var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");*/
-        });
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+        var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    });
 }
 
 function limpiarMedico(){

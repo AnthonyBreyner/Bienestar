@@ -129,7 +129,7 @@ class CIS {
         console.log("Creando objeto CIS");
         this.ServicioMedico = new Array();
         this.Gasto = new Array();
-        this.InvestigacionSocial = new Array();
+        this.Equipomedico = new Array();
     }
 }
 

@@ -163,11 +163,11 @@ function cargaPrograma(tipo){
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Tto. <br> Prolongado");
             break;
-        case "invs":
+        case "equipo":
             CargarUrl("modalgeneral","inc/modals");
             //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearInvSocial");
-            titulos("Investigacion Social");
+            titulos("Equipos de <br> Movilidad");
             break;
         case "fdv":
             CargarUrl("panelentrada", "inc/opcionesFedeVida");
