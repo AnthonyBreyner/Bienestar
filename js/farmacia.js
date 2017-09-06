@@ -42,14 +42,13 @@ class Farmacia {
         this.prestadors='';
         this.zonadedistribucion='';
         this.MedicoAvala = new MedicoAvala();
-        this.medicoAvala= new Array();
-        this.tratamiento= new Tratamiento();
-        this.tratamiento=new Array();
+        this.MedicoqueAvala= new Array();
+        this.Tratamiento= new Tratamiento();
+        this.tratamientocargar=new Array();
         this.Patologia=new Patologia();
-        this.patologia=new Array();
+        this.patologiacargar=new Array();
         this.estatus = 0;
         this.requisito = new Array();
-        //this.observaciones = "";
         this.Direccion = new Direccion();
         this.Telefono = new Telefono();
         this.Correo = new Correo();
@@ -434,7 +433,7 @@ function CargarDatosFarmacia(){
     prov.direccion = $("#empdirec").val();
     //prov.Banco = 'Pora cargar banco';
 
-    var medicoavala = new Array();
+    var medicosavala = new Array();
     if($("#medicoagregado tr").length >0) {
         $("#medicoagregado tr").each(function () {
             var medicoA = new MedicoAvala();
@@ -446,7 +445,7 @@ function CargarDatosFarmacia(){
             medicoA.codigocmppsa=$(this).find("td").eq(5).html();
 
 
-            medicoavala.push(medicoA);
+            medicosavala.push(medicoA);
         });
     }else{
         $.notify("Debe ingresar todos los datos para realizar el informe médico");}
@@ -477,9 +476,9 @@ function CargarDatosFarmacia(){
     datos.id = militar.Persona.DatoBasico.cedula;
     datos.Farmacia = farmacia;
     datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
-    farmacia.medicoAvala = medicoavala;
-    farmacia.tratamiento=tratamientoafi;
-    farmacia.patologia=patologiaag;
+    farmacia.MedicoqueAvala = medicosavala;
+    farmacia.tratamientocargar=tratamientoafi;
+    farmacia.patologiacargar=patologiaag;
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wfarmacia";
     var request2 = CargarAPI({
