@@ -35,9 +35,9 @@
                                     <div class="col-md-3 ">
                                         <label>Estudio:</label>
                                         <select class="form-control" style="width: 100%" id="cmbestudio"
-                                                onchange="requisitosConcepto()" required="required">
+                                                onchange="requisitosMotivo()" required="required">
                                             <option selected="selected" value="S"></option>
-                                            <option value="0" class="masto">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
+                                            <option value="0" class="masto" desplegar="requisitosmatologia">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
                                             <option value="1" class="masto">MASTOLOGÍA BILATERAL DIGITAL CON PROTESIS</option>
                                             <option value="2" class="masto">MASTOLOGÍA UNILATERAL DIGITAL CON PROTESIS</option>
                                             <option value="3" class="masto">MASTOLOGÍA UNILATERAL CON PROTESIS DIGITAL</option>
@@ -208,6 +208,58 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="requisitosmatologia" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"
+             style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header"
+                 style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Requisitos</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Presupuesto original
+                            <div class="material-switch pull-right">
+                                <input id="chm5-13"
+                                       name="chm5-13"
+                                       type="checkbox" value="13"/>
+                                <label for="chm5-13"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Constancia de Agotamiento de Seguros Horizonte, C.A <br> o Carta Aval del Seguro
+                            <div class="material-switch pull-right">
+                                <input id="chm5-14"
+                                       name="chm5-14"
+                                       type="checkbox"/>
+                                <label for="chm5-14"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitoslentes')" disabled="true">Continuar
+                </button>
             </div>
         </div>
     </div>

@@ -320,7 +320,7 @@ function generarPlanilla(){
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
-        var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+        var ventana = window.open("inc/reciboApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
     });
 }
 
@@ -380,7 +380,9 @@ function validaFechaFactura(n){
 function calcularSolicitado(){
     var mntFactura = $("#montofactura").val();
     var mntAsegura = $("#montoacubrir").val();
-    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
+    var mntOtroaporte=$("#montootroaporte").val();
+
+    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura)-parseFloat(mntOtroaporte);
     $("#montosolicitado").val(mntSolici.toFixed(2));
     if(parseFloat(mntSolici) > 7000000){
         requisitosMonto();
