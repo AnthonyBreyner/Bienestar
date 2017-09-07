@@ -219,6 +219,14 @@ function llenarCarta(){
 
 }
 
+function requisitosMotivo(){
+    var modal = $("#cmbestudio option:selected").attr("desplegar");
+    inactivarCheck(modal);
+    alert(modal);
+
+    $("#"+modal).modal("show");
+}
+
 function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
     var ncompleto = militar.Persona.DatoBasico.nombreprimero+ " " + militar.Persona.DatoBasico.apellidoprimero;
@@ -327,17 +335,10 @@ function cargarDatos(){
     });
     request2.then(function(xhRequest) {
         var ventana = window.open("cartaAval.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+        window.closed();
     });
 
 
-}
-
-function requisitosConcepto(){
-
-    var modal = $("#concepto option:selected").attr("desplegar");
-    inactivarCheck(modal);
-    $("#btnAgconcepto").attr("disabled",true);
-    $("#"+modal).modal("show");
 }
 
 function habilitarDireccion(estatus){

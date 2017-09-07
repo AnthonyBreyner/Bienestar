@@ -42,11 +42,8 @@ class Farmacia {
         this.prestadors='';
         this.zonadedistribucion='';
         this.MedicoAvala = new MedicoAvala();
-        this.MedicoqueAvala= new Array();
         this.Tratamiento= new Tratamiento();
-        this.tratamientocargar=new Array();
         this.Patologia=new Patologia();
-        this.patologiacargar=new Array();
         this.estatus = 0;
         this.requisito = new Array();
         this.Direccion = new Direccion();
@@ -55,7 +52,7 @@ class Farmacia {
         this.Seguimiento = new Seguimiento();
     }
 }
-class WFarmacia{
+class Wfarmacia{
     constructor(){
         this.id = "";
         this.Farmacia = new Farmacia();
@@ -436,6 +433,7 @@ function CargarDatosFarmacia(){
     var medicosavala = new Array();
     if($("#medicoagregado tr").length >0) {
         $("#medicoagregado tr").each(function () {
+            //console.log($(this).html());
             var medicoA = new MedicoAvala();
             medicoA.centrosa= $(this).find("td").eq(0).html();
             medicoA.medicoa=$(this).find("td").eq(1).html();
@@ -472,13 +470,14 @@ function CargarDatosFarmacia(){
         });
     }else{
         $.notify("Debe ingresar todos los datos para realizar el informe médico");}
-    var datos = new WFarmacia();
+    var datos = new Wfarmacia();
     datos.id = militar.Persona.DatoBasico.cedula;
-    datos.Farmacia = farmacia;
+
     datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
-    farmacia.MedicoqueAvala = medicosavala;
-    farmacia.tratamientocargar=tratamientoafi;
-    farmacia.patologiacargar=patologiaag;
+    farmacia.MedicoAvala = medicosavala;
+    farmacia.Tratamiento=tratamientoafi;
+    farmacia.Patologia=patologiaag;
+    datos.Farmacia = farmacia;
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wfarmacia";
     var request2 = CargarAPI({
@@ -491,6 +490,9 @@ function CargarDatosFarmacia(){
         respuesta = JSON.parse(xhRequest.responseText);
         if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         msjRespuesta(respuesta.msj);
+        $("#medicoagregado").html("");
+        $("#tratamientoagregado").html("");
+        $("#patologiaagregada").html("");
         llenartratamiento();
 
         $("#opciones").hide();

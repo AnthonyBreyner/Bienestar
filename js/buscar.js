@@ -287,7 +287,7 @@ function historico(){
     t.clear().draw();
     console.log("aqui");
     console.log(militar);
-    if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
+    /*if(militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length >0){
         var html = "";
         var i = 0;
         $.each(militar.CIS.ServicioMedico.Programa.Reembolso,function(v,ob){
@@ -339,7 +339,7 @@ function historico(){
                 }
             });
         });
-    }
+    }*/
 }
 
 function detalleVisible(pos){
