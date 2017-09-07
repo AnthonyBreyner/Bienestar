@@ -205,7 +205,7 @@ function cargarFamiliar(pos){
 
 
 
-function generarPlanilla(){
+function generarPlanillaFDV(){
     var apoyo = new Apoyo();
     
 

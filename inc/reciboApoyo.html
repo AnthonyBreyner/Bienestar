@@ -109,7 +109,7 @@
             <tr>
                 <td colspan="4">
                     <table style="width: 100%">
-                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Presupuesto</th><th>Fecha Pres.</th><th>Tipo de Ayuda</th></tr></thead>
+                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Presupuesto</th><th>Fecha Pres.</th><th>Monto</th></tr></thead>
                         <tbody id="cuerpoconceptos"></tbody>
                     </table>
                 </td>
@@ -207,16 +207,16 @@
 
     function crearLista() {
         if(pos == null){
-            pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
+            pos=militar.CIS.ServicioMedico.Programa.Apoyo.length;
             pos--;
         }
         console.log(pos);
 
-        var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        var reem = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
         $("#lblnsolicitud").text(reem.numero);
         $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
 
-        var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        var concep = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
         var fila ="";
         $.each(concep.Concepto,function () {
             var bene = this.afiliado.split("-");

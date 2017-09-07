@@ -445,8 +445,7 @@ function CargarDatosFarmacia(){
 
             medicosavala.push(medicoA);
         });
-    }else{
-        $.notify("Debe ingresar todos los datos para realizar el informe médico");}
+    }
     var tratamientoafi = new Array();
     if($("#tratamientoagregado tr").length >0) {
         $("#tratamientoagregado tr").each(function () {
@@ -479,7 +478,18 @@ function CargarDatosFarmacia(){
     farmacia.Patologia=patologiaag;
     datos.Farmacia = farmacia;
     console.log(JSON.stringify(datos));
-    var urlGuardar = Conn.URL + "wfarmacia";
+    //probar
+    $("#medicoagregado").html("");
+    $("#tratamientoagregado").html("");
+    $("#patologiaagregada").html("");
+    llenartratamiento();
+
+    $("#opciones").hide();
+    $("#panelentrada").show();
+    $("#panellista").hide();
+    $("#panelregistro").hide();
+    var ventana = window.open("onc/reciboApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    /*var urlGuardar = Conn.URL + "wfarmacia";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
@@ -500,7 +510,7 @@ function CargarDatosFarmacia(){
         $("#panellista").hide();
         $("#panelregistro").hide();
         var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });
+    });*/
 }
 
 function limpiarMedico(){
