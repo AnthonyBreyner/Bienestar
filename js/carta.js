@@ -13,8 +13,12 @@ $(function () {
         verificaCheckModal("requisitos","btnAgconcepto");
     });
 
-    $(".mdl-requisitos2").on("change",function () {
-        verificaCheckModal("requisitosconsultas","btnAgconcepto");
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitosprotesis","btnAgconcepto");
+    });
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitosmastologia","btnAgconcepto");
     });
 
     llenarCarta();
@@ -219,13 +223,6 @@ function llenarCarta(){
 
 }
 
-function requisitosMotivo(){
-    var modal = $("#cmbestudio option:selected").attr("desplegar");
-    inactivarCheck(modal);
-    alert(modal);
-
-    $("#"+modal).modal("show");
-}
 
 function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
@@ -392,6 +389,9 @@ function obtenerEstudio(){
             $(".estudio").hide();
             break;
     }
+     var modal = $("#cmbmotivo option:selected").attr("desplegar");
+    inactivarCheck(modal);
+    $("#"+modal).modal("show");
 }
 
 
