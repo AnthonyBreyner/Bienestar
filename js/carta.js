@@ -105,14 +105,57 @@ function salvarEmpresa(){
 }
 
 function cargarFamiliar(pos){
+    console.log(pos);
+
+    if(pos == "T"){
+        if (militar.Persona.Telefono != undefined) {
+            $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
+            $("#txtmcelular").val(militar.Persona.Telefono.movil);
+            $("#txtmcorreo").val(militar.Persona.Correo.principal);
+        }
+
+        if (militar.Persona.Direccion != undefined) {
+            var DIR = militar.Persona.Direccion[0];
+            Estados.ObtenerEstados();
+            $("#cmbmestado").val(DIR.estado);
+            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+            $("#txtmcalle").val(DIR.calleavenida);
+            $("#txtmcasa").val(DIR.casa);
+            $("#txtmapto").val(DIR.apartamento);
+        }
+        $("#perfilFamiliar").hide();
+        return true;
+    }
+    $("#perfilFamiliar").show();
     var fami = militar.Familiar[pos];
+    console.log(fami);
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
     var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
     $("#lblnombref").text(ncf);
     var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
     $("#lblparentesco").text(parente);
     var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
-    $("#lblfnac").text(fnac)
+    $("#lblfnac").text(fnac);
+
+    if (fami.Persona.Telefono != undefined) {
+        $("#txtmtelefono").val(fami.Persona.Telefono.domiciliario);
+        $("#txtmcelular").val(fami.Persona.Telefono.movil);
+        $("#txtmcorreo").val(fami.Persona.Correo.principal);
+    }
+    Estados.ObtenerEstados();
+    if (fami.Persona.Direccion != undefined) {
+        var DIR = fami.Persona.Direccion[0];
+
+        $("#cmbmestado").val(DIR.estado);
+        $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+        $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+        $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+        $("#txtmcalle").val(DIR.calleavenida);
+        $("#txtmcasa").val(DIR.casa);
+        $("#txtmapto").val(DIR.apartamento);
+    }
 }
 
 
@@ -216,7 +259,7 @@ function crearLista(){
 
 function cargarDatos(){
     var aval = new Carta();
-    aval.montosolicitado = parseFloat($("#txtmonto").val())
+    aval.montosolicitado = parseFloat($("#montopresupuesto").val())
 
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#empcuenta").val();
@@ -324,21 +367,24 @@ function obtenerEstudio(){
     var motivo = $("#cmbmotivo option:selected").val();
     $("#cmbestudio").val("S");
     switch (motivo){
-        case "S": $("#cmbestudio").attr("disabled",true);break;
+        case "S": 
+            $("#cmbestudio").attr("disabled",true);
+            $(".estudio").hide();
+            $(".diagnostico").hide();
+            break;
         case "0":
             $("#cmbestudio").attr("disabled",false);
             $(".masto").attr("disabled",false);
-            $(".prote").attr("disabled",true);
-            $(".prote").hide();
             $(".masto").show();
-            $(".diagnostico").show();
+            $(".diagnostico").hide();
+            $(".estudio").show();
             break;
         case "1":
             $("#cmbestudio").attr("disabled",false);
             $(".masto").attr("disabled",true);
-            $(".prote").attr("disabled",false);
             $(".masto").hide();
-            $(".prote").show();
+            $(".diagnostico").show();
+            $(".estudio").hide();
             break;
     }
 }
@@ -352,4 +398,69 @@ function cargaRif(){
     $("#empcuenta").val(picado[1]);
     $("#empbanco").val(picado[2]);
     $("#emptipoc").val(picado[3]);
+}
+
+
+function cargarFamiliar(pos){
+    console.log(pos);
+
+    if(pos == "T"){
+        if (militar.Persona.Telefono != undefined) {
+            $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
+            $("#txtmcelular").val(militar.Persona.Telefono.movil);
+            $("#txtmcorreo").val(militar.Persona.Correo.principal);
+        }
+
+        if (militar.Persona.Direccion != undefined) {
+            var DIR = militar.Persona.Direccion[0];
+            Estados.ObtenerEstados();
+            $("#cmbmestado").val(DIR.estado);
+            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+            $("#txtmcalle").val(DIR.calleavenida);
+            $("#txtmcasa").val(DIR.casa);
+            $("#txtmapto").val(DIR.apartamento);
+        }
+        $("#perfilFamiliar").hide();
+        return true;
+    }
+    $("#perfilFamiliar").show();
+    var fami = militar.Familiar[pos];
+    console.log(fami);
+    $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
+    var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
+    $("#lblnombref").text(ncf);
+    var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
+    $("#lblparentesco").text(parente);
+    var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
+    $("#lblfnac").text(fnac);
+
+    if (fami.Persona.Telefono != undefined) {
+        $("#txtmtelefono").val(fami.Persona.Telefono.domiciliario);
+        $("#txtmcelular").val(fami.Persona.Telefono.movil);
+        $("#txtmcorreo").val(fami.Persona.Correo.principal);
+    }
+    Estados.ObtenerEstados();
+    if (fami.Persona.Direccion != undefined) {
+        var DIR = fami.Persona.Direccion[0];
+
+        $("#cmbmestado").val(DIR.estado);
+        $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
+        $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
+        $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+        $("#txtmcalle").val(DIR.calleavenida);
+        $("#txtmcasa").val(DIR.casa);
+        $("#txtmapto").val(DIR.apartamento);
+    }
+}
+
+function calcularSolicitado(){
+    var mntFactura = $("#montofactura").val();
+    var mntAsegura = $("#montoacubrir").val();
+    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
+    $("#montosolicitado").val(mntSolici.toFixed(2));
+    if(parseFloat(mntSolici) > 7000000){
+        requisitosMonto();
+    }
 }

@@ -1,3 +1,13 @@
+    <style>
+        .diagnostico {
+            display: none;
+        }
+
+        .estudio {
+            display: none;
+        }
+    </style>
+
 <div class="body box">
     <div class="container-fluid">
         <div class="row">
@@ -16,14 +26,14 @@
                         <div class="panel-body">
                             <form id="frmcartaaval" action="#" method="post">
                                 <div class="row">
-                                    <div class="col-md-6 ">
+                                    <div class="col-md-6 col-sm-12">
                                         <label>Afiliado:</label>
                                         <select class="form-control" style="width: 100%" id="cmbbeneficiario"
                                                 required="required">
                                             <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 ">
+                                    <div class="col-md-6 col-sm-12">
                                         <label>Motivo de la Carta Aval:</label>
                                         <select class="form-control" style="width: 100%" id="cmbmotivo"
                                                 onchange="obtenerEstudio()" required="required">
@@ -32,7 +42,9 @@
                                             <option value="1">PROTESIS</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-3 ">
+                                </div>
+                                <div class="row estudio">
+                                    <div class="col-md-12 col-sm-12">
                                         <label>Estudio:</label>
                                         <select class="form-control" style="width: 100%" id="cmbestudio"
                                                 onchange="requisitosMotivo()" required="required">
@@ -44,20 +56,17 @@
                                             <option value="4" class="masto">COMPRESIÓN DIGITAL UNILATERAL</option>
                                             <option value="5" class="masto">COMPRESIÓN DIGITAL BILATERAL</option>
                                             <option value="6" class="masto">ULTRASONIDO MAMARIO</option>
-                                            <option value="7" class="prote">PROTESIS AUDITIVA</option>
-                                            <option value="8" class="prote">PROTESIS DE CADERA</option>
-                                            <option value="9" class="prote">PROTESIS DE RODILLA</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row diagnostico">
-                                  <div class="col-md-12 col-sm-12">
-                                      <label>Diágnostico:</label>
+                                  <div class="col-md-12 col-sm-12 ">
+                                      <label>Descripción:</label>
                                       <input class="form-control" id="txtdiagnostico">
                                   </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-12">
+                                    <div class="col-md-4 col-sm-12">
                                       <label>Beneficiario:</label>
                                       <select class="form-control" style="width: 100%" id="cmbProveedor" onchange="cargaRif();"
                                               required="required">
@@ -67,7 +76,7 @@
                                           <option value="h-sdfsdf|01010101010101013|algogogog|tipoc3">LEOPOLDO AGUERREVERRE</option>
                                       </select>
                                     </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    <div class="col-md-2 col-sm-12">
                                         <label>RIF:</label>
                                         <input class="form-control" id="txtrifbeneficiario" readonly="true"
                                                required="required">
@@ -76,117 +85,135 @@
                                         <input type="hidden" id="emptipoc">
                                     </div>
                                     <div class="col-md-3 col-sm-12">
-                                        <label>Monto:</label>
-                                        <input class="form-control" id="txtmonto" onkeypress="return Util.SoloNumero(event,this,true);"
-                                                 required="required">
+                                        <label>Nº Presupuesto:</label>
+                                        <input class="form-control" id="">                                        
+                                    </div>
+                                    <div class="col-md-3 col-sm-12">
+                                        <label>Fecha Presupuesto</label>
+                                        <input class="form-control" id="">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Monto Total del Presupuesto:</label>
+                                        <input class="form-control" id="montofactura" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Monto a Cubrir por la Aseguradora:</label>
+                                        <input class="form-control" id="montoacubrir" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Monto Aportado por el IPSFA:</label>
+                                        <input class="form-control" id="montosolicitado" onkeypress="return Util.SoloNumero(event,this,true);" required="required">
                                     </div>
                                 </div>
                                  </br>
-                                <div class="panel panel-default">
-                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                                       href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
-                                        <div class="panel-heading bg-blue" role="tab" id="headingTree">
-                                            <h4 class="panel-title">
-                                                Direccion del afiliado
-                                            </h4>
+              <div class="panel panel-default">
+                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                       href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
+                        <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                            <h4 class="panel-title">
+                                Direccion del afiliado
+                            </h4>
+                        </div>
+                    </a>
+                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
+                         aria-labelledby="headingTree">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Estado:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmestado" required onchange="CiudadMunicipio()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Ciudad:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmciudad" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Municipio:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                            </div> <!-- Grupo nombres-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Parroquia:</label>
+                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
+                                            id="cmbmparroquia" required>
+                                        <option value="S" selected="selected"></option>
+                                    </select>
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Avenida / Edificio / Calle:</label>
+                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Casa:</label>
+                                    <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <label># Apto:</label>
+                                    <input id="txtmapto" class="form-control" disabled="disabled" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Teléfono:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
                                         </div>
-                                    </a>
-                                    <div id="collapseTree" class="panel-collapse collapse in" role="tabpanel"
-                                         aria-labelledby="headingTree">
-                                        <div class="panel-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Estado:</label>
-                                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                                            id="cmbmestado" required onchange="CiudadMunicipio()">
-                                                        <option value="S" selected="selected"></option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Ciudad:</label>
-                                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                                            id="cmbmciudad" required>
-                                                        <option value="S" selected="selected"></option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Municipio:</label>
-                                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
-                                                        <option value="S" selected="selected"></option>
-                                                    </select>
-                                                </div>
-                                            </div> <!-- Grupo nombres-->
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Parroquia:</label>
-                                                    <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                                            id="cmbmparroquia" required>
-                                                        <option value="S" selected="selected"></option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Avenida / Edificio / Calle:</label>
-                                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label># Casa:</label>
-                                                    <input id="txtmcasa" class="form-control" disabled="disabled" type="text">
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label># Apto:</label>
-                                                    <input id="txtmapto" class="form-control" disabled="disabled" type="text">
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <label>Teléfono:</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-phone"></i>
-                                                        </div>
-                                                        <input id="txtmtelefono" class="form-control" disabled="disabled" type="text"
-                                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label>Celular:</label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-phone"></i>
-                                                        </div>
-                                                        <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
-                                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4 col-sm-12">
-                                                    <label class="control-label">Correo Electronico:</label>
-                                                    <div class="input-group date">
-                                                        <div class="input-group-addon">
-                                                            <i class="fa fa-envelope"></i>
-                                                        </div>
-                                                        <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
-                                                               required onblur="Util.ValidarCorreo()">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                              <div class="col-md-12">
-                                                  <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
-                                                                                          onclick="habilitarDireccion(false)"
-                                                                                          style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
-                                                                                          class="glyphicon glyphicon-edit"></i></button>
-                                                  <button class="btn btn-primary btn-success" type="button"
-                                                                                          onclick="habilitarDireccion(true)"
-                                                                                          style="margin-top:23px; margin-bottom: 20px; display: none"
-                                                                                          id="btndhabdire">Salvar &nbsp<i
-                                                                                          class="glyphicon glyphicon-save"></i></button>
-                                              </div>
-                                            </div>
-                                        </div> <!-- Grupo nombres-->
-
+                                        <input id="txtmtelefono" class="form-control" disabled="disabled"
+                                               type="text" data-inputmask='"mask": "(9999) 999-99-99"' data-mask
+                                               required>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
+                                    <label>Celular:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-phone"></i>
+                                        </div>
+                                        <input id="txtmcelular" class="form-control" disabled="disabled" type="text"
+                                               data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12">
+                                    <label class="control-label">Correo Electronico:</label>
+                                    <div class="input-group date">
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-envelope"></i>
+                                        </div>
+                                        <input type="email" class="form-control" id="txtmcorreo" disabled="disabled"
+                                               required onblur="Util.ValidarCorreo()">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button class="btn btn-primary btn-success" id="btnhabdire" type="button"
+                                            onclick="habilitarDireccion(false)"
+                                            style="margin-top:23px; margin-bottom: 20px;">Modificar &nbsp<i
+                                            class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-primary btn-success" type="button"
+                                            onclick="habilitarDireccion(true)"
+                                            style="margin-top:23px; margin-bottom: 20px; display: none"
+                                            id="btndhabdire">Salvar &nbsp<i
+                                            class="glyphicon glyphicon-save"></i></button>
+                                </div>
+                            </div>
+
+                        </div> <!-- Grupo nombres-->
+                    </div>
+                </div>
 
                                 </br>
                                 <div class="row">
