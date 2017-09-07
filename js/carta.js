@@ -1,3 +1,36 @@
+$(function () {
+    console.log("CARTA AVAL");
+    console.log(militar);
+
+    $("#btnvolverlista").click(function(){
+        $("#tblcarta").slideDown();
+        $("#lstDetalle").slideUp();
+    });
+
+    $("#concepto").select2();
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitos","btnAgconcepto");
+    });
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitosprotesis","btnAgconcepto");
+    });
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitosmastologia","btnAgconcepto");
+    });
+
+    llenarCarta();
+        $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+    });
+});
+
+
 class Factura2{
     constructor() {
         console.log("Creando objeto Factura2");
@@ -43,30 +76,6 @@ class WCarta{
     }
 }
 
-$(function () {
-    console.log("CARTA AVAL");
-    console.log(militar);
-
-    $("#btnvolverlista").click(function(){
-        $("#tblcarta").slideDown();
-        $("#lstDetalle").slideUp();
-    });
-
-    $("#concepto").select2();
-
-    $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnAgconcepto");
-    });
-
-    $(".btnvolverentrada2").click(function(){
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-    });
-
-    llenarCarta();
-});
 
 
 
@@ -214,13 +223,6 @@ function llenarCarta(){
 
 }
 
-function requisitosMotivo(){
-    var modal = $("#cmbestudio option:selected").attr("desplegar");
-    inactivarCheck(modal);
-    alert(modal);
-
-    $("#"+modal).modal("show");
-}
 
 function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
@@ -387,6 +389,9 @@ function obtenerEstudio(){
             $(".estudio").hide();
             break;
     }
+     var modal = $("#cmbmotivo option:selected").attr("desplegar");
+    inactivarCheck(modal);
+    $("#"+modal).modal("show");
 }
 
 
@@ -456,7 +461,7 @@ function cargarFamiliar(pos){
 }
 
 function calcularSolicitado(){
-    var mntFactura = $("#montofactura").val();
+    var mntFactura = $("#montopresupuesto").val();
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
     $("#montosolicitado").val(mntSolici.toFixed(2));

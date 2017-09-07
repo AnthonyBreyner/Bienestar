@@ -157,6 +157,7 @@
                 </section>
 
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="salvarEmpresa()">Guardar</button>
@@ -164,3 +165,109 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+<div class="modal fade" id="requisitosmastologia" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"
+             style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header"
+                 style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Requisitos para Carta Aval de Mastología</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Presupuesto original
+                            <div class="material-switch pull-right">
+                                <input id="chm5-1"
+                                       name="chm5-1"
+                                       type="checkbox" value="13" class="mdl-requisitos" />
+                                <label for="chm5-1"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Constancia de Agotamiento de Seguros Horizonte, C.A <br> o Carta Aval del Seguro
+                            <div class="material-switch pull-right">
+                                <input id="chm5-2"
+                                       name="chm5-2"
+                                       type="checkbox" class="mdl-requisitos"/>
+                                <label for="chm5-2"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitosmastologia)" disabled="true">Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="requisitosprotesis" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"
+             style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header"
+                 style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Requisitos para Carta Aval de Prótesis</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Presupuesto original
+                            <div class="material-switch pull-right">
+                                <input id="chm5-3"
+                                       name="chm5-3"
+                                       type="checkbox" value="13" class="mdl-requisitos" />
+                                <label for="chm5-3"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Constancia de Agotamiento de Seguros Horizonte, C.A <br> o Carta Aval del Seguro
+                            <div class="material-switch pull-right">
+                                <input id="chm5-4"
+                                       name="chm5-4"
+                                       type="checkbox" class="mdl-requisitos"/>
+                                <label for="chm5-4"
+                                       class="label-success"></label>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal"
+                        onclick="inactivarCheck('requisitosprotesis)" disabled="true">Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
