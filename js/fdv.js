@@ -1,5 +1,6 @@
 $(function () {
     console.log(militar);
+    //console.log("FE DE VIDA");
 
     $("#concepto").select2();
 
@@ -35,10 +36,21 @@ function consultarRif(){
     }
 }
 
+function habilitarDireccion(estatus){
+    $("#collapseTree select").attr("disabled",estatus);
+    $("#collapseTree :input").attr("disabled",estatus);
+    if(estatus == false){
+        $("#btnhabdire").hide();
+        $("#btndhabdire").show();
+    }else{
+        $("#btnhabdire").show();
+        $("#btndhabdire").hide();
+    }
+}
 
 function llenarApoyo(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-    $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+   // $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         $("#cuerporeembolsos").html("");
@@ -77,7 +89,7 @@ function llenarApoyo(){
             $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
             $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
             $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
-            listaCuentas();
+          //  listaCuentas();
         }
 
         if (militar.Persona.Direccion != undefined) {
@@ -195,7 +207,7 @@ function cargarFamiliar(pos){
 
 function generarPlanilla(){
     var apoyo = new Apoyo();
-    //apoyo.montosolicitado = parseFloat($("#montosolicitado").val());
+    
 
 
     var dir = new Direccion();
@@ -218,14 +230,19 @@ function generarPlanilla(){
 
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
-    concep.afiliado = beneficiario;
-    concep.descripcion = $("#cmbconcepto option:selected").text();
+   
 
 
     
     var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
-    console.log(JSON.stringify(datos));
-    var urlGuardar = Conn.URL + "wreembolso";
+    $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+        var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+        console.log(militar);
+   
+   /* var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
@@ -238,12 +255,9 @@ function generarPlanilla(){
         msjRespuesta(respuesta.msj);
         llenarApoyo();
 
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-        var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });
+        
+    }
+    );*/
 }
 
 
