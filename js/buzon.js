@@ -55,7 +55,7 @@ function conviertEstatus(est){
         case 1:estatus = "Pendiente";break;
         case 2:estatus = "En jefatura";break;
         case 3:estatus = "En gerencia";break;
-        case 4:estatus = "En presidencia";break;
+        case 4:estatus = "Aprobado";break;
         case 5:estatus = "Aprobado";break;
     }
     return estatus;
@@ -226,6 +226,7 @@ function crearTablaConceptos(numero,est) {
         var picar = this.afiliado.split("-");
         var picar2 = picar[1].split("(");
         var tam = picar2[1].length;
+        if(est)
         fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
             '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactReembolso" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
             '                                <td><input type="text" onblur="calcularPorcen(this,\'r\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.DatoFactura.monto + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
