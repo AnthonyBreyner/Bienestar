@@ -1,3 +1,32 @@
+$(function () {
+    console.log("CARTA AVAL");
+    console.log(militar);
+
+    $("#btnvolverlista").click(function(){
+        $("#tblcarta").slideDown();
+        $("#lstDetalle").slideUp();
+    });
+
+    $("#concepto").select2();
+
+    $(".mdl-requisitos").on("change",function () {
+        verificaCheckModal("requisitos","btnAgconcepto");
+    });
+
+    $(".mdl-requisitos2").on("change",function () {
+        verificaCheckModal("requisitosconsultas","btnAgconcepto");
+    });
+
+    llenarCarta();
+        $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+    });
+});
+
+
 class Factura2{
     constructor() {
         console.log("Creando objeto Factura2");
@@ -43,30 +72,6 @@ class WCarta{
     }
 }
 
-$(function () {
-    console.log("CARTA AVAL");
-    console.log(militar);
-
-    $("#btnvolverlista").click(function(){
-        $("#tblcarta").slideDown();
-        $("#lstDetalle").slideUp();
-    });
-
-    $("#concepto").select2();
-
-    $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnAgconcepto");
-    });
-
-    $(".btnvolverentrada2").click(function(){
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-    });
-
-    llenarCarta();
-});
 
 
 
@@ -456,7 +461,7 @@ function cargarFamiliar(pos){
 }
 
 function calcularSolicitado(){
-    var mntFactura = $("#montofactura").val();
+    var mntFactura = $("#montopresupuesto").val();
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
     $("#montosolicitado").val(mntSolici.toFixed(2));

@@ -39,7 +39,7 @@
                                                 onchange="obtenerEstudio()" required="required">
                                             <option selected="selected" value="S"></option>
                                             <option value="0">MASTOLOGÍA</option>
-                                            <option value="1">PROTESIS</option>
+                                            <option value="1" desplegar="requisitosconsultas">PROTESIS</option>
                                         </select>
                                     </div>
                                 </div>
@@ -67,6 +67,28 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
+                                        <label>Beneficiario:</label>
+                                        <div class="btn-group-justified" role="group" aria-label="...">
+                                            <div class="btn-group" style="width: 6%;" role="group">
+                                                <input class="form-control" id="rif" onblur="consultarRif()"
+                                                       required="required" placeholder="RIF">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Razón Social</label>
+                                        <input class="form-control" id="razonsocial" readonly="true"
+                                               required="required">
+                                        <input type="hidden" id="emptipo"/>
+                                        <input type="hidden" id="empdirec"/>
+                                        <input type="hidden" id="empbanco"/>
+                                        <input type="hidden" id="emptipoc"/>
+                                    </div>
+                                    <div class="col-md-4 col-sm-12">
+                                        <label>Cuenta Bancaria</label>
+                                        <input class="form-control" type="text" id="empcuenta" readonly="readonly"/>
+                                    </div>
+                                    <!--div class="col-md-4 col-sm-12">
                                       <label>Beneficiario:</label>
                                       <select class="form-control" style="width: 100%" id="cmbProveedor" onchange="cargaRif();"
                                               required="required">
@@ -75,28 +97,28 @@
                                           <option value="g-sdfsdf|01010101010101012|Bicentenario|tipoc2">MERCURIO C.A</option>
                                           <option value="h-sdfsdf|01010101010101013|algogogog|tipoc3">LEOPOLDO AGUERREVERRE</option>
                                       </select>
-                                    </div>
-                                    <div class="col-md-2 col-sm-12">
+                                    </div-->
+                                    <!--div class="col-md-2 col-sm-12">
                                         <label>RIF:</label>
                                         <input class="form-control" id="txtrifbeneficiario" readonly="true"
                                                required="required">
                                         <input type="hidden" id="empcuenta">
                                         <input type="hidden" id="empbanco">
                                         <input type="hidden" id="emptipoc">
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    </div-->
+                                    <!--div class="col-md-3 col-sm-12">
                                         <label>Nº Presupuesto:</label>
                                         <input class="form-control" id="">                                        
-                                    </div>
-                                    <div class="col-md-3 col-sm-12">
+                                    </div-->
+                                    <!--div class="col-md-3 col-sm-12">
                                         <label>Fecha Presupuesto</label>
                                         <input class="form-control" id="">
-                                    </div>
+                                    </div-->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Total del Presupuesto:</label>
-                                        <input class="form-control" id="montofactura" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
+                                        <input class="form-control" id="montopresupuesto" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto a Cubrir por la Aseguradora:</label>
@@ -104,7 +126,7 @@
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto Aportado por el IPSFA:</label>
-                                        <input class="form-control" id="montosolicitado" onkeypress="return Util.SoloNumero(event,this,true);" required="required">
+                                        <input class="form-control" id="montosolicitado" onkeypress="return Util.SoloNumero(event,this,true);" required="required" eadonly="readonly">
                                     </div>
                                 </div>
                                  </br>
