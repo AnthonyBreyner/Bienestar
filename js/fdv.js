@@ -7,13 +7,6 @@ $(function () {
         verificaCheckModal("requisitos","btnGenerar");
     });
 
-    $(".mdl-requisitosodon").on("change",function () {
-        verificaCheckModal("requisitosodon","btnGenerar");
-    });
-
-    $(".mdl-requisitosmonto").on("change",function () {
-        verificaCheckModal("requisitosmonto","btnGenerar");
-    });
 
     llenarApoyo();
     $(".btnvolverentrada2").click(function(){
@@ -41,29 +34,7 @@ function consultarRif(){
         $("#mdlEmpresa").modal("show");
     }
 }
-function salvarEmpresa(){
-    var rifn = $("#rifnuevo").val();
-    var rznuevo = $("#rsocialnuevo").val();
-    var tenuevo = $("#tipoenuevo").val();
-    var direc = $("#direcnueva").val();
-    var cuenta = $("#numerocuentanueva").val();
-    var banco = $("#_cmbmtipofinanciera option:selected").val();
-    var tipoc = $("#_cmbmtipocuentaranueva option:selected").val();
-    if(rifn == "" || rznuevo == "" || tenuevo == "S" || direc == "" || cuenta == "" || banco == "S" || tipoc == "S"){
-        alert(rifn +"**"+rznuevo+"**"+tenuevo+"**"+direc+"**"+cuenta+"**"+banco+"**"+tipoc)
-        $.notify("Debe ingresar todos los datos de la empresa a registrar");
-        return false;
-    }
-    $.notify("Proceso de registro pendiente");
-    $("#rif").val(rifn);
-    $("#razonsocial").val(rznuevo);
-    $("#emptipo").val(tenuevo);
-    $("#empdirec").val(direc);
-    $("#empcuenta").val(cuenta);
-    $("#empbanco").val(banco);
-    $("#emptipoc").val(tipoc);
-    $("#mdlEmpresa").modal('hide');
-}
+
 
 function llenarApoyo(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
@@ -128,14 +99,7 @@ function llenarApoyo(){
 
 }
 
-function listaCuentas(){
-    $("#datosbancarios").html("");
-    $.each(militar.Persona.DatoFinanciero,function(){
-        $("#datosbancarios").append(new Option(this.cuenta,this.cuenta+"|"+this.institucion+"|"+this.tipo, true, true));
-    });
-    $("#datosbancarios").append(new Option("OTRA","otra", true, true));
-    $("#datosbancarios").append(new Option("Selecione","", true, true));
-}
+
 
 function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
@@ -172,11 +136,6 @@ function crearLista(){
     historico();
 }
 
-
-function cedulaDepositar(){
-    var ced = $("#depositar").val();
-    $("#cibancario").val(ced);
-}
 
 function cargarFamiliar(pos){
     console.log(pos);
@@ -232,30 +191,12 @@ function cargarFamiliar(pos){
     }
 }
 
-function validadDatosBancarios(){
-    var tipoc = $("#tipodecuenta").val();
-    var banco = $("#banco").val();
-    var cuenta = $("#numerocuenta").val();
-    var cedula = $("#cibancario").val();
-    var depositar = $("#depositar").val();
-    if(tipoc == "S" || banco == "S" || cuenta == "" || cedula == "" || depositar == ""){
-        $.notify("Debe ingresar todos los datos financieros","warn");
-        return false;
-    }
-    return true;
-}
+
 
 function generarPlanilla(){
     var apoyo = new Apoyo();
-    apoyo.montosolicitado = parseFloat($("#montosolicitado").val());
+    //apoyo.montosolicitado = parseFloat($("#montosolicitado").val());
 
-    var cuenta = new CuentaBancaria2();
-    cuenta.cuenta= $("#empcuenta").val();
-    cuenta.institucion = $("#empbanco").val();
-    cuenta.tipo = $("#emptipoc option:selected").val();
-    cuenta.cedula = $("#rif").val();
-    cuenta.titular =$("#razonsocial").val();
-    apoyo.cuentabancaria = cuenta;
 
     var dir = new Direccion();
     dir.tipo = 0;
@@ -275,32 +216,13 @@ function generarPlanilla(){
 
     apoyo.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
-    var conceptos = new Array();
-
-    var concep = new ConceptoApoyo();
-    var facturaD = new Factura();
-    facturaD.fecha = new Date(Util.ConvertirFechaUnix($("#fechafactura").val())).toISOString();
-    facturaD.monto = parseFloat($("#montofactura").val());
-    facturaD.numero = $("#numerofactura").val();
-    facturaD.control = $("#numerofactura").val();
-    var prov = new Beneficiario();
-    prov.rif = $("#rif").val();
-    prov.razonsocial = $("#razonsocial").val();
-    prov.tipoempresa = 'J';
-    prov.direccion = $("#empdirec").val();
-    //prov.Banco = 'Pora cargar banco';
-    facturaD.Beneficiario = prov;
-    concep.DatoFactura = facturaD;
-
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
     concep.afiliado = beneficiario;
     concep.descripcion = $("#cmbconcepto option:selected").text();
 
 
-   /* conceptos.push(concep);
-    apoyo.tipo = parseInt($("#cmbtipoayuda option:selected").val());
-    apoyo.Concepto = conceptos;
+    
     var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
     console.log(JSON.stringify(datos));
     var urlGuardar = Conn.URL + "wreembolso";
@@ -308,7 +230,7 @@ function generarPlanilla(){
         sURL: urlGuardar,
         metodo: 'POST',
         valores: datos,
-    });*/
+    });
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
@@ -320,69 +242,8 @@ function generarPlanilla(){
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
-        var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+        var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
     });
 }
 
-function limpiarReembolso(){
-    $('#frmreembolso').each (function(){
-        this.reset();
-    });
-}
 
-function requisitosConcepto(){
-    var modal = $("#cmbconcepto option:selected").attr("desplegar");
-    if(modal != undefined){
-        inactivarCheck(modal);
-        $("#btnGenerar").attr("disabled",true);
-        $("#"+modal).modal("show");
-    }else{
-        $("#btnGenerar").attr("disabled",false);
-    }
-}
-
-function requisitosMonto(){
-    var modal = "requisitosmonto";
-    if(modal != undefined){
-        inactivarCheck(modal);
-        $("#btnGenerar").attr("disabled",true);
-        $("#"+modal).modal("show");
-    }
-}
-
-function habilitarDireccion(estatus){
-    $("#collapseTree select").attr("disabled",estatus);
-    $("#collapseTree :input").attr("disabled",estatus);
-    if(estatus == false){
-        $("#btnhabdire").hide();
-        $("#btndhabdire").show();
-    }else{
-        $("#btnhabdire").show();
-        $("#btndhabdire").hide();
-    }
-}
-
-function validaFechaFactura(n){
-    var f = new Date();
-    var fecha=(f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
-    var fecha1=moment(fecha,"DD-MM-YYYY");
-    var ff = $("#fechafactura").val();
-    var fecha2 = moment(ff,"DD-MM-YYYY");
-    var dif=fecha1.diff(fecha2, 'days');
-    if(dif>n) {
-        $("#alerta_fecha").text("Fecha fuera de rango");
-        $("#alert_fecha").show();
-    }else{
-        $("#alert_fecha").hide();
-    }
-}
-
-function calcularSolicitado(){
-    var mntFactura = $("#montofactura").val();
-    var mntAsegura = $("#montoacubrir").val();
-    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
-    $("#montosolicitado").val(mntSolici.toFixed(2));
-    if(parseFloat(mntSolici) > 7000000){
-        requisitosMonto();
-    }
-}
