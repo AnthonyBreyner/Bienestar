@@ -488,7 +488,7 @@ function CargarDatosFarmacia(){
     $("#panelentrada").show();
     $("#panellista").hide();
     $("#panelregistro").hide();
-    var ventana = window.open("onc/reciboApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    var ventana = window.open("inc/reciboApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
     /*var urlGuardar = Conn.URL + "wfarmacia";
     var request2 = CargarAPI({
         sURL: urlGuardar,
@@ -510,7 +510,7 @@ function CargarDatosFarmacia(){
         $("#panellista").hide();
         $("#panelregistro").hide();
         var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });*/
+    });
 }
 
 function limpiarMedico(){

@@ -78,7 +78,7 @@ function crearBuzon(est) {
         var alertSegui = "";
         switch (this.estatusseguimiento){
             case 1:
-                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                alertSegui = '<i class="fa fa-info-circle" style="font-size: 22px; color: red; margin-left: 20px;"></i>';
                 break;
             case 2:
                 alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
@@ -92,8 +92,8 @@ function crearBuzon(est) {
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Procesar</i>\n' +
-            '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Rechazar</i>\n' +
+            '                    <i class="fa  fa-check" title="PROCESAR" style="color: green; font-size: 20px" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa fa-trash" title="RECHAZAR" style="font-size: 20px" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </li>';
@@ -537,7 +537,7 @@ function crearBuzonApoyo(est){
         var alertSegui = "";
         switch (this.estatusseguimiento){
             case 1:
-                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i></small>';
                 break;
             case 2:
                 alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
@@ -551,7 +551,7 @@ function crearBuzonApoyo(est){
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                    <i class="fa fa-trash-o" onclick="verificarRechazoApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +
@@ -766,7 +766,7 @@ function crearBuzonCarta(est) {
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +
