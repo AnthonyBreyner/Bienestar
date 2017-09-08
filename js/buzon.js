@@ -78,7 +78,7 @@ function crearBuzon(est) {
         var alertSegui = "";
         switch (this.estatusseguimiento){
             case 1:
-                alertSegui = '<i class="fa fa-info-circle" style="font-size: 22px; color: red; margin-left: 20px;"></i>';
+                alertSegui = '<i class="fa fa-info-circle" style="font-size: 22px; color: red; margin-left: -100px;;"></i>';
                 break;
             case 2:
                 alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
@@ -130,7 +130,7 @@ function aprobarReembolso(num, est,id) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         //msjRespuesta(respuesta.msj);
-        $.notify(respuesta.msj);
+        $.notify(respuesta.msj, "success");
         listaBuzon(est);
     });
 }
@@ -496,7 +496,7 @@ function aprobarApoyo(num, est,id) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         //msjRespuesta(respuesta.msj);
-        $.notify(respuesta.msj);
+        $.notify(respuesta.msj, "success");
         listaBuzon(est);
     });
 }

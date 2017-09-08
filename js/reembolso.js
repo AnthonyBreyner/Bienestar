@@ -1,3 +1,10 @@
+class WReembolso{
+    constructor(){
+        this.id = "";
+        this.Apoyo = new Reembolso();
+        this.nombre = "";
+    }
+}
 $(function () {
     $("#rif").on("blur",function () {
         consultarRif();
@@ -296,13 +303,18 @@ function cargarDatos(){
         });
         reembolso.Concepto = conceptos;
 
-        var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
-        console.log(JSON.stringify(datos));
+       // var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
+
+        var wreembolso=new WReembolso();
+        wreembolso.id = militar.Persona.DatoBasico.cedula;
+        wreembolso.Reembolso = reembolso;
+        wreembolso.nombre = militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero;
+        console.log(JSON.stringify(wreembolso));
         var urlGuardar = Conn.URL + "wreembolso";
         var request2 = CargarAPI({
             sURL: urlGuardar,
             metodo: 'POST',
-            valores: datos,
+            valores: wreembolso,
         });
 
         request2.then(function(xhRequest) {
