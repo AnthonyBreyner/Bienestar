@@ -68,13 +68,22 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12">
                                         <label>Beneficiario:</label>
+                                        <select class="form-control" style="width: 100%" id="cmbclinica" required="required">
+                                            <option selected="selected" value="S"></option>
+                                            <option value="0" class="masto" >MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)</option>
+                                            <option value="1" class="masto">MASTOLOGÍA BILATERAL DIGITAL CON PROTESIS</option>
+                                            <option value="2" class="masto">MASTOLOGÍA UNILATERAL DIGITAL CON PROTESIS</option>
+                                        </select>
+                                    </div>
+                                    <!--div class="col-md-4 col-sm-12">
+                                        <label>Beneficiario:</label>
                                         <div class="btn-group-justified" role="group" aria-label="...">
                                             <div class="btn-group" style="width: 6%;" role="group">
                                                 <input class="form-control" id="rif" onblur="consultarRif()"
                                                        required="required" placeholder="RIF">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div-->
                                     <div class="col-md-4 col-sm-12">
                                         <label>Razón Social</label>
                                         <input class="form-control" id="razonsocial" readonly="true"

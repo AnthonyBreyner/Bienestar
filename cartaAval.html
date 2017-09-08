@@ -65,7 +65,7 @@
                 </td>
             </tr>
         </table>
-                <center><h3>CARTA AVAL</h3></center>
+                <center><h3>CARTA AVAL</h3></center><b id="lblnsolicitud"></b>
         <table>
             <td width="38%" class="">
                 <left>SEÑORES: <BR>
@@ -120,7 +120,18 @@
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
+    /** 
+    militar.Familiar.forEach( v => { 
+        if (v.Persona.DatoBasico.cedula == "13097317"){ 
+            $("#nombreafil").html(v.Persona.DatoBasico.nombreprimero); 
+        } 
+    });
     let pos = '';
+    let NumeroCodigo = '';
+
+    militar.CIS.ServicioMedico.Programa.CartaAval.forEach(v => { console.log(v.numero); });
+    **/
+    
     $(function () {
         numeral.locale('es-es');
         $.obtener = function (key) {
@@ -137,10 +148,13 @@
             }
         };
         var id = $.obtener("id");
+        NumeroCodigo = $.obtener("nm");
         pos = $.obtener("pos");
         console.log(id);
+       
         Buscar(id);
     });
+
 
     function imprimir() {
         $('#boton').html('');
@@ -217,12 +231,14 @@
         console.log(pos);
         var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
         console.log(carta);
-        $("#lblnsolicitud").text(carta.numero);
+       // console.log(nm);
+        $("#lblnsolicitud").text(NumeroCodigo);
         $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
         $("#lblbanco").text(carta.CuentaBancaria.institucion);
         $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
         $("#lbltipoc").text(carta.CuentaBancaria.tipo);
         $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+        // $("#numero").text(carta.)
         var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
 
         $.each(concep.Concepto, function () {
@@ -233,11 +249,13 @@
         nomafi = nombreparen.split("(");
 		nombrea = nomafi[0];
         motivo = this.descripcion;
+        //numero = nm;
         });
 
         $("#cedulaafil").html(cedulaa);
         $("#nombreafil").html(nombrea);
         $("#motivoafil").html(motivo);
+       // $("#numero").html(numero);
     }
 </script>
 </html>
