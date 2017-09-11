@@ -51,9 +51,9 @@ class Usuario{
         this.telefono = "";
         this.sistema = "";
         this.token = "";
-        this.rol = new Rol();
-        this.perfil = new Perfil();
-        this.firma = new Firma();
+        this.Roles = new Rol();
+        this.Perfil = new Perfil();
+        this.FirmaDigital = new Firma();
     }
 
     Obtener(){
