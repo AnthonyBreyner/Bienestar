@@ -1,15 +1,23 @@
+class WFedeVida {
+    constructor () {
+
+        this.id = "";
+        this.nombre = "";
+        this.direccion = new Direccion ();
+        this.Telefono = new Telefono();
+        this.Correo = new Correo(); 
+        this.idf = "";
+      
+         }
+
+
+}
+
+
 $(function () {
     console.log(militar);
-    //console.log("FE DE VIDA");
 
-    $("#concepto").select2();
-
-    $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnGenerar");
-    });
-
-
-    llenarApoyo();
+    llenarfe();
     $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
@@ -48,9 +56,9 @@ function habilitarDireccion(estatus){
     }
 }
 
-function llenarApoyo(){
+function llenarfe(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-   // $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+  
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         $("#cuerporeembolsos").html("");
@@ -205,11 +213,8 @@ function cargarFamiliar(pos){
 
 
 
-function generarPlanilla(){
-    var apoyo = new Apoyo();
-    
-
-
+function generarPlanillaFdV(){
+    var wfedevida = new WFedeVida();
     var dir = new Direccion();
     dir.tipo = 0;
     dir.estado = $("#cmbmestado option:selected").val();
@@ -222,42 +227,42 @@ function generarPlanilla(){
     var tele = new Telefono();
     tele.domiciliario = $("#txtmtelefono").val();
     tele.movil = $("#txtmcelular").val();
-    apoyo.Direccion = dir;
-    apoyo.Telefono.domiciliario = tele.domiciliario;
-    apoyo.Telefono.movil = tele.movil;
-
-    apoyo.Correo.principal = $("#txtmcorreo").val().toUpperCase();
+    
+    wfedevida.Direccion = dir;
+    wfedevida.Telefono.domiciliario = tele.domiciliario;
+    wfedevida.Telefono.movil = tele.movil;
+    wfedevida.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
    
 
-
-    
-    var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
-    $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-        var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-        console.log(militar);
-   
-   /* var urlGuardar = Conn.URL + "wcarta";
+    wfedevida.id = militar.Persona.DatoBasico.cedula;
+    wfedevida.nombre = militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero;
+    console.log(JSON.stringify(wfedevida));
+    var urlGuardar = Conn.URL + "wfedevida";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
-        valores: datos,
+        valores: wfedevida,
     });
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         msjRespuesta(respuesta.msj);
-        llenarApoyo();
+        llenarfe();
+    
 
         
     }
-    );*/
+    );
+     $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+     var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+        console.log(militar);
 }
 
 
