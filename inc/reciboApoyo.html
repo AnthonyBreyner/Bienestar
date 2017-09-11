@@ -108,7 +108,7 @@
            <tr>
                 <td colspan="4">
                     <table style="width: 100%">
-                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Presupuesto</th><th>Fecha Pres.</th><th>Tipo de Ayuda</th></tr></thead>
+                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>N° de Presupuesto</th><th>Fecha Pres.</th></tr></thead>
                         <tbody id="cuerpoconceptos">
 
                         </tbody>
@@ -229,7 +229,7 @@
                         <td class="bordeado">${obj.descripcion}</td>
                         <td class="bordeado">${obj.DatoFactura.numero}</td>
                         <td class="bordeado">${ffactura}</td>
-                        <td style="text-align: right" class="bordeado">${obj.patologia}</td></tr>`;
+                        </tr>`;
         });
         $("#cuerpoconceptos").html(fila);
     }
