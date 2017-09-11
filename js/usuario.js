@@ -1,11 +1,11 @@
-class Rol{
-    construct(){
+class Roles{
+    constructor(){
         this.descripcion = "";
     }
 }
 
 class Privilegios{
-    construct(){
+    constructor(){
         this.metodo = "";
         this.descripcion = "";
         this.accion = "";
@@ -13,7 +13,7 @@ class Privilegios{
 }
 
 class Menu{
-    construct(){
+    constructor(){
         this.url = "";
         this.js = "";
         this.icono = "";
@@ -23,7 +23,7 @@ class Menu{
 }
 
 class Perfil{
-    construct(){
+    constructor(){
         this.descripcion = "";
         this.privilegios = new Array();
         this.menu = new Array();
@@ -31,7 +31,7 @@ class Perfil{
 }
 
 class Firma{
-    construct(){
+    constructor(){
         this.direccionmac = "";
         this.direccionip = "";
         this.tiempo = "";
@@ -39,7 +39,7 @@ class Firma{
 }
 
 class Usuario{
-    construct(){
+    constructor(){
         this.cedula = "";
         this.nombre = "";
         this.login = "";
@@ -51,15 +51,15 @@ class Usuario{
         this.telefono = "";
         this.sistema = "";
         this.token = "";
-        this.rol = new Rol();
-        this.perfil = new Perfil();
-        this.firma = new Firma();
+        this.Roles = new Roles();
+        this.Perfil = new Perfil();
+        this.FirmaDigital = new Firma();
     }
 
     Obtener(){
        this.cedula = $("#cedula").val();
        this.nombre = $("#nombre").val();
-       this.usuario = $("#seudonimo").val();
+       this.login = $("#seudonimo").val();
        this.Roles.descripcion = $("#rolUsuario").val();
        this.Perfil.descripcion = $("#perfilUsuario").val();
        this.cargo = $("#cargo").val();
@@ -68,7 +68,20 @@ class Usuario{
        this.FirmaDigital.DireccionIP = $("#direccionIp").val();
        this.FirmaDigital.DireccionMAC = $("#direccionMac").val();
        this.direccion = $("#direccionUsuario").val();
-       this.fechacreacion = $("#fechaCreacion").val();
+      
+       return this;
+    }
+    Salvar(){
+      console.log(JSON.stringify(this.Obtener()));
+      var requestE = CargarAPI({
+          sURL: Conn.URL + "wusuario/crud",
+          metodo: 'POST',
+          valores: this.Obtener(),
+      });
+      requestE.then(function(xhRequest) {
+        console.log("Obteniendo Datos...");
+        console.log(xhRequest);
+      });
     }
 }
 
@@ -90,6 +103,14 @@ $(function () {
      $("#cmbUsuario").select2();
 });
 
+
+function Salvar(){
+  var usuario = new Usuario();
+  console.log("Enviando datos para salvar usuario");
+  usuario.Salvar();
+  console.log("Usuario Salvado!!!");
+
+}
 function llenarLista(){
     $("#cmbListadoUsuario").html("");
     $.each(listaUsuario,function(){

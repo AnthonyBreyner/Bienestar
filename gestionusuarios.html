@@ -21,72 +21,33 @@
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
+
+     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+
+    <script src="bower_components/notify/notify.min.js"></script>
+
+    <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- InputMask -->
+    <script src="plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+
+    <script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
+    <script src="js/utilidad.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/usuario.js"></script>
 </head>
 
-<style type="text/css">
-    .row-centered {
-        text-align: center;
-    }
-
-    .col-centered {
-        display: inline-block;
-        float: none;
-        text-align: left;
-        margin-right: -4px;
-    }
-
-    td {
-        font-size: 12px;
-        font-weight: normal;
-    }
-
-    input {
-        text-transform: uppercase;
-    }
-
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
-    }
-
-    .logo1 {
-        -webkit-transition: width .3s ease-in-out;
-        -o-transition: width .3s ease-in-out;
-        transition: width .3s ease-in-out;
-        display: block;
-        float: left;
-        height: 50px;
-        font-size: 16px;
-        line-height: 50px;
-        text-align: center;
-        width: 580px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        padding: 0 15px;
-        font-weight: 300;
-        overflow: hidden;
-    }
-
-    .detfactconcep {
-        display: none;
-    }
-
-</style>
 <body class="hold-transition skin-yellow">
 <header class="header" style="background-color:#3c8dbc">
     <div class="row">
@@ -247,6 +208,7 @@
                                              <option value="">Presidencia</option>
                                              <option value="">VicePresidencia</option>
                                              <option value="">Secretaria General</option>
+                                             <option value="">Afiliacion</option>
                                              <option value="">Bienestar Social</option>
                                              <option value="">Drogueria y Farmacia</option>
                                              <option value="">Crédito</option>
@@ -409,7 +371,7 @@
                                     <div class="row">
                                         <div class="col-xs-12 col-md-12">
                                              <div class="pull-right">
-                                             <button type="button" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar o actualizar
+                                             <button type="button" class="btn btn-success" onclick= "Salvar()"><i class="fa fa-plus"></i>&nbsp;Agregar o actualizar
                                              </button>
                                              </div>
                                         </div>
@@ -565,29 +527,6 @@
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 3 -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap 3.3.7 -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- AdminLTE App -->
-
-    <script src="bower_components/notify/notify.min.js"></script>
-
-    <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <!-- InputMask -->
-    <script src="plugins/input-mask/jquery.inputmask.js"></script>
-    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-    <script src="bower_components/moment/min/moment.min.js"></script>
-    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-    <script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
-
-    <script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
-    <script src="dist/js/adminlte.min.js"></script>
-    <script src="js/utilidad.js"></script>
-    <script src="js/config.js"></script>
-    <script src="js/usuario.js"></script>
+   
 </body>
 </html>
