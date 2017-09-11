@@ -79,6 +79,7 @@ class Usuario{
           valores: this.Obtener(),
       });
       requestE.then(function(xhRequest) {
+        console.log("Obteniendo Datos...");
         console.log(xhRequest);
       });
     }
