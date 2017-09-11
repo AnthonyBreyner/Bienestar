@@ -58,28 +58,31 @@
         <table border="0">
             <tr>                                         
                 <td style="width: 38%"><img src="images/lg.png" style="float: left">
-                    <left><p style="font-size: 10px"> REPUBLICA BOLIVARIANA DE VENEZUELA <br> MINISTERIO DEL PODER
-                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
-                    INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
-                    GERECIA DE BIENESTAR Y SEGURIDAD</p></left>
+                    <left><p style="font-size: 10px"> 
+                        REPUBLICA BOLIVARIANA DE VENEZUELA <br> 
+                        MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<br>
+                        VICEMINISTERIO DE SERVICIOS<br>
+                        DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
+                        INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                        GERECIA DE BIENESTAR Y SEGURIDAD</p>
+                    </left>
                 </td>
             </tr>
         </table>
-                <center><h3>CARTA AVAL</h3></center><b id="lblnsolicitud"></b>
+            <center><h3>CARTA AVAL</h3></center>
+            <left><b id="lblnsolicitud"></b></left>
         <table>
             <td width="38%" class="">
-                <left>SEÑORES: <BR>
-                    CENTRO CLINICO DE MATERNIDAD<BR>
-                    LEOPOLDO AGUERREVERE<BR>
-                    UNIDAD MASTOLOGIA<BR><BR><BR>
+                <left>SEÑORES: <b id="lblnombrec"></b><BR>
+                    RIF: <b id="lblrifclinica"></b><BR>
                 </left></td>
         </table>
         <table width="70%" class="justificar">                              
             <td>
                 <p class="sangria">
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto, quien a su vez es miembro de la Fuerza Armada Nacional Bolivariana.</p>
                 <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="motivoafil"></b> la suma de <b id="lblmontot"></b>(MONTO CARGADO EN LETRAS Y CIFRA) que representa un 70% del costo total del exámen y el(la) afiliado(a) el 30% restante.</p>
+                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="lblmotivo"></b>-<b id="lbldiagnostico"></b><b id="lblconcepto"></b>  la suma de <b id="lblmontot"></b>.</p>
                 <p class="sangria">
                 Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
             </td>
@@ -150,8 +153,7 @@
         var id = $.obtener("id");
         NumeroCodigo = $.obtener("nm");
         pos = $.obtener("pos");
-        console.log(id);
-       
+        
         Buscar(id);
     });
 
@@ -163,7 +165,6 @@
     }
 
     function Buscar(id) {
-        console.log(militar);
         if (id != undefined) {
             $("#_cedula").val(id);
         }
@@ -183,7 +184,6 @@
 
             militar = JSON.parse(xhRequest.responseText);
             llenar(id);
-
         });
 
      }
@@ -238,7 +238,6 @@
         $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
         $("#lbltipoc").text(carta.CuentaBancaria.tipo);
         $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
-        // $("#numero").text(carta.)
         var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
 
         $.each(concep.Concepto, function () {
@@ -249,13 +248,22 @@
         nomafi = nombreparen.split("(");
 		nombrea = nomafi[0];
         motivo = this.descripcion;
-        //numero = nm;
+        rifclinica = this.DatoFactura.Beneficiario.rif;
+        nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
+        razonc = this.motivo;
+        conceptoc= this.descripcion;
+        diagnosticoc = this.diagnostico;
+        //console.log(nombreclinica);
         });
 
         $("#cedulaafil").html(cedulaa);
         $("#nombreafil").html(nombrea);
         $("#motivoafil").html(motivo);
-       // $("#numero").html(numero);
+        $("#lblrifclinica").html(rifclinica);
+        $("#lblnombrec").html(nombreclinica);
+        $("#lblmotivo").html(razonc);
+        $("#lblconcepto").html(conceptoc);
+        $("#lbldiagnostico").html(diagnosticoc);
     }
 </script>
 </html>
