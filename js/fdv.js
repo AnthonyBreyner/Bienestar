@@ -1,20 +1,31 @@
+class WFedeVida {
+    constructor () {
+
+        this.id = "";
+        this.nombre = "";
+        this.Direccion = new Direccion();
+        this.Telefono = new Telefono();
+        this.Correo = new Correo(); 
+        this.idf = "";
+        this.direccionex = "";
+        this.residenciadoex = "";
+        this.fechaex = "";
+      
+         }
+
+
+}
+
+
 $(function () {
-    console.log(militar);
-    //console.log("FE DE VIDA");
-
-    $("#concepto").select2();
-
-    $(".mdl-requisitos").on("change",function () {
-        verificaCheckModal("requisitos","btnGenerar");
-    });
-
-
-    llenarApoyo();
+    llenarfe();
     $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
+
+
     });
 });
 
@@ -48,9 +59,9 @@ function habilitarDireccion(estatus){
     }
 }
 
-function llenarApoyo(){
+function llenarfe(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-   // $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+  
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         $("#cuerporeembolsos").html("");
@@ -114,13 +125,15 @@ function llenarApoyo(){
 
 
 function crearLista(){
-    $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
-    var ncompleto = militar.Persona.DatoBasico.nombreprimero+ " " + militar.Persona.DatoBasico.apellidoprimero;
+    var nprimero = militar.Persona.DatoBasico.nombreprimero.trim();
+    var aprimero = militar.Persona.DatoBasico.apellidoprimero.trim();
+    $("#cmbbeneficiario").append(new Option(nprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
+    var ncompleto = nprimero+ " " + aprimero;
     $("#depositar").append(new Option(ncompleto,militar.Persona.DatoBasico.cedula , true, true));
     if(militar.Familiar.length > 0){
         $.each(militar.Familiar,function(v){
             var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(this.Persona.DatoBasico.fechanacimiento));
-            var ncompleto2 = this.Persona.DatoBasico.nombreprimero+ " " + this.Persona.DatoBasico.apellidoprimero;
+            var ncompleto2 = this.Persona.DatoBasico.nombreprimero.trim()+ " " + this.Persona.DatoBasico.apellidoprimero.trim();
             if(edad > 18){
 
                 $("#depositar").append(new Option(ncompleto2, this.Persona.DatoBasico.cedula, true, true));
@@ -150,9 +163,7 @@ function crearLista(){
 
 
 function cargarFamiliar(pos){
-    console.log(pos);
-
-    if(pos == "T"){
+        if(pos == "T"){
         if (militar.Persona.Telefono != undefined) {
             $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
             $("#txtmcelular").val(militar.Persona.Telefono.movil);
@@ -175,7 +186,6 @@ function cargarFamiliar(pos){
     }
     $("#perfilFamiliar").show();
     var fami = militar.Familiar[pos];
-    console.log(fami);
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
     var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
     $("#lblnombref").text(ncf);
@@ -205,11 +215,8 @@ function cargarFamiliar(pos){
 
 
 
-function generarPlanillaFDV(){
-    var apoyo = new Apoyo();
-    
-
-
+function generarPlanillaFdV(){
+    var wfedevida = new WFedeVida();
     var dir = new Direccion();
     dir.tipo = 0;
     dir.estado = $("#cmbmestado option:selected").val();
@@ -222,42 +229,67 @@ function generarPlanillaFDV(){
     var tele = new Telefono();
     tele.domiciliario = $("#txtmtelefono").val();
     tele.movil = $("#txtmcelular").val();
-    apoyo.Direccion = dir;
-    apoyo.Telefono.domiciliario = tele.domiciliario;
-    apoyo.Telefono.movil = tele.movil;
-
-    apoyo.Correo.principal = $("#txtmcorreo").val().toUpperCase();
+    
+    wfedevida.Direccion = dir;
+    wfedevida.Telefono.domiciliario = tele.domiciliario;
+    wfedevida.Telefono.movil = tele.movil;
+    wfedevida.Correo.principal = $("#txtmcorreo").val().toUpperCase();
 
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
    
+    wfedevida.id = militar.Persona.DatoBasico.cedula;
+    wfedevida.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+" "+militar.Persona.DatoBasico.apellidoprimero.trim();
+    wfedevida.direccionex = $("#txtdireccionex").val();
+    wfedevida.fechaex = new Date(Util.ConvertirFechaUnix($("#txtfechaex").val())).toISOString();
+    wfedevida.idf = bene[1];
+    wfedevida.afiliado = beneficiario;
 
-
-    
-    var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
-    $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-        var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-        console.log(militar);
-   
-   /* var urlGuardar = Conn.URL + "wcarta";
+    console.log(JSON.stringify(wfedevida));
+    var urlGuardar = Conn.URL + "wfedevida";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
-        valores: datos,
+        valores: wfedevida,
     });
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         msjRespuesta(respuesta.msj);
-        llenarApoyo();
+        llenarfe();
+    
 
         
     }
-    );*/
+    );
+    
+
+
+     $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+     var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+
 }
 
+function obtenerResidencia() {
+    var motivo = $("#cmbresidencia option:selected").val();
+    switch (motivo){
+        case "0": //SI
+            $("#direccionextranjero").hide();
+            $("#txtfechaex").attr("disabled",true);
+            $("#direccionactual").attr("disabled",true);
+           
+        break;
+        case "1": //NO
+            $("#direccionextranjero").attr("disabled",true);
+            $("#txtfechaex").attr("disabled",false);
+            $("#direccionextranjero").show();
+             $("#direccionactual").attr("disabled",false);
 
+            
+        break;
+    }
+}

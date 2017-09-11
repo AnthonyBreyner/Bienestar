@@ -1,3 +1,15 @@
+<script>
+    $('#txtfechaex').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+
+</script>
+
+<script src = "js/fdv.js" ></script>
+
 <div class="body box">
     <div class="container-fluid">
         <div class="row">
@@ -16,16 +28,52 @@
                         <div class="panel-body">
                             <form id="frmcartaaval" action="#" method="post">
                                 <div class="row">
-                                    <div class="col-md-6 ">
+                                    <div class="col-md-5 ">
                                         <label>Afiliado:</label>
                                         <select class="form-control" style="width: 100%" id="cmbbeneficiario"
                                                 required="required">
                                             <option selected="selected" value="S"></option>
                                         </select>
                                     </div>
+
+                                    <div class="col-md-4 ">
+                                        <label>¿Residenciado en Venezuela?:</label>
+                                                <select class="form-control" style="width: 100%" id="cmbresidencia" onchange="obtenerResidencia()">
+                                                <option selected="selected" value="S"></option>
+                                                <option value="0">SI</option>
+                                                <option value="1">NO</option>
+                                    
+                                </select>
+                             
+                                    </div>
+
+                                <div class="col-md-3 ">
+                                        <label>Fecha de Emisión:</label>
+                                     <div class="input-group date" style="z-index: 1030;">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <div class="input-group input-group" style="width: 100%;">
+                                                <input type="text" class="form-control" id="txtfechaex"
+                                                       required="required">
+                                            </div>
+                                        </div>
                                 </div>
+
+                                </div>
+
+                                 <div class="row" id="direccionextranjero" style="display: none;">
+                                    <div class="col-md-12 ">
+                                       <label>Direccion:</label>
+                                       <textarea class="form-control" rows="3" placeholder="Dirección" id="txtdireccionex"></textarea>
+                                </div>
+                                </div>
+
+
+
                                  </br>
-                                <div class="panel panel-default">
+
+                                <div class="panel panel-default" id="direccionactual">
                                     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                                        href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
                                         <div class="panel-heading bg-blue" role="tab" id="headingTree">
@@ -138,7 +186,7 @@
                     color: white;"><i class="fa fa-4x fa-arrow-left"></i>Volver</a>
 
                                         <a type="button" id="btnGenerar" class="btn btn-app btn-success pull-right" style="margin-right: 10px;background-color: #337ab7;
-color: white;" onclick="generarPlanilla()">
+color: white;" onclick="generarPlanillaFdV()">
                         <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR PLANILLA
                     </a>
                                         <br><br>
@@ -154,19 +202,5 @@ color: white;" onclick="generarPlanilla()">
         </div>
     </div>
 </div>
-<script src = "js/fdv.js" ></script>
- <script type="text/javascript">
-    $('#fechafe').datepicker({
-        autoclose: true,
-        format: "dd/mm/yyyy",
-        language: 'es',
-        endDate: "+0d",
-           changeDate: function () {
-           validaFechaFe(30)
-        }
-    }).on("changeDate", function (e) {
-        validaFechaFe(60);
-    });
-    $('[data-mask]').inputmask();
-</script>
+
 
