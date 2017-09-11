@@ -72,7 +72,7 @@ class WCarta{
     constructor(){
         this.id = "";
         this.Carta = new Carta();
-        this.nombre = "";    
+        this.nombre = "";
     }
 }
 
@@ -243,7 +243,7 @@ function crearLista(){
     $("#cmbbeneficiario").append(new Option("Seleccione","|seleccione", true, true));
     $("#depositar").append(new Option("Seleccione","", true, true));
 
-  /*  $("#cmbbeneficiario").on("change",function(){
+    $("#cmbbeneficiario").on("change",function(){
         var opt = $("#cmbbeneficiario option:selected").val();
         var picado = $("#cmbbeneficiario option:selected").val().split("|");
         if(opt != '|seleccione' && picado[0]!="T"){
@@ -252,7 +252,7 @@ function crearLista(){
         }else{
             $("#perfilFamiliar").hide();
         }
-    });*/
+    });
 
     $("#cmbbeneficiario").select2({
         templateResult: formatoCombo
@@ -316,23 +316,26 @@ function cargarDatos(){
 
     aval.Concepto = conceptos;
 
-    var datos = new WCarta();
+    var wcarta = new WCarta();
 
-    datos.id = militar.Persona.DatoBasico.cedula;
-    datos.Carta = aval;
-    datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
+    wcarta.id = militar.Persona.DatoBasico.cedula;
+    wcarta.Carta = aval;
+    wcarta.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
 
 
-    console.log(JSON.stringify(datos));
+    console.log(JSON.stringify(wcarta));
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
-        valores: datos,
+        valores: wcarta,
     });
     request2.then(function(xhRequest) {
-        var ventana = window.open("cartaAval.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-        window.closed();
+        res = JSON.parse(xhRequest.responseText);
+        //console.log(res.msj);
+        var idm = militar.Persona.DatoBasico.cedula;
+        var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
+        //window.closed();
     });
 
 
@@ -369,7 +372,7 @@ function obtenerEstudio(){
     var motivo = $("#cmbmotivo option:selected").val();
     $("#cmbestudio").val("S");
     switch (motivo){
-        case "S": 
+        case "S":
             $("#cmbestudio").attr("disabled",true);
             $(".estudio").hide();
             $(".diagnostico").hide();
@@ -403,61 +406,6 @@ function cargaRif(){
     $("#empcuenta").val(picado[1]);
     $("#empbanco").val(picado[2]);
     $("#emptipoc").val(picado[3]);
-}
-
-
-function cargarFamiliar(pos){
-    console.log(pos);
-
-    if(pos == "T"){
-        if (militar.Persona.Telefono != undefined) {
-            $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
-            $("#txtmcelular").val(militar.Persona.Telefono.movil);
-            $("#txtmcorreo").val(militar.Persona.Correo.principal);
-        }
-
-        if (militar.Persona.Direccion != undefined) {
-            var DIR = militar.Persona.Direccion[0];
-            Estados.ObtenerEstados();
-            $("#cmbmestado").val(DIR.estado);
-            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
-            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
-            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
-            $("#txtmcalle").val(DIR.calleavenida);
-            $("#txtmcasa").val(DIR.casa);
-            $("#txtmapto").val(DIR.apartamento);
-        }
-        $("#perfilFamiliar").hide();
-        return true;
-    }
-    $("#perfilFamiliar").show();
-    var fami = militar.Familiar[pos];
-    console.log(fami);
-    $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
-    var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
-    $("#lblnombref").text(ncf);
-    var parente = Util.ConvertirParentesco(fami.parentesco,fami.Persona.DatoBasico.sexo)
-    $("#lblparentesco").text(parente);
-    var fnac = Util.ConvertirFechaHumana(fami.Persona.DatoBasico.fechanacimiento);
-    $("#lblfnac").text(fnac);
-
-    if (fami.Persona.Telefono != undefined) {
-        $("#txtmtelefono").val(fami.Persona.Telefono.domiciliario);
-        $("#txtmcelular").val(fami.Persona.Telefono.movil);
-        $("#txtmcorreo").val(fami.Persona.Correo.principal);
-    }
-    Estados.ObtenerEstados();
-    if (fami.Persona.Direccion != undefined) {
-        var DIR = fami.Persona.Direccion[0];
-
-        $("#cmbmestado").val(DIR.estado);
-        $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
-        $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
-        $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
-        $("#txtmcalle").val(DIR.calleavenida);
-        $("#txtmcasa").val(DIR.casa);
-        $("#txtmapto").val(DIR.apartamento);
-    }
 }
 
 function calcularSolicitado(){

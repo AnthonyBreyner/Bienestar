@@ -78,7 +78,7 @@
                 </td>
 
                 <td class="textoCenter" rowspan="2">
-                    <h3>COMPROBANTE DE SOLICITUD DE APOYO<br> ECONÓMICO</h3>
+                    <h3>COMPROBANTE DE SOLICITUD <br>DE APOYO ECONÓMICO</h3>
                 </td>
                 <td class="biz bde btop bajo" style="width: 25%">
                     N° DE SOLITUD: <b id="lblnsolicitud"></b><br><br>
@@ -96,21 +96,22 @@
                     CEDULA DE IDENTIDAD DEL AFILIADO:
                     <br><h3><b id="lblcedula"></b></h3>
                 </td>
-                <td style="width:70%;" colspan="3" class="bde btop">APELLIDOS Y NOMBRES DEL AFILIADO:
-                    <br><h3><b id="lblnombre"></h3></b>
+                <td style="width:70%;" colspan="3" class="bde btop bajo">APELLIDOS Y NOMBRES DEL AFILIADO:
+                    <br><h3><b id="lblnombre"></b></h3>
                 </td>
             </tr>
 
 
 
             <tr class="texto12 biz bde bajo btop" >
-                <td >CONCEPTOS:</td>
-            </tr>
-            <tr>
+                <td >APOYO:</td>
+           <tr>
                 <td colspan="4">
                     <table style="width: 100%">
-                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Factura</th><th>Fecha Fac.</th><th>Solicitado</th></tr></thead>
-                        <tbody id="cuerpoconceptos"></tbody>
+                        <thead><tr><th>Parent.</th><th>Cedula</th><th>Nombre</th><th>Concepto</th><th>Presupuesto</th><th>Fecha Pres.</th><th>Tipo de Ayuda</th></tr></thead>
+                        <tbody id="cuerpoconceptos">
+
+                        </tbody>
                     </table>
                 </td>
             </tr>
@@ -155,12 +156,10 @@
         };
         var id = $.obtener("id");
         pos = $.obtener("pos");
-        console.log(id);
         Buscar(id);
     });
 
     function Buscar(id) {
-        console.log(militar);
         if (id != undefined) {
             $("#_cedula").val(id);
         }
@@ -181,10 +180,6 @@
             llenar(id);
 
         });
-
-
-        //CargarAPI(url, "GET", "", militar);
-
 
     }
 
@@ -207,24 +202,34 @@
 
     function crearLista() {
         if(pos == null){
-            pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
+            pos=militar.CIS.ServicioMedico.Programa.Apoyo.length;
             pos--;
         }
-        console.log(pos);
 
-        var reem = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-        $("#lblnsolicitud").text(reem.numero);
-        $("#lblfecha").text(Util.ConvertirFechaHumana(reem.fechacreacion));
-
-        var concep = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+        var apoy = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
+        $("#lblnsolicitud").text(apoy.numero);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(apoy.fechacreacion));
+        var concep = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
         var fila ="";
-        $.each(concep.Concepto,function () {
-            var bene = this.afiliado.split("-");
+
+
+        concep.Concepto.forEach(obj => {
+            var bene = obj.afiliado.split("-");
             var paren = bene[1].split("(");
             var tam = paren[1].length;
-            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-            fila+= "<tr class='filaconcep'><td class='bordeado'>"+paren[1].substring(0,(tam-1))+"</td><td class='bordeado'>"+bene[0]+"</td><td class='bordeado'>"+paren[0]+"</td>" +
-                "<td class='bordeado'>"+this.descripcion+"</td><td class='bordeado'>"+this.DatoFactura.numero+"</td><td class='bordeado'>"+Util.ConvertirFechaHumana(this.DatoFactura.fecha)+"</td><td style=\"text-align: right\" class='bordeado'>"+mntformato+"</td></tr>";
+            var cedula = bene[0];
+            var nombre = paren[0];
+            var mntformato = numeral(parseFloat(obj.DatoFactura.monto)).format('0,0.00');
+            var parentesco = paren[1].substring(0,(tam-1));
+            var ffactura = Util.ConvertirFechaHumana(obj.DatoFactura.fecha);
+            fila += `<tr class="filaconcep">
+                        <td class="bordeado">${parentesco }</td>
+                        <td class="bordeado">${cedula}</td>
+                        <td class="bordeado">${nombre}</td>
+                        <td class="bordeado">${obj.descripcion}</td>
+                        <td class="bordeado">${obj.DatoFactura.numero}</td>
+                        <td class="bordeado">${ffactura}</td>
+                        <td style="text-align: right" class="bordeado">${obj.patologia}</td></tr>`;
         });
         $("#cuerpoconceptos").html(fila);
     }

@@ -55,7 +55,7 @@ function conviertEstatus(est){
         case 1:estatus = "Pendiente";break;
         case 2:estatus = "En jefatura";break;
         case 3:estatus = "En gerencia";break;
-        case 4:estatus = "En presidencia";break;
+        case 4:estatus = "Aprobado";break;
         case 5:estatus = "Aprobado";break;
     }
     return estatus;
@@ -78,7 +78,7 @@ function crearBuzon(est) {
         var alertSegui = "";
         switch (this.estatusseguimiento){
             case 1:
-                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                alertSegui = '<i class="fa fa-info-circle" style="font-size: 22px; color: red; margin-left: -100px;;"></i>';
                 break;
             case 2:
                 alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
@@ -92,8 +92,8 @@ function crearBuzon(est) {
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Procesar</i>\n' +
-            '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')">Rechazar</i>\n' +
+            '                    <i class="fa  fa-check" title="PROCESAR" style="color: green; font-size: 20px" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa fa-trash" title="RECHAZAR" style="font-size: 20px" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </li>';
@@ -130,7 +130,7 @@ function aprobarReembolso(num, est,id) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         //msjRespuesta(respuesta.msj);
-        $.notify(respuesta.msj);
+        $.notify(respuesta.msj, "success");
         listaBuzon(est);
     });
 }
@@ -226,6 +226,7 @@ function crearTablaConceptos(numero,est) {
         var picar = this.afiliado.split("-");
         var picar2 = picar[1].split("(");
         var tam = picar2[1].length;
+        if(est)
         fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
             '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactReembolso" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
             '                                <td><input type="text" onblur="calcularPorcen(this,\'r\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.DatoFactura.monto + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
@@ -495,7 +496,7 @@ function aprobarApoyo(num, est,id) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         //msjRespuesta(respuesta.msj);
-        $.notify(respuesta.msj);
+        $.notify(respuesta.msj, "success");
         listaBuzon(est);
     });
 }
@@ -536,7 +537,7 @@ function crearBuzonApoyo(est){
         var alertSegui = "";
         switch (this.estatusseguimiento){
             case 1:
-                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i>Pendientes</small>';
+                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i></small>';
                 break;
             case 2:
                 alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
@@ -550,7 +551,7 @@ function crearBuzonApoyo(est){
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                    <i class="fa fa-trash-o" onclick="verificarRechazoApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +
@@ -765,7 +766,7 @@ function crearBuzonCarta(est) {
             '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
             '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
             '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa fa-check" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
+            '                    <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                    <i class="fa fa-trash-o" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
             '                </div>\n' +
             '            </div>\n' +

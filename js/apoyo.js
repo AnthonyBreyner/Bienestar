@@ -1,3 +1,10 @@
+class WApoyo{
+    constructor(){
+        this.id = "";
+        this.Apoyo = new Apoyo();
+        this.nombre = "";
+    }
+}
 $(function () {
     console.log(militar);
 
@@ -278,9 +285,11 @@ function generarPlanilla(){
     var conceptos = new Array();
 
     var concep = new ConceptoApoyo();
+
     var facturaD = new Factura();
     facturaD.fecha = new Date(Util.ConvertirFechaUnix($("#fechafactura").val())).toISOString();
     facturaD.monto = parseFloat($("#montofactura").val());
+    facturaD.montootroaporte=parseFloat($("#montootroaporte").val());
     facturaD.numero = $("#numerofactura").val();
     facturaD.control = $("#numerofactura").val();
     var prov = new Beneficiario();
@@ -301,13 +310,17 @@ function generarPlanilla(){
     conceptos.push(concep);
     apoyo.tipo = parseInt($("#cmbtipoayuda option:selected").val());
     apoyo.Concepto = conceptos;
-    var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
-    console.log(JSON.stringify(datos));
-    var urlGuardar = Conn.URL + "wreembolso";
+    //var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
+    var wapoyo = new WApoyo();
+    wapoyo.id = militar.Persona.DatoBasico.cedula;
+    wapoyo.Apoyo = apoyo;
+    wapoyo.nombre = militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero;
+    console.log(JSON.stringify(wapoyo));
+    var urlGuardar = Conn.URL + "wapoyo";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
-        valores: datos,
+        valores: wapoyo,
     });
 
     request2.then(function(xhRequest) {

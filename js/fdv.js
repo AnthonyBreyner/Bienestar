@@ -13,7 +13,6 @@ class WFedeVida {
 
 }
 
-
 $(function () {
     console.log(militar);
 

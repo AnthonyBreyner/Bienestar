@@ -40,7 +40,7 @@ class Conexion{
 }
 
 function CargarAPI(options){
-    console.log(options.sURL);
+    //console.log(options.sURL);
     var xhttp = new XMLHttpRequest();
     xhttp.open(options.metodo, options.sURL);
     //n Authorization", "Bearer " + sessionStorage.getItem('ipsfaToken'));
@@ -55,7 +55,7 @@ function CargarAPI(options){
         });
 
         xhttp.addEventListener('error', function() {
-            console.log(xhttp.responseText);
+            //console.log(xhttp.responseText);
             //respuesta = JSON.parse(xhttp.responseText);
             if (respuesta.tipo != 0){
                 $.notify("Se ha Insertado correctamente", "success");
