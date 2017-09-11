@@ -59,7 +59,7 @@ class Usuario{
     Obtener(){
        this.cedula = $("#cedula").val();
        this.nombre = $("#nombre").val();
-       this.usuario = $("#seudonimo").val();
+       this.login = $("#seudonimo").val();
        this.Roles.descripcion = $("#rolUsuario").val();
        this.Perfil.descripcion = $("#perfilUsuario").val();
        this.cargo = $("#cargo").val();
@@ -68,7 +68,7 @@ class Usuario{
        this.FirmaDigital.DireccionIP = $("#direccionIp").val();
        this.FirmaDigital.DireccionMAC = $("#direccionMac").val();
        this.direccion = $("#direccionUsuario").val();
-       this.fechacreacion = $("#fechaCreacion").val();
+      
        return this;
     }
     Salvar(){
