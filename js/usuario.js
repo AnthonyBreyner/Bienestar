@@ -1,11 +1,11 @@
-class Rol{
-    construct(){
+class Roles{
+    constructor(){
         this.descripcion = "";
     }
 }
 
 class Privilegios{
-    construct(){
+    constructor(){
         this.metodo = "";
         this.descripcion = "";
         this.accion = "";
@@ -13,7 +13,7 @@ class Privilegios{
 }
 
 class Menu{
-    construct(){
+    constructor(){
         this.url = "";
         this.js = "";
         this.icono = "";
@@ -23,7 +23,7 @@ class Menu{
 }
 
 class Perfil{
-    construct(){
+    constructor(){
         this.descripcion = "";
         this.privilegios = new Array();
         this.menu = new Array();
@@ -31,7 +31,7 @@ class Perfil{
 }
 
 class Firma{
-    construct(){
+    constructor(){
         this.direccionmac = "";
         this.direccionip = "";
         this.tiempo = "";
@@ -39,7 +39,7 @@ class Firma{
 }
 
 class Usuario{
-    construct(){
+    constructor(){
         this.cedula = "";
         this.nombre = "";
         this.login = "";
@@ -51,7 +51,7 @@ class Usuario{
         this.telefono = "";
         this.sistema = "";
         this.token = "";
-        this.Roles = new Rol();
+        this.Roles = new Roles();
         this.Perfil = new Perfil();
         this.FirmaDigital = new Firma();
     }
