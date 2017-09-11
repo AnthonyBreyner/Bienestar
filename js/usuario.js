@@ -72,7 +72,7 @@ class Usuario{
        return this;
     }
     Salvar(){
-      console.log(this.Obtener());
+      console.log(JSON.stringify(this.Obtener()));
       var requestE = CargarAPI({
           sURL: Conn.URL + "wusuario/crud",
           metodo: 'POST',
