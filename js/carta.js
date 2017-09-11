@@ -1,6 +1,4 @@
 $(function () {
-    console.log("CARTA AVAL");
-    console.log(militar);
 
     $("#btnvolverlista").click(function(){
         $("#tblcarta").slideDown();
@@ -20,7 +18,7 @@ $(function () {
     $(".mdl-requisitos").on("change",function () {
         verificaCheckModal("requisitosmastologia","btnAgconcepto");
     });
-
+    
     llenarCarta();
         $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
@@ -46,7 +44,6 @@ class ConceptoCarta{
         this.DatoFactura = new Factura2();
         this.afiliado = '';
         this.requisito = new Array();
-
     }
 }
 
@@ -76,25 +73,6 @@ class WCarta{
     }
 }
 
-
-
-
-function consultarRif(){
-    var rif = $("#rif").val();
-    var rz = '';
-    var encontrado = 0;
-    $.each(lstProveedores,function () {
-        if(this.rif == rif){
-            rz= this.razonsocial;
-            encontrado = 1;
-        }
-    });
-    if(encontrado == 1){
-        $("#razonsocial").val(rz);
-    }else{
-        $("#mdlEmpresa").modal("show");
-    }
-}
 function salvarEmpresa(){
     var rifn = $("#rifnuevo").val();
     var rznuevo = $("#rsocialnuevo").val();
@@ -137,7 +115,10 @@ function cargarFamiliar(pos){
         $("#perfilFamiliar").hide();
         return true;
     }
+    $("#perfilMilitar").hide();
+
     $("#perfilFamiliar").show();
+    
     var fami = militar.Familiar[pos];
     console.log(fami);
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
@@ -170,7 +151,7 @@ function cargarFamiliar(pos){
 
 function llenarCarta(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-
+cmbclinica
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
@@ -259,16 +240,15 @@ function crearLista(){
     });
 }
 
-function cargarDatos(){
+function generarCarta(){
     var aval = new Carta();
-    aval.montosolicitado = parseFloat($("#montopresupuesto").val())
-
+    aval.montosolicitado = parseFloat($("#montosolicitado").val())
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#empcuenta").val();
     cuenta.institucion = $("#empbanco").val();
     cuenta.tipo = $("#emptipoc").val();
-    cuenta.cedula = $("#rif").val();
-    cuenta.titular =$("#cmbProveedor option:selected").text();
+    cuenta.cedula = $("#rifclinica").val();
+    cuenta.titular =$("#cmbclinica option:selected").text();
     aval.cuentabancaria = cuenta;
 
     var dir = new Direccion();
@@ -298,8 +278,8 @@ function cargarDatos(){
     var facturaD = new Factura2();
 
     var prov = new Beneficiario();
-    prov.rif = $("#rif").val();
-    prov.razonsocial = $("#cmbProveedor option:selected").text();
+    prov.rif = $("#rifclinica").val();
+    prov.razonsocial = $("#cmbclinica option:selected").text();
     prov.tipoempresa = "J";
     prov.direccion = "";
 
@@ -332,13 +312,9 @@ function cargarDatos(){
     });
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
-        //console.log(res.msj);
         var idm = militar.Persona.DatoBasico.cedula;
         var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
-        //window.closed();
     });
-
-
 }
 
 function habilitarDireccion(estatus){
@@ -392,20 +368,30 @@ function obtenerEstudio(){
             $(".estudio").hide();
             break;
     }
-     var modal = $("#cmbmotivo option:selected").attr("desplegar");
+    var modal = $("#cmbmotivo option:selected").attr("desplegar");
     inactivarCheck(modal);
     $("#"+modal).modal("show");
 }
 
-
-
-function cargaRif(){
-    var rif = $("#cmbProveedor option:selected").val();
-    var picado = rif.split("|");
-    $("#txtrifbeneficiario").val(picado[0]);
-    $("#empcuenta").val(picado[1]);
-    $("#empbanco").val(picado[2]);
-    $("#emptipoc").val(picado[3]);
+function rifProveedor(){
+    var rif = $("#cmbclinica option:selected").val();
+    switch (rif){
+        case "S":
+            $("#rifclinica").val("");
+            break;
+        case "0":
+            $("#rifclinica").val("J-00213125-0");
+            break;
+        case "1":
+            $("#rifclinica").val("J-31043293-7");
+            break;
+        case "2":
+            $("#rifclinica").val("J-00025083-9");
+            break;
+    }
+    $("#empcuenta").val("");
+    $("#empbanco").val("");
+    $("#emptipoc").val("");
 }
 
 function calcularSolicitado(){

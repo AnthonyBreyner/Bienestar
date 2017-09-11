@@ -69,6 +69,17 @@ class Usuario{
        this.FirmaDigital.DireccionMAC = $("#direccionMac").val();
        this.direccion = $("#direccionUsuario").val();
        this.fechacreacion = $("#fechaCreacion").val();
+       return this;
+    }
+    Salvar(){
+      r requestE = CargarAPI({
+          sURL: Conn.URL + "wusuario/crud",
+          metodo: 'POST',
+          valores: this.Obtener(),
+      });
+      requestE.then(function(xhRequest) {
+        console.log(xhRequest);
+      });
     }
 }
 
@@ -90,6 +101,14 @@ $(function () {
      $("#cmbUsuario").select2();
 });
 
+
+function Salvar(){
+  var usuario = new Usuario();
+  console.log("Enviando datos para salvar usuario");
+  usuario.Salvar();
+  console.log("Usuario Salvado!!!");
+
+}
 function llenarLista(){
     $("#cmbListadoUsuario").html("");
     $.each(listaUsuario,function(){
