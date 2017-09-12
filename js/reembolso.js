@@ -26,11 +26,25 @@ $(function () {
     });
 
     llenarReembolso();
-    $(".btnvolverentrada2").click(function(){
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
+    $(".btnvolverentradar").click(function(){
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarReembolso();
+            limpiarmdlempresa();
+            $("#rifnuevo").remove();
+            $("#sefue").remove();
+        })
+    });
+    $(".btncancelare").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
     });
 });
 
@@ -48,6 +62,10 @@ function consultarRif(){
         $("#razonsocial").val(rz);
     }else{
         $("#mdlEmpresa").modal("show");
+        var modalemp="";
+        modalemp = '<label id="sefue">Rif:</label>\n' +
+            '<input class="form-control" id="rifnuevo" value="'+rif+'" required="required">';
+        $("#rifnuevo2").append(modalemp);
     }
 }
 function salvarEmpresa(){
@@ -62,6 +80,9 @@ function salvarEmpresa(){
     $.notify("Proceso de registro pendiente");
     $("#rif").val(rifn);
     $("#razonsocial").val(rznuevo);
+    limpiarmdlempresa();
+    $("#rifnuevo").remove();
+    $("#sefue").remove();
     $("#mdlEmpresa").modal('hide');
 }
 
@@ -366,6 +387,12 @@ function verificaBeneficiarioCuenta(){
 
 function limpiarReembolso(){
     $('#frmreembolso').each (function(){
+        this.reset();
+        $("#cmbbeneficiario").select2("val", "");
+    });
+}
+function limpiarmdlempresa(){
+    $('#frmmdlempresa').each (function(){
         this.reset();
     });
 }
