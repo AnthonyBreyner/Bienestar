@@ -152,6 +152,7 @@ function crearLista(){
             cargarFamiliar(picado[0]);
         }else{
             $("#perfilFamiliar").hide();
+
         }
     });
 
@@ -182,9 +183,12 @@ function cargarFamiliar(pos){
             $("#txtmapto").val(DIR.apartamento);
         }
         $("#perfilFamiliar").hide();
+        $("#perfilMilitar").show(); 
+
         return true;
     }
     $("#perfilFamiliar").show();
+    $("#perfilMilitar").hide(); 
     var fami = militar.Familiar[pos];
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
     var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
@@ -245,7 +249,7 @@ function generarPlanillaFdV(){
     wfedevida.idf = bene[1];
     wfedevida.afiliado = beneficiario;
 
-    console.log(JSON.stringify(wfedevida));
+   // console.log(JSON.stringify(wfedevida));
     var urlGuardar = Conn.URL + "wfedevida";
     var request2 = CargarAPI({
         sURL: urlGuardar,
@@ -263,10 +267,7 @@ function generarPlanillaFdV(){
         
     }
     );
-    
-
-
-     $("#opciones").hide();
+         $("#opciones").hide();
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();

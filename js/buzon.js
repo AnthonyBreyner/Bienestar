@@ -3,8 +3,22 @@ let militarActivo = null;
 let lstBuzonApoyo = null;
 let lstBuzonCarta = null;
 let apoyoActivo = null;
-let copia = null;
+let CReembolso = null;
+
 let posicionModificar = null;
+
+//{id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
+class WReembolso {
+  constructor(){
+    this.id = "";
+    this.nombre = "";
+    this.cedula = "";
+    this.Reembolso = new Reembolso();
+  }
+
+}
+
+
 $(function () {
 
 });
@@ -62,41 +76,50 @@ function conviertEstatus(est){
 }
 
 function crearBuzon(est) {
-    console.log(lstBuzon);
-    $("#lista").html('<li>\n' +
-        '            <div class="row">\n' +
-        '                <div class="col-sm-1"><span class="text">Reembolso</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">Cedula</span></div>\n' +
-        '                <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">F.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Aprobado</span></div>\n' +
-        '                <div class="col-sm-1">Estatus</div>\n' +
-        '            </div>\n' +
-        '        </li>');
-    $.each(lstBuzon, function () {
+    console.log('Cargando el buzon de Reembolso...');
+    $("#lista").html(`<li>
+                    <div class="row">
+                        <div class="col-sm-1"><span class="text">Reembolso</span></div>
+                        <div class="col-sm-1"><span class="text">Cedula</span></div>
+                        <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>
+                        <div class="col-sm-1"><span class="text">F.Solicitud</span></div>
+                        <div class="col-sm-2"><span class="text">M.Solicitud</span></div>
+                        <div class="col-sm-2"><span class="text">M.Aprobado</span></div>
+                        <div class="col-sm-1">Estatus</div>
+                   </div>
+                </li>`);
+
+
+    lstBuzon.forEach(v => {
         var alertSegui = "";
-        switch (this.estatusseguimiento){
-            case 1:
-                alertSegui = '<i class="fa fa-info-circle" style="font-size: 22px; color: red; margin-left: -100px;;"></i>';
-                break;
-            case 2:
-                alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
-                break;
+        switch (v.estatusseguimiento){
+          case 1:
+            alertSegui = '<i class="fa fa-info-circle" style="font-size: 16px; color: red; margin-left: -100px;;"></i>';
+            break;
+          case 2:
+            alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
+            break;
         }
-        var item = '<li><div class="row"><div class="col-sm-1"><span class="text"><a href="#" onclick="detalleBuzon(\'' + this.id + '\',\'' + this.numero + '\','+est+')"> ' + this.numero + '</a></span></div>\n' +
-            '                <div class="col-sm-1"><span class="text">' + this.id + '</span></div>\n' +
-            '                <div class="col-sm-3">' + this.nombre + '</div>\n' +
-            '                <div class="col-sm-1">' + Util.ConvertirFechaHumana(this.fechacreacion) + '</div>\n' +
-            '                <div class="col-sm-2">' + numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $') + '</div>\n' +
-            '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
-            '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
-            '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa  fa-check" title="PROCESAR" style="color: green; font-size: 20px" onclick="verificarAprobacion(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
-            '                    <i class="fa fa-trash" title="RECHAZAR" style="font-size: 20px" onclick="verificarRechazo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
-            '                </div>\n' +
-            '            </div>\n' +
-            '        </li>';
+        var fcreacion = Util.ConvertirFechaHumana(v.fechacreacion);
+        var msolicitado = numeral(parseFloat(v.montosolicitado)).format('0,0[.]00 $');
+        var maprobado = numeral(parseFloat(v.montoaprobado)).format('0,0[.]00 $');
+        var con = conviertEstatus(v.estatus) + alertSegui;
+        var item = `<li><div class="row"><div class="col-sm-1">
+                    <span class="text"><a href="#" onclick="detalleBuzon('${v.id}','${v.numero}','${est}')">${v.numero }</a></span></div>
+                            <div class="col-sm-1"><span class="text">${v.id}</span></div>
+                            <div class="col-sm-3">${v.nombre}</div>
+                            <div class="col-sm-1">${fcreacion}</div>
+                            <div class="col-sm-2">${msolicitado}</div>
+                            <div class="col-sm-2">${maprobado}</div>
+                            <div class="col-sm-1">${con}</div>
+                            <div class="tools" style="margin-right: 50px;">
+                                <i class="fa  fa-check" title="PROCESAR" style="color: green; font-size: 18px"
+                                  onclick="verificarAprobacion('${v.numero}','${this.estatus}','${v.id}')"></i>
+                                <i class="fa fa-trash" title="RECHAZAR" style="font-size: 18px"
+                                  onclick="verificarRechazo('${v.numero}','${v.estatus}','${v.id}')"></i>
+                            </div>
+                        </div>
+                    </li>`;
         $("#lista").append(item);
     });
 }
@@ -157,6 +180,7 @@ function rechazarReembolso(num, est,id) {
 }
 
 function detalleBuzon(id, numero, est,tipo) {
+    console.log('Iniciando Detalle del Buzón...')
     var url = Conn.URL + "militar/crud/" + id;
     var request = CargarAPI({
         sURL: url,
@@ -165,11 +189,17 @@ function detalleBuzon(id, numero, est,tipo) {
         Objeto: militar
     });
     request.then(function (xhRequest) {
+
         militarActivo = JSON.parse(xhRequest.responseText);
         switch (tipo){
-            case "A":llenarBuzonApoyo(numero,est);break;
-            case "C":llenarBuzonCarta(numero,est);break;
-            default: llenarBuzon(numero,est);
+            case "A":
+              llenarBuzonApoyo(numero,est);
+              break;
+            case "C":
+              llenarBuzonCarta(numero,est);
+              break;
+            default:
+              llenarBuzon(numero,est);
         }
     });
 }
@@ -204,39 +234,60 @@ function crearTablaConceptos(numero,est) {
     var pos = 0;
     var lst = militarActivo.CIS.ServicioMedico.Programa.Reembolso;
     var i = 0;
-    $.each(lst, function () {
-        if (this.numero == numero) {
+    lst.forEach( v => {
+        if (v.numero == numero) {
             pos = i;
             posicionModificar = i;
         }
         i++;
     });
-    copia = lst[pos];
-    if(copia.Seguimiento.Estatus != undefined) $("#estSeguimiento").val(copia.Seguimiento.Estatus);
+    CReembolso = lst[pos];
+    if(CReembolso.Seguimiento.Estatus != undefined) $("#estSeguimiento").val(CReembolso.Seguimiento.Estatus);
     if(est > 2){
         activarCambioEstatus();
     }
     $("#cuerpoEditarConceptos").html('');
     var jj = new Array();
-    $.each(copia.Concepto, function () {
+
+
+    CReembolso.Concepto.forEach( v => {
         var mntApo = 0;
-        if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
-        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        jj.push(this.afiliado);
-        var picar = this.afiliado.split("-");
+        if(v.DatoFactura.montoaprobado > 0) mntApo = v.DatoFactura.montoaprobado;
+        var ffact = Util.ConvertirFechaHumana(v.DatoFactura.fecha);
+        jj.push(v.afiliado);
+        var picar = v.afiliado.split("-");
         var picar2 = picar[1].split("(");
         var tam = picar2[1].length;
-        fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
-            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactReembolso" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
-            '                                <td><input type="text" onblur="calcularPorcen(this,\'r\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.DatoFactura.monto + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'r\')" /></td>\n' +
-            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado(\'r\')"></td>\n' +
-            '                                <td style="width: 7%;">\n' +
-            '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
-            '                                </td></tr>';
+        var parent = picar2[1].substr(0,tam-1);
+        var nombre = picar[0];
+        var cedula = picar2[0];
+        var fecha = Util.ConvertirFechaHumana(v.DatoFactura.fecha);
+        fila = `<tr>
+                  <td>${parent}</td>
+                  <td>${nombre}</td>
+                  <td>${cedula}</td>
+                  <td>${v.descripcion}</td>
+                  <td><input type="text" value="${v.DatoFactura.numero}" class="numfact"></td>
+                  <td style="display: none">${v.DatoFactura.Beneficiario.rif}</td>
+                  <td style="display: none">${v.DatoFactura.Beneficiario.razonsocial}></td>
+                  <td><input type="text" class="ffactReembolso" value="${fecha}"></input></td>
+                  <td><input type="text" onblur="calcularPorcen(this,'r')" class="mntsoli"
+                      onkeypress="return Util.SoloNumero(event,this,true)"
+                      value="${v.DatoFactura.monto}"></td>
+                  <td><input type="number" class="porcentajecalculo"
+                      onkeypress="return Util.SoloNumero(event,this)"
+                      value="0" onblur="calcularPorcen(this,'r')"></td>
+                 <td><input type="text" value="${mntApo}" class="mntAcumulado"
+                      onkeypress="return Util.SoloNumero(event,this,true)"
+                      onblur="calcularAcumulado('r')"></td>
+                 <td style="width: 7%;">
+                      <button type="button" class="btn btn-default btn-sm borrarconcepto"
+                      title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button></td>
+              </tr>`;
         $("#cuerpoEditarConceptos").append(fila);
     });
-    $("#totalter").html(copia.montosolicitado.toFixed(2));
-    $("#totalapro").html(copia.montoaprobado);
+    $("#totalter").html(CReembolso.montosolicitado.toFixed(2));
+    $("#totalapro").html(CReembolso.montoaprobado);
     $(".borrarconcepto").click(function () {
         $(this).parents('tr').eq(0).remove();
         if ($("#cuerpoEditarConceptos tr").length == 0) {
@@ -264,18 +315,21 @@ function crearTablaConceptos(numero,est) {
     /**
      * Crear tabla de objservaciones
      */
-    if (copia.Seguimiento.Observaciones != undefined) {
-        var lstObs = copia.Seguimiento.Observaciones;
+    if (CReembolso.Seguimiento.Observaciones != undefined) {
+        var lstObs = CReembolso.Seguimiento.Observaciones;
         $("#cuerpoObservaciones").html('');
         $("#cuerpoOpiniones").html('');
-        $.each(lstObs, function () {
-            var tipo = this.contenido.split("|||");
-            if(tipo[1] != undefined) $("#cuerpoOpiniones").append('<tr><td>' + tipo[0] + '</td><td>'+conviertEstatus(copia.estatus)+'</td></tr>');
-            else $("#cuerpoObservaciones").append('<tr><td>' + this.contenido + '</td><td></td></tr>');
+        lstObs.forEach( v => {
+            var tipo = v.contenido.split("|||");
+            var cestatus = conviertEstatus(CReembolso.estatus);
+            var tipo = tipo[0];
+            if(tipo[1] != undefined) $("#cuerpoOpiniones").append(`<tr><td>${tipo}</td><td>${cestatus}</td></tr>`);
+            else $("#cuerpoObservaciones").append(`<tr><td>${v.contenido}</td><td></td></tr>`);
         });
     }
 
     validarDetalleReembolso(est);
+    console.log('Entregando contenido');
 }
 
 function calcularPorcen(obj,tipo){
@@ -328,13 +382,13 @@ function volverLista() {
 function actualizarReembolso(est) {
     var conceptos = new Array();
     var datos = null;
-    console.log(copia);
+    console.log(CReembolso);
     var i = 0;
     if ($("#cuerpoEditarConceptos tr").length > 0) {
         $("#cuerpoEditarConceptos tr").each(function () {
             var concep = new ConceptoReembolso();
             var facturaD = new Factura();
-            var ffact = copia.fechacreacion;
+            var ffact = CReembolso.fechacreacion;
             if ($(this).find("input.ffactReembolso").eq(0).val() != "") {
                 ffact = new Date(Util.ConvertirFechaUnix($(this).find("input.ffactReembolso").val())).toISOString();
             }
@@ -344,25 +398,25 @@ function actualizarReembolso(est) {
             facturaD.numero = $(this).find("input.numfact").val();
             facturaD.control = $(this).find("input.numfact").val();
 
-            facturaD.Beneficiario = copia.Concepto[i].DatoFactura.Beneficiario;
+            facturaD.Beneficiario = CReembolso.Concepto[i].DatoFactura.Beneficiario;
 
             concep.DatoFactura = facturaD;
-            concep.afiliado = copia.Concepto[i].afiliado;
-            concep.descripcion = copia.Concepto[i].descripcion;
+            concep.afiliado = CReembolso.Concepto[i].afiliado;
+            concep.descripcion = CReembolso.Concepto[i].descripcion;
             i++;
             conceptos.push(concep);
         });
 
-        copia.Concepto = conceptos;
+        CReembolso.Concepto = conceptos;
     } else {
         $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
     }
-
-    copia.montoaprobado = parseFloat($("#totalapro").html());
-    copia.montosolicitado = parseFloat($("#totalter").html());
+    //
+    CReembolso.montoaprobado = parseFloat($("#totalapro").html());
+    CReembolso.montosolicitado = parseFloat($("#totalter").html());
     var obseraciones = new Array();
     var tipoObser = "";
-    if(copia.estatus > 1) tipoObser = "|||"+copia.estatus;
+    if(CReembolso.estatus > 1) tipoObser = "|||"+CReembolso.estatus;
     if($("#cuerpoObservaciones tr").length > 0){
         $("#cuerpoObservaciones tr.agobs").each(function(){
            obseraciones.push($(this).find("td").eq(0).html());
@@ -373,25 +427,27 @@ function actualizarReembolso(est) {
             obseraciones.push($(this).find("td").eq(0).html()+tipoObser);
         });
     }
-    copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
 
-    datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-    console.log(datos);
-    console.log(JSON.stringify(datos));
-    var urlGuardar = Conn.URL + "wreembolso";
-    var request2 = CargarAPI({
-        sURL: urlGuardar,
-        metodo: 'PUT',
-        valores: datos,
-    });
-
-    request2.then(function(xhRequest) {
-        respuesta = JSON.parse(xhRequest.responseText);
-        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
-        listaBuzon(copia.estatus);
-        volverLista();
-    });
+    console.log(CReembolso);
+    // copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
+    //
+    // datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
+    // console.log(datos);
+    // console.log(JSON.stringify(datos));
+    // var urlGuardar = Conn.URL + "wreembolso";
+    // var request2 = CargarAPI({
+    //     sURL: urlGuardar,
+    //     metodo: 'PUT',
+    //     valores: datos,
+    // });
+    //
+    // request2.then(function(xhRequest) {
+    //     respuesta = JSON.parse(xhRequest.responseText);
+    //     if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+    //     msjRespuesta(respuesta.msj);
+    //     listaBuzon(copia.estatus);
+    //     volverLista();
+    // });
 }
 
 function agObservacion(tipo) {
@@ -735,18 +791,19 @@ function actualizarApoyo(est) {
 
 /**CARTA AVAL***/
 function crearBuzonCarta(est) {
-    console.log(lstBuzonCarta);
-    $("#listaCarta").html('<li>\n' +
-        '            <div class="row">\n' +
-        '                <div class="col-sm-1"><span class="text">Carta</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">Cedula</span></div>\n' +
-        '                <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">F.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Aprobado</span></div>\n' +
-        '                <div class="col-sm-1">Estatus</div>\n' +
-        '            </div>\n' +
-        '        </li>');
+    console.log('Cargando el buzon de Carta Aval...');
+    $("#listaCarta").html(`<li>
+        <div class="row">
+            <div class="col-sm-1"><span class="text">Carta</span></div>
+            <div class="col-sm-1"><span class="text">Cedula</span></div>
+            <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>
+            <div class="col-sm-1"><span class="text">F.Solicitud</span></div>
+            <div class="col-sm-2"><span class="text">M.Solicitud</span></div>
+            <div class="col-sm-2"><span class="text">M.Aprobado</span></div>
+            <div class="col-sm-1">Estatus</div>
+        </div>
+    </li>`);
+
     $.each(lstBuzonCarta, function () {
         var alertSegui = "";
         switch (this.estatusseguimiento){
