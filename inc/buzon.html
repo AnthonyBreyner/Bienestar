@@ -10,9 +10,9 @@
 
     <div class="panel-collapse collapse in" id="listadoCompleto">
         <div class="panel-body bg-info">
-        <ul class="todo-list" id="lista" style="overflow-x:hidden;">
+            <ul class="todo-list" id="lista" style="overflow-x:hidden;">
 
-        </ul>
+            </ul>
         </div>
     </div>
 
@@ -27,12 +27,11 @@
     </a>
     <div class="panel-collapse collapse" id="listadoCompletoApoyo">
         <div class="panel-body bg-info">
-        <ul class="todo-list" id="listaApoyo" style="overflow-x:hidden;">
+            <ul class="todo-list" id="listaApoyo" style="overflow-x:hidden;">
 
-        </ul>
+            </ul>
         </div>
     </div>
-
 
 
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#listadoCompletoCarta"
@@ -45,9 +44,9 @@
     </a>
     <div class="panel-collapse collapse" id="listadoCompletoCarta">
         <div class="panel-body bg-info">
-        <ul class="todo-list" id="listaCarta" style="overflow-x:hidden;">
+            <ul class="todo-list" id="listaCarta" style="overflow-x:hidden;">
 
-        </ul>
+            </ul>
         </div>
     </div>
 </div>
@@ -64,7 +63,7 @@
         $('.todo-list').todoList();
     });
 </script>
-<div id="detallesProgramas" >
+<div id="detallesProgramas">
     <div class="box-body" id="detalle" style="display: none">
         <div class="row">
             <div class="col-md-12">
@@ -115,9 +114,10 @@
                                 </button>
                             </div>
                             <div class="btn-group">
-                                <button type="button" class="btn btn-default btn-sm impPlanillaReembolso" data-toggle="tooltip"
+                                <button type="button" class="btn btn-default btn-sm impPlanillaReembolso"
+                                        data-toggle="tooltip"
                                         onclick="planillaReembolso()"
-                                        data-container="body" >
+                                        data-container="body">
                                     <i class="fa fa-print"></i>&nbspImprimir Planilla
                                 </button>
                             </div>
@@ -179,10 +179,10 @@
                                     <td style="width: 15px">
                                         <select id="estSeguimiento">
                                             <option value="0" selected="selected">Seguimiento</option>
-                                        <option value="0">En orden</option>
-                                        <option value="1">Con pendientes</option>
-                                        <option value="2">Con Recomendaciones</option>
-                                    </select></td>
+                                            <option value="0">En orden</option>
+                                            <option value="1">Con pendientes</option>
+                                            <option value="2">Con Recomendaciones</option>
+                                        </select></td>
                                 </tr>
                                 </thead>
                                 <tbody id="cuerpoObservaciones">
@@ -335,7 +335,7 @@
                                     <td>Monto Total del Presupuesto</td>
                                     <td>Monto Total a Cubrir por la Aseguradora</td>
                                     <td>Otros Aportes</td>
-                                    <td>%</td>
+                                    <td style="width: 4%">%</td>
                                     <td>Monto a Cubrir por el IPSFA</td>
                                 </tr>
                                 </thead>
@@ -344,8 +344,8 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <td colspan="6" style="text-align: right">TOTALES</td>
-                                    <td id="totalterApoyo" style="text-align: right"></td>
+                                    <td colspan="9" style="text-align: right">TOTALES</td>
+                                    <!--<td id="totalterApoyo" style="text-align: right"></td>-->
                                     <td></td>
                                     <td id="totalaproApoyo" style="text-align: right"></td>
                                 </tr>

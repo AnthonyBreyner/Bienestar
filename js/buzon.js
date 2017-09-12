@@ -8,7 +8,7 @@ let CReembolso = null;
 let posicionModificar = null;
 
 //{id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-class WReembolso {
+/*class WReembolso {
   constructor(){
     this.id = "";
     this.nombre = "";
@@ -16,7 +16,7 @@ class WReembolso {
     this.Reembolso = new Reembolso();
   }
 
-}
+}*/
 
 
 $(function () {
@@ -660,23 +660,45 @@ function crearTablaConceptosApoyo(numero,est){
         activarCambioEstatus("apoyo");
     }
     $("#cuerpoEditarConceptosApoyo").html('');
-    $.each(copia.Concepto, function () {
+    copia.Concepto.forEach(v => {
         var mntApo = 0;
-        if(this.DatoFactura.montoaprobado > 0) mntApo = this.DatoFactura.montoaprobado;
-        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        var picar = this.afiliado.split("-");
+        if(v.DatoFactura.montoaprobado > 0) mntApo = v.DatoFactura.montoaprobado;
+        var ffact = Util.ConvertirFechaHumana(v.DatoFactura.fecha);
+        var picar = v.afiliado.split("-");
         var picar2 = picar[1].split("(");
         var tam = picar2[1].length;
-        fila = '<tr><td>'+picar2[1].substr(0,tam-1)+'</td><td>' + picar[0] + '</td><td>'+picar2[0]+'</td><td>' + this.descripcion + '</td><td><input type="text" value="' + this.DatoFactura.numero + '" class="numfact"></td>' +
-            '<td style="display: none">' + this.DatoFactura.Beneficiario.rif + '</td><td style="display: none">' + this.DatoFactura.Beneficiario.razonsocial + '</td><td><input type="text" class="ffactApoyo" value="' + Util.ConvertirFechaHumana(this.DatoFactura.fecha) + '"></input></td>\n' +
-            '                                <td><input type="text" onblur="calcularPorcen(this,\'a\')" class="mntsoli" onkeypress="return Util.SoloNumero(event,this,true)" value="' + this.montoaportar + '" /></td><td><input type="number" class="porcentajecalculo" onkeypress="return Util.SoloNumero(event,this)" value="0" onblur="calcularPorcen(this,\'a\')" /></td>\n' +
-            '                                <td><input type="text" value="' + mntApo + '" class="mntAcumulado" onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado(\'a\')"></td>\n' +
-            '                                <td style="width: 7%;">\n' +
-            '                                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar"><i class="fa fa-trash-o" style="color: red;"></i></button>\n' +
-            '                                </td></tr>';
+        var parent = picar2[1].substr(0,tam-1);
+        var nombre = picar[0];
+        var cedula = picar2[0];
+        var fecha = Util.ConvertirFechaHumana(v.DatoFactura.fecha);
+        $("#cuerpoEditarConceptosApoyo").append(fila);
+        fila = `<tr>
+                    <td>${parent}</td>
+                    <td>${nombre}</td>
+                    <td>${cedula}</td>
+                    <td>${v.descripcion}</td>
+                    <td><input type="text" style="width: 100%" value="${v.DatoFactura.numero}" class="numfact"></td>
+                    <td style="display: none">${v.DatoFactura.Beneficiario.rif}</td>
+                    <td style="display: none">${v.DatoFactura.Beneficiario.razonsocial}</td>
+                    <td><input type="text" style="width: 100%" class="ffactApoyo" value="${fecha}"></input></td>
+                    <td><input type="text" onblur="calcularPorcen(this,'a')" class="mntsoli" 
+                        onkeypress="return Util.SoloNumero(event,this,true)" value="${v.DatoFactura.monto}"/></td>
+                        <td><input type="text" onblur="calcularPorcen(this,'a')"  class="mntacubrir" 
+                        onkeypress="return Util.SoloNumero(event,this,true)" style="width: 100%" value="${v.montoaseguradora}" /></td>
+                        <td><input type="text" style="width: 100%" onblur="calcularPorcen(this,'a')"  class="mntacubrir" 
+                        onkeypress="return Util.SoloNumero(event,this,true)" value="${v.montoaportar}" ></td>
+                    <td><input type="number" class="porcentajecalculo" 
+                        onkeypress="return Util.SoloNumero(event,this)" value="0" style="width: 100%" onblur="calcularPorcen(this,'a')" /></td>
+                    <td><input type="text" value="${copia.montosolicitado}" class="mntAcumulado" 
+                        onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado('a')"></td>
+                    <td style="width: 7%;">
+                    <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar">
+                    <i class="fa fa-trash-o" style="color: red;"></i></button>
+                    </td>
+                </tr>`;
         $("#cuerpoEditarConceptosApoyo").append(fila);
     });
-    $("#totalterApoyo").html(copia.montosolicitado.toFixed(2));
+   // $("#totalterApoyo").html(copia.montosolicitado.toFixed(2));
     $("#totalaproApoyo").html(copia.montoaprobado);
     $(".borrarconcepto").click(function () {
         $(this).parents('tr').eq(0).remove();
