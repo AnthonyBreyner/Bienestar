@@ -345,9 +345,8 @@ function cargarDatos(){
             msjRespuesta(respuesta.msj);
             $("#conceptoagregado").html("");
             llenarReembolso();
-
             $("#opciones").hide();
-            $("#panelentrada").show();
+            $("#_bxbuscar").show();
             $("#panellista").hide();
             $("#panelregistro").hide();
             var ventana = window.open("inc/reciboReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
