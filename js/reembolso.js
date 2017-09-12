@@ -1,7 +1,7 @@
 class WReembolso{
     constructor(){
         this.id = "";
-        this.Apoyo = new Reembolso();
+        this.Reembolso = new Reembolso();
         this.nombre = "";
     }
 }
