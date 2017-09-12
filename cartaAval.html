@@ -3,9 +3,28 @@
 <head>
     <meta charset="utf-8">
     <style>
-        
+        .bordeado {
+            border: black 1px solid;
+        }
+
+        .biz {
+            border-left: black 1px solid;
+        }
+
+        .bde {
+            border-right: black 1px solid;
+        }
+
+        .btop {
+            border-top: black 1px solid;
+        }
+
+        .bajo {
+            border-bottom: black 1px solid;
+        }
+
         .contenedor {
-            width: 1000px;
+            width: 1500px;
 
         }
 
@@ -44,77 +63,115 @@
         .sangria {
             text-indent: 1cm;
         }
-        
+
         .justificar {
-            text-align:justify;
+            text-align: justify;
+        }
+
+        .centrar {
+            text-align: center;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+        .carta_tit {
+            display: none;
+        }
+        .carta_fam {
+            display: none;
         }
 
     </style>
 </head>
-<body>
-<center>
+
     <div class="contenedor">
 
         <table border="0">
-            <tr>                                         
-                <td style="width: 38%"><img src="images/lg.png" style="float: left">
-                    <left><p style="font-size: 10px"> 
-                        REPUBLICA BOLIVARIANA DE VENEZUELA <br> 
-                        MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<br>
-                        VICEMINISTERIO DE SERVICIOS<br>
-                        DIRECCIÓN GENERAL DE EMPRESAS Y SERVICIOS<br>
-                        INSTITUTO DE PREVINSIÓN SOCIAL DE LA FUERZA ARMADA<br>
-                        GERECIA DE BIENESTAR Y SEGURIDAD</p>
-                    </left>
+            <tr>
+                <td style="width: 38%"><img src="images/lg.png" style="float: left; width:15%;">
+                    <left><p style="font-size: 12px; text-align: center"> REPUBLICA BOLIVARIANA DE VENEZUELA <br>
+                        MINISTERIO DEL PODER
+                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y
+                        SERVICIOS<br>
+                        INSTITUTO DE PREVISIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                        GERECIA DE BIENESTAR Y SEGURIDAD SOCIAL</p></left>
                 </td>
             </tr>
-        </table>
-            <center><h3>CARTA AVAL</h3></center>
-            <left><b id="lblnsolicitud"></b></left>
-        <table>
-            <td width="38%" class="">
-                <left>SEÑORES: <b id="lblnombrec"></b><BR>
-                    RIF: <b id="lblrifclinica"></b><BR>
-                </left></td>
-        </table>
-        <table width="70%" class="justificar">                              
-            <td>
-                <p class="sangria">
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliada a este instituto, quien a su vez es miembro de la Fuerza Armada Nacional Bolivariana.</p>
-                <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="lblmotivo"></b>-<b id="lbldiagnostico"></b><b id="lblconcepto"></b>  la suma de <b id="lblmontot"></b>.</p>
-                <p class="sangria">
-                Asi mismo agradecemos, que cualquier información requerida para la tramitación del presente caso, comunicarse con nuestros telefonos directos: (0212)-6931408-(0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
+        </table><br><br>
+        <table width="70%" style="font-size: 20px">
+            <td class="derecha">
+                Caracas, <label id="lblfecha"></label>
             </td>
         </table>
-        <table>
-            <center>Atentamente</center><br>
-        </table>
-        <table border="0">
+        <table style="font-size: 25px">
             <tr>
-                <td width="50%" class="control-label">
-                    <center><h3><br>
-                    <label id="lblnombrePI"> </label><br>
-                    <label id="lblgradoPIF"> </label><br>
-                        GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
-                    </h3></center>
+                <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud"></label>
                 </td>
             </tr>
+            <td width="38%">
+                SEÑORES: <b id="lblnombrec"></b><BR>
+                Presente.-
+            </td>
+        </table>
+        <table width="70%">
             <tr>
-                <td colspan="3" class="footer">
-                    <center><br>
-                    </center>
+                <td class="centrar"><h2>CARTA AVAL</h2>
+                </td>
+            </tr>
+            <!--tr>
+                <td class="derecha">Nro: <label id="lblnsolicitud"></label>
+                </td>
+            </tr-->
+        </table>     
+
+        <table width="70%" class="justificar" style="font-size: 25px">
+            <td style="text-align: justify">
+                <p class="sangria" id="fam" style="display: none;">
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>  <label id="nombre"></label>quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                 
+
+                <p class="sangria" id="tit" style="display: none;"> 
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil2"></b>, titular de la cédula de identidad Nº <b id="cedulaafil2"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco2"></label> miembro de la Fuerza Armada Nacional Bolivariana.</p>
+                <p class="sangria">
+                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="lbldiagnostico"></b><b id="lblconcepto"></b>  la suma de <b id="lblmontot"></b>Bs.</p>
+                <p class="sangria">
+                Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
+                <p class="sangria">
+                Sin mas a que hacer referencia y como siempre a sus gratas ordenes.</<p>
+                <p class="centrar">
+                Atentamente,</p>                
+            </td>
+        </table>
+
+        <table  width="75%">
+            <tr>
+                <td width="25%" class="control-label" style="text-align: center; ">
+                    <h3 ><br><br>
+                        MAY. CASTILLO DERWVINS<br>
+                        JEFE DE ADQUISICIONES
+                    </h3>
+                </td>
+                <td width="25%" class="control-label" style="text-align: center; ">
+                    <h3 style="text-align: center; "><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        CNEL. CABAÑA HERRERA PABLO<br>
+                        GERENTE DE FINANZAS
+                    </h3>
+                </td>
+                <td width="25%" class="control-label" style="text-align: center; ">
+                    <h3 style="text-align: center; "><br>
+                        <br>
+                        CNEL. MARTINEZ SALAS<br>
+                        GERENTE DE BIENESTAR <br>Y SEGURIDAD SOCIAL
+                    </h3>
                 </td>
             </tr>
         </table>
-    </div>
-
-
-    <div id="boton"><br>
-        <input type="button" value="Imprimir" onclick="imprimir()">
     </div>
 
 </body>
+
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/formato/numeral.js"></script>
 
@@ -196,10 +253,12 @@
         console.log(militar);
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
+           
             $("#nombre").html(ncompleto);
             $("#lblcomponente").text(militar.Componente.descripcion);
             $("#lblgrado").text(militar.Grado.descripcion);
             $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
+           
 
             crearCarta();
 
@@ -210,17 +269,15 @@
 
             if (militar.Persona.Direccion != undefined) {
                 var defestados = sessionStorage.getItem("ipsfaEstado");
-                console.log(defestados);
                 var DIR = militar.Persona.Direccion[0];
                 Estados.ObtenerEstados();
                 var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
                 $("#lbldireccion").text(rirec);
             }
-
         } else {
             alert("Cedula no se encuentra registrada como militar dentro del sistema");
-
         }
+        
     }
 
     function crearCarta() {
@@ -230,8 +287,6 @@
         }
         console.log(pos);
         var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
-        console.log(carta);
-       // console.log(nm);
         $("#lblnsolicitud").text(NumeroCodigo);
         $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
         $("#lblbanco").text(carta.CuentaBancaria.institucion);
@@ -246,24 +301,37 @@
         cedulaa =bene[0];
         nombreparen =bene[1];
         nomafi = nombreparen.split("(");
-		nombrea = nomafi[0];
+        nombrea = nomafi[0];
+        paren = nomafi[1];
+        parentezco = paren.split(")");
         motivo = this.descripcion;
         rifclinica = this.DatoFactura.Beneficiario.rif;
         nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
         razonc = this.motivo;
         conceptoc= this.descripcion;
         diagnosticoc = this.diagnostico;
-        //console.log(nombreclinica);
+
         });
 
         $("#cedulaafil").html(cedulaa);
         $("#nombreafil").html(nombrea);
+        $("#cedulaafil2").html(cedulaa);
+        $("#nombreafil2").html(nombrea);
         $("#motivoafil").html(motivo);
         $("#lblrifclinica").html(rifclinica);
         $("#lblnombrec").html(nombreclinica);
         $("#lblmotivo").html(razonc);
         $("#lblconcepto").html(conceptoc);
         $("#lbldiagnostico").html(diagnosticoc);
+        $("#lblparentezco").html(parentezco);
+        $("#lblparentezco2").html(parentezco);
+        if($("#lblparentezco").text()=="MILITAR"){
+            $("#tit").css("display", "block");
+        }else $("#fam").css("display", "block");
+        
     }
+
 </script>
 </html>
+
+
