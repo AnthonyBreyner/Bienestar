@@ -108,7 +108,7 @@
 
     	  		<div class="sangria" style="font-size: 20px">  
 	              	 
-	              	 Quien suscribe <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, titular de la cedula de identidad N° <b>7.391293</b>, en mi caracter de Gerente de Bienestar y Seguridad Social, hago constar y doy fé, que hoy 0000-00-00 comparecio ante este despacho el (la) ciudadano(a) <b id="nombreafil"></b>, Titular de la Cedula de Identidad Nº <b id="cedulaafil"></b>, de 00 años de edad, residenciado en xxxxxxxxxxxxxxxxxxxxxxx a fines de dejar constancia de supervivencia y cumplir con los requisitos exigidos por el Instituto de Previsión Social de la Fuerza Armada (IPSFA), en virtud de la cual se le expide la <b>CONSTANCIA DE FE DE VIDA</b> para la tramitación de los beneficios socieconomicos otorgados en el marco de la Ley Negro Primero como beneficiario por ser xxxx sobreviviente de <b><label id="lblgrado"></label> <label id="nombre"></label></b>, Titular de la Cédula de Identidad Número V.- <b><label id="lblcedula"></label></b>, fallecido el 0000-00-00.
+	              	 Quien suscribe <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, titular de la cedula de identidad N° <b>7.391293</b>, en mi caracter de Gerente de Bienestar y Seguridad Social, hago constar y doy fé, que hoy 0000-00-00 comparecio ante este despacho el (la) ciudadano(a) <b id="nombreafil"></b>, Titular de la Cedula de Identidad Nº <b id="cedulaafil"></b>, de <b id="edad"></b> años de edad, residenciado en xxxxxxxxxxxxxxxxxxxxxxx a fines de dejar constancia de supervivencia y cumplir con los requisitos exigidos por el Instituto de Previsión Social de la Fuerza Armada (IPSFA), en virtud de la cual se le expide la <b>CONSTANCIA DE FE DE VIDA</b> para la tramitación de los beneficios socieconomicos otorgados en el marco de la Ley Negro Primero como beneficiario por ser xxxx sobreviviente de <b><label id="lblgrado"></label> <label id="nombre"></label></b>, Titular de la Cédula de Identidad Número V.- <b><label id="lblcedula"></label></b>, fallecido el 0000-00-00.
 	            </div>
 	            <div id="piedepagina">
 			    <br>
@@ -474,7 +474,9 @@
             crearFeDeVida();
 
             var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
-
+            var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(this.Persona.DatoBasico.fechanacimiento));
+            console.log(edad);
+            $("#edad").html(edad);
             $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
 
@@ -501,9 +503,7 @@
        // console.log(pos);
         var fdv = militar.CIS.FeDeVida[pos];
        // console.log(fdv);
-        var fe = militar.CIS.FeDeVida[pos];
-
-        $.each(fe.DatoBasico, function () {
+       $.each(fdv.DatoBasico, function () {
             var bene = this.afiliado.split("-");
             console.log(fe);
            
