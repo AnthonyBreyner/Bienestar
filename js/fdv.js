@@ -249,7 +249,7 @@ function generarPlanillaFdV(){
     wfedevida.idf = bene[1];
     wfedevida.afiliado = beneficiario;
 
-   // console.log(JSON.stringify(wfedevida));
+   console.log(JSON.stringify(wfedevida));
     var urlGuardar = Conn.URL + "wfedevida";
     var request2 = CargarAPI({
         sURL: urlGuardar,
@@ -257,21 +257,21 @@ function generarPlanillaFdV(){
         valores: wfedevida,
     });
 
+
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         msjRespuesta(respuesta.msj);
         llenarfe();
-    
-
-        
+       
     }
     );
-         $("#opciones").hide();
+        $("#opciones").hide();
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
-     var ventana = window.open("FedeVida.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+        
+     var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
 
 }
 
@@ -280,13 +280,13 @@ function obtenerResidencia() {
     switch (motivo){
         case "0": //SI
             $("#direccionextranjero").hide();
-            $("#txtfechaex").attr("disabled",true);
+           
             $("#direccionactual").attr("disabled",true);
            
         break;
         case "1": //NO
             $("#direccionextranjero").attr("disabled",true);
-            $("#txtfechaex").attr("disabled",false);
+           
             $("#direccionextranjero").show();
              $("#direccionactual").attr("disabled",false);
 

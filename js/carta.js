@@ -313,7 +313,7 @@ function generarCarta(){
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
         var idm = militar.Persona.DatoBasico.cedula;
-        var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
+        var ventana = window.open("cartaAvalSobre.html?id="+idm + "&nm=" +res.msj , "_blank");
     });
 }
 
