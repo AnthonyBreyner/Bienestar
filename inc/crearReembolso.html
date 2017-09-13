@@ -1,3 +1,20 @@
+<style>
+    #project-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 1em;
+    }
+    #project-icon {
+        float: left;
+        height: 32px;
+        width: 32px;
+    }
+    #project-description {
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
 <div class="body box">
     <div class="container-fluid">
         <form id="frmtodoreembolso" action="#" method="post">
@@ -160,13 +177,17 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2 col-sm-12">
-                                            <label>Rif:</label>
+                                            <label id="rif-label">Rif:</label>
                                             <div class="btn-group-justified" role="group" aria-label="...">
-                                                <div class="btn-group" style="width: 6%;" role="group">
+
                                                     <input class="form-control" id="rif" required="required">
-                                                </div>
+
                                             </div>
                                         </div>
+                                        <!--div class="col-md-2 col-sm-12">
+                                            <div id="rif2-label">Select a project (type "a" for a start) :</div>
+                                            <input id="rif2">
+                                        </div-->
                                         <div class="col-md-4 col-sm-12">
                                             <label>Razón Social:</label>
                                             <input class="form-control" id="razonsocial" readonly="true"

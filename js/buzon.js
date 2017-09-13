@@ -687,9 +687,7 @@ function crearTablaConceptosApoyo(numero,est){
                         onkeypress="return Util.SoloNumero(event,this,true)" style="width: 100%" value="${v.montoaseguradora}" /></td>
                         <td><input type="text" style="width: 100%" onblur="calcularPorcen(this,'a')"  class="mntacubrir" 
                         onkeypress="return Util.SoloNumero(event,this,true)" value="${v.montoaportar}" ></td>
-                    <td><input type="number" class="porcentajecalculo" 
-                        onkeypress="return Util.SoloNumero(event,this)" value="0" style="width: 100%" onblur="calcularPorcen(this,'a')" /></td>
-                    <td><input type="text" value="${copia.montosolicitado}" class="mntAcumulado" 
+                     <td><input type="text" value="${copia.montosolicitado}" class="mntAcumulado" 
                         onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado('a')"></td>
                     <td style="width: 7%;">
                     <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar">
