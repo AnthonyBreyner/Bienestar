@@ -275,7 +275,7 @@ function buzon(est){
 
 function msjRespuesta(texto) {
     $("#_contenido").html(texto);
-    var botones = '<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>';
+    var botones = '<button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>';
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }

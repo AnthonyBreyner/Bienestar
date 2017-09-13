@@ -285,6 +285,8 @@ function generarPlanilla(){
     var conceptos = new Array();
 
     var concep = new ConceptoApoyo();
+    concep.montoaseguradora = parseFloat($("#montoacubrir").val());
+    concep.montoaportar = parseFloat($("#montootroaporte").val());
 
     var facturaD = new Factura();
     facturaD.fecha = new Date(Util.ConvertirFechaUnix($("#fechafactura").val())).toISOString();

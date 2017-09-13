@@ -1,12 +1,10 @@
-<script>
-    $('#txtfechaex').datepicker({
-        autoclose: true,
-        format: "dd/mm/yyyy",
-        language: 'es'
-    });
-    $('[data-mask]').inputmask();
-
-</script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#txtfechaex").datepicker({
+    dateFormat: 'dd/mm/yy',
+    }).datepicker("setDate", new Date());
+});
+ </script>
 
 <script src = "js/fdv.js" ></script>
 
@@ -47,15 +45,14 @@
                              
                                     </div>
 
-                                <div class="col-md-3 ">
+                                <div class="col-md-3 " id="datepicker">
                                         <label>Fecha de Emisión:</label>
                                      <div class="input-group date" style="z-index: 1030;">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="txtfechaex"
-                                                       required="required">
+                                                <input type="text" class="form-control" id="txtfechaex"  value="txtfechaex" disabled="none">
                                             </div>
                                         </div>
                                 </div>
@@ -63,6 +60,11 @@
                                 </div>
 
                                  <div class="row" id="direccionextranjero" style="display: none;">
+                                <div class="col-md-12 ">
+                                       <label>País:</label>
+                                       <input type="text" class="form-control" id="txtpais">
+                                </div>
+
                                     <div class="col-md-12 ">
                                        <label>Direccion:</label>
                                        <textarea class="form-control" rows="3" placeholder="Dirección" id="txtdireccionex"></textarea>
@@ -187,7 +189,7 @@
 
                                         <a type="button" id="btnGenerar" class="btn btn-app btn-success pull-right" style="margin-right: 10px;background-color: #337ab7;
 color: white;" onclick="generarPlanillaFdV()">
-                        <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR PLANILLA
+                        <i class="fa fa-file-text"></i>&nbsp;&nbsp;GENERAR FE DE VIDA
                     </a>
                                         <br><br>
                                     </div>

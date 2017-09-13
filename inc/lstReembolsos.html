@@ -3,12 +3,18 @@
         display: none
     }
 </style>
+<script>
+    $(document).ready(function(){
+        $('.panelpo').popover({title: "<h4 style='color: black'>Usuario</h4>", content: "<p style='color: black'>Caracas<br> ccsafi2017afa</p>", html: true, placement: "bottom", trigger: "hover"
+        });
+    });
+</script>
 <div id="tblTodos">
     <div class="row" id="tblreembolsos">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border bg-light-blue">
-                    <h3 class="box-title">Historico de Reembolsos</h3>
+                    <h3 class="box-title">Historico de Reembolsos <a class="panelpo" style="color: black">Usuario</a> </h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
@@ -31,7 +37,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border bg-light-blue">
-                    <h3 class="box-title">Historico de Apoyos</h3>
+                    <h3 class="box-title">Historico de Apoyos </h3>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->

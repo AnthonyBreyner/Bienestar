@@ -65,10 +65,10 @@ class Usuario{
        this.cargo = $("#cargo").val();
        this.telefono = $("#telefono").val();
        this.correo = $("#correo").val();
-       this.FirmaDigital.DireccionIP = $("#direccionIp").val();
-       this.FirmaDigital.DireccionMAC = $("#direccionMac").val();
+       this.FirmaDigital.direccionip = $("#direccionIp").val();
+       this.FirmaDigital.direccionmac = $("#direccionMac").val();
        this.direccion = $("#direccionUsuario").val();
-      
+
        return this;
     }
     Salvar(){
