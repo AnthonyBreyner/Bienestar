@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
 
-     <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- AdminLTE App -->
@@ -132,7 +132,8 @@
                 <li><a href="gestionusuarios.html"><i class="fa fa-television"></i> <span>Inicio</span></a></li>
                 <li><a href="gestionusuarios.html"><i class="fa fa-user"></i> <span>Crear Usuarios</span></a></li>
                 <li><a href="listadousuario.html"><i class="fa fa-users"></i> <span>Lista De Usuarios</span></a></li>
-                <li><a href="configuracionusuario.html"><i class="fa fa-television"></i> <span>Configuracion</span></a></li>
+                <li><a href="configuracionusuario.html"><i class="fa fa-television"></i> <span>Configuracion</span></a>
+                </li>
                 <li><a href=""><i class="fa fa-television"></i> <span>Auditoria</span></a></li>
             </ul>
             <!-- /.sidebar-menu -->
@@ -142,153 +143,159 @@
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-       <section class="content" id="panelderecho">
+        <section class="content" id="panelderecho">
             <!-- Aqui empiezo -->
-   
+
 
             <!-- Main content -->
-        <section class="content">
-            <div class="row">
-                <div class="col-md-12 ">
-                    <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
-                         <li class="active"><a href="#tab_1" data-toggle="tab">Configuracion De Usuario</a></li>
-                        </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane active" id="tab_1"><br>
-                        <div class="row">
-                        <div class="tab-pane" id="tab_2">
-                            <div class="row">
-                               <!--<div class="col-md-4">
-                                    <div class="form-group">
-                                    <label>Menú</label>
-                                    <select multiple="" id="cmbMenu" class="form-control js-example-placeholder-multiple" style="height: 25em">
-                                    </select>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-12">
-                                    <div class="row">
-                                        <div class="col-xs-3 col-md-3">
-                                            <div class="form-group">
-                                             <label>Sucursal</label>
-                                             <select class="form-control" id="cmbSucursal">
-                                             <option value="0">Seleccionar...</option>
-                                             <option value="">Caracas</option>
-                                             <option value="">Maracay</option>
-                                             <option value="">Barquisimeto</option>
-                                             <option value="">Maracaibo</option>
-                                             <option value="">Ciudad Bolivar</option>
-                                             <option value="">Punto Fijo</option>
-                                             <option value="">San Cristobal</option>
-                                             <option value="">Apure</option>
-                                             <option value="">Barinas</option>
-                                             <option value="">Barcelona</option>
-                                             <option value="">Cumana</option>
-                                             <option value="">Margarita</option>
-                                             <option value="">Maturin</option>
-                                             <option value="">Tucupita</option>
-                                             <option value="">Puerto Ayacucho</option>
-                                             </select>
-                                            </div>
+            <section class="content">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab">Configuracion De Usuario</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1"><br>
+
+                                        <div class="tab-pane" id="tab_2">
+
+                                                <!--<div class="col-md-4">
+                                                     <div class="form-group">
+                                                     <label>Menú</label>
+                                                     <select multiple="" id="cmbMenu" class="form-control js-example-placeholder-multiple" style="height: 25em">
+                                                     </select>
+                                                     </div>
+                                                 </div> -->
+
+                                                    <div class="row">
+                                                        <div class="col-xs-3 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Sucursal</label>
+                                                                <select class="form-control" id="cmbSucursal">
+                                                                    <option value="0">Seleccionar...</option>
+                                                                    <option value="">Caracas</option>
+                                                                    <option value="">Maracay</option>
+                                                                    <option value="">Barquisimeto</option>
+                                                                    <option value="">Maracaibo</option>
+                                                                    <option value="">Ciudad Bolivar</option>
+                                                                    <option value="">Punto Fijo</option>
+                                                                    <option value="">San Cristobal</option>
+                                                                    <option value="">Apure</option>
+                                                                    <option value="">Barinas</option>
+                                                                    <option value="">Barcelona</option>
+                                                                    <option value="">Cumana</option>
+                                                                    <option value="">Margarita</option>
+                                                                    <option value="">Maturin</option>
+                                                                    <option value="">Tucupita</option>
+                                                                    <option value="">Puerto Ayacucho</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-xs-3 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Gerencia</label>
+                                                                <select class="form-control" id="cmbGerencia">
+                                                                    <option value="0">Seleccionar...</option>
+                                                                    <option value="">Presidencia</option>
+                                                                    <option value="">VicePresidencia</option>
+                                                                    <option value="">Secretaria General</option>
+                                                                    <option value="">Bienestar Social</option>
+                                                                    <option value="">Drogueria y Farmacia</option>
+                                                                    <option value="">Crédito</option>
+                                                                    <option value="">Odontólogia</option>
+                                                                    <option value="">Vivienda</option>
+                                                                    <option value="">Consultoria Jurídica</option>
+                                                                    <option value="">Recursos Humanos</option>
+                                                                    <option value="">Auditoria Interna</option>
+                                                                    <option value="">Informática</option>
+                                                                    <option value="">Finanzas</option>
+                                                                    <option value="">Logística</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Usuarios</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><span
+                                                                            class="fa fa-user"></span></span>
+                                                                    <select class="form-control" id="cmbUsuario"
+                                                                            style="width: 100%" onchange="cargarMenu()">
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-3 col-md-3">
+                                                            <div class="form-group">
+                                                                <label>Perfil</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><span
+                                                                            class="fa fa-user"></span></span>
+                                                                    <select class="form-control" id="cmbUsuarios">
+                                                                        <option value="0">Seleccionar...</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-xs-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Menú</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><span
+                                                                            class="fa fa-bars"></span></span>
+                                                                    <select class="form-control" id="menu">
+                                                                        <option value="0">Seleccionar...</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Sub Menú</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><span
+                                                                            class="fa fa-bars"></span></span>
+                                                                    <select class="form-control" id="submenu">
+                                                                        <option value=0>Seleccionar...</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-4 col-md-4">
+                                                            <div class="form-group">
+                                                                <label>Privilegios</label>
+                                                                <div class="input-group">
+                                                                    <span class="input-group-addon"><span
+                                                                            class="fa fa-legal"></span></span>
+                                                                    <select class="form-control" id="perfil">
+                                                                        <option value=0>Seleccionar...</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xs-12 col-md-12">
+                                                            <br><br>
+                                                            <div class="pull-right">
+                                                                <button type="button" class="btn btn-success"
+                                                                        onclick="actualizarPrivilegios()"><i
+                                                                        class="fa fa-plus"></i>&nbsp;Actualizar
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
-                                            <div class="form-group">
-                                             <label>Gerencia</label>
-                                             <select class="form-control" id="cmbGerencia">
-                                             <option value="0">Seleccionar...</option>
-                                             <option value="">Presidencia</option>
-                                             <option value="">VicePresidencia</option>
-                                             <option value="">Secretaria General</option>
-                                             <option value="">Bienestar Social</option>
-                                             <option value="">Drogueria y Farmacia</option>
-                                             <option value="">Crédito</option>
-                                             <option value="">Odontólogia</option>
-                                             <option value="">Vivienda</option>
-                                             <option value="">Consultoria Jurídica</option>
-                                             <option value="">Recursos Humanos</option>
-                                             <option value="">Auditoria Interna</option>
-                                             <option value="">Informática</option>
-                                             <option value="">Finanzas</option>
-                                             <option value="">Logística</option>
-                                             </select>
-                                            </div>
-                                        </div>
-                                         <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Usuarios</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <select class="form-control" id="cmbUsuario" style="width: 100%"  onchange="cargarMenu()" >
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Perfil</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <select class="form-control" id="cmbUsuarios">
-                                             <option value="0">Seleccionar...</option>
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="row">
-                                        <div class="col-xs-4 col-md-4">
-                                             <div class="form-group">
-                                             <label>Menú</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-bars"></span></span>
-                                             <select class="form-control" id="menu">
-                                             <option value="0">Seleccionar...</option>
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-4 col-md-4">
-                                             <div class="form-group">
-                                             <label>Sub Menú</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-bars"></span></span>
-                                             <select class="form-control" id="submenu">
-                                             <option value=0>Seleccionar...</option>
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-4 col-md-4">
-                                             <div class="form-group">
-                                             <label>Privilegios</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-legal"></span></span>
-                                             <select class="form-control" id="perfil">
-                                             <option value=0>Seleccionar...</option>
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-12">
-                                        <br><br>
-                                             <div class="pull-right">
-                                             <button type="button" class="btn btn-success" onclick="actualizarPrivilegios()"><i class="fa fa-plus"></i>&nbsp;Actualizar
-                                             </button>
-                                             </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div> 
                         </div>
-                        </div>
-                   </div>
-                   </div>
-                </div>  
-            </div>
-        </section>
+
+
+            </section>
         </section>
     </div>
 
@@ -307,6 +314,6 @@
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- jQuery 3 -->
-   
+
 </body>
 </html>
