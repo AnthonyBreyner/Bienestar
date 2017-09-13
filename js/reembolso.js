@@ -7,9 +7,9 @@ class WReembolso {
 }
 
 $(function () {
-    $("#rif").on("blur", function () {
+    /*$("#rif").on("blur", function () {
         consultarRif();
-    });
+    });*/
     $("#concepto").select2();
 
     $(".mdl-requisitos").on("change", function () {
