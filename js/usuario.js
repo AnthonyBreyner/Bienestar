@@ -104,12 +104,12 @@ $(function () {
 });
 
 
-function Salvar(){
+/*function Salvar(){
   var usuario = new Usuario();
   console.log("Enviando datos para salvar usuario");
   usuario.Salvar();
   console.log("Usuario Salvado!!!");
-
+*/
 }
 function llenarLista(){
     $("#cmbListadoUsuario").html("");
