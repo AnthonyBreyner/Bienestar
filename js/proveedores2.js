@@ -1742,23 +1742,26 @@ $(function() {
     ,{value:"SIETE 89 PUBLICIDAD, C.A.",desc:"LA CANDELARIA AV. URDANETA CENTRA FINANCIERO LATINO, PISO 10, OFICINA 10-1",label:"J-00301997-6","tipo":"J"}
     ,{value:"ENVIOS EXPRESOS (ENVEX)",desc:"AVENIDA ESTE 18, SANTA ROSALIA, PUENTE HIERRO, GALPON NRO 36, ESQUINAREGENERACION A GUAYABAL, CARACAS",label:"J-31217905-8","tipo":"J"}
 ];
-    $( "#rif2" ) .autocomplete({
+
+    $( "#rif" ) .autocomplete({
         minLength: 0,
         source: projects,
         focus: function( event, ui ) {
-            $( "#rif2" ) .val( ui.item.razonsocial );
+            $( "#rif" ) .val( ui.item.label );
             return false;
         },
         select: function( event, ui ) {
-            $( "#rif2" ) .val( ui.item.label );
-            $( "#rif2-id" ) .val( ui.item.value );
-            $( "#rif2-description" ) .html( ui.item.desc );
+            $( "#rif" ) .val( ui.item.label );
+            $( "#rif-id" ) .val( ui.item.value );
+            $( "#rif-description" ) .html( ui.item.desc );
             return false;
         }
-    })
-        .data( "ui-autocomplete" ) ._renderItem = function( ul, item ) {
+    }).data( "ui-autocomplete" ) ._renderItem = function( ul, item ) {
         return $( "<li>" )
             .append( "<a>" + item.label + "<br>" + item.value + "</a>" )
-            .appendTo( ul ) ;
+            .appendTo(ul);
+            $(ul);
+            $(ul).css("display: none;width: 659.333px;width: 506.333px;top: 677px;left: 260px;");
     };
+
 });

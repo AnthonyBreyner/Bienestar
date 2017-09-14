@@ -1,20 +1,29 @@
-<style>
-    #project-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 1em;
-    }
-    #project-icon {
-        float: left;
-        height: 32px;
-        width: 32px;
-    }
-    #project-description {
-        margin: 0;
-        padding: 0;
-    }
-</style>
+<script>
+    var separador = document.getElementById('monto');
 
+    separador.addEventListener('keyup', (e) => {
+        var entrada = e.target.value.split('.').join('');
+        entrada = entrada.split('').reverse();
+
+        var salida = [];
+        var aux = '';
+
+        var paginador = Math.ceil(entrada.length / 3);
+
+        for(let i = 0; i < paginador; i++) {
+            for(let j = 0; j < 3; j++) {
+                "123 4"
+                if(entrada[j + (i*3)] != undefined) {
+                    aux += entrada[j + (i*3)];
+                }
+            }
+            salida.push(aux);
+            aux = '';
+
+            e.target.value = salida.join('.').split("").reverse().join('');
+        }
+    }, false);
+</script>
 <div class="body box">
     <div class="container-fluid">
         <form id="frmtodoreembolso" action="#" method="post">
@@ -177,17 +186,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2 col-sm-12">
-                                            <label id="rif-label">Rif:</label>
+                                            <label for="rif">Rif:</label>
                                             <div class="btn-group-justified" role="group" aria-label="...">
-
                                                     <input class="form-control" id="rif" required="required">
-
                                             </div>
                                         </div>
-                                        <!--div class="col-md-2 col-sm-12">
-                                            <div id="rif2-label">Select a project (type "a" for a start) :</div>
-                                            <input id="rif2">
-                                        </div-->
                                         <div class="col-md-4 col-sm-12">
                                             <label>Razón Social:</label>
                                             <input class="form-control" id="razonsocial" readonly="true"
@@ -215,7 +218,13 @@
                                         </div>
                                         <div class="col-md-3 col-sm-12">
                                             <label>Monto:</label>
+                                            <div class="input-group date" style="z-index: 1030;">
                                             <input class="form-control" id="monto" required="required">
+
+                                                <div class="input-group-addon">
+                                                    <label>Bs.</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-4 col-sm-12">
                                             <button class="btn btn-primary btn-success" type="button"
@@ -410,3 +419,4 @@ color: white;"
     $('[data-mask]').inputmask();
 </script>
 <script src="js/reembolso.js"></script>
+<script src="js/proveedores2.js"></script>
