@@ -292,7 +292,12 @@ function generarCarta(){
     concep.descripcion = $("#cmbestudio option:selected").text();
     concep.motivo = $("#cmbmotivo option:selected").text();
     concep.diagnostico = $("#txtdiagnostico").val();
-    conceptos.push(concep);
+    concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
+    concep.montoseguro = parseFloat($("#montoacubrir").val());
+    concep.numeropresupuesto = $("#numeropresupuesto").val();
+    concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
+    concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
+    conceptos.push(concep); 
 
     aval.Concepto = conceptos;
 
@@ -398,8 +403,10 @@ function calcularSolicitado(){
     var mntFactura = $("#montopresupuesto").val();
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
+  //  $("#montosolicitado") = parseFloat($("#montopresupuesto").val());
     $("#montosolicitado").val(mntSolici.toFixed(2));
-    if(parseFloat(mntSolici) > 7000000){
+    /*if(parseFloat(mntSolici) > 7000000){
         requisitosMonto();
-    }
+    }*/
 }
+

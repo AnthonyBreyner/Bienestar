@@ -85,8 +85,9 @@
                                         <input type="hidden" id="emptipoc"/>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label>Monto Total del Presupuesto:</label>
-                                        <input class="form-control " id="montopresupuesto" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
+                                        <label>N° de Presupuesto:</label>
+                                        <input class="form-control" id="numeropresupuesto" required="required"
+                                               onkeypress="return SoloNumero(event)">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -97,15 +98,14 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="fechafactura"
+                                                <input type="text" class="form-control" id="txtfechapresupuesto"
                                                        required="required">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        <label>N° de Presupuesto:</label>
-                                        <input class="form-control" id="numerofactura" required="required"
-                                               onkeypress="return SoloNumero(event)">
+                                        <label>Monto Total del Presupuesto:</label>
+                                        <input class="form-control " id="montopresupuesto" required="required" onblur="calcularSolicitado()" onkeypress="return Util.SoloNumero(event,this,true)">
                                     </div>
                                     <div class="col-md-4 col-sm-12">
                                         <label>Monto a Cubrir por la Aseguradora:</label>
@@ -120,8 +120,8 @@
                                                 <i class="fa fa-calendar"></i>
                                             </div>
                                             <div class="input-group input-group" style="width: 100%;">
-                                                <input type="text" class="form-control" id="fechaseguro"
-                                                       required="required">
+                                                <input type="text" class="form-control" id="txtfechaseguro"
+                                                       required="required" onblur="calcularSolicitado()">
                                             </div>
                                         </div>
                                     </div> 
@@ -257,8 +257,25 @@
             </div>
         </div>
     </div>
-</div>
+</div> 
 
+<script>
+    $('#txtfechapresupuesto').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
 
+    $('#txtfechaseguro').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+
+   // $("#montosolicitado").val() = parseFloat($("#montosolicitado").val());
+
+</script>
 
 <script src="js/carta.js"></script>
