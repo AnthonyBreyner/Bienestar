@@ -1760,7 +1760,8 @@ $(function() {
         return $( "<li>" )
             .append( "<a>" + item.label + "<br>" + item.value + "</a>" )
             .appendTo(ul);
-            $(ul).addClass('cambio');
+            $(ul);
+            $(ul).css("display: none;width: 659.333px;width: 506.333px;top: 677px;left: 260px;");
     };
 
 });
