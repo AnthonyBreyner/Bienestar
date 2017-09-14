@@ -111,7 +111,7 @@
                 </td>
             </tr>
             <td width="38%">
-                SEÑORES: <b id="lblnombrec"></b><BR>
+                SEÑORES: <b id="lblnombrec"></b><b id="lblrifclinica"></b><BR>
                 Presente.-
             </td>
         </table>
@@ -124,24 +124,24 @@
                 <td class="derecha">Nro: <label id="lblnsolicitud"></label>
                 </td>
             </tr-->
-        </table>     
+        </table>      
 
         <table width="70%" class="justificar" style="font-size: 25px">
             <td style="text-align: justify">
                 <p class="sangria" id="fam" style="display: none;">
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>  <label id="nombre"></label>quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
-                 
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>  <label id="nombre"></label>, quien a su vez es miembro de la Fuerza Armada Nacional Bolivariana.</p>
 
-                <p class="sangria" id="tit" style="display: none;"> 
+
+                <p class="sangria" id="tit" style="display: none;">
                 Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil2"></b>, titular de la cédula de identidad Nº <b id="cedulaafil2"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco2"></label> miembro de la Fuerza Armada Nacional Bolivariana.</p>
                 <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="lbldiagnostico"></b><b id="lblconcepto"></b>  la suma de <b id="lblmontot"></b>Bs.</p>
+                Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <b id="lblmontopresupuesto"></b> según presupuesto Nº: <label id="lblnropresupuesto"></label> de fecha <label id="lblfechapresupuesto"></label>, de lo cual la empresa aseguradora cubre un monto de <label id="lblmontoseguro"></label> según constancia de fecha <label id="lblfechaseguro"></label> quedando una diferencia de <b id="lblmontot"></b>Bs. el cual este instituto se compromete a cancelar en su totalidad. </p>
                 <p class="sangria">
                 Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
                 <p class="sangria">
                 Sin mas a que hacer referencia y como siempre a sus gratas ordenes.</<p>
                 <p class="centrar">
-                Atentamente,</p>                
+                Atentamente,</p>              
             </td>
         </table>
 
@@ -304,25 +304,24 @@
         nombrea = nomafi[0];
         paren = nomafi[1];
         parentezco = paren.split(")");
-        motivo = this.descripcion;
-        rifclinica = this.DatoFactura.Beneficiario.rif;
-        nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
-        razonc = this.motivo;
-        conceptoc= this.descripcion;
-        diagnosticoc = this.diagnostico;
 
+         $("#lblrifclinica").text(this.DatoFactura.Beneficiario.rif);
+         $("#lblnropresupuesto").text(this.numeropresupuesto);
+         $("#lblfechapresupuesto").text(Util.ConvertirFechaHumana(this.fechapresupuesto));
+         $("#lblmontopresupuesto").text(numeral(parseFloat(this.montopresupuesto)).format('0,0.00'));
+         $("#lblmontoseguro").text(numeral(parseFloat(this.montoseguro)).format('0,0.00'));
+         $("#lblfechaseguro").text(Util.ConvertirFechaHumana(this.fechaseguro));
+         $("#lblnombrec").text(this.DatoFactura.Beneficiario.razonsocial);
+         $("#motivoafil").text(this.descripcion);
+         $("#lblmotivo").text(this.motivo);
+         $("#lblconcepto").text(this.descripcion);
+         $("#lbldiagnostico").text(this.diagnostico);
         });
 
         $("#cedulaafil").html(cedulaa);
         $("#nombreafil").html(nombrea);
         $("#cedulaafil2").html(cedulaa);
         $("#nombreafil2").html(nombrea);
-        $("#motivoafil").html(motivo);
-        $("#lblrifclinica").html(rifclinica);
-        $("#lblnombrec").html(nombreclinica);
-        $("#lblmotivo").html(razonc);
-        $("#lblconcepto").html(conceptoc);
-        $("#lbldiagnostico").html(diagnosticoc);
         $("#lblparentezco").html(parentezco);
         $("#lblparentezco2").html(parentezco);
         if($("#lblparentezco").text()=="MILITAR"){

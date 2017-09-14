@@ -293,6 +293,7 @@ function cargarDatos() {
         var tele = new Telefono();
         tele.domiciliario = $("#txtmtelefono").val();
         tele.movil = $("#txtmcelular").val();
+        tele.emergencia = $("#texmtelefonoe").val();
         reembolso.Direccion = dir;
         reembolso.Telefono.domiciliario = tele.domiciliario;
         reembolso.Telefono.movil = tele.movil;
