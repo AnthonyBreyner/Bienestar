@@ -118,7 +118,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 	               Yo, <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, C.I. N° <b>7.391293</b>, Militar en Servicio Activo, con el cargo Gerente de Bienestar y Seguridad Social de la Dependencia o Unidad de nombre I.P.S.F.A, ubicada en LOS PROCERES, DISTRTIO CAPITAL Teléfono (0212) 6092307, 6092303, 6092304. De acuerdo a lo establecido en el Reglamento de la Ley de Seguridad Social de la Fuerza Armada, en su Artículo N° 24, el cual reza: "Los Comandos de Unidades y Jefaturas de dependencias de la Fuerza Armada Nacional, tienen la obligación, de coadyuvar a la tramitación de los documentos probatorios correspondientes y a las verificaciones a que hubiere lugar".
 				   </div>
 				<div class="sangria" style="font-size: 25px">  
-	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b> Edad <b id="edadafi"></b> Residenciado(o) en:  <b id="direccionafi"></b>Telef.xxxxx, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser xxxxxxx del Militar Fallecido.
+	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en:  <b id="lbldireccion1"></b>Telef.xxxxx, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b id="parentesco"></b> del Militar Fallecido.
 
 	            </div>
 	            <div id="piedepagina">
@@ -342,6 +342,8 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
             // $("#lblestadocivil").text(estcivil);
             // $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
             
+
+
             if (militar.Persona.Direccion != undefined) {
                 var defestados = sessionStorage.getItem("ipsfaEstado");
               //  console.log(defestados);
@@ -352,6 +354,9 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
             }
 
           
+            
+
+
             militar.Familiar.forEach( v => { 
                 if (v.Persona.DatoBasico.cedula == idf){ 
                     var ncompletoafi = v.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
@@ -360,6 +365,11 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
                     var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                     $("#edadafi").html(edad);
 
+                var DIR1 = v.Persona.Direccion[0];
+                Estados.ObtenerEstados();
+                var rirec1 = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                $("#lbldireccion1").text(rirec);
+
                    
                    
                 }
@@ -367,33 +377,8 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 
         } 
     }
-/*
-    function crearFeDeVida() {
-        if (pos == null) {
-            pos = militar.CIS.FeDeVida.length;
-            pos--;
-        }
-       // console.log(pos);
-        var fdv = militar.CIS.FeDeVida[pos];
-       // console.log(fdv);
-       $.each(fdv.DatoBasico, function () {
-            var bene = this.afiliado.split("-");
-            console.log(fe);
-           
-        cedulaa =bene[0];
-        nombreparen =bene[1];
-        nomafi = nombreparen.split("(");
-        nombrea = nomafi[0];
-        parentesco = nomafi[1];
 
 
-        });
-
-        $("#cedulaafil").html(cedulaa);
-        $("#nombreafil").html(nombrea);
-
-      
-    }*/
 </script>
 
 
