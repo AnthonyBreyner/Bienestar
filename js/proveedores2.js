@@ -1742,7 +1742,7 @@ $(function() {
     ,{value:"SIETE 89 PUBLICIDAD, C.A.",desc:"LA CANDELARIA AV. URDANETA CENTRA FINANCIERO LATINO, PISO 10, OFICINA 10-1",label:"J-00301997-6","tipo":"J"}
     ,{value:"ENVIOS EXPRESOS (ENVEX)",desc:"AVENIDA ESTE 18, SANTA ROSALIA, PUENTE HIERRO, GALPON NRO 36, ESQUINAREGENERACION A GUAYABAL, CARACAS",label:"J-31217905-8","tipo":"J"}
 ];
-    alert("llega");
+
     $( "#rif" ) .autocomplete({
         minLength: 0,
         source: projects,
@@ -1759,7 +1759,8 @@ $(function() {
     }).data( "ui-autocomplete" ) ._renderItem = function( ul, item ) {
         return $( "<li>" )
             .append( "<a>" + item.label + "<br>" + item.value + "</a>" )
-            .appendTo( ul ) ;
+            .appendTo(ul);
+            $(ul).addClass('cambio');
     };
-    alert("pasa");
+
 });
