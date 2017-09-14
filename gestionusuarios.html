@@ -138,23 +138,24 @@
             </ul>
             <!-- /.sidebar-menu -->
         </section>
+
         <!-- /.sidebar -->
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-       <section class="content" id="panelderecho">
+    <div class="content-wrapper" class="content-header">
+      <section class="content" id="panelderecho" >
             <!-- Aqui empiezo -->
-   
-
             <!-- Main content -->
         <section class="content">
+
             <div class="row">
                 <div class="col-md-12 ">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
                          <li class="active"><a href="#tab_1" data-toggle="tab">Usuarios</a></li>
                         </ul>
+
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1"><br>
                             <div class="row">
@@ -167,13 +168,15 @@
                                     </div>
                                 </div> -->
                                 
-                                <div class="col-md-12">
+                                <div class="col-md-12" class="Utilidad">
                                     <div class="row">
                                         <div class="col-xs-3 col-md-3">
                                             <div class="form-group">
                                              <label>Fecha de Creacion</label>
                                              <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-calendar"></span></span>
+                                             <span class="input-group-addon">
+                                            <span class="fa fa-calendar"></span>
+                                             </span>
                                              <input type="text" readonly="readonly" class="form-control" id="fechaCreacion" placeholder="Fecha de creación"/>
                                              </div>
                                             </div>
@@ -244,21 +247,22 @@
 
                                     <div class="row">
                                         <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
+                                            <div class="form-group">
                                              <label>Departamento</label>
                                              <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="Departamento" placeholder="Departamento"/>
+                                             <span class=""><span class=""></span></span>
+                                             <input type="text" class="form-control" id="departamento" placeholder="Departamento" maxlength="50" onkeypress="return util.SoloLetras(event)"/> 
                                              </div>
-                                             </div>
+                                            </div>
                                         </div>
+                                     
 
                                        <div class="col-xs-3 col-md-3">
                                             <div class="form-group">
                                              <label>Area De Trabajo</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="AreaTrabajo" placeholder="Area De Trabajo" /> 
+                                             <input type="text" class="form-control" id="areaTrabajo" placeholder="Area De Trabajo" maxlength="50" onkeypress="return util.SoloLetras(event)"/> 
                                              </div>
                                             </div>
                                         </div>
@@ -268,7 +272,7 @@
                                              <label>Cédula del Usuario</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="cedula" placeholder="Cédula del Usuario" onblur="ValidarUsuario()" /> 
+                                             <input type="text" class="form-control" id="cedula" placeholder="Cédula del Usuario" maxlength="8" onkeypress="return util.SoloNumero(event)"/>
                                              </div>
                                             </div>
                                         </div>
@@ -278,7 +282,7 @@
                                              <label>Apellidos</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo del Usuario"/>
+                                             <input type="text" class="form-control" id="apellidos" placeholder="Nombre Completo del Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
                                             </div>
                                         </div>
@@ -290,7 +294,7 @@
                                              <label>Nombres</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="nombre" placeholder="Nombre Completo del Usuario"/>
+                                             <input type="text" class="form-control" id="nombres" placeholder="Nombre Completo del Usuario" maxlength="50" onkeypress=" return util.SoloLetras(event)"/>
                                              </div>
                                             </div>
                                         </div>
@@ -300,7 +304,7 @@
                                              <label>Situacion</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-check-square-o"></span></span>
-                                             <select class="form-control" id="estatus">
+                                             <select class="form-control" id="situacion">
                                              <option value="0">Seleccionar...</option>
                                              <option value="292">Personal Militar</option>
                                              <option value="293">Personal Civil</option>
@@ -314,7 +318,7 @@
                                              <label>Cargo</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-users"></span></span>
-                                             <input type="text" class="form-control" id="cargo" placeholder="Cargo"/>
+                                             <input type="text" class="form-control" id="cargo" placeholder="Cargo" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
                                              </div>
                                         </div>
@@ -324,7 +328,7 @@
                                              <label>Rol</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-users"></span></span>
-                                             <input type="text" class="form-control" id="rolUsuario" placeholder="Rol de Usuario"/>
+                                             <input type="text" class="form-control" id="rolUsuario" placeholder="Rol de Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
                                              </div>
                                        </div>
@@ -336,7 +340,7 @@
                                              <label>Perfil</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="Perfil" placeholder="Perfil"/>
+                                             <input type="text" class="form-control" id="perfilUsuario" placeholder="Perfil" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
                                              </div>
                                         </div>
@@ -346,7 +350,7 @@
                                              <label>Funciones</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="Funciones" placeholder="Funciones"/>
+                                             <input type="text" class="form-control" id="funciones" placeholder="Funciones" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
                                              </div>
                                         </div>
@@ -356,7 +360,7 @@
                                              <label>Usuario</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="Usuario" placeholder="Usuario"/>
+                                             <input type="text" class="form-control" id="usuario" placeholder="Usuario" maxlength="15" />
                                              </div>
                                              </div>
                                         </div>
@@ -366,7 +370,7 @@
                                              <label>Dirección IP</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                                             <input type="text" class="form-control" id="direccionIp" placeholder="Direccion IP"/>
+                                             <input type="text" class="form-control" id="direccionIp" placeholder="Direccion IP" maxlength="15" />
                                              </div>
                                              </div>
                                         </div>
@@ -378,7 +382,7 @@
                                              <label>Dirección MAC</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                                             <input type="text" class="form-control" id="direccionMac" placeholder="Direccion MAC"/>
+                                             <input type="text" class="form-control" id="direccionMac" placeholder="Direccion MAC" maxlength="25" />
                                              </div>
                                              </div>
                                         </div>
@@ -387,7 +391,7 @@
                                              <label>Dirección De Domicilio</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-book"></span></span>
-                                             <input type="text" class="form-control" id="direccionDomicilio" placeholder="Dirección De Domicilio"/>
+                                             <input type="text" class="form-control" id="direccionDomicilio" placeholder="Dirección De Domicilio" maxlength="50" />
                                              </div>
                                              </div>
                                         </div>
@@ -397,7 +401,7 @@
                                              <label>Teléfono</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-phone"></span></span>
-                                             <input type="text" class="form-control" id="telefono" placeholder="Teléfono"/>
+                                             <input type="text" class="form-control" id="telefono" placeholder="Teléfono" maxlength="11" onkeypress=" return util.SoloNumero(event)"/>
                                              </div>
                                              </div>
                                         </div>
@@ -407,7 +411,7 @@
                                              <label>Correo Electrónico</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                                             <input type="text" class="form-control" id="correo" placeholder="Correo Electronico"/>
+                                             <input type="text" class="form-control" id="correo" placeholder="Correo Electronico" maxlength="50"/>
                                              </div>
                                              </div>
                                         </div>                                                                   
@@ -433,7 +437,7 @@
                                              <label>Clave</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                                             <input type="password" class="form-control" id="clave" placeholder="Clave"/>
+                                             <input type="password" class="form-control" id="clave" placeholder="Clave" maxlength="10"/>
                                              </div>
                                              </div>
                                         </div>
@@ -443,7 +447,7 @@
                                              <label>Repetir Clave</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-key"></span></span>
-                                             <input type="password" class="form-control" id="rclave" placeholder="Repetir Clave"/>
+                                             <input type="password" class="form-control" id="rclave" placeholder="Repetir Clave" maxlength="10"/>
                                              </div>
                                              </div>
                                         </div>
@@ -466,7 +470,9 @@
              </div>   
         </section>
     </section>
+
     </div>
+   
     <!-- /.content-wrapper -->
     <!-- Main Footer -->
     <footer class="main-footer">
@@ -474,6 +480,8 @@
         <div class="pull-right hidden-xs">
 
         </div>
+
+    
         <!-- Default to the left -->
         <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
     </footer>
@@ -481,6 +489,7 @@
 
     <!-- REQUIRED JS SCRIPTS -->
 
+   
     <!-- jQuery 3 -->
    
 </body>
