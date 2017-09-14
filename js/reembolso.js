@@ -6,7 +6,6 @@ class WReembolso {
     }
 }
 
-
 $(function () {
     $("#rif").on("blur", function () {
         consultarRif();

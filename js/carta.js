@@ -241,6 +241,7 @@ function crearLista(){
 }
 
 function generarCarta(){
+    if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
     var aval = new Carta();
     aval.montosolicitado = parseFloat($("#montosolicitado").val())
     var cuenta = new CuentaBancaria2();
@@ -291,7 +292,8 @@ function generarCarta(){
     concep.afiliado = beneficiario;
     concep.descripcion = $("#cmbestudio option:selected").text();
     concep.motivo = $("#cmbmotivo option:selected").text();
-    concep.diagnostico = $("#txtdiagnostico").val();
+    concep.diagnostico = $("#txtdiagnostico").text();
+
     concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
     concep.montoseguro = parseFloat($("#montoacubrir").val());
     concep.numeropresupuesto = $("#numeropresupuesto").val();
@@ -318,9 +320,15 @@ function generarCarta(){
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
         var idm = militar.Persona.DatoBasico.cedula;
-        var ventana = window.open("cartaAvalSobre.html?id="+idm + "&nm=" +res.msj , "_blank");
+        var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
     });
+
+
+    } else {
+        $.notify("Debe ingresar todos los datos para realizar la Carta Aval");
+    }
 }
+
 
 function habilitarDireccion(estatus){
     $("#collapseTree select").attr("disabled",estatus);
