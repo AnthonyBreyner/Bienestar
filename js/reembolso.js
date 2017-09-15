@@ -354,7 +354,7 @@ function cargarDatos() {
                 $("#panelregistro").hide();
                 $("#panelperfil").hide();
                 $("#_bxBuscar").show();*/
-                window.location="starter.html";
+                //window.location="starter.html";
                 var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
 
             });
