@@ -8,7 +8,7 @@ let copia = null;
 let posicionModificar = null;
 
 //{id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-class WReembolso {
+/*class WReembolso {
   constructor(){
     this.id = "";
     this.numero = "";
@@ -17,7 +17,7 @@ class WReembolso {
     this.observaciones = new Array();
   }
 
-}
+}*/
 
 
 $(function () {
