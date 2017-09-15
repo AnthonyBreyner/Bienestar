@@ -241,6 +241,7 @@ function generarPlanillaFdV(){
 
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
+     wfedevida.afiliado = beneficiario;
    
     wfedevida.id = militar.Persona.DatoBasico.cedula;
     wfedevida.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+" "+militar.Persona.DatoBasico.apellidoprimero.trim();

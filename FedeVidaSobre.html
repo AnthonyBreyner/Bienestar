@@ -39,7 +39,7 @@
         }
 
       	.texto14 {
-            font-size: 20px;
+            font-size: 14px;
         }
 
 
@@ -51,6 +51,9 @@
             font-size: 10px;
         }
 
+        .texto20 {
+            font-size: 20px;
+        }
         .doble {
             height: 40px;
         }
@@ -118,7 +121,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 	               Yo, <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, C.I. N° <b>7.391293</b>, Militar en Servicio Activo, con el cargo Gerente de Bienestar y Seguridad Social de la Dependencia o Unidad de nombre I.P.S.F.A, ubicada en LOS PROCERES, DISTRTIO CAPITAL Teléfono (0212) 6092307, 6092303, 6092304. De acuerdo a lo establecido en el Reglamento de la Ley de Seguridad Social de la Fuerza Armada, en su Artículo N° 24, el cual reza: "Los Comandos de Unidades y Jefaturas de dependencias de la Fuerza Armada Nacional, tienen la obligación, de coadyuvar a la tramitación de los documentos probatorios correspondientes y a las verificaciones a que hubiere lugar".
 				   </div>
 				<div class="sangria" style="font-size: 25px">  
-	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en:  <b id="lbldireccion1"></b>Telef.xxxxx, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b id="parentesco"></b> del Militar Fallecido.
+	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en:  <b id="lbldireccion"></b>Telef.<b id="telefonoafil"></b>, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b id="parentesco"></b> del Militar Fallecido.
 
 	            </div>
 	            <div id="piedepagina">
@@ -129,14 +132,14 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
                       <td colspan="3" class="texto14 bde biz bajo btop"><b>DATOS DEL MILITAR FALLECIDO</b> </td>
                     </tr>
                     <tr>
-                      <td width="494" class="texto12 bde biz bajo btop">APELLIDOS Y NOMBRES </td>
-                      <td width="274" class="texto12 bde biz bajo btop" >CEDULA DE IDENTIDAD </td>
-                      <td width="378" class="texto12 bde biz bajo btop">FECHA DE FALLECIMIENTO </td>
+                      <td width="494" class="texto14 bde biz bajo btop">APELLIDOS Y NOMBRES </td>
+                      <td width="274" class="texto14 bde biz bajo btop" >CEDULA DE IDENTIDAD </td>
+                      <td width="378" class="texto14 bde biz bajo btop">FECHA DE FALLECIMIENTO </td>
                     </tr>
                     <tr>
-                      <td class="texto12 bde biz bajo btop"><b id="nombre"></b></td>
-                      <td class="texto12 bde biz bajo btop"><b id="lblcedula"></b></td>
-                      <td class="texto12 bde biz bajo btop"><b id=""></b></td>
+                      <td class="texto13 bde biz bajo btop"><b id="nombre"></b></td>
+                      <td class="texto13 bde biz bajo btop"><b id="lblcedula"></b></td>
+                      <td class="texto13 bde biz bajo btop"><b id=""></b></td>
                     </tr>
                   </table>
 
@@ -144,9 +147,9 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 
 			      <table  border="0" align="center" width="100%" >
 								  <tr>
-								    <td width="36%" class="texto12 bde biz bajo btop">FIRMA DEL BENEFICIARIO </td>
-								    <td width="34%" class="texto12 bde biz bajo btop">FIRMA DEL GERENTE </td>
-								    <td width="30%" align="justify" valign="top" class="texto12 bde biz bajo btop">SELLO DE LA UNIDAD</td>
+								    <td width="36%" class="texto14 bde biz bajo btop">FIRMA DEL BENEFICIARIO </td>
+								    <td width="34%" class="texto14 bde biz bajo btop">FIRMA DEL GERENTE </td>
+								    <td width="30%" align="justify" valign="top" class="texto14 bde biz bajo btop">SELLO DE LA UNIDAD</td>
 							      </tr>
 								  <tr>
 								    <td class="texto12 bde biz btop bajo"><br>
@@ -287,7 +290,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
         };
         var id = $.obtener("id");
         idf = $.obtener("idf");
-        // pos = $.obtener("pos");
+        pos = $.obtener("pos");
         
         Buscar(id);
     });
@@ -361,17 +364,37 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
                 if (v.Persona.DatoBasico.cedula == idf){ 
                     var ncompletoafi = v.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
                     $("#nombreafil").html(ncompletoafi); 
-                    $("#cedulaafi").html(v.Persona.DatoBasico.cedula); 
+                    //$("#cedulaafi").html(v.Persona.DatoBasico.cedulaafi); 
+                     $("#telefonoafi").html(v.Persona.Telefono.movil); 
                     var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                     $("#edadafi").html(edad);
-
+                    console.log(militar.Familiar);
                 var DIR1 = v.Persona.Direccion[0];
                 Estados.ObtenerEstados();
                 var rirec1 = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
                 $("#lbldireccion1").text(rirec);
 
                    
-                   
+                    if (pos == null) {
+                         pos = militar.CIS.Investigacion.FeFeVida.length;
+                          pos--;
+                      }
+                     console.log(pos);
+                     $("#cedulaafi").text(idf); 
+                     var fdv = militar.CIS.Investigacion.FeFeVida[pos];
+
+                     console.log(fdv);
+
+      /*  $.each(concep.Concepto, function () {
+            var bene = this.afiliado.split("-");
+            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+        cedulaa =bene[0];
+        nombreparen =bene[1];
+        nomafi = nombreparen.split("(");
+        nombrea = nomafi[0];
+        paren = nomafi[1];
+        parentezco = paren.split(")");
+*/
                 }
             });
 
