@@ -19,12 +19,51 @@ $(function () {
         verificaCheckModal("requisitosmastologia","btnAgconcepto");
     });
     
-    llenarCarta();
+   /* llenarCarta();
         $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
+    });*/
+
+   /* llenarReembolso();
+    $(".btnvolverentradar").click(function () {
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarReembolso();
+            limpiarmdlempresa();
+            $("#rifnuevo").remove();
+            $("#sefue").remove();
+        })
+    });
+    $(".btncancelare").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });*/
+
+    llenarCarta();
+    $(".btnvolverentradac").click(function () {
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarCarta();
+            //limpiarmdlempresa();
+           // $("#rifnuevo").remove();
+           // $("#sefue").remove();
+        })
     });
 });
 
@@ -416,3 +455,9 @@ function calcularSolicitado(){
 
 }
 
+function limpiarCarta() {
+    $('#frmcartaaval').each(function () {
+        this.reset();
+        $("#cmbbeneficiario").select2("val", "");
+    });
+}
