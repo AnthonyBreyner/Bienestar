@@ -107,7 +107,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
         <td class="texto10 bde biz bajo btop">FECHA:</td>
       </tr>
       <tr>
-        <td height="30" >&nbsp;</td>
+        <td height="30" ><b id="lblfechacreacion"></b></td>
       </tr>
     </table></td>
     </tr>
@@ -121,7 +121,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 	               Yo, <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, C.I. N° <b>7.391293</b>, Militar en Servicio Activo, con el cargo Gerente de Bienestar y Seguridad Social de la Dependencia o Unidad de nombre I.P.S.F.A, ubicada en LOS PROCERES, DISTRTIO CAPITAL Teléfono (0212) 6092307, 6092303, 6092304. De acuerdo a lo establecido en el Reglamento de la Ley de Seguridad Social de la Fuerza Armada, en su Artículo N° 24, el cual reza: "Los Comandos de Unidades y Jefaturas de dependencias de la Fuerza Armada Nacional, tienen la obligación, de coadyuvar a la tramitación de los documentos probatorios correspondientes y a las verificaciones a que hubiere lugar".
 				   </div>
 				<div class="sangria" style="font-size: 25px">  
-	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en:  <b id="lbldireccion"></b>Telef.<b id="telefonoafil"></b>, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b id="parentesco"></b> del Militar Fallecido.
+	              	 Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N° <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en:  <b id="lbldireccion1"></b>Telef.<b id="lbltelefonoafi"></b>, con la finalidad de cumplir con el requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b id="lblparentesco"></b> del Militar Fallecido.
 
 	            </div>
 	            <div id="piedepagina">
@@ -207,13 +207,13 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
 								    <td colspan="6" class="texto12 bde biz bajo btop" >DATOS DEL MILITAR FALLECIDO </td>
 								  </tr>
 								  <tr>
-								    <td colspan="3" class="texto12 bde biz bajo btop" >APELLIDOS Y NOMBRES <br>
-								    <br>								     </td>
+								    <td colspan="3" class="texto12 bde biz bajo btop" >APELLIDOS Y NOMBRES <br>							     
+                                    </td>
 								    <td colspan="3" class="texto12 bde biz bajo btop">CEDULA DE IDENTIDAD </td>
 								  </tr>
 								  <tr>
-								    <td colspan="3" class="texto12 bde biz bajo btop" >&nbsp;</td>
-			                        <td colspan="3" class="texto12 bde biz bajo btop">&nbsp;</td>
+								    <td colspan="3" class="texto12 bde biz bajo btop" ><b id="nombre"></b></td>
+			                        <td colspan="3" class="texto12 bde biz bajo btop"><b id="lblcedula"></td>
 				  </tr>
 								  
 								  
@@ -271,6 +271,7 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
     militar.CIS.ServicioMedico.Programa.FeDeVida.forEach(v => { console.log(v.numero); });
     */
     let idf = '';
+
     // let militar = null;
     
     $(function () {
@@ -360,46 +361,52 @@ GERECIA DE BIENESTAR Y SEGURIDAD </td>
             
 
 
-            militar.Familiar.forEach( v => { 
-                if (v.Persona.DatoBasico.cedula == idf){ 
+                    militar.Familiar.forEach( v => { 
+                     if (v.Persona.DatoBasico.cedula == idf){ 
                     var ncompletoafi = v.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
                     $("#nombreafil").html(ncompletoafi); 
-                    //$("#cedulaafi").html(v.Persona.DatoBasico.cedulaafi); 
-                     $("#telefonoafi").html(v.Persona.Telefono.movil); 
+                    $("#cedulaafi").html(v.Persona.DatoBasico.cedula);
+                    $("#lblparentesco").html(Util.ConvertirParentesco(v.parentesco,v.Persona.DatoBasico.sexo));
+                    $("#lbltelefonoafi").html(v.Persona.Telefono.movil); 
                     var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                     $("#edadafi").html(edad);
+
+                    //$("#lblparentesco").html(v.Persona.parentesco);
+                    //alert(("#lblparentesco").text());
                     console.log(militar.Familiar);
-                var DIR1 = v.Persona.Direccion[0];
-                Estados.ObtenerEstados();
-                var rirec1 = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
-                $("#lbldireccion1").text(rirec);
-
-                   
-                    if (pos == null) {
-                         pos = militar.CIS.Investigacion.FeFeVida.length;
-                          pos--;
-                      }
-                     console.log(pos);
-                     $("#cedulaafi").text(idf); 
-                     var fdv = militar.CIS.Investigacion.FeFeVida[pos];
-
-                     console.log(fdv);
-
-      /*  $.each(concep.Concepto, function () {
-            var bene = this.afiliado.split("-");
-            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-        cedulaa =bene[0];
-        nombreparen =bene[1];
-        nomafi = nombreparen.split("(");
-        nombrea = nomafi[0];
-        paren = nomafi[1];
-        parentezco = paren.split(")");
-*/
+                     var DIR1 = v.Persona.Direccion[0];
+                         Estados.ObtenerEstados();
+                      var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
+                  $("#lbldireccion1").text(rirec1);
+          
+                
                 }
-            });
 
-        } 
+           
+            });
+                     if (pos == null) {
+            pos = militar.CIS.Investigacion.FeFeVida.length;
+            pos--;
+        }
+        console.log(pos);
+        var carta = militar.CIS.Investigacion.FeFeVida[pos];
+       // $("#lblfechacreacion").Util.ConvertirFechaHumana(carta.fechacreacion);
+             console.log(carta);   
+
+                     militar.CIS.Investigacion.forEach( v => { 
+                     if (v.FeFeVida.idf == idf){ 
+                    
+                    $("#lblfechacreacion").Util.ConvertirFechaHumana(v.FeFeVida.fechacreacion);
+                   console.log(v);
+          
+                
+                }
+
+
+
+        } );
     }
+}
 
 
 </script>
