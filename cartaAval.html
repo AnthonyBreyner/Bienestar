@@ -103,17 +103,19 @@
     </table>
     <br><br>
     <table width="70%" style="font-size: 20px">
+        <tr>
+            <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud"></label>
+            </td>
+        </tr>
         <td class="derecha">
             Caracas, <label id="lblfecha"></label>
         </td>
     </table>
     <table style="font-size: 25px">
-        <tr>
-            <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud"></label>
-            </td>
-        </tr>
+
         <td width="38%">
-            SEÑORES: <b id="lblnombrec"></b><b id="lblrifclinica"></b><BR>
+            SEÑORES:<br>
+            <b id="lblnombrec"></b><br>
             Presente.-
         </td>
     </table>
@@ -132,11 +134,9 @@
         <td style="text-align: justify">
             <p class="sangria" id="fam" style="display: none;">
                 Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de
-                la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Prevision
+                la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Previsión
                 Social de la Fuerza Armada por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>
                 <label id="nombre"></label>, quien a su vez es miembro de la Fuerza Armada Nacional Bolivariana.</p>
-
-
             <p class="sangria" id="tit" style="display: none;">
                 Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil2"></b>, titular de
                 la cédula de identidad Nº <b id="cedulaafil2"></b> se encuentra afiliado(a) al Intituto de Prevision
@@ -144,11 +144,7 @@
                 Nacional Bolivariana.</p>
             <p class="sangria">
                 Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
-                    id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <b
-                    id="lblmontopresupuesto"></b> según presupuesto Nº: <label id="lblnropresupuesto"></label> de fecha
-                <label id="lblfechapresupuesto"></label>, de lo cual la empresa aseguradora cubre un monto de <label
-                    id="lblmontoseguro"></label> según constancia de fecha <label id="lblfechaseguro"></label> quedando
-                una diferencia de <b id="lblmontot"></b> BS. <b id="textomonto"></b> el cual este instituto se
+                id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <label id="txtmontopre"></label> (<label id="lblmontopresupuesto"></label> BS) según presupuesto Nº: <label id="lblnropresupuesto"></label> de fecha <label id="lblfechapresupuesto"></label>, de lo cual la empresa aseguradora cubre un monto de <label id="txtmontoseg"></label> (<label id="lblmontoseguro"></label> BS) según constancia de fecha <label id="lblfechaseguro"></label> quedando una diferencia de <b id="txtmontoipsfa"></b> (<b id="lblmontot"></b> BS.) el cual este instituto se
                 compromete a cancelar en su totalidad. </p>
             <p class="sangria">
                 Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede
@@ -171,7 +167,7 @@
             </td>
             <td width="25%" class="control-label" style="text-align: center; ">
                 <h3 style="text-align: center; ">
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
                     CNEL. CABAÑA HERRERA PABLO<br>
                     GERENTE DE FINANZAS
                 </h3>
@@ -312,8 +308,9 @@
         $("#lbltipoc").text(carta.CuentaBancaria.tipo);
         $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
 
-        var montot = numeroALetras(carta.montosolicitado);
-        $("#textomonto").html(montot);
+        var txttotipsfa = numeroALetras(carta.montosolicitado);
+        $("#txtmontoipsfa").html(txttotipsfa);
+
         var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
 
         $.each(concep.Concepto, function () {
@@ -337,6 +334,12 @@
             $("#lblmotivo").text(this.motivo);
             $("#lblconcepto").text(this.descripcion);
             $("#lbldiagnostico").text(this.diagnostico);
+
+            var txttotpre = numeroALetras(this.montopresupuesto);
+            $("#txtmontopre").html(txttotpre);
+
+            var txttotseg = numeroALetras(this.montoseguro);
+            $("#txtmontoseg").html(txttotseg);
         });
 
         $("#cedulaafil").html(cedulaa);
@@ -519,8 +522,8 @@
                 enteros: Math.floor(num),
                 centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
                 letrasCentavos: '',
-                letrasMonedaPlural: currency.plural || 'BOLÍVARES',//'PESOS', 'Dólares', 'Bolívares', 'etcs'
-                letrasMonedaSingular: currency.singular || 'BOLIVAR', //'PESO', 'Dólar', 'Bolivar', 'etc'
+                letrasMonedaPlural: currency.plural || 'BOLÍVARES',
+                letrasMonedaSingular: currency.singular || 'BOLIVAR', 
                 letrasMonedaCentavoPlural: currency.centPlural || 'CENTIMOS',
                 letrasMonedaCentavoSingular: currency.centSingular || 'CENTIMOS'
             };

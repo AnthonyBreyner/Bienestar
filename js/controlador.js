@@ -279,3 +279,10 @@ function msjRespuesta(texto) {
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }
+
+function msj2Respuesta(texto) {
+    $("#_contenido").html(texto);
+    var botones = '<a type="button" href="starter.html" class="btn btn-primary">Continuar</a>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}
