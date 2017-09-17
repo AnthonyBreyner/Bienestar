@@ -47,6 +47,16 @@ $(function () {
         $("#rifnuevo").remove();
         $("#sefue").remove();
     });
+    $(".close").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });
+    $(".btnguardar").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });
 });
 
 function consultarRif() {
@@ -268,7 +278,7 @@ function validadDatosBancarios() {
 
 
 function cargarDatos() {
-    if (Util.ValidarFormulario("frmtodoreembolso", "_btnSalvar")) {
+    if (Util.ValidarFormulario("frmtodoapo", "_btnSalvar")) {
         var reembolso = new Reembolso();
         reembolso.montosolicitado = parseFloat($("#mntAcumulado").html());
 

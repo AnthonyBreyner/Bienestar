@@ -280,7 +280,7 @@ function crearLista(){
 }
 
 function generarCarta(){
-<<<<<<< HEAD
+
     var aval = new Carta();
     aval.montosolicitado = parseFloat($("#montosolicitado").val())
     var cuenta = new CuentaBancaria2();
@@ -358,9 +358,9 @@ function generarCarta(){
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
         var idm = militar.Persona.DatoBasico.cedula;
-        var ventana = window.open("cartaAvalSobre.html?id="+idm + "&nm=" +res.msj , "_blank");
+
     });
-=======
+
     if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
         var aval = new Carta();
         aval.montosolicitado = parseFloat($("#montosolicitado").val())
@@ -448,7 +448,6 @@ function generarCarta(){
     } else {
         $.notify("Debe ingresar todos los datos para realizar la Carta Aval");
     }
->>>>>>> 8309a539bf35bed7ae9d0b61126ee4bc9da977ef
 }
 
 function habilitarDireccion(estatus){
@@ -532,7 +531,9 @@ function calcularSolicitado(){
     var mntFactura = $("#montopresupuesto").val();
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
-    $("#montosolicitado").val(mntSolici.toFixed(2));
+    if(isNaN(mntSolici)){
+        $("#montosolicitado").val("");
+    }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
 
 }
 
