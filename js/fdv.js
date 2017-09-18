@@ -268,11 +268,14 @@ function generarPlanillaFdV(){
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
-        if (respuesta.msj == ""){respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
-        llenarfe();
-        var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");}
+        if (respuesta.msj == "Bien") {
+            respuesta.msj = "Se proceso con exito....";
+            msjRespuesta(respuesta.msj);
+            llenarfe();
+            var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+        }
     });
+
     } else {
         $.notify("Debe ingresar todos los datos para realizar el reembolso");
     }

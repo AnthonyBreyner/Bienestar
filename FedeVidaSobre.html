@@ -133,7 +133,7 @@
                 verificaciones a que hubiere lugar".
             </div>
             <div class="sangria" style="font-size: 25px">
-                Certifico y doy fe que hoy 0000-00-00 se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N°
+                Certifico y doy fe que hoy <labe id="lblfechacreacion3"></labe> se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N°
                 <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en: <b
                     id="lbldireccion1"></b>Telef.<b id="lbltelefonoafi"></b>, con la finalidad de cumplir con el
                 requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b
@@ -398,8 +398,8 @@
 
                     //$("#lblparentesco").html(v.Persona.parentesco);
                     //alert(("#lblparentesco").text());
-                    console.log(militar.Familiar);
-                    var DIR1 = Persona.Direccion[0];
+                    console.log(v.Persona);
+                    var DIR1 = v.Persona.Direccion[0];
                     Estados.ObtenerEstados();
                     var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
                     $("#lbldireccion1").text(rirec1);
@@ -417,6 +417,7 @@
             var carta = militar.CIS.Investigacion.FeFeVida[pos];
             $("#lblfechacreacion").html(Util.ConvertirFechaHumana(carta.fechacreacion));
             $("#lblfechacreacion2").html(Util.ConvertirFechaHumana(carta.fechacreacion));
+            $("#lblfechacreacion3").html(Util.ConvertirFechaHumana(carta.fechacreacion));
             console.log(carta);
 
 //                     militar.CIS.Investigacion.forEach( v => {
