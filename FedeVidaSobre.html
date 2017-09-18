@@ -83,14 +83,6 @@
             text-align: justify;
         }
 
-        .sobre {
-            display: none;
-        }
-
-        .militar {
-            display: none;
-        }
-
     </style>
 </head>
 <body>
@@ -145,7 +137,7 @@
                 verificaciones a que hubiere lugar".
             </div>
 
-            <div id= "sobre" class="sangria texto25" style="display: none;">
+            <div id="sobre" class="sangria texto25">
                 Certifico y doy fe que hoy <labe id="lblfechacreacion3"></labe> se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N°
                 <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en: <b
                     id="lbldireccion1"></b>Telef.<b id="lbltelefonoafi"></b>, con la finalidad de cumplir con el
@@ -162,10 +154,12 @@
 
             </div>
 
+
+
            
                 <br>
 
-                <div id="datosfallecido">
+                <div id="datosfallecido" style="display: none;">
                 <table border="0" align="center" width="100%" id="datosfallecido">
                     <tr>
                         <td colspan="3" class="texto14 bde biz bajo btop"><b>DATOS DEL MILITAR FALLECIDO</b></td>
@@ -302,15 +296,6 @@
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
-
-    function imprimir() {
-        $('#boton').html('');
-        window.print();
-        window.close();
-    }
-</script>
-
-<script>
     /*
     militar.Familiar.forEach( v => { 
         if (v.Persona.DatoBasico.cedula == "13097317"){ 
@@ -323,7 +308,7 @@
     let idf = '';
 
     // let militar = null;
-
+    alert("adgfadg");
     $(function () {
         numeral.locale('es-es');
         $.obtener = function (key) {
@@ -373,16 +358,18 @@
 
             militar = JSON.parse(xhRequest.responseText);
             llenar(id);
+
         });
 
     }
+
 
     function llenar(formato) {
         if (formato != undefined) {
 
         }
 
-        //  console.log(militar);
+         console.log(militar);
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
             $("#nombre").html(ncompleto);
@@ -398,16 +385,15 @@
             // $("#edad").html(edad);
             // $("#lblestadocivil").text(estcivil);
              $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-                    
+        }
 
-        if ($("#lblsituacion1").text() == "FCP") {
-           $("#militar").css("display", "block");
-             
+
+           if (militar.situacion == "FCP") {
+            $("#militar").css("display", "block");
              } else 
-            
            $("#sobre").css("display", "block");
            $("#datosfallecido").css("display", "block");
-
+          
 //
 
 

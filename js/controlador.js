@@ -286,3 +286,10 @@ function msj2Respuesta(texto) {
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }
+
+function msjferespuesta(texto) {
+    $("#_contenido").html("El militar se encuentra Activo.");
+    var botones = '<a type="button" href="starter.html" class="btn btn-primary">Continuar</a>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}

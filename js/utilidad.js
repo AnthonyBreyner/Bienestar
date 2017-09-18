@@ -242,10 +242,10 @@ class Utilidad {
                 situacion = "RETIRADO";
                 break;
             case "FCP":
-                situacion = "FALLECIDO CON PERNSION";
+                situacion = "FALLECIDO CON PENSION";
                 break;
             case "FSP":
-                situacion = "FALLECIDO SIN PENCION";
+                situacion = "FALLECIDO SIN PENSION";
                 break;
             case "I":
                 situacion = "INVALIDO";
