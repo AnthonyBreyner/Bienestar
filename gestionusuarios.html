@@ -149,28 +149,17 @@
             <!-- Main content -->
         <section class="content">
 
-            <div class="row">
-                <div class="col-md-12 ">
                     <div class="nav-tabs-custom">
-                        <ul class="nav nav-tabs">
-                         <li class="active"><a href="#tab_1" data-toggle="tab">Usuarios</a></li>
-                        </ul>
-
+                        
+                         <label><h4>Usuario</h4></label>
+                       
+                        <div class="nav-tabs-custom box box-primary">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1"><br>
-                            <div class="row">
-                                <!--<div class="col-md-3" style="display:none"> 
-                                    <div class="form-group">
-                                     <label>Listado de Usuarios del sistema</label>
-                                     <input type="hidden" id="idUser" value=0>
-                                     <select multiple="" id="cmbListadoUsuario" class="form-control js-example-placeholder-multiple" onchange="cargarUsuario()" style="height:28em">
-                                     </select>
-                                    </div>
-                                </div> -->
-                                
-                                <div class="col-md-12" class="Utilidad">
-                                    <div class="row">
-                                        <div class="col-xs-3 col-md-3">
+                            
+                                    <div class="row" class="nav-tabs-custom box box-primary">
+
+                                        <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Fecha de Creacion</label>
                                              <div class="input-group">
@@ -181,7 +170,7 @@
                                              </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Sistema</label>
                                              <div class="input-group">
@@ -195,7 +184,7 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Gerencia</label>
                                              <select class="form-control" id="cmbGerencia">
@@ -218,8 +207,9 @@
                                              </select>
                                             </div>
                                         </div>
-
-                                        <div class="col-xs-3 col-md-3">
+                                        </div>
+                                          <div class="row">
+                                            <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Sucursal</label>
                                              <select class="form-control" id="cmbSucursal">
@@ -242,11 +232,9 @@
                                              </select>
                                             </div>
                                         </div>
-                                    </div>
-                                <!-- fin de linea -->
+                                          
 
-                                    <div class="row">
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Departamento</label>
                                              <div class="input-group">
@@ -257,7 +245,7 @@
                                         </div>
                                      
 
-                                       <div class="col-xs-3 col-md-3">
+                                       <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Area De Trabajo</label>
                                              <div class="input-group">
@@ -266,8 +254,12 @@
                                              </div>
                                             </div>
                                         </div>
-
-                                        <div class="col-xs-3 col-md-3">
+                                          </div><br>
+                                        <section   class="nav-tabs-custom box box-primary">
+                                        <br>
+                                          <div class="row">
+                                        <div class="col-md-4 col-sm-12">
+                                           
                                             <div class="form-group">
                                              <label>Cédula del Usuario</label>
                                              <div class="input-group">
@@ -277,19 +269,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
-                                            <div class="form-group">
-                                             <label>Apellidos</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="apellidos" placeholder="Nombre Completo del Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
-                                             </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                             <div class="form-group">
                                              <label>Nombres</label>
                                              <div class="input-group">
@@ -299,94 +279,23 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Situacion</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-check-square-o"></span></span>
-                                             <select class="form-control" id="situacion">
-                                             <option value="0">Seleccionar...</option>
-                                             <option value="292">Personal Militar</option>
-                                             <option value="293">Personal Civil</option>
-                                             </select>
-                                             </div>
-                                             </div>
-                                        </div>
-
-                                         <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Cargo</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-users"></span></span>
-                                             <input type="text" class="form-control" id="cargo" placeholder="Cargo" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
-                                             </div>
-                                             </div>
-                                        </div>
-
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Rol</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-users"></span></span>
-                                             <input type="text" class="form-control" id="rolUsuario" placeholder="Rol de Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
-                                             </div>
-                                             </div>
-                                       </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Perfil</label>
+                                        <div class="col-md-4 col-sm-12">
+                                            <div class="form-group">
+                                             <label>Apellidos</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="perfilUsuario" placeholder="Perfil" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
+                                             <input type="text" class="form-control" id="apellidos" placeholder="Nombre Completo del Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
                                              </div>
-                                             </div>
+                                            </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Funciones</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="funciones" placeholder="Funciones" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
-                                             </div>
-                                             </div>
-                                        </div>
+                                     
+                                          </div>
 
-                                         <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Usuario</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
-                                             <input type="text" class="form-control" id="usuario" placeholder="Usuario" maxlength="15" />
-                                             </div>
-                                             </div>
-                                        </div>
+                                     <div class="row">
 
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Dirección IP</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                                             <input type="text" class="form-control" id="direccionIp" placeholder="Direccion IP" maxlength="15" />
-                                             </div>
-                                             </div>
-                                        </div>
-                                    </div>  
 
-                                    <div class="row">   
-                                        <div class="col-xs-3 col-md-3">
-                                             <div class="form-group">
-                                             <label>Dirección MAC</label>
-                                             <div class="input-group">
-                                             <span class="input-group-addon"><span class="fa fa-at"></span></span>
-                                             <input type="text" class="form-control" id="direccionMac" placeholder="Direccion MAC" maxlength="25" />
-                                             </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-xs-3 col-md-3">
+                                             <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Dirección De Domicilio</label>
                                              <div class="input-group">
@@ -396,7 +305,7 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Teléfono</label>
                                              <div class="input-group">
@@ -406,7 +315,7 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-xs-3 col-md-3">
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Correo Electrónico</label>
                                              <div class="input-group">
@@ -414,11 +323,25 @@
                                              <input type="text" class="form-control" id="correo" placeholder="Correo Electronico" maxlength="50"/>
                                              </div>
                                              </div>
-                                        </div>                                                                   
-                                     </div>
+                                        </div> 
+                                          </div>
+                                     	  </div>
 
-                                    <div class="row">
-                                        <div class="col-xs-4 col-md-4">
+                              
+                                   <div class="row">
+                             
+                                   <div class="nav-tabs-custom box box-primary"> <br>
+                                   
+                                          <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Usuario</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                             <input type="text" class="form-control" id="usuario" placeholder="Usuario" maxlength="15" />
+                                             </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Estatus</label>
                                              <div class="input-group">
@@ -431,8 +354,69 @@
                                              </div>
                                              </div>
                                         </div>
-                                       
-                                        <div class="col-xs-4 col-md-4">
+
+
+                                        <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Situacion</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-check-square-o"></span></span>
+                                             <select class="form-control" id="situacion">
+                                             <option value="0">Seleccionar...</option>
+                                             <option value="292">Personal Militar</option>
+                                             <option value="293">Personal Civil</option>
+                                             </select>
+                                             </div>
+                                             </div>
+                                        </div>
+                                     </div>
+
+                                   <div class="row">
+                                   	 <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Funciones</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                             <input type="text" class="form-control" id="funciones" placeholder="Funciones" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
+                                             </div>
+                                             </div>
+                                        </div>
+                             
+                                         <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Cargo</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-users"></span></span>
+                                             <input type="text" class="form-control" id="cargo" placeholder="Cargo" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
+                                             </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Perfil</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                                             <input type="text" class="form-control" id="perfilUsuario" placeholder="Perfil" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
+                                             </div>
+                                             </div>
+                                        </div>
+                                        
+                                    </div>
+
+                                              <div class="row">
+
+                                              <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Rol</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-users"></span></span>
+                                             <input type="text" class="form-control" id="rolUsuario" placeholder="Rol de Usuario" maxlength="50" onkeypress="return util.SoloLetras(event)"/>
+                                             </div>
+                                             </div>
+                                       </div>
+
+
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
                                              <label>Clave</label>
                                              <div class="input-group">
@@ -442,9 +426,9 @@
                                              </div>
                                         </div>
 
-                                        <div class="col-xs-4 col-md-4">
+                                        <div class="col-md-4 col-sm-12">
                                              <div class="form-group">
-                                             <label>Repetir Clave</label>
+                                             <label>Confirmar Clave</label>
                                              <div class="input-group">
                                              <span class="input-group-addon"><span class="fa fa-key"></span></span>
                                              <input type="password" class="form-control" id="rclave" placeholder="Repetir Clave" maxlength="10"/>
@@ -452,8 +436,32 @@
                                              </div>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="row">
+                                    	<div class="nav-tabs-custom box box-primary">
+      
+                                        <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Dirección IP</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-at"></span></span>
+                                             <input type="text" class="form-control" id="direccionIp" placeholder="Direccion IP" maxlength="15" />
+                                             </div>
+                                             </div>
+                                        </div>
+                                
+                                        <div class="col-md-4 col-sm-12">
+                                             <div class="form-group">
+                                             <label>Dirección MAC</label>
+                                             <div class="input-group">
+                                             <span class="input-group-addon"><span class="fa fa-at"></span></span>
+                                             <input type="text" class="form-control" id="direccionMac" placeholder="Direccion MAC" maxlength="25" />
+                                             </div>
+                                             </div>
+                                        </div>
+                                                                                                          
+                                     </div>  
+                                     <div class="row">
                                         <div class="col-xs-12 col-md-12">
                                              <div class="pull-right">
                                              <button type="button" class="btn btn-success" onclick= "Salvar()"><i class="fa fa-plus"></i>&nbsp;Agregar o actualizar
@@ -461,15 +469,14 @@
                                              </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>  
-                    </div>
-                    </div>
-                </div>
-             </div>   
-        </section>
-    </section>
+                                
+                           
+                       
+                  
+                   
+               
+       
+  
 
     </div>
    
