@@ -271,7 +271,7 @@ function generarPlanillaFdV(){
         if (respuesta.msj == "Bien") {
             respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);
-            llenarfe();
+           // llenarfe();
             var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
         }
     });

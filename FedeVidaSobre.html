@@ -55,6 +55,10 @@
             font-size: 20px;
         }
 
+        .texto25 {
+            font-size: 25px;
+        }
+
         .doble {
             height: 40px;
         }
@@ -77,6 +81,14 @@
 
         .justificar {
             text-align: justify;
+        }
+
+        .sobre {
+            display: none;
+        }
+
+        .militar {
+            display: none;
         }
 
     </style>
@@ -120,7 +132,7 @@
             </table>
             <h2>&nbsp;</h2>
         </div>
-        <div id="sobreviviente" align="justify">
+        <div id="fedevida" align="justify">
 
             <div class="sangria" style="font-size: 25px">
 
@@ -132,7 +144,8 @@
                 obligación, de coadyuvar a la tramitación de los documentos probatorios correspondientes y a las
                 verificaciones a que hubiere lugar".
             </div>
-            <div class="sangria" style="font-size: 25px">
+
+            <div id= "sobre" class="sangria texto25" style="display: none;">
                 Certifico y doy fe que hoy <labe id="lblfechacreacion3"></labe> se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N°
                 <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en: <b
                     id="lbldireccion1"></b>Telef.<b id="lbltelefonoafi"></b>, con la finalidad de cumplir con el
@@ -140,10 +153,20 @@
                     id="lblparentesco"></b> del Militar Fallecido.
 
             </div>
-            <div id="piedepagina">
+
+             <div id= "militar" class="sangria texto25" style="display: none;">
+                Certifico y doy fe que hoy <labe id="lblfechacreacion3"></labe> se presentó, la (el) ciudadana(o) <b id="nombre2"></b> C.I.N°
+                <b id="cedula"></b>, Edad <b id="edad"></b> ,Residenciado(o) en: <b
+                    id="lbldireccion"></b>Telef.<b id="lbltelefono"></b>, con la finalidad de cumplir con el
+                requisito exigido por el I.P.S.F.A, 
+
+            </div>
+
+           
                 <br>
 
-                <table border="0" align="center" width="100%">
+                <div id="datosfallecido">
+                <table border="0" align="center" width="100%" id="datosfallecido">
                     <tr>
                         <td colspan="3" class="texto14 bde biz bajo btop"><b>DATOS DEL MILITAR FALLECIDO</b></td>
                     </tr>
@@ -158,7 +181,8 @@
                         <td class="texto13 bde biz bajo btop"><b id=""></b></td>
                     </tr>
                 </table>
-
+                </div>
+        <div id="piedepagina">         
                 <br>
 
                 <table border="0" align="center" width="100%">
@@ -241,7 +265,7 @@
                 <td colspan="3" class="texto12 bde biz bajo btop">CEDULA DE IDENTIDAD</td>
             </tr>
             <tr>
-                <td colspan="3" class="texto12 bde biz bajo btop"><b id="nombre2"></b></td>
+                <td colspan="3" class="texto12 bde biz bajo btop"><b id="nombreafil2"></b></td>
                 <td colspan="3" class="texto12 bde biz bajo btop"><b id="lblcedula2"></b></td>
             </tr>
 
@@ -367,12 +391,24 @@
             $("#lblgrado").text(militar.Grado.descripcion);
             $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
             $("#lblcedula2").text(militar.Persona.DatoBasico.cedula);
+            $("#lblsituacion1").text(militar.situacion);
             // var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
             // var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
 
             // $("#edad").html(edad);
             // $("#lblestadocivil").text(estcivil);
-            // $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+                    
+
+        if ($("#lblsituacion1").text() == "FCP") {
+           $("#militar").css("display", "block");
+             
+             } else 
+            
+           $("#sobre").css("display", "block");
+           $("#datosfallecido").css("display", "block");
+
+//
 
 
             if (militar.Persona.Direccion != undefined) {
