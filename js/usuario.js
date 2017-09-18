@@ -116,8 +116,9 @@ function Salvar(){
 }
 
 function llenarLista(){
+
     $("#cmbListadoUsuario").html("");
-    listaUsuario.forEach( v => {
+  
         listaUsuario.forEach(v => { 
             $("#tblUsuarioCuerpo").append(`
             <tr><td>${v.sucursal}</td>
@@ -127,8 +128,8 @@ function llenarLista(){
             <td>${v.cedula}</td>
             <td>${v.usuario}</td>
             <td>${v.estatus}</td></tr>`) });
-    });
-}
+    };
+
 
 function llenarUsuarios(){
     $("#cmbUsuario").html("");
