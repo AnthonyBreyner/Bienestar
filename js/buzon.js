@@ -4,16 +4,17 @@ let lstBuzonApoyo = null;
 let lstBuzonCarta = null;
 let apoyoActivo = null;
 let CReembolso = null;
-
+let copia = null;
 let posicionModificar = null;
 
 //{id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
 /*class WReembolso {
   constructor(){
     this.id = "";
-    this.nombre = "";
-    this.cedula = "";
+    this.numero = "";
     this.Reembolso = new Reembolso();
+    this.posicion = 0;
+    this.observaciones = new Array();
   }
 
 }*/
@@ -382,7 +383,6 @@ function volverLista() {
 function actualizarReembolso(est) {
     var conceptos = new Array();
     var datos = null;
-    console.log(CReembolso);
     var i = 0;
     if ($("#cuerpoEditarConceptos tr").length > 0) {
         $("#cuerpoEditarConceptos tr").each(function () {
@@ -414,40 +414,46 @@ function actualizarReembolso(est) {
     //
     CReembolso.montoaprobado = parseFloat($("#totalapro").html());
     CReembolso.montosolicitado = parseFloat($("#totalter").html());
-    var obseraciones = new Array();
+    var observaciones = new Array();
     var tipoObser = "";
+
     if(CReembolso.estatus > 1) tipoObser = "|||"+CReembolso.estatus;
     if($("#cuerpoObservaciones tr").length > 0){
         $("#cuerpoObservaciones tr.agobs").each(function(){
-           obseraciones.push($(this).find("td").eq(0).html());
+           observaciones.push($(this).find("td").eq(0).html());
         });
     }
     if($("#cuerpoOpiniones tr").length > 0){
         $("#cuerpoOpiniones tr.agobs").each(function(){
-            obseraciones.push($(this).find("td").eq(0).html()+tipoObser);
+            observaciones.push($(this).find("td").eq(0).html()+tipoObser);
         });
     }
 
-    console.log(CReembolso);
-    // copia.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
-    //
-    // datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-    // console.log(datos);
-    // console.log(JSON.stringify(datos));
-    // var urlGuardar = Conn.URL + "wreembolso";
-    // var request2 = CargarAPI({
-    //     sURL: urlGuardar,
-    //     metodo: 'PUT',
-    //     valores: datos,
-    // });
-    //
-    // request2.then(function(xhRequest) {
-    //     respuesta = JSON.parse(xhRequest.responseText);
-    //     if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-    //     msjRespuesta(respuesta.msj);
-    //     listaBuzon(copia.estatus);
-    //     volverLista();
-    // });
+
+    CReembolso.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
+
+
+    var wreembolso = new WReembolso();
+
+
+    wreembolso.id = militarActivo.Persona.DatoBasico.cedula;
+    wreembolso.numero = $('#lblnumero').text();
+    wreembolso.observaciones = observaciones;
+    wreembolso.Reembolso = CReembolso;
+    var urlGuardar = Conn.URL + "wreembolso";
+    var request2 = CargarAPI({
+        sURL: urlGuardar,
+        metodo: 'PUT',
+        valores: wreembolso,
+    });
+
+    request2.then(function(xhRequest) {
+        respuesta = JSON.parse(xhRequest.responseText);
+        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+        msjRespuesta(respuesta.msj);
+        listaBuzon(CReembolso.estatus);
+        volverLista();
+    });
 }
 
 function agObservacion(tipo) {
@@ -462,7 +468,7 @@ function agObservacion(tipo) {
 
     var texto = $("#"+idTexto).val();
     var tabla = $("#"+idTabla);
-    if(copia.estatus > 1) tabla = $("#"+idOpi);
+    if(CReembolso.estatus > 1) tabla = $("#"+idOpi);
     var rem = '<button type="button" onclick="remObse(this)" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i></button>';
     tabla.append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
 }
@@ -681,13 +687,13 @@ function crearTablaConceptosApoyo(numero,est){
                     <td style="display: none">${v.DatoFactura.Beneficiario.rif}</td>
                     <td style="display: none">${v.DatoFactura.Beneficiario.razonsocial}</td>
                     <td><input type="text" style="width: 100%" class="ffactApoyo" value="${fecha}"></input></td>
-                    <td><input type="text" onblur="calcularPorcen(this,'a')" class="mntsoli" 
+                    <td><input type="text" onblur="calcularPorcen(this,'a')" class="mntsoli"
                         onkeypress="return Util.SoloNumero(event,this,true)" value="${v.DatoFactura.monto}"/></td>
-                        <td><input type="text" onblur="calcularPorcen(this,'a')"  class="mntacubrir" 
+                        <td><input type="text" onblur="calcularPorcen(this,'a')"  class="mntacubrir"
                         onkeypress="return Util.SoloNumero(event,this,true)" style="width: 100%" value="${v.montoaseguradora}" /></td>
-                        <td><input type="text" style="width: 100%" onblur="calcularPorcen(this,'a')"  class="mntacubrir" 
+                        <td><input type="text" style="width: 100%" onblur="calcularPorcen(this,'a')"  class="mntacubrir"
                         onkeypress="return Util.SoloNumero(event,this,true)" value="${v.montoaportar}" ></td>
-                     <td><input type="text" value="${copia.montosolicitado}" class="mntAcumulado" 
+                     <td><input type="text" value="${copia.montosolicitado}" class="mntAcumulado"
                         onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularAcumulado('a')"></td>
                     <td style="width: 7%;">
                     <button type="button" class="btn btn-default btn-sm borrarconcepto" title="Eliminar">

@@ -20,12 +20,18 @@ class WFedeVida {
 $(function () {
     llenarfe();
     $(".btnvolverentrada2").click(function(){
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
+        $("#mdldesea").modal("show");
 
-
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarfe();
+            $("#rifnuevo").remove();
+            $("#sefue").remove();
+        })
     });
 });
 
@@ -220,6 +226,7 @@ function cargarFamiliar(pos){
 
 
 function generarPlanillaFdV(){
+    if (Util.ValidarFormulario("frmtodofe", "_btnSalvar")) {
     var wfedevida = new WFedeVida();
     var dir = new Direccion();
     dir.tipo = 0;
@@ -241,6 +248,7 @@ function generarPlanillaFdV(){
 
     var bene = $("#cmbbeneficiario option:selected").val().split('|');
     var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
+     wfedevida.afiliado = beneficiario;
    
     wfedevida.id = militar.Persona.DatoBasico.cedula;
     wfedevida.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+" "+militar.Persona.DatoBasico.apellidoprimero.trim();
@@ -260,19 +268,21 @@ function generarPlanillaFdV(){
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
-        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
-        llenarfe();
-       
-    }
-    );
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-        
-     var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+        if (respuesta.msj == "Bien") {
+            respuesta.msj = "Se proceso con exito....";
+            msjRespuesta(respuesta.msj);
+           // llenarfe();
+            var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+        }
+    });
 
+    } else {
+        $.notify("Debe ingresar todos los datos para realizar el reembolso");
+    }
+        // $("#opciones").hide();
+        // $("#panelentrada").show();
+        // $("#panellista").hide();
+        // $("#panelregistro").hide();
 }
 
 function obtenerResidencia() {
@@ -293,4 +303,11 @@ function obtenerResidencia() {
             
         break;
     }
+}
+
+function limpiarfe() {
+    $('#frmfe').each(function () {
+        this.reset();
+        $("#cmbbeneficiario").select2("val", "");
+    });
 }

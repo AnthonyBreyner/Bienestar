@@ -6,7 +6,6 @@ class WReembolso {
     }
 }
 
-
 $(function () {
     $("#rif").on("blur", function () {
         consultarRif();
@@ -44,6 +43,16 @@ $(function () {
         })
     });
     $(".btncancelare").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });
+    $(".close").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });
+    $(".btnguardar").click(function () {
         limpiarmdlempresa();
         $("#rifnuevo").remove();
         $("#sefue").remove();
@@ -269,7 +278,7 @@ function validadDatosBancarios() {
 
 
 function cargarDatos() {
-    if (Util.ValidarFormulario("frmtodoreembolso", "_btnSalvar")) {
+    if (Util.ValidarFormulario("frmtodoapo", "_btnSalvar")) {
         var reembolso = new Reembolso();
         reembolso.montosolicitado = parseFloat($("#mntAcumulado").html());
 
@@ -293,6 +302,7 @@ function cargarDatos() {
         var tele = new Telefono();
         tele.domiciliario = $("#txtmtelefono").val();
         tele.movil = $("#txtmcelular").val();
+        tele.emergencia = $("#texmtelefonoe").val();
         reembolso.Direccion = dir;
         reembolso.Telefono.domiciliario = tele.domiciliario;
         reembolso.Telefono.movil = tele.movil;
@@ -354,7 +364,7 @@ function cargarDatos() {
                 $("#panelregistro").hide();
                 $("#panelperfil").hide();
                 $("#_bxBuscar").show();*/
-                window.location="starter.html";
+                //window.location="starter.html";
                 var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
 
             });

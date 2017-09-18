@@ -275,7 +275,14 @@ function buzon(est){
 
 function msjRespuesta(texto) {
     $("#_contenido").html(texto);
-    var botones = '<button type="button" class="btn btn-primary" data-dismiss="modal">Continuar</button>';
+    var botones = '<a type="button" href="starter.html" class="btn btn-primary">Continuar</a>';
+    $("#_botonesmsj").html(botones);
+    $('#modMsj').modal('show');
+}
+
+function msj2Respuesta(texto) {
+    $("#_contenido").html(texto);
+    var botones = '<a type="button" href="starter.html" class="btn btn-primary">Continuar</a>';
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }

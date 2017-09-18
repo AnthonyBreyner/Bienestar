@@ -19,12 +19,51 @@ $(function () {
         verificaCheckModal("requisitosmastologia","btnAgconcepto");
     });
     
-    llenarCarta();
+   /* llenarCarta();
         $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
+    });*/
+
+   /* llenarReembolso();
+    $(".btnvolverentradar").click(function () {
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarReembolso();
+            limpiarmdlempresa();
+            $("#rifnuevo").remove();
+            $("#sefue").remove();
+        })
+    });
+    $(".btncancelare").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });*/
+
+    llenarCarta();
+    $(".btnvolverentradac").click(function () {
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarCarta();
+            //limpiarmdlempresa();
+           // $("#rifnuevo").remove();
+           // $("#sefue").remove();
+        })
     });
 });
 
@@ -241,6 +280,7 @@ function crearLista(){
 }
 
 function generarCarta(){
+
     var aval = new Carta();
     aval.montosolicitado = parseFloat($("#montosolicitado").val())
     var cuenta = new CuentaBancaria2();
@@ -292,7 +332,12 @@ function generarCarta(){
     concep.descripcion = $("#cmbestudio option:selected").text();
     concep.motivo = $("#cmbmotivo option:selected").text();
     concep.diagnostico = $("#txtdiagnostico").val();
-    conceptos.push(concep);
+    concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
+    concep.montoseguro = parseFloat($("#montoacubrir").val());
+    concep.numeropresupuesto = $("#numeropresupuesto").val();
+    concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
+    concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
+    conceptos.push(concep); 
 
     aval.Concepto = conceptos;
 
@@ -313,8 +358,96 @@ function generarCarta(){
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
         var idm = militar.Persona.DatoBasico.cedula;
-        var ventana = window.open("cartaAvalSobre.html?id="+idm + "&nm=" +res.msj , "_blank");
+
     });
+
+    if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
+        var aval = new Carta();
+        aval.montosolicitado = parseFloat($("#montosolicitado").val())
+        var cuenta = new CuentaBancaria2();
+        cuenta.cuenta= $("#empcuenta").val();
+        cuenta.institucion = $("#empbanco").val();
+        cuenta.tipo = $("#emptipoc").val();
+        cuenta.cedula = $("#rifclinica").val();
+        cuenta.titular =$("#cmbclinica option:selected").text();
+        aval.cuentabancaria = cuenta;
+
+        var dir = new Direccion();
+        dir.tipo = 0;
+        dir.estado = $("#cmbmestado option:selected").val();
+        dir.municipio = $("#cmbmmunicipio option:selected").val();
+        dir.parroquia = $("#cmbmparroquia option:selected").val();
+        dir.ciudad = $("#cmbmciudad").val();
+        dir.calleavenida = $("#txtmcalle").val().toUpperCase();
+        dir.casa = $("#txtmcasa").val().toUpperCase();
+        dir.apartamento = $("#txtmapto").val().toUpperCase();
+
+        var tele = new Telefono();
+        tele.domiciliario = $("#txtmtelefono").val();
+        tele.movil = $("#txtmcelular").val();
+
+        aval.Direccion = dir;
+
+        aval.Telefono.domiciliario = tele.domiciliario;
+        aval.Telefono.movil = tele.movil;
+
+        aval.Correo.principal = $("#txtmcorreo").val().toUpperCase();
+
+        var conceptos = new Array();
+
+        var concep = new ConceptoCarta();
+        var facturaD = new Factura2();
+
+        var prov = new Beneficiario();
+        prov.rif = $("#rifclinica").val();
+        prov.razonsocial = $("#cmbclinica option:selected").text();
+        prov.tipoempresa = "J";
+        prov.direccion = "";
+
+        facturaD.Beneficiario = prov;
+        concep.DatoFactura = facturaD;
+
+        var bene = $("#cmbbeneficiario option:selected").val().split('|');
+        var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
+        concep.afiliado = beneficiario;
+        concep.descripcion = $("#cmbestudio option:selected").text();
+        concep.motivo = $("#cmbmotivo option:selected").text();
+        concep.diagnostico = $("#txtdiagnostico").text();
+
+        concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
+        concep.montoseguro = parseFloat($("#montoacubrir").val());
+        concep.numeropresupuesto = $("#numeropresupuesto").val();
+        concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
+        concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
+        conceptos.push(concep); 
+
+        aval.Concepto = conceptos;
+
+        var wcarta = new WCarta();
+
+        wcarta.id = militar.Persona.DatoBasico.cedula;
+        wcarta.Carta = aval;
+        wcarta.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
+
+        console.log(JSON.stringify(wcarta));
+        var urlGuardar = Conn.URL + "wcarta";
+        var request2 = CargarAPI({
+            sURL: urlGuardar,
+            metodo: 'POST',
+            valores: wcarta,
+        });
+        request2.then(function(xhRequest) {
+            res = JSON.parse(xhRequest.responseText);
+                if (res.msj != "") res.msj2 = "Se proceso con exito....";
+                msj2Respuesta(res.msj2);
+                llenarCarta();
+            var idm = militar.Persona.DatoBasico.cedula;
+            var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
+        });
+
+    } else {
+        $.notify("Debe ingresar todos los datos para realizar la Carta Aval");
+    }
 }
 
 function habilitarDireccion(estatus){
@@ -398,8 +531,15 @@ function calcularSolicitado(){
     var mntFactura = $("#montopresupuesto").val();
     var mntAsegura = $("#montoacubrir").val();
     var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
-    $("#montosolicitado").val(mntSolici.toFixed(2));
-    if(parseFloat(mntSolici) > 7000000){
-        requisitosMonto();
-    }
+    if(isNaN(mntSolici)){
+        $("#montosolicitado").val("");
+    }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
+
+}
+
+function limpiarCarta() {
+    $('#frmcartaaval').each(function () {
+        this.reset();
+        $("#cmbbeneficiario").select2("val", "");
+    });
 }

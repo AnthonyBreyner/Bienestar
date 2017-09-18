@@ -79,6 +79,7 @@
         .carta_tit {
             display: none;
         }
+
         .carta_fam {
             display: none;
         }
@@ -86,89 +87,108 @@
     </style>
 </head>
 
-    <div class="contenedor">
+<div class="contenedor">
 
-        <table border="0">
-            <tr>
-                <td style="width: 38%"><img src="images/lg.png" style="float: left; width:15%;">
-                    <left><p style="font-size: 12px; text-align: center"> REPUBLICA BOLIVARIANA DE VENEZUELA <br>
-                        MINISTERIO DEL PODER
-                        POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y
-                        SERVICIOS<br>
-                        INSTITUTO DE PREVISIÓN SOCIAL DE LA FUERZA ARMADA<br>
-                        GERECIA DE BIENESTAR Y SEGURIDAD SOCIAL</p></left>
-                </td>
-            </tr>
-        </table><br><br>
-        <table width="70%" style="font-size: 20px">
-            <td class="derecha">
-                Caracas, <label id="lblfecha"></label>
+    <table border="0">
+        <tr>
+            <td style="width: 38%"><img src="images/lg.png" style="float: left; width:15%;">
+                <left><p style="font-size: 12px; text-align: center"> REPUBLICA BOLIVARIANA DE VENEZUELA <br>
+                    MINISTERIO DEL PODER
+                    POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y
+                    SERVICIOS<br>
+                    INSTITUTO DE PREVISIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                    GERECIA DE BIENESTAR Y SEGURIDAD SOCIAL</p></left>
             </td>
-        </table>
-        <table style="font-size: 25px">
-            <tr>
-                <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud"></label>
-                </td>
-            </tr>
-            <td width="38%">
-                SEÑORES: <b id="lblnombrec"></b><BR>
-                Presente.-
+        </tr>
+    </table>
+    <br><br>
+    <table width="70%" style="font-size: 20px">
+        <tr>
+            <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud"></label>
             </td>
-        </table>
-        <table width="70%">
-            <tr>
-                <td class="centrar"><h2>CARTA AVAL</h2>
-                </td>
-            </tr>
-            <!--tr>
-                <td class="derecha">Nro: <label id="lblnsolicitud"></label>
-                </td>
-            </tr-->
-        </table>     
+        </tr>
+        <td class="derecha">
+            Caracas, <label id="lblfecha"></label>
+        </td>
+    </table>
+    <table style="font-size: 25px">
 
-        <table width="70%" class="justificar" style="font-size: 25px">
-            <td style="text-align: justify">
-                <p class="sangria" id="fam" style="display: none;">
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>  <label id="nombre"></label>quien es miembro de la Fuerza Armada Nacional Bolivariana.</p>
-                 
+        <td width="38%">
+            SEÑORES:<br>
+            <b id="lblnombrec"></b><br>
+            Presente.-
+        </td>
+    </table>
+    <table width="70%">
+        <tr>
+            <td class="centrar"><h2>CARTA AVAL</h2>
 
-                <p class="sangria" id="tit" style="display: none;"> 
-                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil2"></b>, titular de la cédula de identidad Nº <b id="cedulaafil2"></b> se encuentra afiliado(a) al Intituto de Prevision Social de la Fuerza Armada, por ser <label id="lblparentezco2"></label> miembro de la Fuerza Armada Nacional Bolivariana.</p>
-                <p class="sangria">
-                Por lo anteriormente expuesto, este Instituto se compromete a cancelar por concepto de <b id="lbldiagnostico"></b><b id="lblconcepto"></b>  la suma de <b id="lblmontot"></b>Bs.</p>
-                <p class="sangria">
-                Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado Integral de la Salud.</<p>
-                <p class="sangria">
-                Sin mas a que hacer referencia y como siempre a sus gratas ordenes.</<p>
-                <p class="centrar">
-                Atentamente,</p>                
+    </table>
+
+    <table width="70%" class="justificar" style="font-size: 25px">
+        <td style="text-align: justify">
+            <p class="sangria" id="fam" style="display: none;">
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil"></b>, titular de
+                la cédula de identidad Nº <b id="cedulaafil"></b> se encuentra afiliado(a) al Intituto de Previsión
+                Social de la Fuerza Armada por ser <label id="lblparentezco"></label> del <label id="lblgrado"></label>
+                <label id="nombre"></label>, quien a su vez es miembro de la Fuerza Armada Nacional Bolivariana.</p>
+            <p class="sangria" id="tit" style="display: none;">
+                Por medio de la presente, hacemos constar que el (la) cuidadano(a): <b id="nombreafil2"></b>, titular de
+                la cédula de identidad Nº <b id="cedulaafil2"></b> se encuentra afiliado(a) al Intituto de Prevision
+                Social de la Fuerza Armada, por ser <label id="lblparentezco2"></label> miembro de la Fuerza Armada
+                Nacional Bolivariana.</p>
+            <p class="sangria">
+                Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
+                    id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <label
+                    id="txtmontopre"></label> (<label id="lblmontopresupuesto"></label> BS) según presupuesto Nº: <label
+                    id="lblnropresupuesto"></label> de fecha <label id="lblfechapresupuesto"></label>, de lo cual la
+                empresa aseguradora cubre un monto de <label id="txtmontoseg"></label> (<label
+                    id="lblmontoseguro"></label> BS) según constancia de fecha <label id="lblfechaseguro"></label>
+                quedando una diferencia de <b id="txtmontoipsfa"></b> (<b id="lblmontot"></b> BS.) el cual este
+                instituto se
+                compromete a cancelar en su totalidad. </p>
+            <p class="sangria">
+                Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede
+                ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado
+                Integral de la Salud.</p>
+            <p class="sangria">
+                Sin mas a que hacer referencia y como siempre a sus gratas ordenes.</p>
+            <p class="centrar">
+                Atentamente,</p>
+        </td>
+    </table>
+
+    <table width="75%">
+        <tr>
+            <td width="25%" class="control-label" style="text-align: center; ">
+                <h3><br><br>
+                    MAY. CASTILLO DERWVINS<br>
+                    JEFE DE ADQUISICIONES
+                </h3>
             </td>
-        </table>
+            <td width="25%" class="control-label" style="text-align: center; ">
+                <h3 style="text-align: center; ">
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+                    CNEL. CABAÑA HERRERA PABLO<br>
+                    GERENTE DE FINANZAS
+                </h3>
+            </td>
 
-        <table  width="75%">
-            <tr>
-                <td width="25%" class="control-label" style="text-align: center; ">
-                    <h3 ><br><br>
-                        MAY. CASTILLO DERWVINS<br>
-                        JEFE DE ADQUISICIONES
-                    </h3>
-                </td>
-                <td width="25%" class="control-label" style="text-align: center; ">
-                    <h3 style="text-align: center; "><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-                        CNEL. CABAÑA HERRERA PABLO<br>
-                        GERENTE DE FINANZAS
-                    </h3>
-                </td>
-                <td width="25%" class="control-label" style="text-align: center; ">
-                    <h3 style="text-align: center; "><br>
-                        <br>
-                        CNEL. MARTINEZ SALAS<br>
-                        GERENTE DE BIENESTAR <br>Y SEGURIDAD SOCIAL
-                    </h3>
-                </td>
-            </tr>
-        </table>
+            <td width="25%" class="control-label" style="text-align: center; ">
+                <h3 style="text-align: center; "><br>
+                    <br>
+                    CNEL. MARTINEZ SALAS<br>
+                    GERENTE DE BIENESTAR <br>Y SEGURIDAD SOCIAL
+                </h3>
+
+            </td>
+    </table>
+    <div id="boton">
+        <br>
+     <input type="button" style="margin-left: 500px;" id="btnImprimir" value="Imprimir" onclick="imprimir()">
     </div>
+
+</div>
 
 </body>
 
@@ -180,18 +200,24 @@
 <script src="js/config.js"></script>
 <script src="js/controlador.js"></script>
 <script>
-    /** 
-    militar.Familiar.forEach( v => { 
+    function imprimir() {
+        $('#btnImprimir').hide();
+        window.print();
+        window.close();
+    }
+
+    /**
+     militar.Familiar.forEach( v => {
         if (v.Persona.DatoBasico.cedula == "13097317"){ 
             $("#nombreafil").html(v.Persona.DatoBasico.nombreprimero); 
         } 
     });
-    let pos = '';
-    let NumeroCodigo = '';
+     let pos = '';
+     let NumeroCodigo = '';
 
-    militar.CIS.ServicioMedico.Programa.CartaAval.forEach(v => { console.log(v.numero); });
-    **/
-    
+     militar.CIS.ServicioMedico.Programa.CartaAval.forEach(v => { console.log(v.numero); });
+     **/
+
     $(function () {
         numeral.locale('es-es');
         $.obtener = function (key) {
@@ -210,16 +236,10 @@
         var id = $.obtener("id");
         NumeroCodigo = $.obtener("nm");
         pos = $.obtener("pos");
-        
+
         Buscar(id);
     });
 
-
-    function imprimir() {
-        $('#boton').html('');
-        window.print();
-        window.close();
-    }
 
     function Buscar(id) {
         if (id != undefined) {
@@ -243,7 +263,7 @@
             llenar(id);
         });
 
-     }
+    }
 
     function llenar(formato) {
         if (formato != undefined) {
@@ -253,12 +273,12 @@
         console.log(militar);
         if (militar.Persona != undefined) {
             var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-           
+
             $("#nombre").html(ncompleto);
             $("#lblcomponente").text(militar.Componente.descripcion);
             $("#lblgrado").text(militar.Grado.descripcion);
             $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
-           
+
 
             crearCarta();
 
@@ -277,7 +297,7 @@
         } else {
             alert("Cedula no se encuentra registrada como militar dentro del sistema");
         }
-        
+
     }
 
     function crearCarta() {
@@ -293,23 +313,54 @@
         $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
         $("#lbltipoc").text(carta.CuentaBancaria.tipo);
         $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+
+
+        var txttotipsfa = numeroALetras(carta.montosolicitado);
+        $("#txtmontoipsfa").html(txttotipsfa);
+
         var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
 
         $.each(concep.Concepto, function () {
             var bene = this.afiliado.split("-");
             var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
-        cedulaa =bene[0];
-        nombreparen =bene[1];
-        nomafi = nombreparen.split("(");
-        nombrea = nomafi[0];
-        paren = nomafi[1];
-        parentezco = paren.split(")");
-        motivo = this.descripcion;
-        rifclinica = this.DatoFactura.Beneficiario.rif;
-        nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
-        razonc = this.motivo;
-        conceptoc= this.descripcion;
-        diagnosticoc = this.diagnostico;
+
+            cedulaa = bene[0];
+            nombreparen = bene[1];
+            nomafi = nombreparen.split("(");
+            nombrea = nomafi[0];
+            paren = nomafi[1];
+            parentezco = paren.split(")");
+            motivo = this.descripcion;
+            rifclinica = this.DatoFactura.Beneficiario.rif;
+            nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
+            razonc = this.motivo;
+            conceptoc = this.descripcion;
+            diagnosticoc = this.diagnostico;
+
+            cedulaa = bene[0];
+            nombreparen = bene[1];
+            nomafi = nombreparen.split("(");
+            nombrea = nomafi[0];
+            paren = nomafi[1];
+            parentezco = paren.split(")");
+
+            $("#lblrifclinica").text(this.DatoFactura.Beneficiario.rif);
+            $("#lblnropresupuesto").text(this.numeropresupuesto);
+            $("#lblfechapresupuesto").text(Util.ConvertirFechaHumana(this.fechapresupuesto));
+            $("#lblmontopresupuesto").text(numeral(parseFloat(this.montopresupuesto)).format('0,0.00'));
+            $("#lblmontoseguro").text(numeral(parseFloat(this.montoseguro)).format('0,0.00'));
+            $("#lblfechaseguro").text(Util.ConvertirFechaHumana(this.fechaseguro));
+            $("#lblnombrec").text(this.DatoFactura.Beneficiario.razonsocial);
+            $("#motivoafil").text(this.descripcion);
+            $("#lblmotivo").text(this.motivo);
+            $("#lblconcepto").text(this.descripcion);
+            $("#lbldiagnostico").text(this.diagnostico);
+
+            var txttotpre = numeroALetras(this.montopresupuesto);
+            $("#txtmontopre").html(txttotpre);
+
+            var txttotseg = numeroALetras(this.montoseguro);
+            $("#txtmontoseg").html(txttotseg);
 
         });
 
@@ -325,11 +376,206 @@
         $("#lbldiagnostico").html(diagnosticoc);
         $("#lblparentezco").html(parentezco);
         $("#lblparentezco2").html(parentezco);
-        if($("#lblparentezco").text()=="MILITAR"){
+        if ($("#lblparentezco").text() == "MILITAR") {
             $("#tit").css("display", "block");
-        }else $("#fam").css("display", "block");
-        
+        } else $("#fam").css("display", "block");
+
     }
+
+    var numeroALetras = (function () {
+
+
+        function Unidades(num) {
+
+            switch (num) {
+                case 1:
+                    return 'UN';
+                case 2:
+                    return 'DOS';
+                case 3:
+                    return 'TRES';
+                case 4:
+                    return 'CUATRO';
+                case 5:
+                    return 'CINCO';
+                case 6:
+                    return 'SEIS';
+                case 7:
+                    return 'SIETE';
+                case 8:
+                    return 'OCHO';
+                case 9:
+                    return 'NUEVE';
+            }
+
+            return '';
+        }//Unidades()
+
+        function Decenas(num) {
+
+            let decena = Math.floor(num / 10);
+            let unidad = num - (decena * 10);
+
+            switch (decena) {
+                case 1:
+                    switch (unidad) {
+                        case 0:
+                            return 'DIEZ';
+                        case 1:
+                            return 'ONCE';
+                        case 2:
+                            return 'DOCE';
+                        case 3:
+                            return 'TRECE';
+                        case 4:
+                            return 'CATORCE';
+                        case 5:
+                            return 'QUINCE';
+                        default:
+                            return 'DIECI' + Unidades(unidad);
+                    }
+                case 2:
+                    switch (unidad) {
+                        case 0:
+                            return 'VEINTE';
+                        default:
+                            return 'VEINTI' + Unidades(unidad);
+                    }
+                case 3:
+                    return DecenasY('TREINTA', unidad);
+                case 4:
+                    return DecenasY('CUARENTA', unidad);
+                case 5:
+                    return DecenasY('CINCUENTA', unidad);
+                case 6:
+                    return DecenasY('SESENTA', unidad);
+                case 7:
+                    return DecenasY('SETENTA', unidad);
+                case 8:
+                    return DecenasY('OCHENTA', unidad);
+                case 9:
+                    return DecenasY('NOVENTA', unidad);
+                case 0:
+                    return Unidades(unidad);
+            }
+        }//Unidades()
+
+        function DecenasY(strSin, numUnidades) {
+            if (numUnidades > 0)
+                return strSin + ' Y ' + Unidades(numUnidades)
+
+            return strSin;
+        }//DecenasY()
+
+        function Centenas(num) {
+            let centenas = Math.floor(num / 100);
+            let decenas = num - (centenas * 100);
+
+            switch (centenas) {
+                case 1:
+                    if (decenas > 0)
+                        return 'CIENTO ' + Decenas(decenas);
+                    return 'CIEN';
+                case 2:
+                    return 'DOSCIENTOS ' + Decenas(decenas);
+                case 3:
+                    return 'TRESCIENTOS ' + Decenas(decenas);
+                case 4:
+                    return 'CUATROCIENTOS ' + Decenas(decenas);
+                case 5:
+                    return 'QUINIENTOS ' + Decenas(decenas);
+                case 6:
+                    return 'SEISCIENTOS ' + Decenas(decenas);
+                case 7:
+                    return 'SETECIENTOS ' + Decenas(decenas);
+                case 8:
+                    return 'OCHOCIENTOS ' + Decenas(decenas);
+                case 9:
+                    return 'NOVECIENTOS ' + Decenas(decenas);
+            }
+
+            return Decenas(decenas);
+        }//Centenas()
+
+        function Seccion(num, divisor, strSingular, strPlural) {
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let letras = '';
+
+            if (cientos > 0)
+                if (cientos > 1)
+                    letras = Centenas(cientos) + ' ' + strPlural;
+                else
+                    letras = strSingular;
+
+            if (resto > 0)
+                letras += '';
+
+            return letras;
+        }//Seccion()
+
+        function Miles(num) {
+            let divisor = 1000;
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let strMiles = Seccion(num, divisor, 'UN MIL', 'MIL');
+            let strCentenas = Centenas(resto);
+
+            if (strMiles == '')
+                return strCentenas;
+
+            return strMiles + ' ' + strCentenas;
+        }//Miles()
+
+        function Millones(num) {
+            let divisor = 1000000;
+            let cientos = Math.floor(num / divisor)
+            let resto = num - (cientos * divisor)
+
+            let strMillones = Seccion(num, divisor, 'UN MILLON DE', 'MILLONES DE');
+            let strMiles = Miles(resto);
+
+            if (strMillones == '')
+                return strMiles;
+
+            return strMillones + ' ' + strMiles;
+        }//Millones()
+
+        return function NumeroALetras(num, currency) {
+            currency = currency || {};
+            let data = {
+                numero: num,
+                enteros: Math.floor(num),
+                centavos: (((Math.round(num * 100)) - (Math.floor(num) * 100))),
+                letrasCentavos: '',
+                letrasMonedaPlural: currency.plural || 'BOLÍVARES',
+                letrasMonedaSingular: currency.singular || 'BOLIVAR',
+                letrasMonedaCentavoPlural: currency.centPlural || 'CENTIMOS',
+                letrasMonedaCentavoSingular: currency.centSingular || 'CENTIMOS'
+            };
+
+            if (data.centavos > 0) {
+                data.letrasCentavos = 'CON ' + (function () {
+                    if (data.centavos == 1)
+                        return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoSingular;
+                    else
+                        return Millones(data.centavos) + ' ' + data.letrasMonedaCentavoPlural;
+                })();
+            }
+            ;
+
+            if (data.enteros == 0)
+                return 'CERO ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+            if (data.enteros == 1)
+                return Millones(data.enteros) + ' ' + data.letrasMonedaSingular + ' ' + data.letrasCentavos;
+            else
+                return Millones(data.enteros) + ' ' + data.letrasMonedaPlural + ' ' + data.letrasCentavos;
+        };
+
+    })();
+
 
 </script>
 </html>

@@ -1,25 +1,4 @@
-<style>
-    #project-label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 1em;
-    }
-    #project-icon {
-        float: left;
-        height: 32px;
-        width: 32px;
-    }
-    #project-description {
-        margin: 0;
-        padding: 0;
-    }
-    .cambio{
-        width: 808.067px;
-        top: 57px;
-        left: 8px;
-    }
-</style>
-<script>
+<!--script>
     var separador = document.getElementById('monto');
 
     separador.addEventListener('keyup', (e) => {
@@ -44,7 +23,7 @@
             e.target.value = salida.join('.').split("").reverse().join('');
         }
     }, false);
-</script>
+</script-->
 <div class="body box">
     <div class="container-fluid">
         <form id="frmtodoreembolso" action="#" method="post">
@@ -207,7 +186,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-2 col-sm-12">
-                                            <label id="rif-label">Rif:</label>
+                                            <label for="rif">Rif:</label>
                                             <div class="btn-group-justified" role="group" aria-label="...">
                                                     <input class="form-control" id="rif" required="required">
                                             </div>
@@ -399,7 +378,7 @@
                                     <div class="input-group-addon">
                                         <i class="fa fa-phone"></i>
                                     </div>
-                                    <input id="txtmtelefono" class="form-control" type="text"
+                                    <input id="txtmtelefonoe" class="form-control" type="text"
                                            data-inputmask='"mask": "(9999) 999-99-99"' data-mask required>
                                 </div>
                             </div>
@@ -440,6 +419,4 @@ color: white;"
     $('[data-mask]').inputmask();
 </script>
 <script src="js/reembolso.js"></script>
-
-<script src="jquery-ui.js"></script>
 <script src="js/proveedores2.js"></script>

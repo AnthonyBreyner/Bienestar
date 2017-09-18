@@ -31,6 +31,7 @@ $(function () {
         $("#panellista").hide();
         $("#panelregistro").hide();
     });
+
     $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
