@@ -397,13 +397,13 @@ function requisitosConcepto() {
 }
 
 function requisitosMonto() {
-    var modal = "requisitosmonto";
-    if (modal != undefined) {
+
+    $("#requisitosmonto").modal("show");
         inactivarCheck(modal);
         $("#btnGenerar").attr("disabled", true);
-        $("#" + modal).modal("show");
-    }
+
 }
+
 
 function habilitarDireccion(estatus) {
     $("#collapseTree select").attr("disabled", estatus);
