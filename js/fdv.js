@@ -35,7 +35,7 @@ $(function () {
     });
 });
 
-function consultarRif(){
+/*function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
@@ -51,7 +51,7 @@ function consultarRif(){
     }else{
         $("#mdlEmpresa").modal("show");
     }
-}
+}*/
 
 function habilitarDireccion(estatus){
     $("#collapseTree select").attr("disabled",estatus);
@@ -67,10 +67,12 @@ function habilitarDireccion(estatus){
 
 function llenarfe(){
 
- $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
 
+    $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
+  
     $("#_cargando").hide();
     if(militar.Persona != undefined){
+        $("#cuerporeembolsos").html("");
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
@@ -101,10 +103,17 @@ function llenarfe(){
             $("#txtmcelular").val(militar.Persona.Telefono.movil);
             $("#txtmcorreo").val(militar.Persona.Correo.principal);
         }
-        Estados.ObtenerEstados();
+
+        if(militar.Persona.DatoFinanciero != undefined){
+            $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
+            $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
+            $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
+          //  listaCuentas();
+        }
+
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
-
+            Estados.ObtenerEstados();
             $("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
             $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
@@ -264,13 +273,13 @@ function generarPlanillaFdV(){
         if (respuesta.msj == "Bien") {
             respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);
-            llenarfe();
+           // llenarfe();
             var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
         }
     });
 
     } else {
-        $.notify("Debe ingresar todos los datos para realizar el reembolso");
+        $.notify("Debe ingresar todos los datos para realizar el la Constancia de Fe de Vida");
     }
         // $("#opciones").hide();
         // $("#panelentrada").show();
