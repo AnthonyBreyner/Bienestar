@@ -513,6 +513,15 @@ function calcularSolicitado(){
 
 }
 
+function calcularPorcentaje(){
+    var mntFactura = $("#montopresupuesto").val();
+    var mntAsegura = $("#montoacubrir").val();
+    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
+    if(isNaN(mntSolici)){
+        $("#montosolicitado").val("");
+    }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
+}
+
 function limpiarCarta() {
     $('#frmcartaaval').each(function () {
         this.reset();
