@@ -159,8 +159,6 @@
             </div>
 
 
-
-
             <br>
          <div id="datosmilitar" style="display:none">
                 <table  border="0" align="center" width="100%">
@@ -176,10 +174,10 @@
 
                   <table  border="0" align="center" width="100%" >
                                   <tr>
-                                    <td width="18%" height="29" class="texto14 bde biz bajo btop" valign="top">FIRMA DEL BENEFICIARIO </td>
-                                    <td width="18%" class="texto14 bde biz bajo btop" valign="top">HUELLAS DACTILARES</td>
-                                    <td width="34%" class="texto14 bde biz bajo btop" valign="top">FIRMA DEL GERENTE </td>
-                                    <td width="30%" align="justify" valign="top" class="texto14 bde biz bajo btop">SELLO DE LA UNIDAD</td>
+                                    <td width="18%" height="29" class="texto12 bde biz bajo btop" valign="top">FIRMA DEL BENEFICIARIO </td>
+                                    <td width="18%" class="texto12 bde biz bajo btop" valign="top">HUELLAS DACTILARES</td>
+                                    <td width="34%" class="texto12 bde biz bajo btop" valign="top">FIRMA DEL GERENTE </td>
+                                    <td width="30%" align="justify" valign="top" class="texto12 bde biz bajo btop">SELLO DE LA UNIDAD</td>
                                   </tr>
                                   <tr>
                                     <td class="texto12 bde biz btop bajo"><br>
@@ -195,15 +193,15 @@
                                     <td colspan="3" class="texto14 bde biz bajo btop">&nbsp;</td>
                                  </tr>
                                   <tr>
-                                    <td height="29" colspan="2" class="texto14 bde biz bajo btop" valign="top">APELLIDOS Y NOMBRES DEL RECEPTOR </td>
-                                    <td class="texto14 bde biz bajo btop" valign="top">FIRMA DEL RECEPTOR </td>
+                                    <td height="29" colspan="2" class="texto12 bde biz bajo btop" valign="top">APELLIDOS Y NOMBRES DEL RECEPTOR </td>
+                                    <td class="texto12 bde biz bajo btop" valign="top">FIRMA DEL RECEPTOR </td>
                                  </tr>
                                   <tr>
-                                    <td height="68" colspan="2" class="texto14 bde biz bajo btop" valign="top"><p>&nbsp;</p>
+                                    <td height="68" colspan="2" class="texto12 bde biz bajo btop" valign="top"><p>&nbsp;</p>
                                     <br>
                                     <br>
                                     <br>                                    </td>
-                                    <td class="texto14 bde biz bajo btop">&nbsp;</td>
+                                    <td class="texto12 bde biz bajo btop">&nbsp;</td>
                     </tr>
                   </table>  
                   <br>
@@ -286,7 +284,7 @@
                         <tr>
                             <td class="texto14 bde biz bajo btop"><b id="nombre3"></b></td>
                             <td class="texto14 bde biz bajo btop"><b id="lblcedula3"></b></td>
-                            <td class="texto14 bde biz bajo btop"><b id="lblfechafallecimiento"></b></td>
+                            <td class="texto14 bde biz bajo btop"><b id=""></b></td>
                         </tr>
                     </table>
                 </div>
@@ -502,17 +500,11 @@
             var edad2 = Util.CalcularEdad(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
 
             $("#edad2").html(edad2);
-
-            // $("#lblfechafallecimiento").html(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.Fechafallecimiento));
-
-
             var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
 
             $("#edad").html(edad);
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
-
-
         }
 
         if (militar.situacion == "FCP") {
@@ -520,16 +512,6 @@
             $("#datosfallecido").css("display", "block");}
          else{
             $("#militar").css("display", "block");
-            $("#datosmilitar").css("display", "block");
-}
-
-    if(militar.CIS.Investigacion.direccionex != "")
-
-{
-            $("#sobreex").css("display", "block");
-            $("#datosfallecido").css("display", "block");}
-         else{
-            $("#militarex").css("display", "block");
             $("#datosmilitar").css("display", "block");
 }
 
@@ -545,10 +527,13 @@
                 var edad = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                 $("#edadafi").html(edad);
 
-                var DIR = v.Persona.Direccion[0];
+                var DIR1 = v.Persona.Direccion[0];
                 Estados.ObtenerEstados();
-                var rirec1 = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
                 $("#lbldireccionafi").text(rirec1);
+
+
+
             }
 
 
@@ -560,19 +545,18 @@
         console.log(pos);
         var fdv = militar.CIS.Investigacion.FeFeVida[pos];
 
-        $("#lblfechacreacion").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
+        $("#lblfecha").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion2").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion3").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion4").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
+
+
 
 
         var DIR = fdv.DatoBasico.Direccion;
         Estados.ObtenerEstados();
         var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
         $("#lbldireccion").text(rirec);
-
-
-
 
 //
 //                }
