@@ -128,7 +128,7 @@
                                 <div class="col-md-4 col-sm-12 seguro">
                                     <label>Monto a Cubrir por la Aseguradora:</label>
                                     <div class="input-group date" style="z-index: 1030;">
-                                        <input class="form-control" id="montoacubrir" required="required"
+                                        <input class="form-control" id="montoacubrir"
                                                onblur="calcularSolicitado()"
                                                onkeypress="return Util.SoloNumero(event,this,true)">
                                         <div class="input-group-addon">
@@ -137,13 +137,12 @@
                                     </div>
                                   </div>
                                 <div class="col-md-4 col-sm-12 afiliado">
-                                        <label>Monto a Cubrir por el afiliado:</label>
+                                        <label>Porcentaje a Cubrir por el afiliado:</label>
                                         <div class="input-group date" style="z-index: 1030;">
-                                            <input class="form-control" id="montoafiliado" required="required"
-                                                   onblur="calcularPorcentaje()"
-                                                   onkeypress="return Util.SoloNumero(event,this,true)" readonly="readonly">
+                                            <input class="form-control" id="porcentajeafiliado"
+                                                   onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularPorcentaje()">
                                             <div class="input-group-addon">
-                                                <label>Bs.</label>
+                                                <label>%</label>
                                             </div>
                                         </div>
                                 </div>
@@ -157,14 +156,34 @@
                                         </div>
                                         <div class="input-group input-group" style="width: 100%;">
                                             <input type="text" class="form-control" id="txtfechaseguro"
-                                                   required="required" onblur="calcularSolicitado()">
+                                                    onblur="calcularSolicitado()">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
+                                <div class="col-md-4 col-sm-12 afiliado">
+                                        <label>Monto a Cubrir por el afiliado:</label>
+                                        <div class="input-group date" style="z-index: 1030;">
+                                            <input class="form-control" id="montoafiliado"
+                                                   onkeypress="return Util.SoloNumero(event,this,true)" readonly="readonly">
+                                            <div class="input-group-addon">
+                                                <label>Bs.</label>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 seguro" >
                                     <label>Monto Aportado por el IPSFA:</label>
                                     <div class="input-group date" style="z-index: 1030;">
-                                        <input class="form-control" id="montosolicitado" required="required"
+                                        <input class="form-control" id="montosolicitado"
+                                               readonly="readonly">
+                                        <div class="input-group-addon">
+                                            <label>Bs.</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-12 afiliado">
+                                    <label>Monto Aportado por el IPSFA:</label>
+                                    <div class="input-group date" style="z-index: 1030;">
+                                        <input class="form-control" id="montosolicitado2"
                                                readonly="readonly">
                                         <div class="input-group-addon">
                                             <label>Bs.</label>

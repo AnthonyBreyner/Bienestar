@@ -30,9 +30,6 @@ $(function () {
             $("#panelregistro").hide();
             $('#mdldesea').modal('hide');
             limpiarCarta();
-            //limpiarmdlempresa();
-           // $("#rifnuevo").remove();
-           // $("#sefue").remove();
         })
     });
 });
@@ -241,6 +238,7 @@ function crearLista(){
             $("#perfilFamiliar").show();
         }else{
             $("#perfilFamiliar").hide();
+            $("#perfilMilitar").show();
         }
     });
 
@@ -251,8 +249,10 @@ function crearLista(){
 
 function generarCarta(){
 
+  if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
+
     var aval = new Carta();
-    aval.montosolicitado = parseFloat($("#montosolicitado").val())
+    aval.montosolicitado = parseFloat($("#montosolicitado").val());
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#empcuenta").val();
     cuenta.institucion = $("#empbanco").val();
@@ -304,6 +304,8 @@ function generarCarta(){
     concep.diagnostico = $("#txtdiagnostico").val();
     concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
     concep.montoseguro = parseFloat($("#montoacubrir").val());
+    //concep.montoafiliado = parseFloat($("#montoafiliado").val());
+    //concep.porcentajeafiliado = parseFloat($("#porcentajeafiliado").val());
     concep.numeropresupuesto = $("#numeropresupuesto").val();
     concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
     concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
@@ -327,95 +329,12 @@ function generarCarta(){
     });
     request2.then(function(xhRequest) {
         res = JSON.parse(xhRequest.responseText);
+        if (res.msj != "") res.msj2 = "Se proceso con exito....";
+          msj2Respuesta(res.msj2);
         var idm = militar.Persona.DatoBasico.cedula;
-
+        var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
     });
-
-    if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
-        var aval = new Carta();
-        aval.montosolicitado = parseFloat($("#montosolicitado").val())
-        var cuenta = new CuentaBancaria2();
-        cuenta.cuenta= $("#empcuenta").val();
-        cuenta.institucion = $("#empbanco").val();
-        cuenta.tipo = $("#emptipoc").val();
-        cuenta.cedula = $("#rifclinica").val();
-        cuenta.titular =$("#cmbclinica option:selected").text();
-        aval.cuentabancaria = cuenta;
-
-        var dir = new Direccion();
-        dir.tipo = 0;
-        dir.estado = $("#cmbmestado option:selected").val();
-        dir.municipio = $("#cmbmmunicipio option:selected").val();
-        dir.parroquia = $("#cmbmparroquia option:selected").val();
-        dir.ciudad = $("#cmbmciudad").val();
-        dir.calleavenida = $("#txtmcalle").val().toUpperCase();
-        dir.casa = $("#txtmcasa").val().toUpperCase();
-        dir.apartamento = $("#txtmapto").val().toUpperCase();
-
-        var tele = new Telefono();
-        tele.domiciliario = $("#txtmtelefono").val();
-        tele.movil = $("#txtmcelular").val();
-
-        aval.Direccion = dir;
-
-        aval.Telefono.domiciliario = tele.domiciliario;
-        aval.Telefono.movil = tele.movil;
-
-        aval.Correo.principal = $("#txtmcorreo").val().toUpperCase();
-
-        var conceptos = new Array();
-
-        var concep = new ConceptoCarta();
-        var facturaD = new Factura2();
-
-        var prov = new Beneficiario();
-        prov.rif = $("#rifclinica").val();
-        prov.razonsocial = $("#cmbclinica option:selected").text();
-        prov.tipoempresa = "J";
-        prov.direccion = "";
-
-        facturaD.Beneficiario = prov;
-        concep.DatoFactura = facturaD;
-
-        var bene = $("#cmbbeneficiario option:selected").val().split('|');
-        var beneficiario = bene[1]+"-"+$("#cmbbeneficiario option:selected").text();
-        concep.afiliado = beneficiario;
-        concep.descripcion = $("#cmbestudio option:selected").text();
-        concep.motivo = $("#cmbmotivo option:selected").text();
-        concep.diagnostico = $("#txtdiagnostico").text();
-
-        concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
-        concep.montoseguro = parseFloat($("#montoacubrir").val());
-        concep.numeropresupuesto = $("#numeropresupuesto").val();
-        concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
-        concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
-        conceptos.push(concep);
-
-        aval.Concepto = conceptos;
-
-        var wcarta = new WCarta();
-
-        wcarta.id = militar.Persona.DatoBasico.cedula;
-        wcarta.Carta = aval;
-        wcarta.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
-
-        console.log(JSON.stringify(wcarta));
-        var urlGuardar = Conn.URL + "wcarta";
-        var request2 = CargarAPI({
-            sURL: urlGuardar,
-            metodo: 'POST',
-            valores: wcarta,
-        });
-        request2.then(function(xhRequest) {
-            res = JSON.parse(xhRequest.responseText);
-                if (res.msj != "") res.msj2 = "Se proceso con exito....";
-                msj2Respuesta(res.msj2);
-                llenarCarta();
-            var idm = militar.Persona.DatoBasico.cedula;
-            var ventana = window.open("cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
-        });
-
-    } else {
+      }else {
         $.notify("Debe ingresar todos los datos para realizar la Carta Aval");
     }
 }
@@ -515,11 +434,15 @@ function calcularSolicitado(){
 
 function calcularPorcentaje(){
     var mntFactura = $("#montopresupuesto").val();
-    var mntAsegura = $("#montoacubrir").val();
-    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
-    if(isNaN(mntSolici)){
-        $("#montosolicitado").val("");
-    }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
+    var porAfi = $("#porcentajeafiliado").val();
+    var mntAfi = parseFloat(mntFactura)*parseFloat(porAfi/100);
+    var mntIpsfa = parseFloat(mntFactura)*parseFloat((100-porAfi)/100);
+    if(isNaN(mntAfi)){
+        $("#montoafiliado").val("");
+    }else{$("#montoafiliado").val(mntAfi.toFixed(2));}
+    if(isNaN(mntIpsfa)){
+        $("#montosolicitado2").val("");
+    }else{$("#montosolicitado2").val(mntIpsfa.toFixed(2));}
 }
 
 function limpiarCarta() {
