@@ -19,7 +19,7 @@ class WFedeVida {
 
 $(function () {
     llenarfe();
-    $(".btnvolverentrada2").click(function(){
+    $(".btnvolverentrada").click(function(){
         $("#mdldesea").modal("show");
 
         $("#btnsalir").click(function () {
@@ -66,13 +66,10 @@ function habilitarDireccion(estatus){
 }
 
 function llenarfe(){
-
-
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-  
+
     $("#_cargando").hide();
     if(militar.Persona != undefined){
-        $("#cuerporeembolsos").html("");
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
@@ -103,17 +100,10 @@ function llenarfe(){
             $("#txtmcelular").val(militar.Persona.Telefono.movil);
             $("#txtmcorreo").val(militar.Persona.Correo.principal);
         }
-
-        if(militar.Persona.DatoFinanciero != undefined){
-            $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
-            $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
-            $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
-          //  listaCuentas();
-        }
-
+        Estados.ObtenerEstados();
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
-            Estados.ObtenerEstados();
+
             $("#cmbmestado").val(DIR.estado);
             $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
             $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
@@ -129,7 +119,6 @@ function llenarfe(){
     }
 
 }
-
 
 
 function crearLista(){
@@ -273,7 +262,7 @@ function generarPlanillaFdV(){
         if (respuesta.msj == "Bien") {
             respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);
-           // llenarfe();
+            llenarfe();
             var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
         }
     });

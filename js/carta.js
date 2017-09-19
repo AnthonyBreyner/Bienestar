@@ -157,7 +157,7 @@ function cargarFamiliar(pos){
 
 function llenarCarta(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-cmbclinica
+
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;

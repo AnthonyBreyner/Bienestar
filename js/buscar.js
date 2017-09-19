@@ -37,6 +37,7 @@ $(function () {
         $("#panelentrada").show();
         $("#panellista").hide();
         $("#panelregistro").hide();
+        $("#panelperfil").show();
     });
 
     $(".volver2").click(function(){
@@ -247,14 +248,20 @@ function verPrograma(){
     $("#paneldatos").show();
     $("#panelentrada").hide();
     $("#panellista").show();
+    $("#panelperfil").hide();
     //$("#btnnreembolso").show();
     //$("#btnlreembolso").hide();
 }
-function imprimirrecibo() {
-
+function imprimirrecibore(pos) {
     var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
-
 }
+function imprimirreciboapo(pos) {
+    var ventana = window.open("inc/reciboApoyo.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
+}
+function imprimirrecibocarta(pos) {
+    var ventana = window.open("../cartaAval.html?id="+idm + "&nm=" +res.msj , "_blank");
+}
+
 
 function historico(){
     $("#historicoReembolso").html('<thead>\n' +
@@ -322,7 +329,8 @@ function historico(){
             }
 
             t.row.add([
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>"+ "<button type='button' onclick='imprimirrecibo()' class='btn btn-default btn-sm pull-right'>" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>"+
+                "<button type='button' class='btn btn-default btn-sm pull-right' onclick=\"imprimirrecibore("+i+")\">" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
                 numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
@@ -373,7 +381,7 @@ function detalleVisible(pos){
 
 function historicoApoyo(){
     $("#historicoApoyos").html('<thead>\n' +
-        '                        <tr class="bg-info"><td class="pbuscar">#Apoyo</td><td>F. Solicitud</td><td class="pbuscar">Factura</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
+        '                        <tr class="bg-info"><td class="pbuscar">#Apoyo</td><td>F. Solicitud</td><td class="pbuscar">Factura</td><td style="width: 20%">Monto a Cubrir por el IPSFA.<td>Estado</td></tr>\n' +
         '                        </thead>\n' +
         '                        <tbody id="cuerporeembolsos">\n' +
         '\n' +
@@ -436,11 +444,12 @@ function historicoApoyo(){
                 listaFact = nfac;
             }
             t.row.add([
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisibleApoyo("+i+")\">"+this.numero+"</a>", //1
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisibleApoyo("+i+")\">"+this.numero+"</a>"+
+                "<button type='button' class='btn btn-default btn-sm pull-right' onclick=\"imprimirreciboapo("+i+")\">" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
                 numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
-                numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
+                // numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
                 est
             ]).draw(false);
             i++;
@@ -464,21 +473,33 @@ function historicoApoyo(){
 }
 
 function detalleVisibleApoyo(pos){
+    if (pos == null) {
+        pos = militar.CIS.ServicioMedico.Programa.Apoyo.length;
+        pos--;
+    }
+    //console.log(pos);
+    var apo = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
+    $("#lbldetnumeroApoyo").text(apo.numero);
     var tconcepto = "";
+    console.log(militar);
     $.each(militar.CIS.ServicioMedico.Programa.Apoyo[pos].Concepto,function(){
+        console.log(this.DatoFactura);
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
-            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
+            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td>" +
+            "<td>"+numeral(parseFloat(this.montoaseguradora)).format('0,0[.]00 $')+"</td><td>"+numeral(parseFloat(this.montoaportar)).format('0,0[.]00 $')+"</td>" +
+            "<td>"+numeral(parseFloat(apo.montosolicitado)).format('0,0[.]00 $')+"</td></tr>";
     })
     tconcepto += "</table>";
     $("#cuerpoLstConceptosApoyo").html(tconcepto);
     $("#lstDetalleApoyo").show();
     $("#tblTodos").hide();
+    $("#panelperfil").hide();
 }
 
 function historicoCarta(){
     $("#historicoCartas").html('<thead>\n' +
-        '                        <tr class="bg-info"><td class="pbuscar">#Carta</td><td>F. Solicitud</td><td class="pbuscar">Factura</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
+        '                        <tr class="bg-info"><td class="pbuscar">#Carta</td><td>F. Solicitud</td><td class="pbuscar">N° Presupuesto</td><td style="width: 20%">Monto a cubrir el IPSFA</td><td>Estado</td></tr>\n' +
         '                        </thead>\n' +
         '                        <tbody id="cuerpocartas">\n' +
         '\n' +
@@ -520,8 +541,8 @@ function historicoCarta(){
             var est = conviertEstatus(this.estatus);
             var fcrea = Util.ConvertirFechaHumana(this.fechacreacion,true);
             var listaFact = "";
-            var nfac = this.Concepto[0].DatoFactura.numero;
-            if(this.Concepto[0].DatoFactura.numero == ""){
+            var nfac = this.Concepto[0].numeropresupuesto;
+            if(this.Concepto[0].numeropresupuesto == ""){
                 nfac = "Sin factura";
             }
             if(this.Concepto.length > 1){
@@ -532,7 +553,8 @@ function historicoCarta(){
                     "            </button>\n" +
                     "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu"+i+"\">";
                 $.each(this.Concepto,function(){
-                    var nfac2 = this.DatoFactura.numero;
+
+                    var nfac2 = this.numeropresupuesto;
                     if(nfac2 == "") nfac2 = "Sin Factura"
                     listaFact += "<li class='bg-info'>"+nfac2+"</li>";
                 });
@@ -541,11 +563,12 @@ function historicoCarta(){
                 listaFact = nfac;
             }
             t.row.add([
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisibleCarta("+i+")\">"+this.numero+"</a>", //1
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisibleCarta("+i+")\">"+this.numero+"</a>"+
+                "<button type='button' class='btn btn-default btn-sm pull-right' onclick=\"imprimirrecibocarta("+i+")\">" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
                 numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
-                numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
+                // numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
                 est
             ]).draw(false);
             i++;
@@ -569,11 +592,19 @@ function historicoCarta(){
 }
 
 function detalleVisibleCarta(pos){
+    if (pos == null) {
+        pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
+        pos--;
+    }
+    //console.log(pos);
+    var car = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+    $("#lbldetnumeroCarta").text(car.numero);
     var tconcepto = "";
     $.each(militar.CIS.ServicioMedico.Programa.CartaAval[pos].Concepto,function(){
-        var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
-        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.descripcion+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
-            "<td>"+this.DatoFactura.numero+"</td><td>"+ffact+"</td><td>"+numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $')+"</td></tr>";
+        var ffact = Util.ConvertirFechaHumana(this.fechapresupuesto);
+        tconcepto += "<tr><td>"+this.afiliado+"</td><td>"+this.motivo+"</td><td>"+this.DatoFactura.Beneficiario.rif+"|"+this.DatoFactura.Beneficiario.razonsocial+"</td> "+
+            "<td>"+this.numeropresupuesto+"</td><td>"+ffact+"</td><td>"+this.montopresupuesto+"</td><td>"+this.montoseguro+"</td><td>"+car.montosolicitado+"</td></tr>";
+
     })
     tconcepto += "</table>";
     $("#cuerpoLstConceptosCarta").html(tconcepto);
