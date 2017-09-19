@@ -45,21 +45,21 @@
                                 <div class="col-md-4">
                                     <label>Estado:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                            id="cmbmestado" required onchange="CiudadMunicipio()">
+                                            id="cmbmestado"  onchange="CiudadMunicipio()">
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Ciudad:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                            id="cmbmciudad" required>
+                                            id="cmbmciudad">
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Municipio:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                            id="cmbmmunicipio" required onchange="SeleccionarParroquia()">
+                                            id="cmbmmunicipio" onchange="SeleccionarParroquia()">
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
@@ -68,13 +68,13 @@
                                 <div class="col-md-4">
                                     <label>Parroquia:</label>
                                     <select class="js-states form-control" style="width: 100%" disabled="disabled"
-                                            id="cmbmparroquia" required>
+                                            id="cmbmparroquia" >
                                         <option value="S" selected="selected"></option>
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <label>Avenida / Edificio / Calle:</label>
-                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" required>
+                                    <input id="txtmcalle" class="form-control" disabled="disabled" type="text" >
                                 </div>
                                 <div class="col-md-2">
                                     <label># Casa:</label>
@@ -297,24 +297,24 @@
                                 <div class="col-md-4 col-sm-12">
                                     <label>Datos bancarios:</label>
                                     <select class="form-control" style="width: 100%"
-                                            id="datosbancarios" onchange="verificaBeneficiarioCuenta();">
+                                            id="datosbancarios" required onchange="verificaBeneficiarioCuenta();">
                                         <option selected="selected" value="S">Seleccione</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <label>Depositar a:</label>
                                     <select class="form-control" style="width: 100%"
-                                            id="depositar" disabled="true" onchange="cedulaDepositar()">
+                                            id="depositar" required disabled="true" onchange="cedulaDepositar()">
                                         <option selected="selected" value="S">Seleccionar</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <label>Cedula:</label>
-                                    <input type="text" class="form-control" id="cibancario" disabled="true">
+                                    <input type="text" class="form-control" required id="cibancario" disabled="true">
                                 </div>
                                 <div class="col-md-4 col-sm-12" id="_txtmnrocuenta">
                                     <label>Nro. de Cuenta:</label>
-                                    <input id="numerocuenta" class="form-control" type="text" maxlength="23"
+                                    <input id="numerocuenta" class="form-control" required type="text" maxlength="23"
                                            data-inputmask='"mask": "9999-9999-99-9999999999"' disabled="true"
                                            data-mask>
                                 </div>
@@ -322,7 +322,7 @@
                                 <div class="col-md-4 col-sm-12" id="_cmbmtipofinanciera">
                                     <label>Banco:</label>
                                     <select class="form-control" style="width: 100%"
-                                            id="banco" disabled="true">
+                                            id="banco" required disabled="true">
                                         <option selected="selected" value="S"></option>
                                         <option value="0156">100%BANCO</option>
                                         <option value="0196">ABN AMRO BANK</option>
@@ -362,7 +362,7 @@
                                 </div>
                                 <div class="col-md-4 col-sm-12">
                                     <label>Tipo de Cuenta:</label>
-                                    <select class="form-control" style="width: 100%"
+                                    <select class="form-control" required style="width: 100%"
                                             id="tipodecuenta" disabled="true">
                                         <option selected="selected" value="S"></option>
                                         <option value="CA" selected="selected">AHORRO</option>

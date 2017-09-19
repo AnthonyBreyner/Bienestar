@@ -278,7 +278,7 @@ function validadDatosBancarios() {
 
 
 function cargarDatos() {
-    if (Util.ValidarFormulario("frmtodoapo", "_btnSalvar")) {
+    if (Util.ValidarFormulario("frmtodoreembolso", "_btnSalvar")) {
         var reembolso = new Reembolso();
         reembolso.montosolicitado = parseFloat($("#mntAcumulado").html());
 

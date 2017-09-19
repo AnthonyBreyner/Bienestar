@@ -250,6 +250,11 @@ function verPrograma(){
     //$("#btnnreembolso").show();
     //$("#btnlreembolso").hide();
 }
+function imprimirrecibo() {
+
+    var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
+
+}
 
 function historico(){
     $("#historicoReembolso").html('<thead>\n' +
@@ -315,8 +320,9 @@ function historico(){
             }else{
                 listaFact = nfac;
             }
+
             t.row.add([
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>", //1
+                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible("+i+")\">"+this.numero+"</a>"+ "<button type='button' onclick='imprimirrecibo()' class='btn btn-default btn-sm pull-right'>" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
                 "<b>"+fcrea+"</b>",
                 listaFact,
                 numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
@@ -344,6 +350,14 @@ function historico(){
 }
 
 function detalleVisible(pos){
+    if (pos == null) {
+        pos = militar.CIS.ServicioMedico.Programa.Reembolso.length;
+        pos--;
+    }
+    //console.log(pos);
+    var re = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
+    $("#lbldetnumero").text(re.numero);
+    console.log(re.numero);
     var tconcepto = "";
     $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto,function(){
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
