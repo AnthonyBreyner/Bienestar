@@ -577,13 +577,3 @@ function validaFechaFactura(n){
         $("#alert_fecha").hide();
     }
 }
-
-function calcularSolicitado(){
-    var mntFactura = $("#montofactura").val();
-    var mntAsegura = $("#montoacubrir").val();
-    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
-    $("#montosolicitado").val(mntSolici.toFixed(2));
-    if(parseFloat(mntSolici) > 7000000){
-        requisitosMonto();
-    }
-}

@@ -33,21 +33,7 @@
                                         <option selected="selected" value="S"></option>
                                     </select>
                                 </div>
-                            </div>
-                            <!--div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Beneficiario:</label>
-                                    <select class="form-control" style="width: 100%" id="cmbclinica" required="required"
-                                            >
-                                        <option selected="selected" value="S"></option>
-                                        <option value="0">EUROCIENCIA C.A</option>
-                                        <option value="1">UNIDAD DE MASTOLOGIA H.I. C.A.</option>
-                                        <option value="2">MERCURIO DE VENEZUELA C.A.</option>
-                                    </select>
-                                </div>
-                            </div-->
-
-                            </br>
+                            </div><br><br>
                             <div class="panel panel-default">
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                                    href="#collapseTree" aria-expanded="false" aria-controls="collapseTree">
@@ -165,6 +151,102 @@
                                     </div> <!-- panel-body -->
                                 </div> <!-- collapseTree -->
                             </div> <!-- panel -->
+                            <br>
+                            <div class="panel panel-default">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   aria-expanded="false" aria-controls="collapseTree">
+                                    <div class="panel-heading bg-blue" role="tab" id="headingTree">
+                                        <h4 class="panel-title">
+                                            Tratamiento
+                                        </h4>
+                                    </div>
+                                </a>
+                                <div class="panel-collapse collapse in" role="tabpanel"
+                                     aria-labelledby="headingTree">
+                                    <div class="panel-body">
+                                        <form id="frmmedicina" action="#" method="post">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Princio Activo:</label>
+                                                    <input id="pactivo" class="form-control"
+                                                           type="text" required>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Nombre comercial:</label>
+                                                    <input id="ncomercial" class="form-control"
+                                                           type="text" required>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Presentación:</label>
+                                                    <input id="presentacion" class="form-control"
+                                                           type="text" required>
+                                                </div>
+
+                                            </div><!-- Grupo Grado-->
+
+                                            <div class="row">
+
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Dosis:</label>
+                                                    <input id="dosis" class="form-control"
+                                                           type="text" required>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Cantidad de Entrega:</label>
+                                                    <input id="frecuencia" class="form-control"
+                                                           type="text" required>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4 col-sm-12">
+                                                    <label>Fecha de Vencimiento:</label>
+                                                    <div class="input-group date" style="z-index: 1030;">
+                                                        <div class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </div>
+                                                        <div class="input-group input-group" style="width: 100%;">
+                                                            <input type="text" class="form-control" id="fechaVencimiento"
+                                                                   required="required">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- Grupo nombres-->
+
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                    <button class="btn btn-primary btn-success" type="button"
+                                                            onclick="agregarMedicina()"
+                                                            style="margin-top:23px; margin-bottom: 20px;"
+                                                            id="btnagregarmedicina">
+                                                        Agregar
+                                                        &nbsp<i
+                                                            class="glyphicon glyphicon-plus" disabled="disabled"></i></button>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="table-responsive" id="cajatratamiento" style="display: none">
+                                                <table class="table table-bordered">
+                                                    <thead class="bg-blue">
+                                                    <tr>
+                                                        <td>Principio Activo</td>
+                                                        <td>Nombre Comercial</td>
+                                                        <td>Presentación</td>
+                                                        <td>Dosis</td>
+                                                        <td>Cantidad de Entrega</td>
+                                                        <td>F. de Vencimiento</td>
+                                                        <td style="width: 1%"></td>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="medicinaagregada">
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </form>
+                                    </div> <!-- Grupo nombres-->
+                                </div>
+                            </div>
                             </br>
                             <div class="row">
                                 <div class="col-md-12">
@@ -188,5 +270,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#fechaVencimiento').datepicker({
+        autoclose: true,
+        format: "dd/mm/yyyy",
+        language: 'es'
+    });
+    $('[data-mask]').inputmask();
+</script>
 
 <script src="js/medicinaAltoCosto.js"></script>
