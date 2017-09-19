@@ -455,6 +455,8 @@ function obtenerEstudio(){
             $("#cmbestudio").attr("disabled",true);
             $(".estudio").hide();
             $(".diagnostico").hide();
+            $(".seguro").hide();
+            $(".afiliado").hide();
             break;
         case "0":
             $("#cmbestudio").attr("disabled",false);
@@ -462,6 +464,8 @@ function obtenerEstudio(){
             $(".masto").show();
             $(".diagnostico").hide();
             $(".estudio").show();
+            $(".seguro").hide();
+            $(".afiliado").show();
             break;
         case "1":
             $("#cmbestudio").attr("disabled",false);
@@ -469,6 +473,8 @@ function obtenerEstudio(){
             $(".masto").hide();
             $(".diagnostico").show();
             $(".estudio").hide();
+            $(".seguro").show();
+            $(".afiliado").hide();
             break;
     }
     var modal = $("#cmbmotivo option:selected").attr("desplegar");
@@ -505,6 +511,15 @@ function calcularSolicitado(){
         $("#montosolicitado").val("");
     }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
 
+}
+
+function calcularPorcentaje(){
+    var mntFactura = $("#montopresupuesto").val();
+    var mntAsegura = $("#montoacubrir").val();
+    var mntSolici = parseFloat(mntFactura)-parseFloat(mntAsegura);
+    if(isNaN(mntSolici)){
+        $("#montosolicitado").val("");
+    }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
 }
 
 function limpiarCarta() {
