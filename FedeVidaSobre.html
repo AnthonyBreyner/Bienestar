@@ -496,6 +496,7 @@
             $("#lblcedula3").text(militar.Persona.DatoBasico.cedula);
             $("#lblcedula2").text(militar.Persona.DatoBasico.cedula);
             $("#lblsituacion1").text(militar.situacion);
+            $("#lbltelefono").html(militar.Persona.Telefono.movil);
             // var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
             var edad2 = Util.CalcularEdad(Util.ConvertirFechaHumana(militar.Persona.DatoBasico.fechanacimiento));
 
@@ -505,7 +506,11 @@
             $("#edad").html(edad);
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+
         }
+
+
+
 
         if (militar.situacion == "FCP") {
             $("#sobre").css("display", "block");
@@ -513,7 +518,7 @@
          else{
             $("#militar").css("display", "block");
             $("#datosmilitar").css("display", "block");
-}
+            }
 
         militar.Familiar.forEach(v => {
             if (v.Persona.DatoBasico.cedula == idf) {
@@ -538,6 +543,8 @@
 
 
         });
+
+
         if (pos == null) {
             pos = militar.CIS.Investigacion.FeFeVida.length;
             pos--;
@@ -550,13 +557,12 @@
         $("#lblfechacreacion3").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion4").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
 
-
-
-
         var DIR = fdv.DatoBasico.Direccion;
         Estados.ObtenerEstados();
         var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
         $("#lbldireccion").text(rirec);
+
+
 
 //
 //                }

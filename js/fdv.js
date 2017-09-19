@@ -35,7 +35,7 @@ $(function () {
     });
 });
 
-function consultarRif(){
+/*function consultarRif(){
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
@@ -51,7 +51,7 @@ function consultarRif(){
     }else{
         $("#mdlEmpresa").modal("show");
     }
-}
+}*/
 
 function habilitarDireccion(estatus){
     $("#collapseTree select").attr("disabled",estatus);
@@ -279,7 +279,7 @@ function generarPlanillaFdV(){
     });
 
     } else {
-        $.notify("Debe ingresar todos los datos para realizar la Constancia de Fe de Vida");
+        $.notify("Debe ingresar todos los datos para realizar el la Constancia de Fe de Vida");
     }
         // $("#opciones").hide();
         // $("#panelentrada").show();
