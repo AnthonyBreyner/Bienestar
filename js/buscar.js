@@ -165,10 +165,10 @@ function cargaPrograma(tipo){
             titulos("Tto. <br> Prolongado");
             break;
         case "equipo":
-            CargarUrl("modalgeneral","inc/modals");
+            CargarUrl("modalgeneral","inc/modalsequipos");
             //CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearInvSocial");
-            titulos("Equipos de <br> Movilidad");
+            CargarUrl("panelregistro", "inc/crearEquipos");
+            titulos("Prestamo <br> de Equipo");
             break;
         case "fdv":
             CargarUrl("panelentrada", "inc/opcionesFedeVida");
@@ -184,10 +184,10 @@ function cargaPrograma(tipo){
             titulos("Carta Aval");
             break;
         case "badan":
-            CargarUrl("modalgeneral","inc/modalscarta");
-            CargarUrl("panellista", "inc/lstReembolsos");
-            CargarUrl("panelregistro", "inc/crearCartaAval");
-            titulos("Medicina de Alto Costo");
+            CargarUrl("modalgeneral","inc/modalsmedicina");
+            //CargarUrl("panellista", "inc/lstReembolsos");
+            CargarUrl("panelregistro", "inc/crearMedicinaAltoCosto");
+            titulos("Medicina de <br> Alto Costo");
             break;
     }
     $("#opciones").hide();

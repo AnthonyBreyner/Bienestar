@@ -19,6 +19,36 @@ $(function () {
         verificaCheckModal("requisitosmastologia","btnAgconcepto");
     });
 
+   /* llenarCarta();
+        $(".btnvolverentrada2").click(function(){
+        $("#opciones").hide();
+        $("#panelentrada").show();
+        $("#panellista").hide();
+        $("#panelregistro").hide();
+    });*/
+
+   /* llenarReembolso();
+    $(".btnvolverentradar").click(function () {
+        $("#mdldesea").modal("show");
+
+        $("#btnsalir").click(function () {
+            $("#opciones").hide();
+            $("#panelentrada").show();
+            $("#panellista").hide();
+            $("#panelregistro").hide();
+            $('#mdldesea').modal('hide');
+            limpiarReembolso();
+            limpiarmdlempresa();
+            $("#rifnuevo").remove();
+            $("#sefue").remove();
+        })
+    });
+    $(".btncancelare").click(function () {
+        limpiarmdlempresa();
+        $("#rifnuevo").remove();
+        $("#sefue").remove();
+    });*/
+
     llenarCarta();
     $(".btnvolverentradac").click(function () {
         $("#mdldesea").modal("show");
@@ -408,7 +438,7 @@ function generarCarta(){
         });
         request2.then(function(xhRequest) {
             res = JSON.parse(xhRequest.responseText);
-                if (res.msj != "") res.msj2 = "Se proceso con exito....";
+                if (res.msj != "") res.msj2 = "Carta Aval procesada con Exito";
                 msj2Respuesta(res.msj2);
                 llenarCarta();
             var idm = militar.Persona.DatoBasico.cedula;

@@ -8,6 +8,7 @@
     }
 </style>
 
+
 <div class="container-fluid">
     <div class="row">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -16,7 +17,7 @@
                    aria-expanded="true" aria-controls="collapseOne">
                     <div class="panel-heading bg-light-blue" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            CARTA AVAL
+                            PRESTAMO DE EQUIPO MÉDICO
                         </h4>
                     </div>
                 </a>
@@ -32,40 +33,6 @@
                                         <option selected="selected" value="S"></option>
                                     </select>
                                 </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <label>Motivo de la Carta Aval:</label>
-                                    <select class="form-control" style="width: 100%" id="cmbmotivo"
-                                            onchange="obtenerEstudio()" required="required">
-                                        <option selected="selected" value="S"></option>
-                                        <option value="0">MASTOLOGÍA</option>
-                                        <option value="1" desplegar="requisitosprotesis">PROTESIS</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row estudio">
-                                <div class="col-md-12 col-sm-12">
-                                    <label>Estudio:</label>
-                                    <select class="form-control" style="width: 100%" id="cmbestudio">
-                                        <option selected="selected" value="S"></option>
-                                        <option value="0" class="masto">MASTOLOGÍA BILATERAL DIGITAL (TOMOSINTESIS)
-                                        </option>
-                                        <option value="1" class="masto">MASTOLOGÍA BILATERAL DIGITAL CON PROTESIS
-                                        </option>
-                                        <option value="2" class="masto">MASTOLOGÍA UNILATERAL DIGITAL CON PROTESIS
-                                        </option>
-                                        <option value="3" class="masto">MASTOLOGÍA UNILATERAL CON PROTESIS DIGITAL
-                                        </option>
-                                        <option value="4" class="masto">COMPRESIÓN DIGITAL UNILATERAL</option>
-                                        <option value="5" class="masto">COMPRESIÓN DIGITAL BILATERAL</option>
-                                        <option value="6" class="masto">ULTRASONIDO MAMARIO</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row diagnostico">
-                                <div class="col-md-12 col-sm-12 ">
-                                    <label>Descripción:</label>
-                                    <input class="form-control" id="txtdiagnostico">
-                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4 col-sm-12">
@@ -78,91 +45,8 @@
                                         <option value="2">MERCURIO DE VENEZUELA C.A.</option>
                                     </select>
                                 </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Rif</label>
-                                    <input class="form-control" id="rifclinica" readonly="true"
-                                           required="required">
-                                    <input type="hidden" id="emptipo"/>
-                                    <input type="hidden" id="empdirec"/>
-                                    <input type="hidden" id="empbanco"/>
-                                    <input type="hidden" id="emptipoc"/>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>N° de Presupuesto:</label>
-                                    <input class="form-control" id="numeropresupuesto" required="required"
-                                           onkeypress="return SoloNumero(event)">
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Fecha de Presupuesto:</label>
-                                    <div class="input-group date" style="z-index: 1030;">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <div class="input-group input-group" style="width: 100%;">
-                                            <input type="text" class="form-control" id="txtfechapresupuesto"
-                                                   required="required">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Monto Total del Presupuesto:</label>
-                                    <div class="input-group date" style="z-index: 1030;">
-                                        <input class="form-control " id="montopresupuesto" required="required"
-                                               onblur="calcularSolicitado()"
-                                               onkeypress="return Util.SoloNumero(event,this,true)">
-                                        <div class="input-group-addon">
-                                            <label>Bs.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Monto a Cubrir por la Aseguradora:</label>
-                                    <div class="input-group date" style="z-index: 1030;">
-                                        <input class="form-control" id="montoacubrir" required="required"
-                                               onblur="calcularSolicitado()"
-                                               onkeypress="return Util.SoloNumero(event,this,true)">
-                                        <div class="input-group-addon">
-                                            <label>Bs.</label>
-                                        </div>
-                                </div>
-                                <!--div class="col-md-4 col-sm-12 masto">
-                                        <label>Monto a Cubrir por el afiliado:</label>
-                                        <div class="input-group date" style="z-index: 1030;">
-                                            <input class="form-control" id="montoafiliado" required="required"
-                                                   onblur="calcularPorcentaje()"
-                                                   onkeypress="return Util.SoloNumero(event,this,true)">
-                                            <div class="input-group-addon">
-                                                <label>Bs.</label>
-                                            </div>
-                                </div-->
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Fecha de Carta Aval Seguro:</label>
-                                    <div class="input-group date" style="z-index: 1030;">
-                                        <div class="input-group-addon">
-                                            <i class="fa fa-calendar"></i>
-                                        </div>
-                                        <div class="input-group input-group" style="width: 100%;">
-                                            <input type="text" class="form-control" id="txtfechaseguro"
-                                                   required="required" onblur="calcularSolicitado()">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <label>Monto Aportado por el IPSFA:</label>
-                                    <div class="input-group date" style="z-index: 1030;">
-                                        <input class="form-control" id="montosolicitado" required="required"
-                                               readonly="readonly">
-                                        <div class="input-group-addon">
-                                            <label>Bs.</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             </br>
                             <div class="panel panel-default">
                                 <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
@@ -278,10 +162,9 @@
                                                         class="glyphicon glyphicon-save"></i></button>
                                             </div>
                                         </div>
-
-                                    </div> <!-- Grupo nombres-->
-                                </div>
-                            </div>
+                                    </div> <!-- panel-body -->
+                                </div> <!-- collapseTree -->
+                            </div> <!-- panel -->
                             </br>
                             <div class="row">
                                 <div class="col-md-12">
@@ -306,22 +189,4 @@
     </div>
 </div>
 
-
-<script>
-    $('#txtfechapresupuesto').datepicker({
-        autoclose: true,
-        format: "dd/mm/yyyy",
-        language: 'es'
-    });
-    $('[data-mask]').inputmask();
-
-    $('#txtfechaseguro').datepicker({
-        autoclose: true,
-        format: "dd/mm/yyyy",
-        language: 'es'
-    });
-    $('[data-mask]').inputmask();
-
-</script>
-
-<script src="js/carta.js"></script>
+<script src="js/equiposMedicos.js"></script>

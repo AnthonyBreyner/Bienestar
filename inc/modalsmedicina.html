@@ -1,0 +1,65 @@
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="mdldesea"
+     aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Mensaje</h4>
+            </div>
+            <div class="modal-body">
+                ¿Desea cancelar lo realizado?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="btnsalir">Si</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL DE REQUISITOS -->
+<div class="modal fade" id="requisitos" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="border-radius: 8px;border:2px #337ab7 solid; ">
+            <div class="modal-header" style="background-color:#337ab7;color:white;">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">DOCUMENTACIÓN PARA TRAMITAR MEDICINAS DE ALTO COSTO</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-primary">
+                    <!-- Default panel contents -->
+                    <!-- List group -->
+                    <ul class="list-group">
+
+                        <li class="list-group-item">
+                            Copia de la Cédula de identidad y del Carnet del afiliado.
+                            <div class="material-switch pull-right">
+                                <input id="chm1-0" class="mdl-requisitos" name="chm1-0" value="0" type="checkbox"/>
+                                <label for="chm1-0" class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Informe médico.
+                            <div class="material-switch pull-right">
+                                <input id="chm1-1" name="chm1-1" class="mdl-requisitos" value="1" type="checkbox"/>
+                                <label for="chm1-1" class="label-success"></label>
+                            </div>
+                        </li>
+
+                        <li class="list-group-item">
+                            Recipe.
+                            <div class="material-switch pull-right">
+                                <input id="chm1-2" name="chn1-2" class="mdl-requisitos" value="2" type="checkbox"/>
+                                <label for="chm1-2" class="label-success"></label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary btnrequisitos" data-dismiss="modal" disabled="true" onclick="crearPrograma();inactivarCheck('requisitos')">Continuar</button>
+            </div>
+        </div>
+    </div>
+</div>
