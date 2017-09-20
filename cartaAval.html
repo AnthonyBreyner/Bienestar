@@ -301,7 +301,7 @@
         }
         console.log(pos);
         var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
-        $("#lblnsolicitud").text(NumeroCodigo);
+        $("#lblnsolicitud").text(carta.numero);
         $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
         $("#lblbanco").text(carta.CuentaBancaria.institucion);
         $("#lblcuenta").text(carta.CuentaBancaria.cuenta);

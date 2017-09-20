@@ -259,11 +259,13 @@ function generarPlanillaFdV(){
 
     request2.then(function(xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
-        if (respuesta.msj == "Bien") {
+        if (respuesta.msj2 != "") {
             respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);
             llenarfe();
-            var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");
+            if($("#txtdireccionex").val()== ""){
+            var ventana = window.open("FedeVidaSobre.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");}
+            else{var ventana = window.open("FedeVidaSobreex.html?id="+militar.Persona.DatoBasico.cedula+"&idf="+bene[1], "_blank");}
         }
     });
 
