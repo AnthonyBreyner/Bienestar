@@ -190,7 +190,6 @@ function cargarFamiliar(pos){
 
 function llenarCarta(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-cmbclinica
     $("#_cargando").hide();
     if(militar.Persona != undefined){
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
@@ -288,7 +287,7 @@ function generarCarta(){
     cuenta.institucion = $("#empbanco").val();
     cuenta.tipo = $("#emptipoc").val();
     cuenta.cedula = $("#rifclinica").val();
-    cuenta.titular =$("#cmbclinica option:selected").text();
+    //cuenta.titular =$("#cmbclinica option:selected").text();
     aval.cuentabancaria = cuenta;
 
     var dir = new Direccion();
@@ -317,11 +316,11 @@ function generarCarta(){
     var concep = new ConceptoCarta();
     var facturaD = new Factura2();
 
-    var prov = new Beneficiario();
+    /*var prov = new Beneficiario();
     prov.rif = $("#rifclinica").val();
     prov.razonsocial = $("#cmbclinica option:selected").text();
     prov.tipoempresa = "J";
-    prov.direccion = "";
+    prov.direccion = "";*/
 
     facturaD.Beneficiario = prov;
     concep.DatoFactura = facturaD;
@@ -361,7 +360,7 @@ function generarCarta(){
 
     });
 
-    if (Util.ValidarFormulario("frmcartaaval", "_btnSalvar")) {
+    if (Util.ValidarFormulario("frmequipos", "_btnSalvar")) {
         var aval = new Carta();
         aval.montosolicitado = parseFloat($("#montosolicitado").val())
         var cuenta = new CuentaBancaria2();
@@ -369,7 +368,7 @@ function generarCarta(){
         cuenta.institucion = $("#empbanco").val();
         cuenta.tipo = $("#emptipoc").val();
         cuenta.cedula = $("#rifclinica").val();
-        cuenta.titular =$("#cmbclinica option:selected").text();
+        //cuenta.titular =$("#cmbclinica option:selected").text();
         aval.cuentabancaria = cuenta;
 
         var dir = new Direccion();
@@ -398,11 +397,11 @@ function generarCarta(){
         var concep = new ConceptoCarta();
         var facturaD = new Factura2();
 
-        var prov = new Beneficiario();
+        /*var prov = new Beneficiario();
         prov.rif = $("#rifclinica").val();
         prov.razonsocial = $("#cmbclinica option:selected").text();
         prov.tipoempresa = "J";
-        prov.direccion = "";
+        prov.direccion = "";*/
 
         facturaD.Beneficiario = prov;
         concep.DatoFactura = facturaD;
@@ -506,26 +505,6 @@ function obtenerEstudio(){
     $("#"+modal).modal("show");
 }
 
-function rifProveedor(){
-    var rif = $("#cmbclinica option:selected").val();
-    switch (rif){
-        case "S":
-            $("#rifclinica").val("");
-            break;
-        case "0":
-            $("#rifclinica").val("J-00213125-0");
-            break;
-        case "1":
-            $("#rifclinica").val("J-31043293-7");
-            break;
-        case "2":
-            $("#rifclinica").val("J-00025083-9");
-            break;
-    }
-    $("#empcuenta").val("");
-    $("#empbanco").val("");
-    $("#emptipoc").val("");
-}
 
 function calcularSolicitado(){
     var mntFactura = $("#montopresupuesto").val();
@@ -538,7 +517,7 @@ function calcularSolicitado(){
 }
 
 function limpiarCarta() {
-    $('#frmcartaaval').each(function () {
+    $('#frmequipos').each(function () {
         this.reset();
         $("#cmbbeneficiario").select2("val", "");
     });

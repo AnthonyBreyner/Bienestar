@@ -210,10 +210,10 @@ function agregarMedicina(){
 
 function llenarmedicina(){
     $("#cmbbeneficiario").html('<option selected="selected" value="S"></option>');
-    $("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
+    //$("#datosbancarios").html('<option selected="selected" value="S">Escoja</option>');
     $("#_cargando").hide();
     if(militar.Persona != undefined){
-        $("#cuerporeembolsos").html("");
+        //$("#cuerporeembolsos").html("");
         var ncompleto = militar.Persona.DatoBasico.nombreprimero +" "+militar.Persona.DatoBasico.apellidoprimero;
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
@@ -249,7 +249,7 @@ function llenarmedicina(){
             $("#txtmnrocuenta").val(militar.Persona.DatoFinanciero.cuenta);
             $("#cmbminstfinanciera").val(militar.Persona.DatoFinanciero.institucion);
             $("#cmbmtipofinanciera").val(militar.Persona.DatoFinanciero.tipo);
-            listaCuentas();
+          //  listaCuentas();
         }
 
         if (militar.Persona.Direccion != undefined) {
@@ -271,7 +271,7 @@ function llenarmedicina(){
 
 }
 
-function listaCuentas(){
+/*function listaCuentas(){
     $("#datosbancarios").html("");
     $.each(militar.Persona.DatoFinanciero,function(){
         $("#datosbancarios").append(new Option(this.cuenta,this.cuenta+"|"+this.institucion+"|"+this.tipo, true, true));
@@ -279,7 +279,7 @@ function listaCuentas(){
     $("#datosbancarios").append(new Option("OTRA","otra", true, true));
     $("#datosbancarios").append(new Option("Selecione","", true, true));
 }
-
+*/
 function crearLista(){
     $("#cmbbeneficiario").append(new Option(militar.Persona.DatoBasico.nombreprimero+"(MILITAR)", "T|"+militar.Persona.DatoBasico.cedula, true, true));
     var ncompleto = militar.Persona.DatoBasico.nombreprimero+ " " + militar.Persona.DatoBasico.apellidoprimero;
@@ -314,13 +314,13 @@ function crearLista(){
     });
     historico();
 }
-
+/*
 
 function cedulaDepositar(){
     var ced = $("#depositar").val();
     $("#cibancario").val(ced);
 }
-
+*/
 function cargarFamiliar(pos){
     console.log(pos);
 
@@ -377,7 +377,7 @@ function cargarFamiliar(pos){
     }
 }
 
-function validadDatosBancarios(){
+/*function validadDatosBancarios(){
     var tipoc = $("#tipodecuenta").val();
     var banco = $("#banco").val();
     var cuenta = $("#numerocuenta").val();
@@ -388,10 +388,12 @@ function validadDatosBancarios(){
         return false;
     }
     return true;
-}
+}*/
 
-function CargarDatosFarmacia(){
-    var farmacia = new Farmacia();
+function generarMedicina(){
+
+
+    /*var farmacia = new Farmacia();
     farmacia.fechaI=$("#fechainformemedico").val();
     farmacia.tipoc=$("#cmbtipo option:selected").text();
     farmacia.nombrec=$("#nombrecS").val();
@@ -401,10 +403,10 @@ function CargarDatosFarmacia(){
     farmacia.codigocm=$("#codigoclgm").val();
     farmacia.codigocmpps=$("#codigomppst").val();
     farmacia.prestadors=$("#cmbprestadors option:selected").text();
-    farmacia.zonadedistribucion=$("#cmbzona option:selected").text();
+    farmacia.zonadedistribucion=$("#cmbzona option:selected").text();*/
 
 
-    var dir = new Direccion();
+    /*var dir = new Direccion();
     dir.tipo = 0;
     dir.estado = $("#cmbmestado option:selected").val();
     dir.municipio = $("#cmbmmunicipio option:selected").val();
@@ -415,22 +417,23 @@ function CargarDatosFarmacia(){
     dir.apartamento = $("#txtmapto").val().toUpperCase();
     var tele = new Telefono();
     tele.domiciliario = $("#txtmtelefono").val();
-    tele.movil = $("#txtmcelular").val();
-    farmacia.Direccion = dir;
+    tele.movil = $("#txtmcelular").val();*/
+
+    /*farmacia.Direccion = dir;
     farmacia.Telefono.domiciliario = tele.domiciliario;
     farmacia.Telefono.movil = tele.movil;
 
-    farmacia.Correo.principal = $("#txtmcorreo").val().toUpperCase();
+    farmacia.Correo.principal = $("#txtmcorreo").val().toUpperCase();*/
 
 
-    var prov = new Beneficiario();
+  /*  var prov = new Beneficiario();
     prov.rif = $("#rif").val();
     prov.razonsocial = $("#razonsocial").val();
     prov.tipoempresa = 'J';
     prov.direccion = $("#empdirec").val();
-    //prov.Banco = 'Pora cargar banco';
+    //prov.Banco = 'Pora cargar banco';*/
 
-    var medicosavala = new Array();
+  /*  var medicosavala = new Array();
     if($("#medicoagregado tr").length >0) {
         $("#medicoagregado tr").each(function () {
             //console.log($(this).html());
@@ -445,8 +448,8 @@ function CargarDatosFarmacia(){
 
             medicosavala.push(medicoA);
         });
-    }
-    var tratamientoafi = new Array();
+    }*/
+  /*  var tratamientoafi = new Array();
     if($("#medicinaagregada tr").length >0) {
         $("#medicinaagregada tr").each(function () {
             var tratamientos = new Tratamiento();
@@ -459,8 +462,10 @@ function CargarDatosFarmacia(){
             tratamientoafi.push(tratamientos);
         });
     }else{
-        $.notify("Debe ingresar todos los datos para realizar el informe médico");}
-    var patologiaag = new Array();
+        $.notify("Debe ingresar todos los datos para realizar el informe médico");}*/
+
+
+  /*  var patologiaag = new Array();
     if($("#patologiaagregada tr").length >0) {
         $("#patologiaagregada tr").each(function () {
             var patologias = new Patologia();
@@ -468,8 +473,9 @@ function CargarDatosFarmacia(){
             patologiaag.push(patologias);
         });
     }else{
-        $.notify("Debe ingresar todos los datos para realizar el informe médico");}
-    var datos = new Wfarmacia();
+        $.notify("Debe ingresar todos los datos para realizar el informe médico");}*/
+
+    /*var datos = new Wfarmacia();
     datos.id = militar.Persona.DatoBasico.cedula;
 
     datos.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
@@ -477,24 +483,27 @@ function CargarDatosFarmacia(){
     farmacia.Tratamiento=tratamientoafi;
     farmacia.Patologia=patologiaag;
     datos.Farmacia = farmacia;
-    console.log(JSON.stringify(datos));
+    console.log(JSON.stringify(datos));*/
+
+
     //probar
     $("#medicinaagregada").html("");
+    console.log("Entra");
     llenarmedicina();
 
     $("#opciones").hide();
     $("#panelentrada").show();
     $("#panellista").hide();
     $("#panelregistro").hide();
-    var ventana = window.open("inc/reciboApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    var urlGuardar = Conn.URL + "wfarmacia";
+    var ventana = window.open("medicinaAltoCosto.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+    var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
         sURL: urlGuardar,
         metodo: 'POST',
         valores: datos,
     });
 
-    request2.then(function (xhRequest) {
+    /*request2.then(function (xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         msjRespuesta(respuesta.msj);
@@ -508,7 +517,7 @@ function CargarDatosFarmacia(){
         $("#panellista").hide();
         $("#panelregistro").hide();
         var ventana = window.open("PlanillaApoyo.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
-    });
+    });*/
 }
 
 
