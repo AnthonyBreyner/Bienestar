@@ -24,7 +24,7 @@ $(function () {
     });
 
     llenarApoyo();
-    $(".btnvolverentrada2").click(function () {
+    $(".btnvolverentrada").click(function () {
         $("#mdldesea").modal("show");
 
         $("#btnsalir").click(function () {
