@@ -70,13 +70,6 @@ $(function () {
         verificaCheckModal("requisitos","btnGenerar");
     });
 
-    $(".mdl-requisitosodon").on("change",function () {
-        verificaCheckModal("requisitosodon","btnGenerar");
-    });
-
-    $(".mdl-requisitosmonto").on("change",function () {
-        verificaCheckModal("requisitosmonto","btnGenerar");
-    });
     $(".btnvolverentrada2").click(function(){
         $("#opciones").hide();
         $("#panelentrada").show();
@@ -140,6 +133,7 @@ function agregarMedicina(){
         var dosis = $("#dosis").val();
         var frecuencia = $("#frecuencia").val();
         var fvencimiento = $("#fechaVencimiento").val();
+        var periodo = $("#periodotrat").val();
         var tabla = $("#medicinaagregada");
         var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
         var html = "<tr><td>"+pactivo+"</td><td>"+ncomercial+"</td><td>"+presentacion+"</td><td>"+dosis+"</td><td>"+frecuencia+"</td>";
@@ -149,11 +143,11 @@ function agregarMedicina(){
         $(".borrarconcepto").click(function () {
             $(this).parents('tr').eq(0).remove();
             if($("#medicinaagregada tr").length == 0){
-                $("#cajatratamiento").slideUp();
+                $("#cajamedicina").slideUp();
             }
         });
         $.notify("Se ha agregado el Medicamento", "success");
-        $("#cajatratamiento").slideDown("slow");
+        $("#cajamedicina").slideDown("slow");
         limpiarMedicina();
     }
     return false;
@@ -488,7 +482,6 @@ function generarMedicina(){
 
     //probar
     $("#medicinaagregada").html("");
-    console.log("Entra");
     llenarmedicina();
 
     $("#opciones").hide();
@@ -520,15 +513,13 @@ function generarMedicina(){
     });*/
 }
 
-
 function limpiarMedicina(){
-    $('#frmmedicina').each (function(){
+    $('#frmmedicina').each(function(){
         this.reset();
     });
 }
 
-
-function requisitosConcepto(){
+/*function requisitosConcepto(){
     var modal = $("#cmbconcepto option:selected").attr("desplegar");
     if(modal != undefined){
         inactivarCheck(modal);
@@ -546,7 +537,7 @@ function requisitosMonto(){
         $("#btnGenerar").attr("disabled",true);
         $("#"+modal).modal("show");
     }
-}
+}*/
 
 function habilitarDireccion(estatus){
     $("#collapseTree select").attr("disabled",estatus);

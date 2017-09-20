@@ -157,7 +157,7 @@
                                    aria-expanded="false" aria-controls="collapseTree">
                                     <div class="panel-heading bg-blue" role="tab" id="headingTree">
                                         <h4 class="panel-title">
-                                            Tratamiento
+                                            Medicamento
                                         </h4>
                                     </div>
                                 </a>
@@ -210,6 +210,17 @@
                                                     </div>
                                                 </div>
                                             </div> <!-- Grupo nombres-->
+                                            <div class="row">
+                                                <div class="col-md-12 col-sm-12">
+                                                  <label>Periodo:</label>
+                                                    <div class="input-group col-md-12 col-sm-12">
+                                                      <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                      </div>
+                                                      <input type="text" class="form-control" id="periodotrat">
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <div class="row">
                                                 <div class="col-md-12 col-sm-12">
@@ -225,7 +236,7 @@
 
                                             </div>
 
-                                            <div class="table-responsive" id="cajatratamiento" style="display: none">
+                                            <div class="table-responsive" id="cajamedicina" style="display: none">
                                                 <table class="table table-bordered">
                                                     <thead class="bg-blue">
                                                     <tr>
@@ -272,6 +283,13 @@
 </div>
 
 <script>
+    $('#periodotrat').daterangepicker({
+      autoclose: true,
+      format: "dd/mm/yyyy",
+      language: 'es'
+    });
+
+    //Date range picker with time picker
     $('#fechaVencimiento').datepicker({
         autoclose: true,
         format: "dd/mm/yyyy",
