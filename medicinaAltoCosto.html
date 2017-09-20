@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        .bordeado {
+            border: black 1px solid;
+        }
+
+        .biz {
+            border-left: black 1px solid;
+        }
+
+        .bde {
+            border-right: black 1px solid;
+        }
+
+        .btop {
+            border-top: black 1px solid;
+        }
+
+        .bajo {
+            border-bottom: black 1px solid;
+        }
+
+        .contenedor {
+            width: 1500px;
+
+        }
+
+        .tcontenedor {
+            width: 100%;
+        }
+
+        .textoCenter {
+            text-align: center;
+        }
+
+        .texto12 {
+            font-size: 12px;
+        }
+
+        .texto10 {
+            font-size: 10px;
+        }
+
+        .doble {
+            height: 40px;
+        }
+
+        .simple {
+            height: 20px;
+        }
+
+        .fondo {
+            background-color: #979a93;
+        }
+
+        .junta {
+            border-collapse: collapse;
+        }
+
+        .sangria {
+            text-indent: 1cm;
+        }
+
+        .justificar {
+            text-align: justify;
+        }
+
+        .centrar {
+            text-align: center;
+        }
+
+        .derecha {
+            text-align: right;
+        }
+
+    </style>
+</head>
+
+<div class="contenedor">
+
+    <table border="0">
+        <tr>
+            <td style="width: 38%"><img src="images/lg.png" style="float: left; width:15%;">
+                <left><p style="font-size: 12px; text-align: center"> REPUBLICA BOLIVARIANA DE VENEZUELA <br>
+                    MINISTERIO DEL PODER
+                    POPULAR PARA LA DEFENSA<br>VICEMINISTERIO DE SERVICIOS<br>DIRECCIÓN GENERAL DE EMPRESAS Y
+                    SERVICIOS<br>
+                    INSTITUTO DE PREVISIÓN SOCIAL DE LA FUERZA ARMADA<br>
+                    GERECIA DE BIENESTAR Y SEGURIDAD SOCIAL</p></left>
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <table width="70%" style="font-size: 20px">
+        <tr>
+            <td width="38%" style="font-size: 15px">Nro: <label id="lblnsolicitud">(NUMERO)</label>
+            </td>
+        </tr>
+        <td class="derecha">
+            Caracas, <label id="lblfecha">(FECHA)</label>
+        </td>
+    </table>
+    <table width="70%">
+        <tr>
+            <td class="centrar"><h2>AUTORIZACIÓN</h2></td>
+        </tr>
+    </table>
+
+    <table width="70%" class="justificar" style="font-size: 25px">
+        <td style="text-align: justify">
+            <p class="justificar">
+              Quien suscribe, CNEL. MARTINEZ SALAS EDUARDO JOSÉ C.I: 7.391.293, por medio de la presente autorizo a BADAN, para que sea entregado al ciudadano XXXX XXXXXXXXXX XXXXXXXX XXXXXXXXXX C.I XXXXXXXX (AFINIDAD) del (GRADO) (COMPONENTE) (NOMBRE DEL MILITAR) C.I XXXXXXX, el (los) siguiente(s) medicamento(s) con el respaldo respectivo de su  recipe, dicho tratamiento corresponde al periodo del (FECHA DESDE) al (FECHA HASTA).
+            </p>
+            <p>
+              <table>
+                <tr>
+                  <td> DESCRIPCIÓN DEL MEDICAMENTO</td>
+                  <td>UNIDADES</td>
+                  <td>Nº RECIPE</td>
+                </tr>
+              </table>
+            </p>
+
+            <p class="centrar">Atentamente,</p>
+        </td>
+
+    </table>
+
+    <table width="75%">
+
+            <td width="25%" class="control-label" style="text-align: center; ">
+                <h3 style="text-align: center; "><br>
+                    <br>
+                    CNEL. MARTINEZ SALAS<br>
+                    GERENTE DE BIENESTAR Y SEGURIDAD SOCIAL
+                </h3>
+                <p style="font-size: 10px; text-align: left">NOTA: La autoriación caduca a los 30días a partir de la fecha de emisión.</p>
+            </td>
+    </table>
+    <div id="boton">
+        <br>
+     <input type="button" style="margin-left: 500px;" id="btnImprimir" value="Imprimir" onclick="imprimir()">
+    </div>
+
+</div>
+
+</body>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/formato/numeral.js"></script>
+
+<script src="js/utilidad.js"></script>
+<script src="js/militar.js"></script>
+<script src="js/config.js"></script>
+<script src="js/controlador.js"></script>
+<script>
+    function imprimir() {
+        $('#btnImprimir').hide();
+        window.print();
+        window.close();
+    }
+
+    /**
+     militar.Familiar.forEach( v => {
+        if (v.Persona.DatoBasico.cedula == "13097317"){
+            $("#nombreafil").html(v.Persona.DatoBasico.nombreprimero);
+        }
+    });
+     let pos = '';
+     let NumeroCodigo = '';
+
+     militar.CIS.ServicioMedico.Programa.CartaAval.forEach(v => { console.log(v.numero); });
+     **/
+
+    $(function () {
+        numeral.locale('es-es');
+        $.obtener = function (key) {
+            key = key.replace(/[\[]/, '\\[');
+            key = key.replace(/[\]]/, '\\]');
+            var pattern = "[\\?&]" + key + "=([^&#]*)";
+            var regex = new RegExp(pattern);
+            var url = unescape(window.location.href);
+            var results = regex.exec(url);
+            if (results === null) {
+                return null;
+            } else {
+                return results[1];
+            }
+        };
+        var id = $.obtener("id");
+        NumeroCodigo = $.obtener("nm");
+        pos = $.obtener("pos");
+
+        Buscar(id);
+    });
+
+
+    function Buscar(id) {
+        if (id != undefined) {
+            $("#_cedula").val(id);
+        }
+        if ($("#_cedula").val() == "") {
+            return false;
+        }
+
+        var url = Conn.URL + "militar/crud/" + id;
+        var request = CargarAPI({
+            sURL: url,
+            metodo: 'GET',
+            valores: '',
+            Objeto: militar
+        });
+
+        request.then(function (xhRequest) {
+
+            militar = JSON.parse(xhRequest.responseText);
+            llenar(id);
+        });
+
+    }
+
+    function llenar(formato) {
+        if (formato != undefined) {
+
+        }
+
+        console.log(militar);
+        if (militar.Persona != undefined) {
+            var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
+
+            $("#nombre").html(ncompleto);
+            $("#lblcomponente").text(militar.Componente.descripcion);
+            $("#lblgrado").text(militar.Grado.descripcion);
+            $("#lblcedula").text(militar.Persona.DatoBasico.cedula);
+
+            //crearCarta();
+
+            var estcivil = Util.GenerarEstadoCivil(militar.Persona.DatoBasico.estadocivil, militar.Persona.DatoBasico.sexo);
+
+            $("#lblestadocivil").text(estcivil);
+            $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+
+            if (militar.Persona.Direccion != undefined) {
+                var defestados = sessionStorage.getItem("ipsfaEstado");
+                var DIR = militar.Persona.Direccion[0];
+                Estados.ObtenerEstados();
+                var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                $("#lbldireccion").text(rirec);
+            }
+        } else {
+            alert("Cedula no se encuentra registrada como militar dentro del sistema");
+        }
+    }
+
+    function crearCarta() {
+        if (pos == null) {
+            pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
+            pos--;
+        }
+        console.log(pos);
+        var carta = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+        $("#lblnsolicitud").text(NumeroCodigo);
+        $("#lblfecha").text(Util.ConvertirFechaHumana(carta.fechacreacion));
+        $("#lblbanco").text(carta.CuentaBancaria.institucion);
+        $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
+        $("#lbltipoc").text(carta.CuentaBancaria.tipo);
+        $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+
+        var txttotipsfa = numeroALetras(carta.montosolicitado);
+        $("#txtmontoipsfa").html(txttotipsfa);
+
+        var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
+
+        $.each(concep.Concepto, function () {
+            var bene = this.afiliado.split("-");
+            var mntformato = numeral(parseFloat(this.DatoFactura.monto)).format('0,0.00');
+
+            cedulaa = bene[0];
+            nombreparen = bene[1];
+            nomafi = nombreparen.split("(");
+            nombrea = nomafi[0];
+            paren = nomafi[1];
+            parentezco = paren.split(")");
+            motivo = this.descripcion;
+            rifclinica = this.DatoFactura.Beneficiario.rif;
+            nombreclinica = this.DatoFactura.Beneficiario.razonsocial;
+            razonc = this.motivo;
+            conceptoc = this.descripcion;
+            diagnosticoc = this.diagnostico;
+
+            cedulaa = bene[0];
+            nombreparen = bene[1];
+            nomafi = nombreparen.split("(");
+            nombrea = nomafi[0];
+            paren = nomafi[1];
+            parentezco = paren.split(")");
+
+            $("#lblrifclinica").text(this.DatoFactura.Beneficiario.rif);
+            $("#lblnropresupuesto").text(this.numeropresupuesto);
+            $("#lblfechapresupuesto").text(Util.ConvertirFechaHumana(this.fechapresupuesto));
+            $("#lblmontopresupuesto").text(numeral(parseFloat(this.montopresupuesto)).format('0,0.00'));
+            $("#lblmontoseguro").text(numeral(parseFloat(this.montoseguro)).format('0,0.00'));
+            $("#lblfechaseguro").text(Util.ConvertirFechaHumana(this.fechaseguro));
+            $("#lblnombrec").text(this.DatoFactura.Beneficiario.razonsocial);
+            $("#motivoafil").text(this.descripcion);
+            $("#lblmotivo").text(this.motivo);
+            $("#lblconcepto").text(this.descripcion);
+            $("#lbldiagnostico").text(this.diagnostico);
+
+            var txttotpre = numeroALetras(this.montopresupuesto);
+            $("#txtmontopre").html(txttotpre);
+
+            var txttotseg = numeroALetras(this.montoseguro);
+            $("#txtmontoseg").html(txttotseg);
+
+            $("#cedulaafil").html(cedulaa);
+            $("#nombreafil").html(nombrea);
+            $("#cedulaafil2").html(cedulaa);
+            $("#nombreafil2").html(nombrea);
+            $("#motivoafil").html(motivo);
+            $("#lblrifclinica").html(rifclinica);
+            $("#lblnombrec").html(nombreclinica);
+            $("#lblmotivo").html(razonc);
+            $("#lblconcepto").html(conceptoc);
+            $("#lbldiagnostico").html(diagnosticoc);
+            $("#lblparentezco").html(parentezco);
+            $("#lblparentezco2").html(parentezco);
+            if ($("#lblparentezco").text() == "MILITAR") {
+                $("#tit").css("display", "block");
+            } else {$("#fam").css("display", "block");}
+            if (razonc == "PROTESIS"){
+              $("#prote").css("display", "block");
+            }else{
+              $("#masto").css("display", "block");
+            }
+
+        });
+    }
+
+
+</script>
+</html>

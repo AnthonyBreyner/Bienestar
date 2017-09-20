@@ -189,7 +189,7 @@ function cargaPrograma(tipo) {
             CargarUrl("modalgeneral", "inc/modalsmedicina");
             //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearMedicinaAltoCosto");
-            titulos("Medicina de <br> Alto Costo");
+            titulos("Medicina <br> Alto Costo");
             break;
     }
     $("#opciones").hide();
