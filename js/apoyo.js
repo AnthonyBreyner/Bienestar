@@ -33,7 +33,7 @@ $(function () {
             $("#panellista").hide();
             $("#panelregistro").hide();
             $('#mdldesea').modal('hide');
-            limpiarReembolso();
+            limpiarApoyo();
             limpiarmdlempresa();
             $("#rifnuevo").remove();
             $("#sefue").remove();
@@ -373,7 +373,7 @@ function generarPlanilla() {
     }
 }
 
-function limpiarReembolso() {
+function limpiarApoyo() {
     $('#frmreembolso').each(function () {
         this.reset();
     });

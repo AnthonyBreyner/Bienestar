@@ -223,7 +223,7 @@ function cargarFamiliar(pos) {
 }
 
 function agregarConcepto() {
-    if (Util.ValidarFormulario("frmreembolso", "btnAgconcepto")) {
+    if (Util.ValidarFormulario("frmtodoreembolso", "_btnSalvar")) {
         var bene = $("#cmbbeneficiario option:selected").val().split('|');
         var beneficiario = bene[1] + "-" + $("#cmbbeneficiario option:selected").text();
         var concepto = $("#concepto option:selected").text();
@@ -402,7 +402,7 @@ function verificaBeneficiarioCuenta() {
 }
 
 function limpiarReembolso() {
-    $('#frmreembolso').each(function () {
+    $('#frmtodoreembolso').each(function () {
         this.reset();
         $("#cmbbeneficiario").select2("val", "");
     });
