@@ -304,8 +304,8 @@ function generarCarta(){
     concep.diagnostico = $("#txtdiagnostico").val();
     concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
     concep.montoseguro = parseFloat($("#montoacubrir").val());
-    //concep.montoafiliado = parseFloat($("#montoafiliado").val());
-    //concep.porcentajeafiliado = parseFloat($("#porcentajeafiliado").val());
+    concep.montoafiliado = parseFloat($("#montoafiliado").val());
+    concep.porcentajeafiliado = parseFloat($("#porcentajeafiliado").val());
     concep.numeropresupuesto = $("#numeropresupuesto").val();
     concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
     concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
@@ -429,7 +429,6 @@ function calcularSolicitado(){
     if(isNaN(mntSolici)){
         $("#montosolicitado").val("");
     }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
-
 }
 
 function calcularPorcentaje(){
@@ -441,8 +440,8 @@ function calcularPorcentaje(){
         $("#montoafiliado").val("");
     }else{$("#montoafiliado").val(mntAfi.toFixed(2));}
     if(isNaN(mntIpsfa)){
-        $("#montosolicitado2").val("");
-    }else{$("#montosolicitado2").val(mntIpsfa.toFixed(2));}
+        $("#montosolicitado").val("");
+    }else{$("#montosolicitado").val(mntIpsfa.toFixed(2));}
 }
 
 function limpiarCarta() {
