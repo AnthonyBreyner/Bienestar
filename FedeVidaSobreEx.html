@@ -551,17 +551,15 @@
          }
          else if(militar.CIS.Investigacion.FeFeVida.direccionex != "" )
             {
-              //  alert("llega");
+                alert("llega");
                         $("#militarex").css("display", "block");
                         $("#datosmilitar").css("display", "block");
           }
-         else if((militar.situacion !="FCP")&&(militar.CIS.Investigacion.FeFeVida.direccionex == ""))
-         {
+         else if((militar.situacion !="FCP")&&(militar.CIS.Investigacion.FeFeVida.direccionex == "")){
             $("#militar").css("display", "block");
-            $("#datosmilitar").css("display", "block");
-        }
+            $("#datosmilitar").css("display", "block");}
         
-            else{
+                     else{
 
                         $("#sobreex").css("display", "block");
                         $("#datosfallecido").css("display", "block");
