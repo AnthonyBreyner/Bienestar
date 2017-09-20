@@ -258,17 +258,26 @@ function imprimirrecibore(pos) {
     if (pos == null) {
         pos = militar.CIS.ServicioMedico.Programa.Reembolso.length;
         pos--;
-    }console.log(pos);
-    var re = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
-        var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula + "&nm=" + re.numero, "_blank");
+    }//console.log(pos);
+     //pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
+        var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula + "&pos=" + pos, "_blank");
 }
 
 function imprimirreciboapo(pos) {
-    var ventana = window.open("inc/reciboApoyo.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
+    if (pos == null) {
+        pos = militar.CIS.ServicioMedico.Programa.Apoyo.length;
+        pos--;
+    }
+    var ventana = window.open("inc/reciboApoyo.html?id=" + militar.Persona.DatoBasico.cedula +"&pos="+ pos, "_blank");
 }
 
-function imprimirrecibocarta() {
-    var ventana = window.open("../cartaAval.html?id=" + idm + "&nm=" + res.msj, "_blank");
+function imprimirrecibocarta(pos) {
+    if (pos == null) {
+        pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
+        pos--;
+    }
+    var idm = militar.Persona.DatoBasico.cedula;
+    var ventana = window.open("cartaAval.html?id="+idm + "&pos=" +pos , "_blank");
 }
 
 
