@@ -7,22 +7,6 @@ let CReembolso = null;
 let copia = null;
 let posicionModificar = null;
 
-//{id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Reembolso: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-/*class WReembolso {
-  constructor(){
-    this.id = "";
-    this.numero = "";
-    this.Reembolso = new Reembolso();
-    this.posicion = 0;
-    this.observaciones = new Array();
-  }
-
-}*/
-
-
-$(function () {
-
-});
 
 function listaBuzon(est) {
     var url = Conn.URL + "wreembolso/listar/" + est;
@@ -143,7 +127,7 @@ function aprobarReembolso(num, est,id) {
     var url = Conn.URL + "wreembolso/estatus";
     var esta = parseInt(est) + 1
     var datos = {id:id,numero:num,estatus:parseInt(esta)};
-    console.log(JSON.stringify(datos));
+
     var request = CargarAPI({
         sURL: url,
         metodo: 'PUT',
@@ -163,7 +147,7 @@ function rechazarReembolso(num, est,id) {
     var url = Conn.URL + "wreembolso/estatus";
     var esta = -1;
     var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
-    console.log(JSON.stringify(datos));
+
     var request = CargarAPI({
         sURL: url,
         metodo: 'PUT',
@@ -357,7 +341,6 @@ function calcularAcumulado(tipo) {
     $("#"+idTabla+" tr").each(function () {
         var mnt = $(this).find("input.mntAcumulado").eq(0).val();
         var sol = $(this).find("input.mntsoli").eq(0).val();
-        console.log(mnt + "||"+sol );
         if(parseFloat(mnt) > parseFloat(sol)){
             mnt = sol;
             $(this).find("input.mntAcumulado").eq(0).val(mnt);
@@ -546,7 +529,6 @@ function aprobarApoyo(num, est,id) {
     var url = Conn.URL + "wapoyo/estatus";
     var esta = parseInt(est) + 1
     var datos = {id:id,numero:num,estatus:parseInt(esta)};
-    console.log(JSON.stringify(datos));
     var request = CargarAPI({
         sURL: url,
         metodo: 'PUT',
@@ -566,7 +548,6 @@ function rechazarApoyo(num, est,id) {
     var url = Conn.URL + "wapoyo/estatus";
     var esta = -1;
     var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
-    console.log(JSON.stringify(datos));
     var request = CargarAPI({
         sURL: url,
         metodo: 'PUT',
@@ -623,7 +604,6 @@ function crearBuzonApoyo(est){
 
 
 function llenarBuzonApoyo(numero,est) {
-    console.log(militarActivo);
     $('#lblcedulaApoyo').text(militarActivo.Persona.DatoBasico.cedula);
     var ncompleto = militarActivo.Persona.DatoBasico.nombreprimero + " " + militarActivo.Persona.DatoBasico.apellidoprimero;
     $('#lblnombreApoyo').text(ncompleto);
@@ -747,7 +727,6 @@ function planillaReembolso(){
 function actualizarApoyo(est) {
     var conceptos = new Array();
     var datos = null;
-    console.log(copia);
     var i = 0;
     if ($("#cuerpoEditarConceptosApoyo tr").length > 0) {
         $("#cuerpoEditarConceptosApoyo tr").each(function () {
@@ -796,8 +775,7 @@ function actualizarApoyo(est) {
     copia.Seguimiento.Estatus = parseInt($("#estSeguimientoApoyo").val());
 
     datos = {id: militarActivo.Persona.DatoBasico.cedula, numero: copia.numero, Apoyo: copia,Posicion:posicionModificar,Observaciones:obseraciones};
-    console.log(datos);
-    console.log(JSON.stringify(datos));
+
     var urlGuardar = Conn.URL + "wapoyo";
     var request2 = CargarAPI({
         sURL: urlGuardar,
@@ -858,7 +836,7 @@ function crearBuzonCarta(est) {
 }
 
 function llenarBuzonCarta(numero,est) {
-    console.log(militarActivo);
+
     $('#lblcedulaCarta').text(militarActivo.Persona.DatoBasico.cedula);
     var ncompleto = militarActivo.Persona.DatoBasico.nombreprimero + " " + militarActivo.Persona.DatoBasico.apellidoprimero;
     $('#lblnombreCarta').text(ncompleto);
@@ -886,8 +864,7 @@ function llenarBuzonCarta(numero,est) {
 function crearTablaConceptosCarta(numero,est){
     var fila = "";
     var pos = 0;
-    console.log("aca esta el objeto");
-    console.log(militarActivo);
+
     var lst = militarActivo.CIS.ServicioMedico.Programa.CartaAval;
     var i = 0;
     $.each(lst, function () {

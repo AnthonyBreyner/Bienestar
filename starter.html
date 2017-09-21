@@ -3,15 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BIENESTAR</title>
-    <!-- Tell the browser to be responsive to screen width -->
+    <title>Bienestar</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="dist/css/checkbox.css">
     <link rel="stylesheet" href="dist/css/_all-skins_1.css">
@@ -20,158 +16,33 @@
     <link rel="stylesheet" href="bower_components/select2/dist/css/select2.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/fancy/dist/jquery.fancybox.css">
-  <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/ui-lightness/jquery-ui.css">
 
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="bower_components/notify/notify.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/utilidad.js"></script>
+    <script src="js/controlador.js"></script>
+    <script src="js/militar.js"></script>
+    <script src="js/buscar.js"></script>
+    <script src="js/buzon.js"></script>
+    <script src="bower_components/formato/numeral.js"></script>
+    <script src="bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="bower_components/moment/min/moment.min.js"></script>
+    <script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
+    <script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
+    <script src="dist/js/adminlte.min.js"></script>
 </head>
 
-<style type="text/css">
-    table.dataTable thead .sorting,
-    table.dataTable thead .sorting_asc,
-    table.dataTable thead .sorting_desc,
-    table.dataTable thead .sorting_asc_disabled,
-    table.dataTable thead .sorting_desc_disabled {
-        cursor: pointer;
-        *cursor: hand
-    }
-    table.dataTable thead .sorting,
-    table.dataTable thead .sorting_asc,
-    table.dataTable thead .sorting_desc,
-    table.dataTable thead .sorting_asc_disabled,
-    table.dataTable thead .sorting_desc_disabled {
-        background-repeat: no-repeat;
-        background-position: center right
-    }
-    table.dataTable thead .sorting {
-        background-image: url("./images/sort_both.png")
-    }
-    table.dataTable thead .sorting_asc {
-        background-image: url("./images/sort_asc.png")
-    }
-    table.dataTable thead .sorting_desc {
-        background-image: url("./images/sort_desc.png")
-    }
-    table.dataTable thead .sorting_asc_disabled {
-        background-image: url("./images/sort_asc_disabled.png")
-    }
-    table.dataTable thead .sorting_desc_disabled {
-        background-image: url("./images/sort_desc_disabled.png")
-    }
-    .row-centered {
-        text-align: center;
-    }
-
-    .col-centered {
-        display: inline-block;
-        float: none;
-        text-align: left;
-        margin-right: -4px;
-    }
-
-    td {
-        font-size: 12px;
-        font-weight: normal;
-    }
-
-    input {
-        text-transform: uppercase;
-    }
-
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn-file input[type=file] {
-        position: absolute;
-        top: 0;
-        right: 0;
-        min-width: 100%;
-        min-height: 100%;
-        font-size: 100px;
-        text-align: right;
-        filter: alpha(opacity=0);
-        opacity: 0;
-        outline: none;
-        background: white;
-        cursor: inherit;
-        display: block;
-    }
-
-    .logo1 {
-        -webkit-transition: width .3s ease-in-out;
-        -o-transition: width .3s ease-in-out;
-        transition: width .3s ease-in-out;
-        display: block;
-        float: left;
-        height: 50px;
-        font-size: 16px;
-        line-height: 50px;
-        text-align: center;
-        width: 580px;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        padding: 0 15px;
-        font-weight: 300;
-        overflow: hidden;
-    }
-
-    .detfactconcep{
-        display: none;
-    }
-
-    .ui-autocomplete {
-        position: absolute;
-        top: 676px;
-        left: 260px;
-        z-index: 10000;
-        float: left;
-        display: none;
-        min-width: 160px;
-        _width: 160px;
-        padding: 4px 0;
-        margin: 2px 0 0 0;
-        list-style: none;
-        background-color: #ffffff;
-        border-color: #ccc;
-        border-color: rgba(0, 0, 0, 0.2);
-        border-style: solid;
-        border-width: 1px;
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        -webkit-background-clip: padding-box;
-        -moz-background-clip: padding;
-        background-clip: padding-box;
-        *border-right-width: 2px;
-        *border-bottom-width: 2px;
-
-    .ui-menu-item > a.ui-corner-all {
-        display: block;
-        padding: 3px 15px;
-        clear: both;
-        font-weight: normal;
-        line-height: 18px;
-        color: #555555;
-        white-space: nowrap;
-
-    &
-    .ui-state-hover,
-
-    &
-    .ui-state-active {
-        color: #ffffff;
-        text-decoration: none;
-        background-color: #0088cc;
-        border-radius: 0px;
-        -webkit-border-radius: 0px;
-        -moz-border-radius: 0px;
-        background-image: none;
-    }
-    }
-    }
-</style>
 <body class="hold-transition skin-yellow">
 <header class="header" style="background-color:#3c8dbc">
     <div class="row">
@@ -310,39 +181,6 @@
         <strong>Derechos reservados &copy; 2017 <a href="#">IPSFA</a>.</strong>
     </footer>
 </div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
-
-<script src="bower_components/notify/notify.min.js"></script>
-<script src="js/utilidad.js"></script>
-<script src="js/militar.js"></script>
-<script src="js/config.js"></script>
-<script src="js/controlador.js"></script>
-<script src="js/buzon.js"></script>
-
-<script src="bower_components/formato/numeral.js"></script>
-<script src="bower_components/select2/dist/js/select2.full.min.js"></script>
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- InputMask -->
-<script src="plugins/input-mask/jquery.inputmask.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-<script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
-<script src="bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<script src="bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<script src="bower_components/bootstrap-datepicker/dist/locales/bootstrap-datepicker.es.min.js"></script>
-<script src="bower_components/fancy/dist/jquery.fancybox.min.js"></script>
-<script src="dist/js/adminlte.min.js"></script>
-
 
 </body>
 </html>

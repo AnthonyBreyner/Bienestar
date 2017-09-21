@@ -37,7 +37,6 @@ $(function () {
 
 class Factura2{
     constructor() {
-        console.log("Creando objeto Factura2");
         this.Beneficiario = new Beneficiario();
     }
 }
@@ -55,7 +54,6 @@ class ConceptoCarta{
 
 class Carta {
     constructor() {
-        console.log("Creando objeto carta");
         this.estatus = 0;
         this.montosolicitado = 0.00;
         this.cuentabancaria = new CuentaBancaria2();
@@ -98,7 +96,7 @@ function salvarEmpresa(){
 }
 
 function cargarFamiliar(pos){
-    console.log(pos);
+
 
     if(pos == "T"){
         if (militar.Persona.Telefono != undefined) {
@@ -126,7 +124,6 @@ function cargarFamiliar(pos){
     $("#perfilFamiliar").show();
 
     var fami = militar.Familiar[pos];
-    console.log(fami);
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
     var ncf = fami.Persona.DatoBasico.nombreprimero+" "+fami.Persona.DatoBasico.apellidoprimero;
     $("#lblnombref").text(ncf);
@@ -320,7 +317,7 @@ function generarCarta(){
     wcarta.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
 
 
-    console.log(JSON.stringify(wcarta));
+
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
         sURL: urlGuardar,

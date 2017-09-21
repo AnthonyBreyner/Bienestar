@@ -134,16 +134,6 @@ class CIS {
     }
 }
 
-class Militar2 {
-    constructor() {
-        console.log("Creando objeto Militar2");
-        this.Persona = new Persona();
-        this.estatuscarnet = '';
-        this.familiar = new Familiar();
-        this.CIS = new CIS();
-    }
-}
-
 class Estado{
     constructor() {
 
@@ -211,46 +201,48 @@ class Estado{
 }
 
 var Conn = new Conexion();
-let militar = new Militar();
 var Estados = new Estado();
 $(function () {
-    var requestE = CargarAPI({
-        sURL: Conn.URL + "estado",
-        metodo: 'GET',
-        valores: '',
-    });
-    requestE.then(function(xhRequest) {
-        Estados.Crear(JSON.parse(xhRequest.responseText));
-    });
-    CargarUrl("opciones","modulo_atencion");
-    CargarUrl("_bxBuscar", "buscar");
-    CargarUrl("panelperfil", "inc/perfil");
-    CargarUrl("panellista", "inc/lstReembolsos");
-    CargarUrl("panelentrada", "inc/opcionesPrograma");
-    numeral.register('locale', 'es-es', {
-        delimiters: {
-            thousands: '.',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'k',
-            million: 'mm',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function (number) {
-            var b = number % 10;
-            return (b === 1 || b === 3) ? 'er' :
-                (b === 2) ? 'do' :
-                    (b === 7 || b === 0) ? 'mo' :
-                        (b === 8) ? 'vo' :
-                            (b === 9) ? 'no' : 'to';
-        },
-        currency: {
-            symbol: 'BS'
-        }
-    });
-    numeral.locale('es-es');
+
+
+  var requestE = CargarAPI({
+      sURL: Conn.URL + "estado",
+      metodo: 'GET',
+      valores: '',
+  });
+  requestE.then(function(xhRequest) {
+      Estados.Crear(JSON.parse(xhRequest.responseText));
+  });
+  CargarUrl("opciones","modulo_atencion");
+  CargarUrl("_bxBuscar", "buscar");
+  CargarUrl("panelperfil", "inc/perfil");
+  CargarUrl("panellista", "inc/lstReembolsos");
+  CargarUrl("panelentrada", "inc/opcionesPrograma");
+  numeral.register('locale', 'es-es', {
+      delimiters: {
+          thousands: '.',
+          decimal: ','
+      },
+      abbreviations: {
+          thousand: 'k',
+          million: 'mm',
+          billion: 'b',
+          trillion: 't'
+      },
+      ordinal: function (number) {
+          var b = number % 10;
+          return (b === 1 || b === 3) ? 'er' :
+              (b === 2) ? 'do' :
+                  (b === 7 || b === 0) ? 'mo' :
+                      (b === 8) ? 'vo' :
+                          (b === 9) ? 'no' : 'to';
+      },
+      currency: {
+          symbol: 'Bs'
+      }
+  });
+  numeral.locale('es-es');
+
 });
 
 function CiudadMunicipio(valor){
@@ -292,4 +284,39 @@ function msjferespuesta(texto) {
     var botones = '<a type="button" href="starter.html" class="btn btn-primary">Continuar</a>';
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
+}
+
+function Principal(){
+  
+}
+
+function PanelEntrada(){
+  $("#opciones").show();
+  $("#panelentrada").hide();
+  $("#panellista").hide();
+  $("#panelregistro").hide();
+}
+
+function PanelOpciones(){
+  $("#opciones").hide();
+  $("#panelentrada").show();
+  $("#panellista").hide();
+  $("#panelregistro").hide();
+  $("#panelperfil").show();
+}
+
+function PanelListadoDetallado(){
+  $("#tblTodos").show();
+  $("#tblreembolsos").slideDown();
+  $("#tblapoyos").slideDown();
+  $("#tblcartas").slideDown();
+  $("#lstDetalle").hide();
+  $("#lstDetalleApoyo").hide();
+  $("#lstDetalleCarta").hide();
+}
+
+function ConsultarID(e){
+  if (e.keyCode == 13) {
+      Buscar();
+  }
 }

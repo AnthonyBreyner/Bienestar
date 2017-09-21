@@ -16,11 +16,3 @@ var reembolso =[
 "Fórmula de los lentes prescrita",
 "Informe médico del oftalmólogo"
 ];
-var TPersona = {
-    Cedula: function(x){
-        alert(this.Nombre);
-    },
-    Nombre: "Carlos",
-    Apellido: "Peña"
-
-}

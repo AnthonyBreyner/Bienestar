@@ -8,7 +8,6 @@ function formatoCombo(state) {
     if (text[1] != undefined) {
         var $state = $(
             '<div class="row"><div class="col-sm-6">' + text[0] + '</div><div class="col-sm-4">(' + text[1] + '</div></div>'
-            //'<span>' + text[0] + '</span><br><span>(' + text[1] + '</span>'
         );
     } else {
         var $state = $(
@@ -19,39 +18,6 @@ function formatoCombo(state) {
     return $state;
 };
 
-
-$(function () {
-    $("#_cedula").on("keypress", function (e) {
-        if (e.keyCode == 13) {
-            Buscar();
-        }
-    });
-
-    $(".btnvolverentrada").click(function () {
-        $("#opciones").show();
-        $("#panelentrada").hide();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-    });
-
-    $(".btnvolverentrada2").click(function () {
-        $("#opciones").hide();
-        $("#panelentrada").show();
-        $("#panellista").hide();
-        $("#panelregistro").hide();
-        $("#panelperfil").show();
-    });
-
-    $(".volver2").click(function () {
-        $("#tblTodos").show();
-        $("#tblreembolsos").slideDown();
-        $("#tblapoyos").slideDown();
-        $("#tblcartas").slideDown();
-        $("#lstDetalle").hide();
-        $("#lstDetalleApoyo").hide();
-        $("#lstDetalleCarta").hide();
-    });
-});
 
 
 function ActivarBuscar() {
@@ -74,30 +40,29 @@ function Buscar(id) {
     }
     $("#_cargando").show();
     var url = Conn.URL + "militar/crud/" + $("#_cedula").val();
-    var request = CargarAPI({
+    var promesa = CargarAPI({
         sURL: url,
         metodo: 'GET',
         valores: '',
         Objeto: militar
     });
-    request.then(function (xhRequest) {
+    promesa.then(function (xhRequest) {
 
         militar = JSON.parse(xhRequest.responseText);
         ficha();
     });
-    var request2 = CargarAPI({
+    var promesaPro = CargarAPI({
         sURL: 'js/proveedores.js',
         metodo: 'GET',
         valores: '',
     });
-    request2.then(function (xhRequest) {
+    promesaPro.then(function (xhRequest) {
         lstProveedores = JSON.parse(xhRequest.responseText);
-        console.log(lstProveedores);
+
     });
 }
 
 function ficha() {
-    console.log(militar);
     $("#_cargando").hide();
     if (militar.Persona != undefined) {
         var ncompleto = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
@@ -144,50 +109,41 @@ function cargaPrograma(tipo) {
     switch (tipo) {
         case "r":
             CargarUrl("modalgeneral", "inc/modals");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearReembolso");
             titulos("reembolso")
             break;
         case "a":
             CargarUrl("modalgeneral", "inc/modalsapoyo");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearApoyoEconomico");
             titulos("Apoyo <br> Economico");
             break;
         case "pen":
             CargarUrl("modalgeneral", "inc/modals");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearPension");
             titulos("Pension");
             break;
         case "far":
             CargarUrl("modalgeneral", "inc/modalsfarmacia");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFarmacia");
             titulos("Tto. <br> Prolongado");
             break;
         case "equipo":
             CargarUrl("modalgeneral", "inc/modalsequipos");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearEquipos");
             titulos("Prestamo <br> de Equipo");
             break;
         case "fdv":
             CargarUrl("panelentrada", "inc/opcionesFedeVida");
             CargarUrl("modalgeneral", "inc/modals");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearFedeVida");
-            //titulos("Fe de vida");
             break;
         case "ca":
             CargarUrl("modalgeneral", "inc/modalscarta");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearCartaAval");
             titulos("Carta Aval");
             break;
         case "badan":
             CargarUrl("modalgeneral", "inc/modalsmedicina");
-            //CargarUrl("panellista", "inc/lstReembolsos");
             CargarUrl("panelregistro", "inc/crearMedicinaAltoCosto");
             titulos("Medicina <br> Alto Costo");
             break;
@@ -206,8 +162,6 @@ function verificarNuevo(val) {
     } else {
         $("#requisitos").modal("show");
     }
-
-    //crearReembolso();
 }
 
 function verificaCheckModal(mdl, btn) {
@@ -239,9 +193,6 @@ function crearPrograma() {
     $("#paneldatos").show();
     $("#panelentrada").hide();
     $("#panelregistro").show();
-
-    //$("#btnnreembolso").hide();
-    //$("#btnlreembolso").show();
 }
 
 function verPrograma() {
@@ -250,17 +201,14 @@ function verPrograma() {
     $("#panelentrada").hide();
     $("#panellista").show();
     $("#panelperfil").hide();
-    //$("#btnnreembolso").show();
-    //$("#btnlreembolso").hide();
 }
 
 function imprimirrecibore(pos) {
     if (pos == null) {
         pos = militar.CIS.ServicioMedico.Programa.Reembolso.length;
         pos--;
-    }//console.log(pos);
-     //pos=militar.CIS.ServicioMedico.Programa.Reembolso.length;
-        var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula + "&pos=" + pos, "_blank");
+    }
+    var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula + "&pos=" + pos, "_blank");
 }
 
 function imprimirreciboapo(pos) {
@@ -282,12 +230,19 @@ function imprimirrecibocarta(pos) {
 
 
 function historico() {
-    $("#historicoReembolso").html('<thead>\n' +
-        '                        <tr class="bg-info"><td class="pbuscar">#Reembolso</td><td>F. Solicitud</td><td class="pbuscar">Facturas</td><td>Monto Sol.</td><td>Monto Apro.</td><td>Estado</td></tr>\n' +
-        '                        </thead>\n' +
-        '                        <tbody id="cuerporeembolsos">\n' +
-        '\n' +
-        '                        </tbody>');
+
+    $("#historicoReembolso").html(`<thead>
+         <tr class="bg-info">
+          <td class="pbuscar">#Reembolso</td>
+          <td>F. Solicitud</td>
+          <td class="pbuscar">Facturas</td>
+          <td>Monto Sol.</td>
+          <td>Monto Apro.</td>
+          <td>Estado</td>
+         </tr>
+        </thead>
+        <tbody id="cuerporeembolsos">
+        </tbody>`);
 
     var t = $('#historicoReembolso').DataTable({
         destroy: true,
@@ -316,42 +271,43 @@ function historico() {
         },
     });
     t.clear().draw();
-    console.log("aqui");
-    console.log(militar);
+
     if (militar.CIS.ServicioMedico.Programa.Reembolso != undefined && militar.CIS.ServicioMedico.Programa.Reembolso.length > 0) {
         var html = "";
         var i = 0;
-        $.each(militar.CIS.ServicioMedico.Programa.Reembolso, function (v, ob) {
-            var est = conviertEstatus(this.estatus);
-            var fcrea = Util.ConvertirFechaHumana(this.fechacreacion, true);
+        militar.CIS.ServicioMedico.Programa.Reembolso.forEach( v => {
+            var est = conviertEstatus(v.estatus);
+            var fcrea = Util.ConvertirFechaHumana(v.fechacreacion, true);
             var listaFact = "";
-            var nfac = this.Concepto[0].DatoFactura.numero;
-            if (this.Concepto[0].DatoFactura.numero == "") {
+            var nfac = v.Concepto[0].DatoFactura.numero;
+            if (v.Concepto[0].DatoFactura.numero == "") {
                 nfac = "Sin factura";
             }
-            if (this.Concepto.length > 1) {
-                listaFact = "<div class=\"dropdown\">\n" +
-                    "            <button class=\"btn btn-default dropdown-toggle\" type=\"button\" id=\"dropdownMenu" + i + "\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\n" +
-                    "            " + nfac +
-                    "            <span class=\"fa fa-plus\"></span>\n" +
-                    "            </button>\n" +
-                    "            <ul class=\"dropdown-menu\" aria-labelledby=\"dropdownMenu" + i + "\">";
-                $.each(this.Concepto, function () {
-                    var nfac2 = this.DatoFactura.numero;
+            if (v.Concepto.length > 1) {
+                listaFact =  `<div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button"
+                      id="dropdownMenu${i}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">${nfac}
+                      <span class="fa fa-plus"></span>
+                    </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu${i}">`;
+                v.Concepto.forEach( w => {
+                    var nfac2 = w.DatoFactura.numero;
                     if (nfac2 == "") nfac2 = "Sin Factura"
-                    listaFact += "<li class='bg-info'>" + nfac2 + "</li>";
+                    listaFact += `<li class='bg-info'>${nfac2}</li>`;
                 });
                 listaFact += "</ul></div>";
             } else {
                 listaFact = nfac;
             }
+
             t.row.add([
-                "<a href='#cuerpoLstConceptos' onclick=\"detalleVisible(" + i + ")\">" + this.numero + "</a>" +
-                "<button type='button' class='btn btn-default btn-sm pull-right' onclick=\"imprimirrecibore("+i+")\">" + "<i class='fa fa-print'>" + "</i>" + "</button>", //1
-                "<b>" + fcrea + "</b>",
+                `<a href='#cuerpoLstConceptos' onclick="detalleVisible(${i})">${v.numero}</a>
+                  <button type='button' class='btn btn-default btn-sm pull-right'
+                    onclick="imprimirrecibore(${i})"><i class='fa fa-print'></i></button>`,
+                `<b>${fcrea}</b>`,
                 listaFact,
-                numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $'),
-                numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $'),
+                numeral(parseFloat(v.montosolicitado)).format('0,0[.]00 $'),
+                numeral(parseFloat(v.montoaprobado)).format('0,0[.]00 $'),
                 est
             ]).draw(false);
             i++;
@@ -372,6 +328,7 @@ function historico() {
             });
         });
     }
+    console.log("Hola mundo testing...");
 }
 
 function detalleVisible(pos) {
@@ -379,10 +336,10 @@ function detalleVisible(pos) {
         pos = militar.CIS.ServicioMedico.Programa.Reembolso.length;
         pos--;
     }
-    //console.log(pos);
+
     var re = militar.CIS.ServicioMedico.Programa.Reembolso[pos];
     $("#lbldetnumero").text(re.numero);
-    console.log(re.numero);
+
     var tconcepto = "";
     $.each(militar.CIS.ServicioMedico.Programa.Reembolso[pos].Concepto, function () {
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
@@ -432,7 +389,7 @@ function historicoApoyo() {
     });
     t.clear().draw();
 
-    console.log(militar);
+
     if (militar.CIS.ServicioMedico.Programa.Apoyo != undefined && militar.CIS.ServicioMedico.Programa.Apoyo.length > 0) {
         var html = "";
         var i = 0;
@@ -494,13 +451,12 @@ function detalleVisibleApoyo(pos) {
         pos = militar.CIS.ServicioMedico.Programa.Apoyo.length;
         pos--;
     }
-    //console.log(pos);
+
     var apo = militar.CIS.ServicioMedico.Programa.Apoyo[pos];
     $("#lbldetnumeroApoyo").text(apo.numero);
     var tconcepto = "";
-    console.log(militar);
     $.each(militar.CIS.ServicioMedico.Programa.Apoyo[pos].Concepto, function () {
-        console.log(this.DatoFactura);
+
         var ffact = Util.ConvertirFechaHumana(this.DatoFactura.fecha);
         tconcepto += "<tr><td>" + this.afiliado + "</td><td>" + this.descripcion + "</td><td>" + this.DatoFactura.Beneficiario.rif + "|" + this.DatoFactura.Beneficiario.razonsocial + "</td> " +
             "<td>" + this.DatoFactura.numero + "</td><td>" + ffact + "</td><td>" + numeral(parseFloat(this.DatoFactura.monto)).format('0,0[.]00 $') + "</td>" +
@@ -550,7 +506,7 @@ function historicoCarta() {
     });
     t.clear().draw();
 
-    console.log(militar);
+
     if (militar.CIS.ServicioMedico.Programa.CartaAval != undefined && militar.CIS.ServicioMedico.Programa.CartaAval.length > 0) {
         var html = "";
         var i = 0;
@@ -613,7 +569,7 @@ function detalleVisibleCarta(pos) {
         pos = militar.CIS.ServicioMedico.Programa.CartaAval.length;
         pos--;
     }
-    //console.log(pos);
+
     var car = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
     $("#lbldetnumeroCarta").text(car.numero);
     var tconcepto = "";

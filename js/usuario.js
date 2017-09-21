@@ -93,12 +93,12 @@ let Conn = new Conexion();
 let util = new Utilidad();
 $(function () {
 
-    var requestE = CargarAPI({
+    var promesa = CargarAPI({
         sURL: Conn.URL + "wusuario/listar",
         metodo: 'GET',
         valores: '',
     });
-    requestE.then(function(xhRequest) {
+    promesa.then(function(xhRequest) {
         listaUsuario = JSON.parse(xhRequest.responseText);
         llenarLista();
         llenarUsuarios();
@@ -118,8 +118,8 @@ function Salvar(){
 function llenarLista(){
 
     $("#cmbListadoUsuario").html("");
-  
-        listaUsuario.forEach(v => { 
+
+        listaUsuario.forEach(v => {
             $("#tblUsuarioCuerpo").append(`
             <tr><td>${v.sucursal}</td>
             <td></td>
@@ -133,19 +133,19 @@ function llenarLista(){
 
 function llenarUsuarios(){
     $("#cmbUsuario").html("");
-    $.each(listaUsuario,function(){
-        $("#cmbUsuario").append("<option value='"+this.cedula+"'>"+this.nombre+"</option>");
+    listaUsuario.forEach(v => {
+        $("#cmbUsuario").append(`<option value='${v.cedula}'>${v.nombre}</option>`);
     });
 }
 
 function cargarUsuario(){
     var usuario = $("#cmbListadoUsuario option:selected").val();
-    var requestE = CargarAPI({
+    var promesa = CargarAPI({
         sURL: Conn.URL + "wusuario/crud/"+usuario,
         metodo: 'GET',
         valores: '',
     });
-    requestE.then(function(xhRequest) {
+    promesa.then(function(xhRequest) {
         var datos = JSON.parse(xhRequest.responseText);
         llenarUsuario(datos);
     });
@@ -175,16 +175,16 @@ function llenarUsuario(datos){
     $("#telefono").val(datos.telefono);
     $("#correo").val(datos.correo);
     $("#estatus").val(datos.estatus);
-   
+
 }
 function cargarMenu(){
     var usuario = $("#cmbUsuario option:selected").val();
-    var requestE = CargarAPI({
+    var promesa = CargarAPI({
         sURL: Conn.URL + "wusuario/crud/"+usuario,
         metodo: 'GET',
         valores: '',
     });
-    requestE.then(function(xhRequest) {
+    promesa.then(function(xhRequest) {
         var datos = JSON.parse(xhRequest.responseText);
         llenarMenu(datos);
     });
@@ -192,7 +192,7 @@ function cargarMenu(){
 
 function llenarMenu(){
     $("#cmbMenu").html("");
-    $.each(listaUsuario,function(){
-        $("#cmbMenu").append("<option value='"+this.cedula+"'>"+this.nombre+"</option>");
+    listaUsuario.forEach(v => {
+        $("#cmbMenu").append(`<option value='${v.cedula}'>${v.nombre}</option>`);
     });
 }

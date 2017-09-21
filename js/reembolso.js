@@ -1,10 +1,4 @@
-class WReembolso {
-    constructor() {
-        this.id = "";
-        this.Reembolso = new Reembolso();
-        this.nombre = "";
-    }
-}
+
 
 $(function () {
     $("#rif").on("blur", function () {
@@ -63,9 +57,9 @@ function consultarRif() {
     var rif = $("#rif").val();
     var rz = '';
     var encontrado = 0;
-    $.each(lstProveedores, function () {
-        if (this.rif == rif) {
-            rz = this.razonsocial;
+    lstProveedores.forEach( v => {
+        if (v.rif == rif) {
+            rz = v.razonsocial;
             encontrado = 1;
         }
     });
@@ -74,8 +68,7 @@ function consultarRif() {
     } else {
         $("#mdlEmpresa").modal("show");
         var modalemp = "";
-        modalemp = '<label id="sefue">Rif:</label>\n' +
-            '<input class="form-control" id="rifnuevo" value="' + rif + '" required="required">';
+        modalemp = `<label id="sefue">Rif:</label>\n<input class="form-control" id="rifnuevo" value="${rif}" required="required">`;
         $("#rifnuevo2").append(modalemp);
     }
 }
@@ -107,7 +100,6 @@ function llenarReembolso() {
         $("#txtnombre").val(militar.Persona.DatoBasico.nombreprimero);
         $("#txtapellido").val(militar.Persona.DatoBasico.apellidoprimero);
         $("#ttnombre").text(ncompleto);
-
         $("#cmbcomponente").val(militar.Componente.descripcion);
         $("#ttcomponente").text(militar.Componente.descripcion);
 
@@ -144,18 +136,13 @@ function llenarReembolso() {
             var DIR = militar.Persona.Direccion[0];
 
             $("#cmbmestado").val(DIR.estado);
-            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
-            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
-            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+            $("#cmbmmunicipio").html(`<option selected="selected" value="${DIR.municipio}">${DIR.municipio}</option>`);
+            $("#cmbmparroquia").html(`<option selected="selected" value="${DIR.parroquia}">${DIR.parroquia}</option>`);
+            $("#cmbmciudad").html(`<option selected="selected" value="${DIR.ciudad}">${DIR.ciudad}</option>`);
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);
         }
-
-        /*$("#paneldatos").show();
-        $("#panelperfil").show();
-        $("#opciones").show();
-        $("#_bxBuscar").hide();*/
     } else {
         alert("Cedula no se encuentra registrada como militar dentro del sistema");
         $("#paneldatos").hide();
@@ -234,8 +221,16 @@ function agregarConcepto() {
         var fechaf = $("#fechafactura").val();
         var tabla = $("#conceptoagregado");
         var btndelete = "<button class='btn btn-danger borrarconcepto'><i class='glyphicon glyphicon-remove'></i></button>";
-        var html = "<tr><td>" + beneficiario + "</td><td>" + concepto + "</td><td class=\"detfactconcep\">" + rif + "</td><td class=\"detfactconcep\">" + razon + "</td><td>" + factura + "</td><td class='mntAcumulado'>" + monto + "</td>";
-        html += "<td class=\"detfactconcep\">" + fechaf + "</td><td>" + btndelete + "</td></tr>";
+        var html = `<tr>
+            <td>${beneficiario}</td>
+            <td>${concepto}</td>
+            <td class="detfactconcep">${rif}</td>
+            <td class="detfactconcep">${razon}</td>
+            <td>${factura}</td>
+            <td class="mntAcumulado">${monto}</td>
+            <td class="detfactconcep">${fechaf}</td>
+            <td>${btndelete}</td>
+          </tr>`;
         tabla.append(html);
 
         $(".borrarconcepto").click(function () {
@@ -314,59 +309,30 @@ function cargarDatos() {
         var conceptos = new Array();
         if ($("#conceptoagregado tr").length > 0 && validadDatosBancarios()) {
             $("#conceptoagregado tr").each(function () {
-                var concep = new ConceptoReembolso();
-                var facturaD = new Factura();
-                facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
-                facturaD.monto = parseFloat($(this).find("td").eq(5).html());
-                facturaD.numero = $(this).find("td").eq(4).html();
-                facturaD.control = $(this).find("td").eq(4).html();
-
-                var prov = new Beneficiario();
-                prov.rif = $(this).find("td").eq(2).html();
-                prov.razonsocial = $(this).find("td").eq(3).html();
-                prov.tipoempresa = 'J';
-                prov.direccion = 'Por cargar';
-                //prov.Banco = 'Pora cargar banco';
-
-                facturaD.Beneficiario = prov;
-
-                concep.DatoFactura = facturaD;
-                concep.afiliado = $(this).find("td").eq(0).html();
-                concep.descripcion = $(this).find("td").eq(1).html();
-
+                CargarConceptos(this);
                 conceptos.push(concep);
             });
             reembolso.Concepto = conceptos;
-
-            // var datos = {id:militar.Persona.DatoBasico.cedula,Reembolso:reembolso,Telefono:tele,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
 
             var wreembolso = new WReembolso();
             wreembolso.id = militar.Persona.DatoBasico.cedula;
             wreembolso.Reembolso = reembolso;
             wreembolso.nombre = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-            console.log(JSON.stringify(wreembolso));
+
             var urlGuardar = Conn.URL + "wreembolso";
-            var request2 = CargarAPI({
+            var promesa = CargarAPI({
                 sURL: urlGuardar,
                 metodo: 'POST',
                 valores: wreembolso,
             });
 
-            request2.then(function (xhRequest) {
-                //var ventana = window.open("planillaReembolso.html?id="+militar.Persona.DatoBasico.cedula, "_blank");
+            promesa.then(function (xhRequest) {
                 respuesta = JSON.parse(xhRequest.responseText);
                 if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
                 msjRespuesta(respuesta.msj);
                 $("#conceptoagregado").html("");
                 llenarReembolso();
-                /*$("#opciones").hide();
-                $("#panellista").hide();
-                $("#panelregistro").hide();
-                $("#panelperfil").hide();
-                $("#_bxBuscar").show();*/
-                //window.location="starter.html";
                 var ventana = window.open("inc/reciboReembolso.html?id=" + militar.Persona.DatoBasico.cedula, "_blank");
-
             });
         }
     } else {
@@ -374,7 +340,25 @@ function cargarDatos() {
     }
 
 }
+function CargarConceptos(Concepto){
+  var concep = new ConceptoReembolso();
+  var facturaD = new Factura();
+  facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
+  facturaD.monto = parseFloat($(Concepto).find("td").eq(5).html());
+  facturaD.numero = $(Concepto).find("td").eq(4).html();
+  facturaD.control = $(Concepto).find("td").eq(4).html();
 
+  var prov = new Beneficiario();
+  prov.rif = $(Concepto).find("td").eq(2).html();
+  prov.razonsocial = $(Concepto).find("td").eq(3).html();
+  prov.tipoempresa = 'J';
+  prov.direccion = 'Por cargar';
+  facturaD.Beneficiario = prov;
+
+  concep.DatoFactura = facturaD;
+  concep.afiliado = $(Concepto).find("td").eq(0).html();
+  concep.descripcion = $(Concepto).find("td").eq(1).html();
+}
 function verificaBeneficiarioCuenta() {
     var opt = $("#datosbancarios").val();
     if (opt == "otra") {

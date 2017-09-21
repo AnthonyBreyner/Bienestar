@@ -139,16 +139,16 @@ class DatoFisionomico{
     ObtenerCabello(){
         var cad = "";
         switch (this.colorcabello){
-		case "NE":cad = "NEGRO";break;
-            	case "BA":cad = "BLANCO";break;
-            	case "CA":cad = "CASTAÑO";break;
-		case "MA":cad = "MARRON";break;
-		case "AM":cad = "AMARILLO";break;
-		case "AZ":cad = "AZUL";break;
-		case "VI":cad = "VIOLETA";break;
-		case "CV":cad = "CALVO";break;
-		case "GR":cad = "GRIS";break;
-		default: cad = "********";break;
+					case "NE":cad = "NEGRO";break;
+        	case "BA":cad = "BLANCO";break;
+        	case "CA":cad = "CASTAÑO";break;
+					case "MA":cad = "MARRON";break;
+					case "AM":cad = "AMARILLO";break;
+					case "AZ":cad = "AZUL";break;
+					case "VI":cad = "VIOLETA";break;
+					case "CV":cad = "CALVO";break;
+					case "GR":cad = "GRIS";break;
+					default: cad = "********";break;
         }
         return cad;
     }
@@ -156,14 +156,14 @@ class DatoFisionomico{
     ObtenerPiel(){
         var cad = "";
         switch (this.colorpiel){
-			case "NE":cad = "NEGRA";break;
-            case "BL":cad = "BLANCA";break;
-            case "CA":cad = "CANELA";break;
-            case "MO":cad = "MORENA";break;
-						case "TR":cad = "TRIGUEÑA";break;
-						case "MO":cad = "MORENA";break;
-						case "RO":cad = "ROSADA";break;
-            default: cad = "********";break;
+					case "NE":cad = "NEGRA";break;
+          case "BL":cad = "BLANCA";break;
+          case "CA":cad = "CANELA";break;
+          case "MO":cad = "MORENA";break;
+					case "TR":cad = "TRIGUEÑA";break;
+					case "MO":cad = "MORENA";break;
+					case "RO":cad = "ROSADA";break;
+          default: cad = "********";break;
         }
         return cad;
     }
@@ -479,10 +479,7 @@ class Recibo{
         this.fecha = "";
         this.monto = 0.0;
     }
-
-
-	Verificar(){
-        //alert($("#cmbMotivoCarnet").val());
+		Verificar(){
         if($("#cmbMotivoCarnet").val() == 'S'){
             $("#cmbMotivoCarnet").notify("Indique El motivo");
             return false;
@@ -508,10 +505,8 @@ class Recibo{
             return false;
         }
         return true;
-	}
-
+		}
     VerificarF(){
-        //alert($("#cmbMotivoCarnet").val());
         if($("#cmbMotivoCarnetf").val() == 'S'){
             $("#cmbMotivoCarnetf").notify("Indique El motivo");
             return false;
@@ -538,40 +533,52 @@ class Recibo{
         }
         return true;
     }
-
-
     Obtener(){
     	this.id = $("#txtcedula").val();
-        this.idf = $("#txtcedula").val();
+      this.idf = $("#txtcedula").val();
     	this.motivo = $("#cmbMotivoCarnet").val();
     	this.numero = $("#txtnumeroC").val();
     	this.canal = $("#cmbminstfinancieraC").val();
     	this.fecha = new Date(Util.ConvertirFechaUnix($("#txtmfechaC").val())).toISOString();
     	this.monto = parseFloat($("#txtmontoC").val());
     	return this;
-	}
-
+		}
     ObtenerF(){
-        this.id = $("#txtcedula").val();
-        this.idf = $("#txtcedulaf").val();
-        this.motivo = $("#cmbMotivoCarnetf").val();
-        this.numero = $("#txtnumeroCf").val();
-        this.canal = $("#cmbminstfinancieraCf").val();
-        this.fecha = new Date(Util.ConvertirFechaUnix($("#txtmfechaCf").val())).toISOString();
-        this.monto = parseFloat($("#txtmontoCf").val());
-        return this;
+      this.id = $("#txtcedula").val();
+      this.idf = $("#txtcedulaf").val();
+      this.motivo = $("#cmbMotivoCarnetf").val();
+      this.numero = $("#txtnumeroCf").val();
+      this.canal = $("#cmbminstfinancieraCf").val();
+      this.fecha = new Date(Util.ConvertirFechaUnix($("#txtmfechaCf").val())).toISOString();
+      this.monto = parseFloat($("#txtmontoCf").val());
+      return this;
     }
-
-	Salvar(){
-
-        CargarAPI(Conn.URL + "recibo/crud" , "POST", this.Obtener());
-	}
+		Salvar(){
+    	CargarAPI(Conn.URL + "recibo/crud" , "POST", this.Obtener());
+		}
 
     SalvarF(){
-        console.log(this.ObtenerF())
+
         CargarAPI(Conn.URL + "recibo/crud" , "POST", this.ObtenerF());
     }
 }
+
+class WReembolso {
+    constructor() {
+        this.id = "";
+        this.Reembolso = new Reembolso();
+        this.nombre = "";
+    }
+}
+
+class WApoyo {
+    constructor() {
+        this.id = "";
+        this.Apoyo = new Apoyo();
+        this.nombre = "";
+    }
+}
+
 class Militar{
 	constructor(){
 		this.id = "";
@@ -613,8 +620,9 @@ class Militar{
 
 
 				$("#_contenido").html("La cédula no existe en el sistema. ¿Desea Realizar un nuevo ingreso?");
-				var botones = '<button type="button" class="btn btn-success prvsalvar hide" data-dismiss="modal" id="_aceptar" onClick="incluirAfiliado()">Si</button>\
-											 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
+				var botones = `<button type="button" class="btn btn-success prvsalvar hide" data-dismiss="modal"
+												id="_aceptar" onClick="incluirAfiliado()">Si</button>
+											 <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>`;
 				$("#_botonesmsj").html(botones);
 				verificarPrivilegioUsuario();
 				$("#modMsj").modal("show");
@@ -629,9 +637,7 @@ class Militar{
 				$("#_btnTIM").show();
 				$("#_btnActualizar").hide();
 				$("#_btnSavlvar").hide();
-
 				$("#_tblConstFamiliares").html(ConstanciaFamiliaresHTML());
-
 
 				$("#_bxFamiliar").show();
 				$("#_tblFamiliares").html(FamiliaresHTML());
@@ -711,7 +717,6 @@ class Militar{
 						$("#_clasificacion").html('<font style="size:8px">' + $("#cmbclase option:selected").text() + "</font>");
 				}
 				var Fideicomiso = militar.Fideicomiso;
-//          console.log(Fideicomiso);
 				if (militar.Fideicomiso.areconocido != undefined) {
 						$("#_reconocidos").show();
 						$("#txtareconocido").val(Fideicomiso.areconocido);
@@ -1130,8 +1135,6 @@ class Militar{
     $("#_btnTIM").show();
     $("#_btnModificar").show();
     $("#_btnSavlvar").hide();
-		console.log(this.Obtener());
-		console.log(Conn.URL + "militar/crud");
 		CargarAPI(Conn.URL + "militar/crud" , "PUT", this.Obtener());
 	}
 }
@@ -1165,7 +1168,6 @@ class Clave {
         this.clave = $("#claveA").val();
         this.nueva = $("#claveN").val();
         this.repetir = $("#claveN2").val();
-        console.log(this);
         return this;
     }
 
@@ -1182,99 +1184,4 @@ function CerrarSession(){
 }
 
 
-class LstCarnet {
-    constructor() {
-			console.log("Cargando la clase de Aprobacion...");
-    }
-    Crear(Json) {
-        if (Json == null) {
-            return false
-        }
-
-        var tabla = "_tblPendiente";
-        var buzon = "tblPendientesBuzon";
-        if (Estatus != 0) {
-            tabla = "_tblPendienteImp";
-            buzon = "tblPendientesBuzonImp";
-        }
-        //alert(tabla);
-        //$("#"+tabla).html(PendienteHTML());
-        var t = $('#' + buzon).DataTable({
-            'paging': false,
-            'lengthChange': false,
-            'searching': false,
-            'ordering': false,
-            'info': false,
-            'autoWidth': false,
-
-        });
-        t.clear().draw();
-        var j = 0;
-
-        Json.forEach(v => {
-            console.log(v);
-            var tipocarnet = "verCarnet";
-            var idf = "";
-            if(v.idf != ""){
-                if(v.idf != v.id){
-                    tipocarnet = "verCarnetFamiliar";
-                    idf= v.idf;
-                }
-            }
-        if (Estatus == 0) {
-            var boton = `<div class="btn-group">
-		        <button type="button" class="btn btn-sm btn-info" onclick="${tipocarnet}('${v.serial}','${v.id}','${v.fechavencimiento}',1,'${v.idf}')">
-		        <i class="fa fa-search"></i></button>
-		        <button type="button"  class="btn btn-sm btn-success desaparece" onclick="aprobarCarnet('${v.serial}',1)">
-		        Aprobado</button>
-		        <button type="button" class="btn btn-sm btn-danger desaparece" onclick="pendienteCarnet('${v.serial}','${Estatus}')">
-		        Pendiente</button>
-		        </div>`;
-        } else {
-            var boton = `<div class="btn-group">
-		        <button type="button" class="btn btn-sm btn-primary" onclick="${tipocarnet}('${v.serial}','${v.id}','${v.fechavencimiento}',0,'${v.idf}')">
-		        <i class="fa fa-print"></i></button>
-		        <button type="button" class="btn btn-sm btn-success desaparece" onclick="cerrarCarnet('${v.serial}')">
-		        <i class="fa fa-check"></i></button>
-		        </div>`;
-        }
-
-        t.row.add([
-            j++, //0
-            v.id, //1
-            v.Grado.descripcion, //2
-            v.nombre + " " + v.apellido, //3
-            this.ObtenerMotivo(v.motivo), //v.motivo, //
-            boton //5
-        ]).draw(false);
-    	});
-    }
-
-    ObtenerMotivo(motivo) {
-        var cadena = "";
-        switch (motivo) {
-            case "I" :
-                cadena = "INGRESO";
-                break;
-            case "C" :
-                cadena = "ASCENSO";
-                break;
-            case "CS" :
-                cadena = "CAMBIO SITUACION";
-                break;
-            case "V" :
-                cadena = "VENCIMIENTO";
-                break;
-            case "D" :
-                cadena = "DETERIORO";
-                break;
-            case "E" :
-                cadena = "EXTRAVIO";
-                break;
-            default:
-                cadena = "********";
-                break;
-        }
-        return cadena;
-    }
-}
+let militar = new Militar();

@@ -1,14 +1,6 @@
-class WApoyo {
-    constructor() {
-        this.id = "";
-        this.Apoyo = new Apoyo();
-        this.nombre = "";
-    }
-}
+
 
 $(function () {
-    console.log(militar);
-
     $("#concepto").select2();
 
     $(".mdl-requisitos").on("change", function () {
@@ -71,8 +63,7 @@ function consultarRif() {
     } else {
         $("#mdlEmpresaapo").modal("show");
         var modalemp = "";
-        modalemp = '<label id="sefue">Rif:</label>\n' +
-            '<input class="form-control" id="rifnuevo" value="' + rif + '" required="required">';
+        modalemp = `<label id="sefue">Rif:</label>\n<input class="form-control" id="rifnuevo" value="${rif}" required="required">`;
         $("#rifnuevo2").append(modalemp);
     }
 }
@@ -167,8 +158,8 @@ function llenarApoyo() {
 
 function listaCuentas() {
     $("#datosbancarios").html("");
-    $.each(militar.Persona.DatoFinanciero, function () {
-        $("#datosbancarios").append(new Option(this.cuenta, this.cuenta + "|" + this.institucion + "|" + this.tipo, true, true));
+    militar.Persona.DatoFinanciero.forEach( v => {
+        $("#datosbancarios").append(new Option(v.cuenta, v.cuenta + "|" + v.institucion + "|" + v.tipo, true, true));
     });
     $("#datosbancarios").append(new Option("OTRA", "otra", true, true));
     $("#datosbancarios").append(new Option("Selecione", "", true, true));
@@ -216,8 +207,6 @@ function cedulaDepositar() {
 }
 
 function cargarFamiliar(pos) {
-    console.log(pos);
-
     if (pos == "T") {
         if (militar.Persona.Telefono != undefined) {
             $("#txtmtelefono").val(militar.Persona.Telefono.domiciliario);
@@ -241,7 +230,6 @@ function cargarFamiliar(pos) {
     }
     $("#perfilFamiliar").show();
     var fami = militar.Familiar[pos];
-    console.log(fami);
     $("#lblcedulaf").text(fami.Persona.DatoBasico.cedula);
     var ncf = fami.Persona.DatoBasico.nombreprimero + " " + fami.Persona.DatoBasico.apellidoprimero;
     $("#lblnombref").text(ncf);
@@ -258,7 +246,6 @@ function cargarFamiliar(pos) {
     Estados.ObtenerEstados();
     if (fami.Persona.Direccion != undefined) {
         var DIR = fami.Persona.Direccion[0];
-
         $("#cmbmestado").val(DIR.estado);
         $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
         $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
@@ -276,8 +263,8 @@ function validadDatosBancarios() {
     var cedula = $("#cibancario").val();
     var depositar = $("#depositar").val();
     if (tipoc == "S" || banco == "S" || cuenta == "" || cedula == "" || depositar == "") {
-        $.notify("Debe ingresar todos los datos financieros", "warn");
-        return false;
+      $.notify("Debe ingresar todos los datos financieros", "warn");
+      return false;
     }
     return true;
 }
@@ -330,7 +317,6 @@ function generarPlanilla() {
         prov.razonsocial = $("#razonsocial").val();
         prov.tipoempresa = 'J';
         prov.direccion = $("#empdirec").val();
-        //prov.Banco = 'Pora cargar banco';
         facturaD.Beneficiario = prov;
         concep.DatoFactura = facturaD;
 
@@ -343,20 +329,19 @@ function generarPlanilla() {
         conceptos.push(concep);
         apoyo.tipo = parseInt($("#cmbtipoayuda option:selected").val());
         apoyo.Concepto = conceptos;
-        //var datos = {id:militar.Persona.DatoBasico.cedula,Apoyo:apoyo,nombre:militar.Persona.DatoBasico.nombreprimero+" "+militar.Persona.DatoBasico.apellidoprimero};
         var wapoyo = new WApoyo();
         wapoyo.id = militar.Persona.DatoBasico.cedula;
         wapoyo.Apoyo = apoyo;
         wapoyo.nombre = militar.Persona.DatoBasico.nombreprimero + " " + militar.Persona.DatoBasico.apellidoprimero;
-        console.log(JSON.stringify(wapoyo));
         var urlGuardar = Conn.URL + "wapoyo";
-        var request2 = CargarAPI({
+
+        var promesa = CargarAPI({
             sURL: urlGuardar,
             metodo: 'POST',
             valores: wapoyo,
         });
 
-        request2.then(function (xhRequest) {
+        promesa.then(function (xhRequest) {
             respuesta = JSON.parse(xhRequest.responseText);
             if (respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
             msjRespuesta(respuesta.msj);
@@ -397,11 +382,9 @@ function requisitosConcepto() {
 }
 
 function requisitosMonto() {
-
     $("#requisitosmonto").modal("show");
-        inactivarCheck(modal);
-        $("#btnGenerar").attr("disabled", true);
-
+    inactivarCheck(modal);
+    $("#btnGenerar").attr("disabled", true);
 }
 
 

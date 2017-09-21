@@ -3,19 +3,14 @@
         display: none
     }
 </style>
-<script>
-    $(document).ready(function(){
-        $('.panelpo').popover({title: "<h4 style='color: black'>Usuario</h4>", content: "<p style='color: black'>Caracas<br> ccsafi2017afa</p>", html: true, placement: "bottom", trigger: "hover"
-        });
-    });
-</script>
+
 <div id="tblTodos">
     <div class="row" id="tblreembolsos">
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border bg-light-blue">
                     <h3 class="box-title">Historico de Reembolsos <!--a class="panelpo" style="color: black">Usuario</a--> </h3>
-                    <button type="button" class="btn btn-default btn-sm pull-right btnvolverentrada2"><i class="fa fa-reply"></i></button>
+                    <button type="button" class="btn btn-default btn-sm pull-right " onclick="PanelOpciones()"><i class="fa fa-reply"></i></button>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
@@ -39,7 +34,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border bg-light-blue">
                     <h3 class="box-title">Historico de Apoyos </h3>
-                    <button type="button" class="btn btn-default btn-sm pull-right btnvolverentrada2"><i class="fa fa-reply"></i></button>
+                    <button type="button" class="btn btn-default btn-sm pull-right" onclick="PanelOpciones()"><i class="fa fa-reply"></i></button>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
@@ -61,7 +56,7 @@
             <div class="box box-primary">
                 <div class="box-header with-border bg-light-blue">
                     <h3 class="box-title">Historico de Carta Aval</h3>
-                    <button type="button" class="btn btn-default btn-sm pull-right btnvolverentrada2"><i class="fa fa-reply"></i></button>
+                    <button type="button" class="btn btn-default btn-sm pull-right" onclick="PanelOpciones()"><i class="fa fa-reply"></i></button>
                     <!-- /.box-tools -->
                 </div>
                 <!-- /.box-header -->
@@ -80,7 +75,7 @@
     </div>
     <div clas="row">
         <div class="col-md-12">
-            <a class="btn btn-app btn-success btnvolverentrada2 pull-left" href="#panelentrada"><i
+            <a class="btn btn-app btn-success pull-left" href="#!" onclick="PanelOpciones()"><i
                     class="fa fa-4x fa-arrow-left"></i>Volver</a>
         </div>
     </div>
@@ -100,8 +95,8 @@
                 <!-- /.mailbox-read-info -->
                 <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
-                                data-container="body"
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                data-container="body" onclick="PanelListadoDetallado()"
                                 title="Reply">
                             <i class="fa fa-reply"></i></button>
                     </div>
@@ -140,8 +135,8 @@
                 <!-- /.mailbox-read-info -->
                 <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
-                                data-container="body"
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                data-container="body" onclick="PanelListadoDetallado()"
                                 title="Reply">
                             <i class="fa fa-reply"></i></button>
                     </div>
@@ -183,8 +178,8 @@
                 <!-- /.mailbox-read-info -->
                 <div class="mailbox-controls with-border text-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm volver2" data-toggle="tooltip"
-                                data-container="body"
+                        <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
+                                data-container="body" onclick="PanelListadoDetallado()"
                                 title="Reply">
                             <i class="fa fa-reply"></i></button>
                     </div>
