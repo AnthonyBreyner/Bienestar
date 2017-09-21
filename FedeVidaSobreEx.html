@@ -144,7 +144,8 @@
                 <labe id="lblfechacreacion3"></labe>
                 se presentó, la (el) ciudadana(o) <b id="nombreafilex"></b> C.I.N°
                 <b id="cedulaafiex"></b>, Edad <b id="edadafiex"></b> ,Residenciado(o) en: <b id="paisexafi"></b><b 
-                    id="lbldireccionafiex"></b>, con la finalidad de cumplir con el
+                    id="lbldireccionafiex"></b>, según apostilla anexada de fecha <b
+                    id="lblfechaemisionafiex"></b>con la finalidad de cumplir con el
                 requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b
                     id="lblparentescoex"></b> del Militar Fallecido.
 
@@ -155,7 +156,7 @@
                 <labe id="lblfechacreacionex"></labe>
                 se presentó, la (el) ciudadana(o) <b id="nombreex"></b> C.I.N°
                 <b id="lblcedulaex"></b>, Edad <b id="edadex"></b> ,Residenciado(o) en: <b id="paisex"></b> <b
-                    id="lbldireccionex1"></b>, según apostilla de fecha <b
+                    id="lbldireccionex1"></b>, según apostilla anexada de fecha <b
                     id="lblfechaemision"></b> , con la finalidad de cumplir con el
                 requisito exigido por el I.P.S.F.A.
 
@@ -588,11 +589,11 @@
 
 
         if (pos == null) {
-            pos = militar.CIS.Investigacion.FeFeVida.length;
+            pos = militar.CIS.Investigacion.FeDeVida.length;
             pos--;
         }
         console.log(pos);
-        var fdv = militar.CIS.Investigacion.FeFeVida[pos];
+        var fdv = militar.CIS.Investigacion.FeDeVida[pos];
 
         $("#lblfechacreacion1").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion2").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
@@ -600,6 +601,7 @@
         $("#lblfechacreacion4").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacionex").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
          $("#lblfechaemision").html(Util.ConvertirFechaHumana(fdv.fechaex));
+         $("#lblfechaemisionafiex").html(Util.ConvertirFechaHumana(fdv.fechaex));
         console.log(fdv);
      
 

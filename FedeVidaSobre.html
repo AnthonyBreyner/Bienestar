@@ -511,7 +511,7 @@
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
      
-                if (militar.situacion == "FCP") {
+        if (militar.situacion == "FCP") {
             $("#sobre").css("display", "block");
             $("#datosfallecido").css("display", "block");
          }
@@ -589,19 +589,19 @@
 
 
         if (pos == null) {
-            pos = militar.CIS.Investigacion.FeFeVida.length;
+            pos = militar.CIS.Investigacion.FeDeVida.length;
             pos--;
         }
         console.log(pos);
-        var fdv = militar.CIS.Investigacion.FeFeVida[pos];
+        var fdv = militar.CIS.Investigacion.FeDeVida[pos];
 
         $("#lblfechacreacion1").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion2").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion3").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion4").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion5").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
-        $("#lblfechacreacionex").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
-         $("#lblfechaemision").html(Util.ConvertirFechaHumana(fdv.fechaex));
+/*        $("#lblfechacreacionex").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
+         $("#lblfechaemision").html(Util.ConvertirFechaHumana(fdv.fechaex));*/
 
         $("#lblnumero").html(fdv.numero);
         $("#lblnumero1").html(fdv.numero);
