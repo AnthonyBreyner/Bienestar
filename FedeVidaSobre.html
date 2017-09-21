@@ -110,7 +110,7 @@
                                 <td width="225" class="texto10 bde biz bajo btop">NÚMERO:</td>
                             </tr>
                             <tr>
-                                <td height="28">&nbsp;</td>
+                                <td height="28"><label id="lblnumero"></label></td>
                             </tr>
                             <tr>
                                 <td class="texto10 bde biz bajo btop">FECHA:</td>
@@ -128,7 +128,7 @@
 
             <div class="sangria" style="font-size: 25px">
 
-                Yo, <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, C.I. N° <b>7.391293</b>, Militar en Servicio Activo, con
+                Yo, <b>CNEL. EDUARDO JOSÉ MARTINEZ SALAS</b>, C.I. N° <b>7.391.293</b>, Militar en Servicio Activo, con
                 el cargo Gerente de Bienestar y Seguridad Social de la Dependencia o Unidad de nombre I.P.S.F.A, ubicada
                 en LOS PROCERES, DISTRITO CAPITAL Teléfono (0212) 6092307, 6092303, 6092304. De acuerdo a lo establecido
                 en el Reglamento de la Ley de Seguridad Social de la Fuerza Armada, en su Artículo N° 24, el cual reza:
@@ -157,32 +157,6 @@
                 requisito exigido por el I.P.S.F.A,
 
             </div>
-
-
-            <!--EXTRANJEROS-->
-
-            <div id="sobreex" class="sangria texto25" style="display: none">
-                Certifico y doy fe que hoy
-                <labe id="lblfechacreacion3"></labe>
-                se presentó, la (el) ciudadana(o) <b id="nombreafilex"></b> C.I.N°
-                <b id="cedulaafiex"></b>, Edad <b id="edadafiex"></b> ,Residenciado(o) en: <b
-                    id="lbldireccionafiex"></b>, con la finalidad de cumplir con el
-                requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b
-                    id="lblparentescoex"></b> del Militar Fallecido.
-
-            </div>
-
-            <div id="militarex" class="sangria texto25" style="display: none">
-                Certifico y doy fe que hoy
-                <labe id="lblfechacreacionex"></labe>
-                se presentó, la (el) ciudadana(o) <b id="nombreex"></b> C.I.N°
-                <b id="lblcedulaex"></b>, Edad <b id="edadex"></b> ,Residenciado(o) en: <b
-                    id="lbldireccionex1"></b>, según apostilla de fecha <b
-                    id="lblfechaemision"></b> , con la finalidad de cumplir con el
-                requisito exigido por el I.P.S.F.A.
-
-            </div>
-
 
 
             <br>
@@ -381,8 +355,8 @@
                       </tr>
                      <tr>
                         <td width="135" height="23"></td>
-                        <td width="114"><b id="lblfechacreacion3"></b></td>
-                        <td width="115">&nbsp;</td>
+                        <td width="114"><b id="lblfechacreacion5"></b></td>
+                        <td width="115"><b id="lblnumero1"></td>
                     </tr>
                     <!--<tr>-->
                     <!--<td colspan="6" class="texto12 bde biz bajo btop">DATOS DEL MILITAR FALLECIDO</td>-->
@@ -536,16 +510,31 @@
             $("#edadex").html(edadex);
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
+     
+                if (militar.situacion == "FCP") {
+            $("#sobre").css("display", "block");
+            $("#datosfallecido").css("display", "block");
+         }
+         else 
+         {
+            $("#militar").css("display", "block");
+            $("#datosmilitar").css("display", "block");
+        }
 
-            var DIR = militar.Persona.Direccion[0];
+       
+ /*      var DIR = militar.Persona.Direccion[0];
         Estados.ObtenerEstados();
         var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
         $("#lbldireccion").text(rirec);
-        console.log(DIR);
+        console.log(DIR);*/
 
         }
 
-        if (militar.situacion == "FCP") {
+        
+        
+                    
+
+       /* if (militar.situacion == "FCP") {
             $("#sobre").css("display", "block");
             $("#datosfallecido").css("display", "block");
          }
@@ -561,11 +550,11 @@
             $("#datosmilitar").css("display", "block");
         }
         
-            else{
+                     else{
 
                         $("#sobreex").css("display", "block");
                         $("#datosfallecido").css("display", "block");
-            }  
+            }  */
 
 
         militar.Familiar.forEach(v => {
@@ -586,10 +575,10 @@
                 var edadafiex = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                 $("#edadafiex").html(edadafiex);
 
-                var DIR1 = v.Persona.Direccion[0];
+                /*var DIR1 = v.Persona.Direccion[0];
                 Estados.ObtenerEstados();
                 var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
-                $("#lbldireccionafi").text(rirec1);
+                $("#lbldireccionafi").text(rirec1);*/
 
 
 
@@ -610,14 +599,24 @@
         $("#lblfechacreacion2").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion3").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacion4").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
+        $("#lblfechacreacion5").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
         $("#lblfechacreacionex").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
          $("#lblfechaemision").html(Util.ConvertirFechaHumana(fdv.fechaex));
-        console.log(fdv);
-     
 
-        var DIREX = fdv.direccionex;
-        $("#lbldireccionex1").html(DIREX);
-     //   alert(DIREX);
+        $("#lblnumero").html(fdv.numero);
+        $("#lblnumero1").html(fdv.numero);
+       // console.log(fdv);
+
+                var DIR1 = fdv.DatoBasico.Direccion;
+                Estados.ObtenerEstados();
+                var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
+                $("#lbldireccionafi").text(rirec1);
+
+                 var DIR = fdv.DatoBasico.Direccion;
+                Estados.ObtenerEstados();
+                var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+                $("#lbldireccion").text(rirec);
+
 
         
 

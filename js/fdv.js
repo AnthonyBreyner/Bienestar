@@ -8,6 +8,7 @@ class WFedeVida {
         this.Correo = new Correo(); 
         this.idf = "";
         this.direccionex = "";
+        this.paisex = "";
         this.residenciadoex = "";
         this.fechaex = "";
       
@@ -244,6 +245,7 @@ function generarPlanillaFdV(){
     wfedevida.id = militar.Persona.DatoBasico.cedula;
     wfedevida.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+" "+militar.Persona.DatoBasico.apellidoprimero.trim();
     wfedevida.direccionex = $("#txtdireccionex").val();
+    wfedevida.paisex = $("#txtpais").val();
     wfedevida.fechaex = new Date(Util.ConvertirFechaUnix($("#txtfechaex").val())).toISOString();
     wfedevida.idf = bene[1];
     wfedevida.afiliado = beneficiario;

@@ -110,7 +110,7 @@
                                 <td width="225" class="texto10 bde biz bajo btop">NÚMERO:</td>
                             </tr>
                             <tr>
-                                <td height="28">&nbsp;</td>
+                                <td height="28"><label id="lblnumero"></td>
                             </tr>
                             <tr>
                                 <td class="texto10 bde biz bajo btop">FECHA:</td>
@@ -137,35 +137,13 @@
                 verificaciones a que hubiere lugar".
             </div>
 
-           <div id="sobre" class="sangria texto25" style="display: none">
-                Certifico y doy fe que hoy
-                <labe id="lblfechacreacion1"></labe>
-                se presentó, la (el) ciudadana(o) <b id="nombreafil"></b> C.I.N°
-                <b id="cedulaafi"></b>, Edad <b id="edadafi"></b> ,Residenciado(o) en: <b
-                    id="lbldireccionafi"></b>Telef.<b id="lbltelefonoafi"></b>, con la finalidad de cumplir con el
-                requisito exigido por el I.P.S.F.A, como beneficiario (a) de Pensión de Sobreviviente causada por ser <b
-                    id="lblparentesco"></b> del Militar Fallecido.
-
-            </div>
-
-            <div id="militar" class="sangria texto25" style="display: none">
-                Certifico y doy fe que hoy
-                <labe id="lblfechacreacion2"></labe>
-                se presentó, la (el) ciudadana(o) <b id="nombre"></b> C.I.N°
-                <b id="lblcedula"></b>, Edad <b id="edad"></b> ,Residenciado(o) en: <b
-                    id="lbldireccion"></b>Telef.<b id="lbltelefono"></b>, con la finalidad de cumplir con el
-                requisito exigido por el I.P.S.F.A,
-
-            </div>
-
-
-            <!--EXTRANJEROS-->
+           <!--EXTRANJEROS-->
 
             <div id="sobreex" class="sangria texto25" style="display: none">
                 Certifico y doy fe que hoy
                 <labe id="lblfechacreacion3"></labe>
                 se presentó, la (el) ciudadana(o) <b id="nombreafilex"></b> C.I.N°
-                <b id="cedulaafiex"></b>, Edad <b id="edadafiex"></b> ,Residenciado(o) en: <b
+                <b id="cedulaafiex"></b>, Edad <b id="edadafiex"></b> ,Residenciado(o) en: <b id="paisexafi"></b><b 
                     id="lbldireccionafiex"></b>, con la finalidad de cumplir con el
                 requisito exigido por el I.P.S.F.A, como beneficiaria de Pensión de Sobreviviente causada por ser <b
                     id="lblparentescoex"></b> del Militar Fallecido.
@@ -176,7 +154,7 @@
                 Certifico y doy fe que hoy
                 <labe id="lblfechacreacionex"></labe>
                 se presentó, la (el) ciudadana(o) <b id="nombreex"></b> C.I.N°
-                <b id="lblcedulaex"></b>, Edad <b id="edadex"></b> ,Residenciado(o) en: <b
+                <b id="lblcedulaex"></b>, Edad <b id="edadex"></b> ,Residenciado(o) en: <b id="paisex"></b> <b
                     id="lbldireccionex1"></b>, según apostilla de fecha <b
                     id="lblfechaemision"></b> , con la finalidad de cumplir con el
                 requisito exigido por el I.P.S.F.A.
@@ -537,21 +515,33 @@
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
 
-            var DIR = militar.Persona.Direccion[0];
-        Estados.ObtenerEstados();
-        var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
-        $("#lbldireccion").text(rirec);
-        console.log(DIR);
+        //     var DIR = militar.Persona.Direccion[0];
+        // Estados.ObtenerEstados();
+        // var rirec = DIR.estado + ", " + DIR.ciudad + ", municipio " + DIR.municipio + ", parroquia " + DIR.parroquia + ", Av/Calle " + DIR.calleavenida + ", casa/apt " + DIR.casa + "|" + DIR.apartamento
+        // $("#lbldireccion").text(rirec);
+        // console.log(DIR);
 
         }
 
-        if (militar.situacion == "FCP") {
+
+          if (militar.situacion == "FCP") {
+            $("#sobreex").css("display", "block");
+            $("#datosfallecido").css("display", "block");
+         }
+         else 
+            {
+                //alert("llega");
+                        $("#militarex").css("display", "block");
+                        $("#datosmilitar").css("display", "block");
+          }
+
+/*        if (militar.situacion == "FCP") {
             $("#sobre").css("display", "block");
             $("#datosfallecido").css("display", "block");
          }
          else if(militar.CIS.Investigacion.FeFeVida.direccionex != "" )
             {
-                alert("llega");
+                //alert("llega");
                         $("#militarex").css("display", "block");
                         $("#datosmilitar").css("display", "block");
           }
@@ -564,7 +554,7 @@
                         $("#sobreex").css("display", "block");
                         $("#datosfallecido").css("display", "block");
             }  
-
+*/
 
         militar.Familiar.forEach(v => {
             if (v.Persona.DatoBasico.cedula == idf) {
@@ -584,10 +574,10 @@
                 var edadafiex = Util.CalcularEdad(Util.ConvertirFechaHumana(v.Persona.DatoBasico.fechanacimiento));
                 $("#edadafiex").html(edadafiex);
 
-                var DIR1 = v.Persona.Direccion[0];
+/*                var DIR1 = v.Persona.Direccion[0];
                 Estados.ObtenerEstados();
                 var rirec1 = DIR1.estado + ", " + DIR1.ciudad + ", municipio " + DIR1.municipio + ", parroquia " + DIR1.parroquia + ", Av/Calle " + DIR1.calleavenida + ", casa/apt " + DIR1.casa + "|" + DIR1.apartamento
-                $("#lbldireccionafi").text(rirec1);
+                $("#lbldireccionafi").text(rirec1);*/
 
 
 
@@ -615,6 +605,12 @@
 
         var DIREX = fdv.direccionex;
         $("#lbldireccionex1").html(DIREX);
+        $("#lblpaisex").html(fdv.paisex);
+        $("#lbldireccionafiex").html(fdv.direccionex);
+        $("#lblpaisexafi").html(fdv.paisex);
+
+        $("#lblnumero").html(fdv.numero);
+        $("#lblnumero1").html(fdv.numero);
      //   alert(DIREX);
 
         
