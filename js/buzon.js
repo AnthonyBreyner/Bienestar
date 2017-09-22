@@ -7,7 +7,6 @@ let CReembolso = null;
 let copia = null;
 let posicionModificar = null;
 
-
 /**
 * Listar Buzones
 *
@@ -15,6 +14,7 @@ let posicionModificar = null;
 * @return void
 */
 function listaBuzon(est) {
+
     //Reembolso
     var url = Conn.URL + "wreembolso/listar/" + est;
     var promesa = CargarAPI({
@@ -72,7 +72,7 @@ function crearBuzon(est) {
                    </div>
                 </li>`);
     lstBuzon.forEach(v => {
-        $("#lista").append(CargarBuzon(v));
+        $("#lista").append(CargarBuzonReembolso(v, est));
     });
 }
 
@@ -82,7 +82,7 @@ function crearBuzon(est) {
 * @param {object}
 * @return void
 */
-function CargarBuzon(v){
+function CargarBuzonReembolso(v, est){
   var alertSegui = "";
   switch (v.estatusseguimiento){
     case 1:
@@ -375,8 +375,11 @@ function crearTablaConceptos(numero,est) {
             var tipo = v.contenido.split("|||");
             var cestatus = conviertEstatus(CReembolso.estatus);
             var tipo = tipo[0];
-            if(tipo[1] != undefined) $("#cuerpoOpiniones").append(`<tr><td>${tipo}</td><td>${cestatus}</td></tr>`);
-            else $("#cuerpoObservaciones").append(`<tr><td>${v.contenido}</td><td></td></tr>`);
+            if(tipo[1] != undefined) {
+              $("#cuerpoOpiniones").append(`<tr><td>${tipo}</td><td>${cestatus}</td></tr>`);
+            }else {
+              $("#cuerpoObservaciones").append(`<tr><td>${v.contenido}</td><td></td></tr>`);
+            }
         });
     }
 
@@ -398,11 +401,23 @@ function calcularAcumulado(tipo) {
     var idTotal = "";
     var idTotalSol = "";
     switch(tipo){
-        case "r":idTabla ="cuerpoEditarConceptos";idTotal = "totalapro";idTotalSol="totalter";break;
-        case "a":idTabla ="cuerpoEditarConceptosApoyo";idTotal = "totalaproApoyo";idTotalSol="totalterApoyo";break;
-        case "c":idTabla ="cuerpoEditarConceptosCarta";idTotal = "totalaproCarta";idTotalSol="totalterCarta";break;
+        case "r":
+          idTabla = "cuerpoEditarConceptos";
+          idTotal = "totalapro";
+          idTotalSol = "totalter";
+          break;
+        case "a":
+          idTabla = "cuerpoEditarConceptosApoyo";
+          idTotal = "totalaproApoyo";
+          idTotalSol="totalterApoyo";
+          break;
+        case "c":
+          idTabla = "cuerpoEditarConceptosCarta";
+          idTotal = "totalaproCarta";
+          idTotalSol="totalterCarta";
+          break;
     }
-    //alert(idTabla);
+
     var acumulado = 0;
     var acumulado2 = 0;
     $("#"+idTabla+" tr").each(function () {
@@ -436,30 +451,13 @@ function actualizarReembolso(est) {
     var i = 0;
     if ($("#cuerpoEditarConceptos tr").length > 0) {
         $("#cuerpoEditarConceptos tr").each(function () {
-            var concep = new ConceptoReembolso();
-            var facturaD = new Factura();
-            var ffact = CReembolso.fechacreacion;
-            if ($(this).find("input.ffactReembolso").eq(0).val() != "") {
-                ffact = new Date(Util.ConvertirFechaUnix($(this).find("input.ffactReembolso").val())).toISOString();
-            }
-            facturaD.fecha = ffact;
-            facturaD.monto = parseFloat($(this).find("input.mntsoli").val());
-            facturaD.montoaprobado = parseFloat($(this).find("input.mntAcumulado").val());
-            facturaD.numero = $(this).find("input.numfact").val();
-            facturaD.control = $(this).find("input.numfact").val();
-
-            facturaD.Beneficiario = CReembolso.Concepto[i].DatoFactura.Beneficiario;
-
-            concep.DatoFactura = facturaD;
-            concep.afiliado = CReembolso.Concepto[i].afiliado;
-            concep.descripcion = CReembolso.Concepto[i].descripcion;
             i++;
-            conceptos.push(concep);
+            conceptos.push(obtenerListadoReembolso(this, i));
         });
-
         CReembolso.Concepto = conceptos;
+        console.log(conceptos);
     } else {
-        $.notify("Debe poseer al menos un concpeto para editar. O puede rechazar el reembolso");
+        $.notify("Debe poseer al menos un concpeto para editar o puede rechazar el reembolso");
     }
     //
     CReembolso.montoaprobado = parseFloat($("#totalapro").html());
@@ -479,31 +477,48 @@ function actualizarReembolso(est) {
         });
     }
 
-
     CReembolso.Seguimiento.Estatus = parseInt($("#estSeguimiento").val());
-
-
     var wreembolso = new WReembolso();
-
-
     wreembolso.id = militarActivo.Persona.DatoBasico.cedula;
     wreembolso.numero = $('#lblnumero').text();
     wreembolso.observaciones = observaciones;
     wreembolso.Reembolso = CReembolso;
     var urlGuardar = Conn.URL + "wreembolso";
-    var request2 = CargarAPI({
-        sURL: urlGuardar,
-        metodo: 'PUT',
-        valores: wreembolso,
-    });
+    console.log(wreembolso);
+    // var promesa = CargarAPI({
+    //     sURL: urlGuardar,
+    //     metodo: 'PUT',
+    //     valores: wreembolso,
+    // });
+    // promesa.then(function(xhRequest) {
+    //     respuesta = JSON.parse(xhRequest.responseText);
+    //     if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
+    //     msjRespuesta(respuesta.msj);
+    //     listaBuzon(CReembolso.estatus);
+    //     volverLista();
+    // });
+}
 
-    request2.then(function(xhRequest) {
-        respuesta = JSON.parse(xhRequest.responseText);
-        if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        msjRespuesta(respuesta.msj);
-        listaBuzon(CReembolso.estatus);
-        volverLista();
-    });
+
+function obtenerListadoReembolso(Concepto, i){
+  var concep = new ConceptoReembolso();
+  var facturaD = new Factura();
+  var ffact = CReembolso.fechacreacion;
+  if ($(Concepto).find("input.ffactReembolso").eq(0).val() != "") {
+      ffact = new Date(Util.ConvertirFechaUnix($(Concepto).find("input.ffactReembolso").val())).toISOString();
+  }
+  facturaD.fecha = ffact;
+  facturaD.monto = parseFloat($(Concepto).find("input.mntsoli").val());
+  facturaD.montoaprobado = parseFloat($(Concepto).find("input.mntAcumulado").val());
+  facturaD.numero = $(Concepto).find("input.numfact").val();
+  facturaD.control = $(Concepto).find("input.numfact").val();
+
+  facturaD.Beneficiario = CReembolso.Concepto[i].DatoFactura.Beneficiario;
+
+  concep.DatoFactura = facturaD;
+  concep.afiliado = CReembolso.Concepto[i].afiliado;
+  concep.descripcion = CReembolso.Concepto[i].descripcion;
+  return concep;
 }
 
 function agObservacion(tipo) {
@@ -511,16 +526,31 @@ function agObservacion(tipo) {
     var idTabla = "";
     var idOpi = "";
     switch (tipo){
-        case "r":idOpi="cuerpoOpiniones";idTexto="txtObservacion";idTabla = "cuerpoObservaciones";break;
-        case "a":idOpi="cuerpoOpinionesApoyo";idTexto="txtObservacionApoyo";idTabla = "cuerpoObservacionesApoyo";break;
-        case "c":idOpi="cuerpoOpinionesCarta";idTexto="txtObservacionCarta";idTabla = "cuerpoObservacionesCarta";break;
+        case "r":
+          idOpi = "cuerpoOpiniones";
+          idTexto = "txtObservacion";
+          idTabla = "cuerpoObservaciones";
+          break;
+        case "a":
+          idOpi = "cuerpoOpinionesApoyo";
+          idTexto = "txtObservacionApoyo";
+          idTabla = "cuerpoObservacionesApoyo";
+          break;
+        case "c":
+          idOpi = "cuerpoOpinionesCarta";
+          idTexto = "txtObservacionCarta";
+          idTabla = "cuerpoObservacionesCarta";
+          break;
     }
 
-    var texto = $("#"+idTexto).val();
-    var tabla = $("#"+idTabla);
+    var texto = $("#" + idTexto).val();
+    var tabla = $("#" + idTabla);
     if(CReembolso.estatus > 1) tabla = $("#"+idOpi);
-    var rem = '<button type="button" onclick="remObse(this)" class="btn btn-default btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i></button>';
-    tabla.append("<tr class='agobs'><td>" + texto + "</td><td style='5px'>" + rem + "</td></tr>");
+    var rem = `<button type="button" onclick="remObse(this)" class="btn btn-default
+                 btn-sm pull-right" data-toggle="tooltip" title="Borrar"><i style="color: red" class="fa fa-trash-o"></i>
+               </button>`;
+
+    tabla.append(`<tr class='agobs'><td>${texto}</td><td style='5px'>${rem}</td></tr>`);
 }
 
 function remObse(fila) {
@@ -538,14 +568,14 @@ function cambiarEstatus(tipo){
     var estatus = 0;
     switch (tipo){
         case "a":
-            verificarAprobacion(copia.numero ,copia.estatus,$("#lblcedula").text());
+            verificarAprobacion(copia.numero, copia.estatus, $("#lblcedula").text());
             break;
         case "r":
-            verificarRechazo(copia.numero ,copia.estatus,$("#lblcedula").text());
+            verificarRechazo(copia.numero, copia.estatus, $("#lblcedula").text());
         break;
         case "e":
             estatus = $("#cmbcambioestatus").val();
-            verificarAprobacion(copia.numero ,estatus,$("#lblcedula").text());
+            verificarAprobacion(copia.numero, estatus, $("#lblcedula").text());
             break;
     }
 }
@@ -580,32 +610,37 @@ function cambiarEstatusApoyo(tipo){
 
 function verificarAprobacionApoyo(num, esta,id) {
     $("#_contenido").html("¿Está seguro que APROBAR el apoyo " + num + "?");
-    var botones = '<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar" onClick="aprobarApoyo(\'' + num + '\',\'' + esta + '\',\''+id+'\')">Si</button><button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
+    var botones = `<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar"
+                    onClick="aprobarApoyo('${num}','${esta}','${id}')">Si</button>
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>`;
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }
 
 function verificarRechazoApoyo(num, esta,id) {
     $("#_contenido").html("¿Está seguro que RECHAZAR el apoyo " + num + "?");
-    var botones = '<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar" onClick="rechazarApoyo(\'' + num + '\',\'' + esta + '\',\''+id+'\')">Si</button><button type="button" class="btn btn-primary" data-dismiss="modal">No</button>';
+    var botones = `<button type="button" class="btn btn-success" data-dismiss="modal" id="_aceptar"
+                    onClick="rechazarApoyo('${num}','${esta}','${id}')">Si</button>
+                   <button type="button" class="btn btn-primary" data-dismiss="modal">No</button>`;
     $("#_botonesmsj").html(botones);
     $('#modMsj').modal('show');
 }
 
 function aprobarApoyo(num, est,id) {
     var url = Conn.URL + "wapoyo/estatus";
-    var esta = parseInt(est) + 1
-    var datos = {id:id,numero:num,estatus:parseInt(esta)};
-    var request = CargarAPI({
+    var datos = {
+      id: id,
+      numero: num,
+      estatus: parseInt(est) + 1
+    };
+    var promesa = CargarAPI({
         sURL: url,
         metodo: 'PUT',
         valores: datos,
     });
-    request.then(function (xhRequest) {
-
+    promesa.then(function (xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
-        //msjRespuesta(respuesta.msj);
         $.notify(respuesta.msj, "success");
         listaBuzon(est);
     });
@@ -613,16 +648,17 @@ function aprobarApoyo(num, est,id) {
 
 function rechazarApoyo(num, est,id) {
     var url = Conn.URL + "wapoyo/estatus";
-    var esta = -1;
-    var datos = {ID:id,Numero:num,Estatus:parseInt(esta)};
-    var request = CargarAPI({
+    var datos = {
+      ID: id,
+      numero: num,
+      estatus: -1
+    };
+    var promesa = CargarAPI({
         sURL: url,
         metodo: 'PUT',
-        valores: datos,
-        Objeto: militar
+        valores: datos
     });
-    request.then(function (xhRequest) {
-
+    promesa.then(function (xhRequest) {
         respuesta = JSON.parse(xhRequest.responseText);
         if(respuesta.msj == "") respuesta.msj = "Se proceso con exito....";
         $.notify(respuesta.msj);
@@ -631,44 +667,54 @@ function rechazarApoyo(num, est,id) {
 
 }
 function crearBuzonApoyo(est){
-    $("#listaApoyo").html('<li>\n' +
-        '            <div class="row">\n' +
-        '                <div class="col-sm-1"><span class="text">Apoyo</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">Cedula</span></div>\n' +
-        '                <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>\n' +
-        '                <div class="col-sm-1"><span class="text">F.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Solicitud</span></div>\n' +
-        '                <div class="col-sm-2"><span class="text">M.Aprobado</span></div>\n' +
-        '                <div class="col-sm-1">Estatus</div>\n' +
-        '            </div>\n' +
-        '        </li>');
-    $.each(lstBuzonApoyo, function () {
-        var alertSegui = "";
-        switch (this.estatusseguimiento){
-            case 1:
-                alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i></small>';
-                break;
-            case 2:
-                alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
-                break;
-        }
-        var item = '<li><div class="row"><div class="col-sm-1"><span class="text"><a href="#" onclick="detalleBuzon(\'' + this.id + '\',\'' + this.numero + '\','+est+',\'A\')"> ' + this.numero + '</a></span></div>\n' +
-            '                <div class="col-sm-1"><span class="text">' + this.id + '</span></div>\n' +
-            '                <div class="col-sm-3">' + this.nombre + '</div>\n' +
-            '                <div class="col-sm-1">' + Util.ConvertirFechaHumana(this.fechacreacion) + '</div>\n' +
-            '                <div class="col-sm-2">' + numeral(parseFloat(this.montosolicitado)).format('0,0[.]00 $') + '</div>\n' +
-            '                <div class="col-sm-2">' + numeral(parseFloat(this.montoaprobado)).format('0,0[.]00 $') + '</div>\n' +
-            '                <div class="col-sm-1">' + conviertEstatus(this.estatus)+alertSegui + '</div>\n' +
-            '                <div class="tools" style="margin-right: 50px;">\n' +
-            '                    <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacionApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
-            '                    <i class="fa fa-trash-o" onclick="verificarRechazoApoyo(\'' + this.numero + '\',\'' + this.estatus + '\',\''+this.id+'\')"></i>\n' +
-            '                </div>\n' +
-            '            </div>\n' +
-            '        </li>';
-        $("#listaApoyo").append(item);
+    $("#listaApoyo").html(`<li>
+        <div class="row">
+            <div class="col-sm-1"><span class="text">Apoyo</span></div>
+            <div class="col-sm-1"><span class="text">Cedula</span></div>
+            <div class="col-sm-3"><span class="text">Nombre y Apellido</span></div>
+            <div class="col-sm-1"><span class="text">F.Solicitud</span></div>
+            <div class="col-sm-2"><span class="text">M.Solicitud</span></div>
+            <div class="col-sm-2"><span class="text">M.Aprobado</span></div>
+            <div class="col-sm-1">Estatus</div>
+            </div>
+        </li>`);
+    lstBuzonApoyo.forEach(v => {
+        $("#listaApoyo").append(CargarBuzonApoyo(v, est));
     });
+
 }
 
+
+function CargarBuzonApoyo(v, est){
+  var alertSegui = "";
+  switch (v.estatusseguimiento){
+    case 1:
+      alertSegui = '<small class="label label-danger"><i class="fa fa-info-circle"></i></small>';
+      break;
+    case 2:
+      alertSegui = '<small class="label label-info"><i class="fa fa-comment-o"></i>Recomendacion</small>';
+      break;
+  }
+  var fCrea = Util.ConvertirFechaHumana(v.fechacreacion);
+  var montsol = numeral(parseFloat(v.montosolicitado)).format('0,0[.]00 $');
+  var montapr = numeral(parseFloat(v.montoaprobado)).format('0,0[.]00 $');
+  var estatus = conviertEstatus(v.estatus) + alertSegui;
+  return `<li><div class="row"><div class="col-sm-1"><span class="text">
+      <a href="#" onclick="detalleBuzon('${v.id}','${v.numero}',${est},'A')">${v.numero}</a></span></div>
+      <div class="col-sm-1"><span class="text">${v.id}</span></div>
+      <div class="col-sm-3">${v.nombre}</div>
+      <div class="col-sm-1">${fCrea}</div>
+      <div class="col-sm-2">${montsol}</div>
+      <div class="col-sm-2">${montapr}</div>
+      <div class="col-sm-1">${estatus}</div>
+      <div class="tools" style="margin-right: 50px;">
+          <i class="fa  fa-check-square" style="color: green" onclick="verificarAprobacionApoyo('${v.numero}','${v.estatus}','${v.id}')"></i>
+          <i class="fa fa-trash-o" onclick="verificarRechazoApoyo('${v.numero}','${v.estatus}','${v.id}')"></i>
+      </div>
+      </div>
+  </li>`;
+
+}
 
 function llenarBuzonApoyo(numero,est) {
     $('#lblcedulaApoyo').text(militarActivo.Persona.DatoBasico.cedula);

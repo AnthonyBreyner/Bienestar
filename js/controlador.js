@@ -261,7 +261,7 @@ function SeleccionarParroquia(valor){
 }
 
 function buzon(est){
-    CargarUrl("panelderecho","inc/buzon");
+    CargarUrl("panelderecho","inc/buzon");    
     listaBuzon(est);
 }
 
