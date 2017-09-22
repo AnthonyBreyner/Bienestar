@@ -50,7 +50,7 @@ class ConceptoCarta{
         this.afiliado = '';
         this.requisito = new Array();
         this.montoafiliado = 0.00;
-        this.porcentajeafiliado = 0.00;
+        this.porcentajeafi = 0.00;
     }
 }
 
@@ -304,7 +304,7 @@ function generarCarta(){
     concep.montopresupuesto = parseFloat($("#montopresupuesto").val());
     concep.montoseguro = parseFloat($("#montoacubrir").val());
     concep.montoafiliado = parseFloat($("#montoafiliado").val());
-    concep.porcentajeafiliado = parseFloat($("#porcentajeafiliado").val());
+    concep.porcentajeafi = parseFloat($("#porcentajeafiliado").val());
     concep.numeropresupuesto = $("#numeropresupuesto").val();
     concep.fechapresupuesto = new Date(Util.ConvertirFechaUnix($("#txtfechapresupuesto").val())).toISOString();
     concep.fechaseguro =new Date(Util.ConvertirFechaUnix($("#txtfechaseguro").val())).toISOString();
