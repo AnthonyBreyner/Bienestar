@@ -131,18 +131,16 @@
                 Nacional Bolivariana.</p>
             <p class="sangria" id="prote" style="display: none;">
                 Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
-                    id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <label
-                    id="txtmontopre"></label> (<label id="lblmontopresupuesto"></label> BS) según presupuesto Nº: <label
-                    id="lblnropresupuesto"></label> de fecha <label id="lblfechapresupuesto"></label>, de lo cual la
+                id="lbldiagnostico"></b><b id="lblconcepto"></b>, para el mencionado afiliado y cuyo monto es <label
+                id="txtmontopre"></label> (<label id="lblmontopresupuesto"></label> BS) según presupuesto Nº: <label
+                id="lblnropresupuesto"></label> de fecha <label id="lblfechapresupuesto"></label>, de lo cual la
                 empresa aseguradora cubre un monto de <label id="txtmontoseg"></label> (<label
-                    id="lblmontoseguro"></label> BS) según constancia de fecha <label id="lblfechaseguro"></label>
+                id="lblmontoseguro"></label> BS) según constancia de fecha <label id="lblfechaseguro"></label>
                 quedando una diferencia de <b id="txtmontoipsfa"></b> (<b id="lblmontot"></b> BS.) el cual este
-                instituto se
-                compromete a cancelar en su totalidad. </p>
-                <p class="sangria" id="masto" style="display: none;">
-                    Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
-                        id="lbldiagnostico2"></b><b id="lblconcepto2"></b>, la suma de <b id="txtmontoipsfa2"></b> (<b id="lblmontot"></b> BS.) que representa un 70% del costo total del examen y el (la) afiliado(a) cancelara el 30% restante lo que representa <label id="txtmontoseg"></label> (<label id="lblmontoseguro"></label> BS) para un total de <label
-                        id="txtmontopre2"></label> (<label id="lblmontopresupuesto2"></label> BS). </p>
+                instituto se compromete a cancelar en su totalidad. </p>
+            <p class="sangria" id="masto" style="display: none;">
+                Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
+                id="motivoafil"></b>, la suma de <b id="txtmontoipsfa2"></b> (<b id="lblmontot2"></b> BS.) que representa un <label id="lblporipsfa"></label>% del costo total del examen y el (la) afiliado(a) cancelara el <label id="lblporafi"></label> % restante lo que representa (<b id="montoafi"></b> BS.)  para un total de <label id="txtmontopre2"></label> (<label id="lblmontopresupuesto2"></label> BS). </p>
             <p class="sangria">
                 Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede
                 ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado
@@ -307,9 +305,13 @@
         $("#lblcuenta").text(carta.CuentaBancaria.cuenta);
         $("#lbltipoc").text(carta.CuentaBancaria.tipo);
         $("#lblmontot").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
+        $("#lblmontot2").text(numeral(parseFloat(carta.montosolicitado)).format('0,0.00'));
 
         var txttotipsfa = numeroALetras(carta.montosolicitado);
         $("#txtmontoipsfa").html(txttotipsfa);
+        
+        var txttotipsfa2 = numeroALetras(carta.montosolicitado);
+        $("#txtmontoipsfa2").html(txttotipsfa2);
 
         var concep = militar.CIS.ServicioMedico.Programa.CartaAval[pos];
 
@@ -329,7 +331,7 @@
             razonc = this.motivo;
             conceptoc = this.descripcion;
             diagnosticoc = this.diagnostico;
-
+            presupuesto = this.montopresupuesto;
             cedulaa = bene[0];
             nombreparen = bene[1];
             nomafi = nombreparen.split("(");
@@ -348,6 +350,14 @@
             $("#lblmotivo").text(this.motivo);
             $("#lblconcepto").text(this.descripcion);
             $("#lbldiagnostico").text(this.diagnostico);
+            $("#lblporafi").text(numeral(parseFloat(this.porcentajeafi)).format('0,0.00'));
+            $("#montoafi").text(numeral(parseFloat(this.montoafiliado)).format('0,0.00'));
+
+            var txttotpre2 = numeroALetras(presupuesto);
+            $("#txtmontopre2").html(txttotpre2);
+
+            var poripsfa = (100-(parseFloat(this.porcentajeafi)));
+            $("#lblporipsfa").html(poripsfa);
 
             var txttotpre = numeroALetras(this.montopresupuesto);
             $("#txtmontopre").html(txttotpre);
@@ -367,6 +377,7 @@
             $("#lbldiagnostico").html(diagnosticoc);
             $("#lblparentezco").html(parentezco);
             $("#lblparentezco2").html(parentezco);
+            $("#lblmontopresupuesto2").html(presupuesto);
             if ($("#lblparentezco").text() == "MILITAR") {
                 $("#tit").css("display", "block");
             } else {$("#fam").css("display", "block");}
