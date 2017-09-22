@@ -49,6 +49,8 @@ class ConceptoCarta{
         this.DatoFactura = new Factura2();
         this.afiliado = '';
         this.requisito = new Array();
+        this.montoafiliado = 0.00;
+        this.porcentajeafiliado = 0.00;
     }
 }
 
@@ -250,6 +252,7 @@ function generarCarta(){
 
     var aval = new Carta();
     aval.montosolicitado = parseFloat($("#montosolicitado").val());
+
     var cuenta = new CuentaBancaria2();
     cuenta.cuenta= $("#empcuenta").val();
     cuenta.institucion = $("#empbanco").val();
@@ -316,7 +319,7 @@ function generarCarta(){
     wcarta.Carta = aval;
     wcarta.nombre = militar.Persona.DatoBasico.nombreprimero.trim()+' '+militar.Persona.DatoBasico.apellidoprimero.trim();
 
-
+console.log(wcarta);
 
     var urlGuardar = Conn.URL + "wcarta";
     var request2 = CargarAPI({
@@ -428,6 +431,12 @@ function calcularSolicitado(){
     }else{$("#montosolicitado").val(mntSolici.toFixed(2));}
 }
 
+function limpiarcaja() {
+    if (($("#porcentajeafiliado").val()) == 0) {
+        $("#porcentajeafiliado").val("")
+    }
+}
+
 function calcularPorcentaje(){
     var mntFactura = $("#montopresupuesto").val();
     var porAfi = $("#porcentajeafiliado").val();
@@ -447,3 +456,4 @@ function limpiarCarta() {
         $("#cmbbeneficiario").select2("val", "");
     });
 }
+

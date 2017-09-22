@@ -98,7 +98,7 @@
                                 <div class="col-md-4 col-sm-12">
                                     <label>N° de Presupuesto:</label>
                                     <input class="form-control" id="numeropresupuesto" required="required"
-                                           onkeypress="return SoloNumero(event)">
+                                          >
                                 </div>
                             </div>
                             <div class="row">
@@ -140,7 +140,7 @@
                                         <label>Porcentaje a Cubrir por el afiliado:</label>
                                         <div class="input-group date" style="z-index: 1030;">
                                             <input class="form-control" id="porcentajeafiliado" onclick="limpiarcaja()" value="0" 
-                                                   onkeypress="return Util.SoloNumero(event,this,true)" onblur="calcularPorcentaje()" >
+                                                    onblur="calcularPorcentaje()" >
                                             <div class="input-group-addon">
                                                 <label>%</label>
                                             </div>
@@ -163,8 +163,7 @@
                                 <div class="col-md-4 col-sm-12 afiliado">
                                         <label>Monto a Cubrir por el afiliado:</label>
                                         <div class="input-group date" style="z-index: 1030;">
-                                            <input class="form-control" id="montoafiliado"  value="0" onclick="limpiarcaja()"
-                                                   onkeypress="return Util.SoloNumero(event,this,true)" readonly="readonly">
+                                            <input class="form-control" id="montoafiliado"  value="0" readonly="readonly">
                                             <div class="input-group-addon">
                                                 <label>Bs.</label>
                                             </div>
@@ -347,8 +346,11 @@
         autoclose: true,
         format: "dd/mm/yyyy",
         language: 'es'
-    });
+    }).datepicker("setDate", new Date());
+
     $('[data-mask]').inputmask();
+
+
 
 </script>
 
