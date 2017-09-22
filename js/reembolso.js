@@ -23,7 +23,6 @@ $(function () {
     llenarReembolso();
     $(".btnvolverentradar").click(function () {
         $("#mdldesea").modal("show");
-
         $("#btnsalir").click(function () {
             $("#opciones").hide();
             $("#panelentrada").show();
@@ -32,9 +31,12 @@ $(function () {
             $('#mdldesea').modal('hide');
             limpiarReembolso();
             limpiarmdlempresa();
+            limpiarReembolso2()
             $("#rifnuevo").remove();
             $("#sefue").remove();
-        })
+            $("#conceptoagregado").parents('tr').eq(0).remove();
+                $("#cajaConceptos").slideUp();
+        });
     });
     $(".btncancelare").click(function () {
         limpiarmdlempresa();
@@ -59,10 +61,10 @@ function consultarRif() {
     var encontrado = 0;
     lstProveedores.forEach( v => {
         if (v.rif == rif) {
-            rz = v.razonsocial;
-            encontrado = 1;
-        }
-    });
+        rz = v.razonsocial;
+        encontrado = 1;
+    }
+});
     if (encontrado == 1) {
         $("#razonsocial").val(rz);
     } else {
@@ -210,7 +212,7 @@ function cargarFamiliar(pos) {
 }
 
 function agregarConcepto() {
-    if (Util.ValidarFormulario("frmtodoreembolso", "_btnSalvar")) {
+    if (Util.ValidarFormulario("frmreembolso", "btnAgconcepto")) {
         var bene = $("#cmbbeneficiario option:selected").val().split('|');
         var beneficiario = bene[1] + "-" + $("#cmbbeneficiario option:selected").text();
         var concepto = $("#concepto option:selected").text();
@@ -309,8 +311,7 @@ function cargarDatos() {
         var conceptos = new Array();
         if ($("#conceptoagregado tr").length > 0 && validadDatosBancarios()) {
             $("#conceptoagregado tr").each(function () {
-                CargarConceptos(this);
-                conceptos.push(concep);
+                conceptos.push(CargarConceptos(this));
             });
             reembolso.Concepto = conceptos;
 
@@ -341,23 +342,24 @@ function cargarDatos() {
 
 }
 function CargarConceptos(Concepto){
-  var concep = new ConceptoReembolso();
-  var facturaD = new Factura();
-  facturaD.fecha = new Date(Util.ConvertirFechaUnix($(this).find("td").eq(6).html())).toISOString();
-  facturaD.monto = parseFloat($(Concepto).find("td").eq(5).html());
-  facturaD.numero = $(Concepto).find("td").eq(4).html();
-  facturaD.control = $(Concepto).find("td").eq(4).html();
+    var concep = new ConceptoReembolso();
+    var facturaD = new Factura();
+    facturaD.fecha = new Date(Util.ConvertirFechaUnix($(Concepto).find("td").eq(6).html())).toISOString();
+    facturaD.monto = parseFloat($(Concepto).find("td").eq(5).html());
+    facturaD.numero = $(Concepto).find("td").eq(4).html();
+    facturaD.control = $(Concepto).find("td").eq(4).html();
 
-  var prov = new Beneficiario();
-  prov.rif = $(Concepto).find("td").eq(2).html();
-  prov.razonsocial = $(Concepto).find("td").eq(3).html();
-  prov.tipoempresa = 'J';
-  prov.direccion = 'Por cargar';
-  facturaD.Beneficiario = prov;
+    var prov = new Beneficiario();
+    prov.rif = $(Concepto).find("td").eq(2).html();
+    prov.razonsocial = $(Concepto).find("td").eq(3).html();
+    prov.tipoempresa = 'J';
+    prov.direccion = 'Por cargar';
+    facturaD.Beneficiario = prov;
 
-  concep.DatoFactura = facturaD;
-  concep.afiliado = $(Concepto).find("td").eq(0).html();
-  concep.descripcion = $(Concepto).find("td").eq(1).html();
+    concep.DatoFactura = facturaD;
+    concep.afiliado = $(Concepto).find("td").eq(0).html();
+    concep.descripcion = $(Concepto).find("td").eq(1).html();
+    return concep;
 }
 function verificaBeneficiarioCuenta() {
     var opt = $("#datosbancarios").val();
@@ -386,9 +388,14 @@ function verificaBeneficiarioCuenta() {
 }
 
 function limpiarReembolso() {
-    $('#frmtodoreembolso').each(function () {
+    $('#frmreembolso').each(function () {
         this.reset();
         $("#cmbbeneficiario").select2("val", "");
+    });
+}
+function limpiarReembolso2() {
+    $('#frmreembolsobanco').each(function () {
+        this.reset();
     });
 }
 

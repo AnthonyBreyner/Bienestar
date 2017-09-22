@@ -112,8 +112,8 @@ class Utilidad {
     //Recibe  Fecha Formato: DD/MM/AAAA
     //Retorna Fecha Formato: AAAA-MM-DD
     ConvertirFechaUnix(f) {
-        f = f.split("/");
-        return f[2] + "-" + f[1] + "-" + f[0];
+        var fecha = f.split("/");
+        return fecha[2] + "-" + fecha[1] + "-" + fecha[0];
     }
 
 
