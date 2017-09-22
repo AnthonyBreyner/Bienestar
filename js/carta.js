@@ -190,11 +190,10 @@ function llenarCarta(){
         Estados.ObtenerEstados();
         if (militar.Persona.Direccion != undefined) {
             var DIR = militar.Persona.Direccion[0];
-
             $("#cmbmestado").val(DIR.estado);
-            $("#cmbmmunicipio").html('<option selected="selected" value="' + DIR.municipio + '">' + DIR.municipio + '</option>');
-            $("#cmbmparroquia").html('<option selected="selected" value="' + DIR.parroquia + '">' + DIR.parroquia + '</option>');
-            $("#cmbmciudad").html('<option selected="selected" value="' + DIR.ciudad + '">' + DIR.ciudad + '</option>');
+            $("#cmbmmunicipio").html(`<option selected="selected" value="${DIR.municipio}">${DIR.municipio}</option>`);
+            $("#cmbmparroquia").html(`<option selected="selected" value="${DIR.parroquia}">${DIR.parroquia}</option>`);
+            $("#cmbmciudad").html(`<option selected="selected" value="${DIR.ciudad}">${DIR.ciudad}</option>`);
             $("#txtmcalle").val(DIR.calleavenida);
             $("#txtmcasa").val(DIR.casa);
             $("#txtmapto").val(DIR.apartamento);

@@ -287,7 +287,7 @@ function msjferespuesta(texto) {
 }
 
 function Principal(){
-  
+
 }
 
 function PanelEntrada(){
