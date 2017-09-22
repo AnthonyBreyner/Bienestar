@@ -477,7 +477,7 @@ function CargarDatosFarmacia(){
     farmacia.Tratamiento=tratamientoafi;
     farmacia.Patologia=patologiaag;
     datos.Farmacia = farmacia;
-    console.log(JSON.stringify(datos));
+    
     //probar
     $("#medicoagregado").html("");
     $("#tratamientoagregado").html("");
