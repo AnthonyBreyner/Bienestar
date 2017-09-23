@@ -1,4 +1,6 @@
-<div id="listasProgramas" class="container-fluid box-body">
+
+
+  <div id="listasProgramas" class="container-fluid box-body">
     <a class="collapsed" role="button" data-toggle="collapse" data-parent="#listadoCompleto"
        href="#listadoCompleto" aria-expanded="false" aria-controls="listadoCompleto">
         <div class="panel-heading bg-blue" role="tab" id="headingTree">
@@ -9,7 +11,7 @@
     </a>
 
     <div class="panel-collapse collapse in" id="listadoCompleto">
-        <div class="panel-body bg-info">
+        <div class="panel-body" style="background-color:#FFFFFF">
             <ul class="todo-list" id="lista" style="overflow-x:hidden;">
 
             </ul>
@@ -26,7 +28,7 @@
         </div>
     </a>
     <div class="panel-collapse collapse" id="listadoCompletoApoyo">
-        <div class="panel-body bg-info">
+        <div class="panel-body" style="background-color:#FFFFFF">
             <ul class="todo-list" id="listaApoyo" style="overflow-x:hidden;">
 
             </ul>
@@ -43,13 +45,15 @@
         </div>
     </a>
     <div class="panel-collapse collapse" id="listadoCompletoCarta">
-        <div class="panel-body bg-info">
+        <div class="panel-body" style="background-color:#FFFFFF">
             <ul class="todo-list" id="listaCarta" style="overflow-x:hidden;">
 
             </ul>
         </div>
     </div>
 </div>
+
+
 <script>
     $(function () {
         $('.todo-list').sortable({
@@ -63,6 +67,8 @@
         $('.todo-list').todoList();
     });
 </script>
+
+
 <div id="detallesProgramas">
     <div class="box-body" id="detalle" style="display: none">
         <div class="row">
@@ -102,8 +108,8 @@
                         </div>
                         <!-- /.mailbox-read-info -->
                         <div class="mailbox-controls with-border text-center">
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar">
-                                <i class="fa fa-trash-o" style="color: red" onclick="cambiarEstatus('r')"></i>&nbsp
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip" title="Borrar" onclick="cambiarEstatusReembolso('r')">
+                                <i class="fa fa-trash-o" style="color: red" ></i>&nbsp
                                 Rechazar
                             </button>
                             <div class="btn-group">
@@ -123,7 +129,7 @@
                             </div>
                             <!-- /.btn-group -->
                             <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                    onclick="cambiarEstatus('a')">
+                                    onclick="cambiarEstatusReembolso('a')">
                                 <i class="fa fa-check" style="color: green"></i>&nbsp Procesar
                             </button>
                             <div class="pull-right" id="cambioestatus" style="display: none">
@@ -134,7 +140,7 @@
                                     <option value="2">Gerencia</option>
                                 </select>
                                 <button type="button" class="btn btn-default btn-sm" data-toggle="tooltip"
-                                        data-container="body" onclick="cambiarEstatus('e')" id="btncambioestatus">
+                                        data-container="body" onclick="cambiarEstatusReembolso('e')" id="btncambioestatus">
                                     <i class="fa fa-check" style="color: green"></i>&nbsp Cambio de Estatus
                                 </button>
                             </div>
@@ -148,16 +154,16 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <tr class="bg-info">
-                                    <td><b>PARENT.</b></td>
-                                    <td><b>CEDULA</b></td>
-                                    <td><b>NOMBRE DEL FAMILIAR</td>
-                                    <td><b>CONCEPTO</b></td>
-                                    <td><b>FACTURA</b></td>
-                                    <td><b>FECHA</b></td>
-                                    <td><b>MONTO SOLICITADO</b></td>
-                                    <td>%</td>
-                                    <td><b>MONTO APROBADO</b></td>
-                                    <td></td>
+                                    <th><b>PARENT.</b></th>
+                                    <th><b>CEDULA</b></th>
+                                    <th><b>NOMBRE DEL FAMILIAR</th>
+                                    <th><b>CONCEPTO</b></th>
+                                    <th><b>FACTURA</b></th>
+                                    <th><b>FECHA</b></th>
+                                    <th><b>MONTO  <br>SOLICITADO</b></th>
+                                    <th><b>%</b></th>
+                                    <th><b>MONTO <br>APROBADO</b></th>
+                                    <th style="width:10px"><b>#</b></th>
                                 </tr>
                                 </thead>
                                 <tbody id="cuerpoEditarConceptos">

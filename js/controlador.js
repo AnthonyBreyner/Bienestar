@@ -30,6 +30,7 @@ class Factura {
         this.fecha = '';
         this.monto = 0.00;
         this.montoaprobado= 0.00;
+        this.porcentaje = 0.00;
         this.montootroaporte = 0.00;
         this.Beneficiario = new Beneficiario();
     }
@@ -261,7 +262,7 @@ function SeleccionarParroquia(valor){
 }
 
 function buzon(est){
-    CargarUrl("panelderecho","inc/buzon");    
+    CargarUrl("panelderecho","inc/buzon");
     listaBuzon(est);
 }
 
