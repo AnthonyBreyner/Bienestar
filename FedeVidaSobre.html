@@ -110,7 +110,7 @@
                                 <td width="225" class="texto10 bde biz bajo btop">NÚMERO:</td>
                             </tr>
                             <tr>
-                                <td height="28"><label id="lblnumero"></label></td>
+                                <td height="28"><label id="lblnumero1"></label></td>
                             </tr>
                             <tr>
                                 <td class="texto10 bde biz bajo btop">FECHA:</td>
@@ -227,13 +227,13 @@
                         <td width="486" rowspan="3">
                             <div align="center"><strong>SOLICITUD FE DE VIDA </strong></div>
                         </td>
-                        <td colspan="3" class="texto14">1.Número:</td>
+                        <td colspan="3" class="texto14">1.Número: <label id="lblnumero"></label></td>
                     </tr>
                     <tr>
-                        <td colspan="3" class="texto14 ">2.Fecha:</td>
+                        <td colspan="3" class="texto14 ">2.Fecha:<label id="lblfechacreacion3"></label></td>
                     </tr>
                     <tr>
-                        <td width="135" height="23" class="texto14 "><b id="lblfechacreacion2"></b></td>
+                        <td width="135" height="23" class="texto14 "></b></td>
                         <td width="114" class="texto12 "></td>
                         <td width="115" class="texto12 "></td>
                     </tr>
@@ -330,12 +330,12 @@
 <br>
                     <table border="0" align="center" width="100%" class="bde biz bajo btop">
                     <tr class="bde biz bajo btop">
-                        <td width="80" rowspan="3">
+                        <td width="78" rowspan="3">
                             <div id="col1"><img src="images/lg.png" width="74" height="62">
                             </div>
                         </td>
-                        <td width="208" rowspan="3">
-                            <div id="col2" align="left"><p style="font-size: 7px; width: auto"> REPÚBLICA BOLIVARIANA DE
+                        <td width="228" rowspan="3">
+                            <div id="col2" align="left"><p style="font-size: 6px; width: auto"> REPÚBLICA BOLIVARIANA DE
                                 VENEZUELA
                                 <br>
                                 MINISTERIO DEL PODER POPULAR PARA LA DEFENSA<br>
@@ -345,18 +345,18 @@
                                 GERECIA DE BIENESTAR Y SEGURIDAD <br>
                             </div>
                         </td>
-                        <td width="486" rowspan="3">
+                        <td width="475" rowspan="3">
                             <div align="center"><strong>SOLICITUD FE DE VIDA </strong></div>
                          </td>
-                        <td colspan="3" class="texto12">1.Número:</td>
+                        <td colspan="3" class="texto12">1.Número:<label id="lblnumero"></label></td>
                    </tr>
                       <tr>
-                        <td colspan="3" class="texto12 ">2.Fecha: </td>
+                        <td colspan="3" class="texto12 ">2.Fecha: <b id="lblfechacreacion5"></td>
                       </tr>
                      <tr>
                         <td width="135" height="23"></td>
-                        <td width="114"><b id="lblfechacreacion5"></b></td>
-                        <td width="115"><b id="lblnumero1"></td>
+                        <td width="114"></b></td>
+                        <td width="115"></b></td>
                     </tr>
                     <!--<tr>-->
                     <!--<td colspan="6" class="texto12 bde biz bajo btop">DATOS DEL MILITAR FALLECIDO</td>-->
@@ -511,15 +511,15 @@
             // $("#lblestadocivil").text(estcivil);
             $("#lblsituacion").text(Util.ConvertirSitucacion(militar.situacion));
      
-        if (militar.situacion == "FCP") {
-            $("#sobre").css("display", "block");
-            $("#datosfallecido").css("display", "block");
-         }
-         else 
-         {
-            $("#militar").css("display", "block");
-            $("#datosmilitar").css("display", "block");
-        }
+            if (militar.situacion == "FCP") {
+                $("#sobre").css("display", "block");
+                $("#datosfallecido").css("display", "block");
+             }
+             else 
+             {
+                $("#militar").css("display", "block");
+                $("#datosmilitar").css("display", "block");
+            }
 
        
  /*      var DIR = militar.Persona.Direccion[0];
@@ -603,9 +603,14 @@
 /*        $("#lblfechacreacionex").html(Util.ConvertirFechaHumana(fdv.fechacreacion));
          $("#lblfechaemision").html(Util.ConvertirFechaHumana(fdv.fechaex));*/
 
-        $("#lblnumero").html(fdv.numero);
         $("#lblnumero1").html(fdv.numero);
-       // console.log(fdv);
+       
+     
+
+        var numerox = fdv.numero;
+        //console.log(numerox); 
+        $("#lblnumero").text(numerox);
+
 
                 var DIR1 = fdv.DatoBasico.Direccion;
                 Estados.ObtenerEstados();
