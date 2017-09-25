@@ -140,7 +140,7 @@
                 instituto se compromete a cancelar en su totalidad. </p>
             <p class="sangria" id="masto" style="display: none;">
                 Por lo antes expuesto, este Instituto se compromete a cancelar los gastos por concepto de <b
-                id="motivoafil"></b>, la suma de <b id="txtmontoipsfa2"></b> (<b id="lblmontot2"></b> BS.) que representa un <label id="lblporipsfa"></label>% del costo total del examen y el (la) afiliado(a) cancelara el <label id="lblporafi"></label> % restante lo que representa (<b id="montoafi"></b> BS.)  para un total de <label id="txtmontopre2"></label> (<label id="lblmontopresupuesto2"></label> BS). </p>
+                id="motivoafil"></b>, <b id="txtmontoipsfa2"></b> (<b id="lblmontot2"></b> BS) que representa un <label id="lblporipsfa"></label>% del costo total del examen y el (la) afiliado(a) cancelara el <label id="lblporafi"></label>% restante lo que equivale a <label id="txtmontoafi"></label>(<label id="montoafi"></label> BS.)  para un total de <label id="txtmontopre2"></label> (<label id="lblmontopresupuesto2"></label> BS). </p>
             <p class="sangria">
                 Asi mismo le informamos que cualquier información requerida para la tramitación del presente caso, puede
                 ser comunicada a nuestros telefonos directos: (0212)-6931408 y (0212)-6092545, Departamento de Cuidado
@@ -356,14 +356,18 @@
             var txttotpre2 = numeroALetras(presupuesto);
             $("#txtmontopre2").html(txttotpre2);
 
-            var poripsfa = (100-(parseFloat(this.porcentajeafi)));
+            var poripsfa = (numeral(100-(parseFloat(this.porcentajeafi))).format('0,0.00'));
             $("#lblporipsfa").html(poripsfa);
+            //text(numeral(parseFloat(this.porcentajeafi)).format('0,0.00'));
 
             var txttotpre = numeroALetras(this.montopresupuesto);
             $("#txtmontopre").html(txttotpre);
 
             var txttotseg = numeroALetras(this.montoseguro);
             $("#txtmontoseg").html(txttotseg);
+
+            var txttotafi = numeroALetras(this.montoafiliado);
+            $("#txtmontoafi").html(txttotafi);
 
             $("#cedulaafil").html(cedulaa);
             $("#nombreafil").html(nombrea);
